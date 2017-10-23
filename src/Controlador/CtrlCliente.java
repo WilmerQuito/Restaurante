@@ -7,11 +7,13 @@ package Controlador;
 
 import Modelo.*;
 import Vista.*;
+import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
@@ -53,6 +55,18 @@ public class CtrlCliente implements ActionListener{
             }    
             }
         } );
+        
+        Frm.txtBuscar.addKeyListener(new KeyListener() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+
+            @Override
+            public void keyTyped(KeyEvent e) {}
+
+            @Override
+            public void keyReleased(KeyEvent e) {Tabla();}
+        });
       
     }
     
@@ -96,6 +110,7 @@ public class CtrlCliente implements ActionListener{
         Frm.txtNombre.setText(null);
         Frm.txtNombre.grabFocus();
         Frm.TCliente.clearSelection();
+        Tabla();
     }
     
     public void Tabla() {
@@ -155,5 +170,6 @@ public class CtrlCliente implements ActionListener{
         if(e.getSource() == Frm.btnlimpiar){
             Limpiar();
         }
-    }  
+    }
+
 }

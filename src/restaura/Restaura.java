@@ -20,13 +20,8 @@ public class Restaura {
     public static void main(String[] args) {
         FrmCliente FrmCli = new FrmCliente();
         CtrlCliente CtrlCli = new CtrlCliente(FrmCli);
-        
-        FrmMesa FrmMe = new FrmMesa();
-        CtrlMesa CtrlMe = new CtrlMesa(FrmMe);
-        
+
         CtrlCli.IniciarCliente();
-        CtrlMe.IniciarMesas();
         FrmCli.setVisible(true);
-        FrmMe.setVisible(true);
     }
 }
