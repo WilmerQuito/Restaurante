@@ -61,6 +61,24 @@ public class FrmCliente extends javax.swing.JFrame {
 
         txtCodigo.setEditable(false);
 
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
+
+        txtCelular.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCelularKeyTyped(evt);
+            }
+        });
+
+        txtDNI.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDNIKeyTyped(evt);
+            }
+        });
+
         btnlimpiar.setText("LIMPIAR");
 
         btnguardar.setText("GUARDAR");
@@ -232,6 +250,33 @@ public class FrmCliente extends javax.swing.JFrame {
     private void TClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TClienteMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_TClienteMouseClicked
+
+    private void txtDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIKeyTyped
+        if(txtDNI.getText().length()>=8){ 
+            evt.consume(); 
+        }
+        if(Character.isLetter(evt.getKeyChar())) { 
+            evt.consume();     
+        }
+    }//GEN-LAST:event_txtDNIKeyTyped
+
+    private void txtCelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCelularKeyTyped
+        if(txtCelular.getText().length()>=9){ 
+            evt.consume(); 
+        }
+        if(Character.isLetter(evt.getKeyChar())) { 
+            evt.consume();     
+        } 
+    }//GEN-LAST:event_txtCelularKeyTyped
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        if(txtNombre.getText().length()>=100){ 
+            evt.consume(); 
+        } 
+        if(Character.isDigit(evt.getKeyChar())) { 
+            evt.consume();     
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
 
     /**
      * @param args the command line arguments

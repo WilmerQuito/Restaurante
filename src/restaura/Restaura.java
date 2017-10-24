@@ -18,10 +18,10 @@ public class Restaura {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        FrmCliente FrmCli = new FrmCliente();
-        CtrlCliente CtrlCli = new CtrlCliente(FrmCli);
+        FrmLogin Frm = new FrmLogin();
+        CtrlLogin Ctl= new CtrlLogin(Frm);
 
-        CtrlCli.IniciarCliente();
-        FrmCli.setVisible(true);
+        Ctl.IniciarCliente();
+        Frm.setVisible(true);
     }
 }

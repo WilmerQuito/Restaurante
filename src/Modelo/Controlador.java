@@ -1,5 +1,7 @@
 package Modelo;
+import Controlador.CtrlCliente;
 import Modelo.Conexion;
+import Vista.FrmCliente;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Image;
@@ -145,17 +147,20 @@ public class Controlador {
         actual.setVisible(false);
     }
     
-    public  void Acceso(JFrame Actual, JFrame Siguiente, String Usu, String Contra){
+    public  void Acceso(JFrame Actual, String Usu, String Contra, String Rol){
+        FrmCliente Frm = new FrmCliente();
+        CtrlCliente Ctl = new CtrlCliente(Frm);
         
         try {
-            sql="select * from usuario where usuario ='"+Usu+"' and clave ='"+Contra+"'";
+            sql="select * from Sesion where Usuario ='"+Usu+"' and Clave ='"+Contra+"' and Nombre='"+Rol+"'";
             base.st = base.conn.createStatement();
             base.rs = base.st.executeQuery(sql);
             if(base.rs.next()){
                 Actual.dispose();
-                Siguiente.setVisible(true);
+                Ctl.IniciarCliente();
+                Frm.setVisible(true);
             } else{
-                Mensage("LA CLAVE O EL USUARIO SON INCORRECTOS");
+                Mensage("DATOS ERRONEOS");
             }
         } catch (Exception e) {
         }
