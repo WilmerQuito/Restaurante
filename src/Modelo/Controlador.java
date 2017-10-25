@@ -71,7 +71,7 @@ public class Controlador {
         return rst;
     }
     
-    public void Mensage(String Con){
+    public void Mensaje(String Con){
         JOptionPane.showMessageDialog(null, Con);
     }    
     
@@ -84,7 +84,7 @@ public class Controlador {
             flag = VerificarConsulta(sql);
             if (flag) {
                 ctd++;
-                cod = PrmrsLetras(cdn) + "_" + ctd;
+                cod = PrmrsLetras(cdn) + "-" + ctd;
                 flag = false;
             } else {
                 flag = true;
@@ -157,10 +157,10 @@ public class Controlador {
             base.rs = base.st.executeQuery(sql);
             if(base.rs.next()){
                 Actual.dispose();
-                Ctl.IniciarCliente();
+                Ctl.Iniciar();
                 Frm.setVisible(true);
             } else{
-                Mensage("DATOS ERRONEOS");
+                Mensaje("DATOS ERRONEOS");
             }
         } catch (Exception e) {
         }
@@ -171,4 +171,21 @@ public class Controlador {
         ImageIcon TemIcon = new ImageIcon(IconAux.getImage().getScaledInstance(escala, -1,Image.SCALE_DEFAULT));
         return TemIcon;
     }
+    
+    public boolean ComparaContra(char[] Psw1, char[] Psw2) {
+        boolean valor = true;
+        int puntero = 0;
+        if (Psw1.length != Psw2.length) {
+            valor = false;
+        } else {
+            while ((valor) && (puntero < Psw1.length)) {
+                if (Psw1[puntero] != Psw2[puntero]) {
+                    valor = false;
+                }
+                puntero++;
+            }
+        }
+        return valor;
+    }
+    
 }

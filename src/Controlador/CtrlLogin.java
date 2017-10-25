@@ -31,8 +31,8 @@ public class CtrlLogin implements ActionListener{
 
     }
     
-    public void IniciarCliente(){
-        Frm.setTitle("REGISTRO DE CLIENTES");
+    public void Iniciar(){
+        Frm.setTitle("INICIAR SESION");
         Frm.setLocationRelativeTo(null);
         Rol();
     }
@@ -46,17 +46,17 @@ public class CtrlLogin implements ActionListener{
         C.flag = true;
         if (Frm.txtUsu.getText().trim().length() == 0) {
             C.flag = false;
-            C.Mensage("INGRESA TU USUARIO");
+            C.Mensaje("INGRESA TU USUARIO");
             Frm.txtUsu.grabFocus();
         } else {
             if (Frm.txtPsw.getText().trim().length() == 0) {
                 C.flag = false;
-                C.Mensage("INGRESA UN CONSTRASEÑA");
+                C.Mensaje("INGRESA UN CONSTRASEÑA");
                 Frm.txtPsw.grabFocus();
             } else {
                 if (Frm.cbRol.getSelectedIndex() == 0) {
                     C.flag = false;
-                    C.Mensage("SELECCIONA TU ROL");
+                    C.Mensaje("SELECCIONA TU ROL");
                     Frm.cbRol.grabFocus();
                 }
             }

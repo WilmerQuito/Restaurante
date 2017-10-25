@@ -50,6 +50,8 @@ public class FrmLogin extends javax.swing.JFrame {
 
         jLabel4.setText("CONTRASEÑA:");
 
+        txtUsu.setToolTipText("");
+        txtUsu.setName("");
         txtUsu.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtUsuKeyReleased(evt);
