@@ -5,19 +5,71 @@
  */
 package Vista;
 
+import Modelo.Controlador;
+import Vista.*;
+
 /**
  *
  * @author Wilmer Quito
  */
 public class FrmLogin extends javax.swing.JFrame {
+    private Controlador C=new Controlador();
 
     /**
      * Creates new form FrmLogin
      */
     public FrmLogin() {
         initComponents();
+        setTitle("INICIAR SESION");
+        setLocationRelativeTo(null);
+        Rol();
     }
-
+      
+    public void Rol(){
+        C.sql= "SELECT * FROM Rol;";
+        C.LlenarCombo(cbRol, C.sql, "<SELECCIONE>",2);
+    }
+    
+    public boolean Validar(){
+        C.flag = true;
+        if (txtUsu.getText().trim().length() == 0) {
+            C.flag = false;
+            C.Mensaje("INGRESA TU USUARIO");
+            txtUsu.grabFocus();
+        } else {
+            if (txtPsw.getText().trim().length() == 0) {
+                C.flag = false;
+                C.Mensaje("INGRESA UN CONSTRASEÑA");
+                txtPsw.grabFocus();
+            } else {
+                if (cbRol.getSelectedIndex() == 0) {
+                    C.flag = false;
+                    C.Mensaje("SELECCIONA TU ROL");
+                    cbRol.grabFocus();
+                }
+            }
+        }
+        return C.flag;
+    }
+    
+    public void Limpiar(){
+        txtUsu.setText(null);
+        txtPsw.setText(null);
+        cbRol.setSelectedIndex(0);
+        cbRol.grabFocus();
+    }
+    
+    public void Acceso(){
+        if(Validar()){
+            C.Acceso(this, new FrmPrincipal(), txtUsu.getText(), txtPsw.getText(), cbRol.getSelectedItem().toString());
+            Limpiar();
+        }else{
+            C.Mensaje("ACCEDO DENEGADO");
+        }
+    }
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,7 +92,8 @@ public class FrmLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("INCIIAR SESION");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setText("INCIAR SESION");
 
         cbRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -82,6 +135,11 @@ public class FrmLogin extends javax.swing.JFrame {
         });
 
         btnSalir.setText("SALIR");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,7 +162,7 @@ public class FrmLogin extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addContainerGap()
                             .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(49, 49, 49)
+                            .addGap(43, 43, 43)
                             .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(10, 10, 10)
@@ -126,10 +184,9 @@ public class FrmLogin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(cbRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
+                        .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
@@ -142,10 +199,12 @@ public class FrmLogin extends javax.swing.JFrame {
                                 .addComponent(jLabel4))
                             .addComponent(txtPsw, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAcceder)
-                            .addComponent(btnLimpiar)))
-                    .addComponent(btnSalir, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addComponent(btnAcceder))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnSalir)
+                            .addComponent(btnLimpiar))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -153,11 +212,11 @@ public class FrmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAccederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccederActionPerformed
-        // TODO add your handling code here:
+        Acceso();
     }//GEN-LAST:event_btnAccederActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        // TODO add your handling code here:
+        Limpiar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void txtUsuKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuKeyReleased
@@ -175,6 +234,10 @@ public class FrmLogin extends javax.swing.JFrame {
             evt.consume(); 
         } 
     }//GEN-LAST:event_txtPswKeyTyped
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
      * @param args the command line arguments

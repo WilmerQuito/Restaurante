@@ -9,7 +9,7 @@ package Vista;
  *
  * @author Wilmer Quito
  */
-public class FrmCliente extends javax.swing.JFrame {
+public class FrmCliente extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FrmCliente
@@ -27,37 +27,28 @@ public class FrmCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         txtCelular = new javax.swing.JTextField();
         txtDNI = new javax.swing.JTextField();
         btnlimpiar = new javax.swing.JButton();
         btnguardar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         btneditar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         btneliminar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         txtBuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         TCliente = new javax.swing.JTable();
-        btnsalir = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("REGISTRO DE CLIENTES");
-
-        jLabel2.setText("CODIGO:");
-
-        jLabel3.setText("NOMBRE:");
-
-        jLabel4.setText("CELULAR:");
-
-        jLabel5.setText("DNI:");
+        setClosable(true);
+        setIconifiable(true);
+        setTitle("REGISTRO DE CLIENTES");
+        setToolTipText("");
 
         txtCodigo.setEditable(false);
 
@@ -83,9 +74,16 @@ public class FrmCliente extends javax.swing.JFrame {
 
         btnguardar.setText("GUARDAR");
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("REGISTRO DE CLIENTES");
+
         btneditar.setText("EDITAR");
 
+        jLabel2.setText("CODIGO:");
+
         btneliminar.setText("ELIMINAR");
+
+        jLabel3.setText("NOMBRE:");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("BUSCAR:"));
         jPanel1.setToolTipText("");
@@ -150,12 +148,9 @@ public class FrmCliente extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btnsalir.setText("SALIR");
-        btnsalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnsalirActionPerformed(evt);
-            }
-        });
+        jLabel4.setText("CELULAR:");
+
+        jLabel5.setText("DNI:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -195,9 +190,6 @@ public class FrmCliente extends javax.swing.JFrame {
                                             .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(0, 0, Short.MAX_VALUE))))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(152, 152, 152)
-                        .addComponent(btnsalir))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(94, 94, 94)
                         .addComponent(jLabel1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -231,17 +223,38 @@ public class FrmCliente extends javax.swing.JFrame {
                     .addComponent(btnlimpiar))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnsalir)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnsalirActionPerformed
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        if(txtNombre.getText().length()>=100){
+            evt.consume();
+        }
+        if(Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtCelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCelularKeyTyped
+        if(txtCelular.getText().length()>=9){
+            evt.consume();
+        }
+        if(Character.isLetter(evt.getKeyChar())) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCelularKeyTyped
+
+    private void txtDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIKeyTyped
+        if(txtDNI.getText().length()>=8){
+            evt.consume();
+        }
+        if(Character.isLetter(evt.getKeyChar())) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDNIKeyTyped
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
         // TODO add your handling code here:
@@ -251,68 +264,6 @@ public class FrmCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TClienteMouseClicked
 
-    private void txtDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIKeyTyped
-        if(txtDNI.getText().length()>=8){ 
-            evt.consume(); 
-        }
-        if(Character.isLetter(evt.getKeyChar())) { 
-            evt.consume();     
-        }
-    }//GEN-LAST:event_txtDNIKeyTyped
-
-    private void txtCelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCelularKeyTyped
-        if(txtCelular.getText().length()>=9){ 
-            evt.consume(); 
-        }
-        if(Character.isLetter(evt.getKeyChar())) { 
-            evt.consume();     
-        } 
-    }//GEN-LAST:event_txtCelularKeyTyped
-
-    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-        if(txtNombre.getText().length()>=100){ 
-            evt.consume(); 
-        } 
-        if(Character.isDigit(evt.getKeyChar())) { 
-            evt.consume();     
-        }
-    }//GEN-LAST:event_txtNombreKeyTyped
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmCliente().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTable TCliente;
@@ -320,7 +271,6 @@ public class FrmCliente extends javax.swing.JFrame {
     public javax.swing.JButton btneliminar;
     public javax.swing.JButton btnguardar;
     public javax.swing.JButton btnlimpiar;
-    public javax.swing.JButton btnsalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

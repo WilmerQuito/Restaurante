@@ -32,7 +32,6 @@ public class CtrlEstado implements ActionListener{
         Frm.btneliminar.addActionListener(this);
         Frm.btnguardar.addActionListener(this);
         Frm.btnlimpiar.addActionListener(this);
-        Frm.btnsalir.addActionListener(this);
         
         Frm.TEstado.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
@@ -61,7 +60,6 @@ public class CtrlEstado implements ActionListener{
     
     public void Iniciar(){
         Frm.setTitle("REGISTRO DE ESTADOS");
-        Frm.setLocationRelativeTo(null);
         
         Frm.TEstado.setModel(DTM);
         DTM.setColumnIdentifiers(new String[]{"CODIGO","ESTADO"});
@@ -141,10 +139,6 @@ public class CtrlEstado implements ActionListener{
             }else{
                 C.Mensaje("SELECCIONA UN ESTADO PARA ELIMINAR");
             }
-        }
-        
-        if(e.getSource() == Frm.btnsalir){
-            System.exit(0);
         }
         
         if(e.getSource() == Frm.btnlimpiar){

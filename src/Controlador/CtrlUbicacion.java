@@ -34,7 +34,6 @@ public class CtrlUbicacion implements ActionListener{
         Frm.btneliminar.addActionListener(this);
         Frm.btnguardar.addActionListener(this);
         Frm.btnlimpiar.addActionListener(this);
-        Frm.btnsalir.addActionListener(this);
         
         Frm.TUbicacion.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
@@ -63,7 +62,6 @@ public class CtrlUbicacion implements ActionListener{
     
     public void Iniciar(){
         Frm.setTitle("REGISTRO DE UBICACIONES");
-        Frm.setLocationRelativeTo(null);
         
         Frm.TUbicacion.setModel(DTM);
         DTM.setColumnIdentifiers(new String[]{"CODIGO","UBICACION"});
@@ -143,10 +141,6 @@ public class CtrlUbicacion implements ActionListener{
             }else{
                 C.Mensaje("SELECCIONA UBICACION PARA ELIMINAR");
             }
-        }
-        
-        if(e.getSource() == Frm.btnsalir){
-            System.exit(0);
         }
         
         if(e.getSource() == Frm.btnlimpiar){

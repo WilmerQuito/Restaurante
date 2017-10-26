@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import Vista.FrmCliente;
 import Modelo.*;
 import Vista.*;
 import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
@@ -37,7 +38,6 @@ public class CtrlCliente implements ActionListener{
         Frm.btneliminar.addActionListener(this);
         Frm.btnguardar.addActionListener(this);
         Frm.btnlimpiar.addActionListener(this);
-        Frm.btnsalir.addActionListener(this);
         
         Frm.TCliente.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
@@ -68,7 +68,6 @@ public class CtrlCliente implements ActionListener{
     
     public void Iniciar(){
         Frm.setTitle("REGISTRO DE CLIENTES");
-        Frm.setLocationRelativeTo(null);
         
         Frm.TCliente.setModel(DTM);
         DTM.setColumnIdentifiers(new String[]{"CODIGO","NOMBRE","DNI","CELULAR"});
@@ -180,10 +179,6 @@ public class CtrlCliente implements ActionListener{
             }else{
                 C.Mensaje("SELECCIONA CLIENTE PARA ELIMINAR");
             }
-        }
-        
-        if(e.getSource() == Frm.btnsalir){
-            System.exit(0);
         }
         
         if(e.getSource() == Frm.btnlimpiar){

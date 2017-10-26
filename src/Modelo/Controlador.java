@@ -147,20 +147,16 @@ public class Controlador {
         actual.setVisible(false);
     }
     
-    public  void Acceso(JFrame Actual, String Usu, String Contra, String Rol){
-        FrmCliente Frm = new FrmCliente();
-        CtrlCliente Ctl = new CtrlCliente(Frm);
-        
+    public void Acceso(JFrame Actual, JFrame Siguiente, String Usu, String Contra, String Rol){
         try {
-            sql="select * from Sesion where Usuario ='"+Usu+"' and Clave ='"+Contra+"' and Nombre='"+Rol+"'";
+            sql="SELECT * FROM VtaSesion WHERE Usuario='"+Usu+"' AND Clave='"+Contra+"' AND Nombre='"+Rol+"'";
             base.st = base.conn.createStatement();
             base.rs = base.st.executeQuery(sql);
             if(base.rs.next()){
                 Actual.dispose();
-                Ctl.Iniciar();
-                Frm.setVisible(true);
+                Siguiente.setVisible(true);
             } else{
-                Mensaje("DATOS ERRONEOS");
+                Mensaje("ERROR AL INICIAR SESION");                
             }
         } catch (Exception e) {
         }

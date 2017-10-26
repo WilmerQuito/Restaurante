@@ -29,12 +29,11 @@ public class CtrlRol implements ActionListener{
     
     public CtrlRol (FrmRol Frm){
         this.Frm = Frm;
-       
+        
         Frm.btneditar.addActionListener(this);
         Frm.btneliminar.addActionListener(this);
         Frm.btnguardar.addActionListener(this);
         Frm.btnlimpiar.addActionListener(this);
-        Frm.btnsalir.addActionListener(this);
         
         Frm.TRol.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
@@ -63,8 +62,6 @@ public class CtrlRol implements ActionListener{
     
     public void Iniciar(){
         Frm.setTitle("REGISTRO DE ROLES");
-        Frm.setLocationRelativeTo(null);
-        
         Frm.TRol.setModel(DTM);
         DTM.setColumnIdentifiers(new String[]{"CODIGO","ROL"});
         Frm.TRol.getColumnModel().getColumn(1).setPreferredWidth(300);
@@ -143,10 +140,6 @@ public class CtrlRol implements ActionListener{
             }else{
                 C.Mensaje("SELECCIONA ROL PARA ELIMINAR");
             }
-        }
-        
-        if(e.getSource() == Frm.btnsalir){
-            System.exit(0);
         }
         
         if(e.getSource() == Frm.btnlimpiar){

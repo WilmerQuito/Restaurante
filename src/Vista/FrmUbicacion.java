@@ -9,7 +9,7 @@ package Vista;
  *
  * @author Wilmer Quito
  */
-public class FrmUbicacion extends javax.swing.JFrame {
+public class FrmUbicacion extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FrmUbicacion
@@ -27,9 +27,12 @@ public class FrmUbicacion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtUbicacion = new javax.swing.JTextField();
         btnguardar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnlimpiar = new javax.swing.JButton();
         btneditar = new javax.swing.JButton();
+        txtCodigo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         btneliminar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -37,19 +40,32 @@ public class FrmUbicacion extends javax.swing.JFrame {
         txtBuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         TUbicacion = new javax.swing.JTable();
-        txtUbicacion = new javax.swing.JTextField();
-        btnsalir = new javax.swing.JButton();
-        btnlimpiar = new javax.swing.JButton();
-        txtCodigo = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setIconifiable(true);
+        setTitle("REGISTRO DE UBICACIONES");
+
+        txtUbicacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUbicacionActionPerformed(evt);
+            }
+        });
+        txtUbicacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUbicacionKeyTyped(evt);
+            }
+        });
 
         btnguardar.setText("GUARDAR");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("REGISTRO DE UBICACIONES");
 
+        btnlimpiar.setText("LIMPIAR");
+
         btneditar.setText("EDITAR");
+
+        txtCodigo.setEditable(false);
 
         jLabel2.setText("CODIGO:");
 
@@ -120,28 +136,6 @@ public class FrmUbicacion extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        txtUbicacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUbicacionActionPerformed(evt);
-            }
-        });
-        txtUbicacion.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtUbicacionKeyTyped(evt);
-            }
-        });
-
-        btnsalir.setText("SALIR");
-        btnsalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnsalirActionPerformed(evt);
-            }
-        });
-
-        btnlimpiar.setText("LIMPIAR");
-
-        txtCodigo.setEditable(false);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -168,9 +162,6 @@ public class FrmUbicacion extends javax.swing.JFrame {
                                 .addComponent(btneliminar)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnlimpiar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(142, 142, 142)
-                                .addComponent(btnsalir))
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -195,21 +186,11 @@ public class FrmUbicacion extends javax.swing.JFrame {
                     .addComponent(btnlimpiar))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnsalir)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBuscarKeyReleased
-
-    private void TUbicacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TUbicacionMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TUbicacionMouseClicked
 
     private void txtUbicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUbicacionActionPerformed
         // TODO add your handling code here:
@@ -224,44 +205,14 @@ public class FrmUbicacion extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtUbicacionKeyTyped
 
-    private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
+    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnsalirActionPerformed
+    }//GEN-LAST:event_txtBuscarKeyReleased
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmUbicacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmUbicacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmUbicacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmUbicacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void TUbicacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TUbicacionMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TUbicacionMouseClicked
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmUbicacion().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTable TUbicacion;
@@ -269,7 +220,6 @@ public class FrmUbicacion extends javax.swing.JFrame {
     public javax.swing.JButton btneliminar;
     public javax.swing.JButton btnguardar;
     public javax.swing.JButton btnlimpiar;
-    public javax.swing.JButton btnsalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

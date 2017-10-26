@@ -35,7 +35,6 @@ public class CtrlUsuario implements ActionListener{
         Frm.btneliminar.addActionListener(this);
         Frm.btnguardar.addActionListener(this);
         Frm.btnlimpiar.addActionListener(this);
-        Frm.btnsalir.addActionListener(this);
         
         Frm.TUsuario.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
@@ -65,8 +64,6 @@ public class CtrlUsuario implements ActionListener{
     
     public void Iniciar(){
         Frm.setTitle("REGISTRO DE USUARIOS");
-        Frm.setLocationRelativeTo(null);
-        
         Frm.TUsuario.setModel(DTM);
         DTM.setColumnIdentifiers(new String[]{"CODIGO","USUARIO","ROL"});
         Frm.TUsuario.getColumnModel().getColumn(1).setPreferredWidth(300);
@@ -199,10 +196,6 @@ public class CtrlUsuario implements ActionListener{
             }else{
                 C.Mensaje("SELECCIONA USUARIO PARA ELIMINAR");
             }
-        }
-        
-        if(e.getSource() == Frm.btnsalir){
-            System.exit(0);
         }
         
         if(e.getSource() == Frm.btnlimpiar){

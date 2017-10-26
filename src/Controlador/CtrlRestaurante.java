@@ -33,7 +33,6 @@ public class CtrlRestaurante implements ActionListener{
         Frm.btneliminar.addActionListener(this);
         Frm.btnguardar.addActionListener(this);
         Frm.btnlimpiar.addActionListener(this);
-        Frm.btnsalir.addActionListener(this);
         
         Frm.TRestaurante.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
@@ -64,8 +63,6 @@ public class CtrlRestaurante implements ActionListener{
     
     public void Iniciar(){
         Frm.setTitle("REGISTRO DE RESTAURANTES");
-        Frm.setLocationRelativeTo(null);
-        
         Frm.TRestaurante.setModel(DTM);
         DTM.setColumnIdentifiers(new String[]{"CODIGO","NOMBRE","DIRECCION","TELEFONO"});
         
@@ -170,10 +167,6 @@ public class CtrlRestaurante implements ActionListener{
             }else{
                 C.Mensaje("SELECCIONA UN RESTAURANTE PARA ELIMINAR");
             }
-        }
-        
-        if(e.getSource() == Frm.btnsalir){
-            System.exit(0);
         }
         
         if(e.getSource() == Frm.btnlimpiar){

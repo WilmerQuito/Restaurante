@@ -9,7 +9,7 @@ package Vista;
  *
  * @author Wilmer Quito
  */
-public class FrmMesa extends javax.swing.JFrame {
+public class FrmMesa extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FrmMesa
@@ -27,55 +27,35 @@ public class FrmMesa extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        txtCantPer = new javax.swing.JTextField();
+        btneliminar = new javax.swing.JButton();
         txtNumMesa = new javax.swing.JTextField();
+        btnguardar = new javax.swing.JButton();
         txtCodigo = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         cboFumador = new javax.swing.JComboBox<>();
+        btnlimpiar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         cboEstado = new javax.swing.JComboBox<>();
+        btneditar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         cboUbicacion = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
         cboRest = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         txtBuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         TMesa = new javax.swing.JTable();
-        btneliminar = new javax.swing.JButton();
-        btnguardar = new javax.swing.JButton();
-        btnsalir = new javax.swing.JButton();
-        btnlimpiar = new javax.swing.JButton();
-        btneditar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        txtCantPer = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setIconifiable(true);
+        setTitle("REGISTRO DE MESAS");
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("REGISTRO DE MESAS");
-
-        jLabel2.setText("CODIGO:");
-
-        jLabel3.setText("CANT. PERSONAS:");
-
-        jLabel4.setText("NUMERO MESA:");
-
-        jLabel5.setText("FUMADOR:");
-
-        jLabel6.setText("ESTADO:");
-
-        jLabel7.setText("UBICACION:");
-
-        jLabel8.setText("RESTAURANTE:");
-
-        txtCantPer.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCantPerKeyTyped(evt);
-            }
-        });
+        btneliminar.setText("ELIMINAR");
 
         txtNumMesa.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -83,15 +63,32 @@ public class FrmMesa extends javax.swing.JFrame {
             }
         });
 
+        btnguardar.setText("GUARDAR");
+
         txtCodigo.setEditable(false);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("REGISTRO DE MESAS");
 
         cboFumador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        btnlimpiar.setText("LIMPIAR");
+
+        jLabel2.setText("CODIGO:");
+
         cboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        btneditar.setText("EDITAR");
+
+        jLabel3.setText("CANT. PERSONAS:");
 
         cboUbicacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jLabel4.setText("NUMERO MESA:");
+
         cboRest.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel5.setText("FUMADOR:");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("BUSCAR:"));
 
@@ -129,15 +126,17 @@ public class FrmMesa extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btneliminar.setText("ELIMINAR");
+        jLabel6.setText("ESTADO:");
 
-        btnguardar.setText("GUARDAR");
+        jLabel7.setText("UBICACION:");
 
-        btnsalir.setText("SALIR");
+        jLabel8.setText("RESTAURANTE:");
 
-        btnlimpiar.setText("LIMPIAR");
-
-        btneditar.setText("EDITAR");
+        txtCantPer.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantPerKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -155,7 +154,7 @@ public class FrmMesa extends javax.swing.JFrame {
                                 .addComponent(jLabel6)
                                 .addGap(76, 76, 76)
                                 .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 208, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -164,34 +163,32 @@ public class FrmMesa extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel8)
-                                    .addComponent(jLabel4)
-                                    .addComponent(btnguardar))
+                                    .addComponent(jLabel4))
+                                .addGap(47, 47, 47)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cboRest, 0, 162, Short.MAX_VALUE)
+                                    .addComponent(txtNumMesa)
+                                    .addComponent(txtCodigo))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(43, 43, 43)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(cboRest, 0, 162, Short.MAX_VALUE)
-                                            .addComponent(txtNumMesa)
-                                            .addComponent(txtCodigo))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel7))
-                                        .addGap(28, 28, 28)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(cboFumador, javax.swing.GroupLayout.Alignment.TRAILING, 0, 163, Short.MAX_VALUE)
-                                            .addComponent(txtCantPer, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(cboUbicacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(72, 72, 72)
-                                        .addComponent(btneditar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(81, 81, 81)
-                                        .addComponent(btneliminar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
-                                        .addComponent(btnlimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(68, 68, 68)
-                                        .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel7))
+                                .addGap(28, 28, 28)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cboFumador, javax.swing.GroupLayout.Alignment.TRAILING, 0, 163, Short.MAX_VALUE)
+                                    .addComponent(txtCantPer, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(cboUbicacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(53, 53, 53)
+                                .addComponent(btnguardar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btneditar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(89, 89, 89)
+                                .addComponent(btneliminar)
+                                .addGap(86, 86, 86)
+                                .addComponent(btnlimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(61, 61, 61)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -226,8 +223,7 @@ public class FrmMesa extends javax.swing.JFrame {
                     .addComponent(btneliminar)
                     .addComponent(btnguardar)
                     .addComponent(btneditar)
-                    .addComponent(btnlimpiar)
-                    .addComponent(btnsalir))
+                    .addComponent(btnlimpiar))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -237,57 +233,23 @@ public class FrmMesa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNumMesaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumMesaKeyTyped
-        if(txtNumMesa.getText().length()>=2){ 
-            evt.consume(); 
+        if(txtNumMesa.getText().length()>=2){
+            evt.consume();
         }
-        if(Character.isLetter(evt.getKeyChar())) { 
-            evt.consume();     
+        if(Character.isLetter(evt.getKeyChar())) {
+            evt.consume();
         }
     }//GEN-LAST:event_txtNumMesaKeyTyped
 
     private void txtCantPerKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantPerKeyTyped
-        if(txtCantPer.getText().length()>=2){ 
-            evt.consume(); 
+        if(txtCantPer.getText().length()>=2){
+            evt.consume();
         }
-        if(Character.isLetter(evt.getKeyChar())) { 
-            evt.consume();     
+        if(Character.isLetter(evt.getKeyChar())) {
+            evt.consume();
         }
     }//GEN-LAST:event_txtCantPerKeyTyped
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmMesa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmMesa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmMesa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmMesa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmMesa().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTable TMesa;
@@ -295,7 +257,6 @@ public class FrmMesa extends javax.swing.JFrame {
     public javax.swing.JButton btneliminar;
     public javax.swing.JButton btnguardar;
     public javax.swing.JButton btnlimpiar;
-    public javax.swing.JButton btnsalir;
     public javax.swing.JComboBox<String> cboEstado;
     public javax.swing.JComboBox<String> cboFumador;
     public javax.swing.JComboBox<String> cboRest;

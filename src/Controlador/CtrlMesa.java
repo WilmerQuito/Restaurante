@@ -33,7 +33,6 @@ public class CtrlMesa implements ActionListener{
         Frm.btneliminar.addActionListener(this);
         Frm.btnguardar.addActionListener(this);
         Frm.btnlimpiar.addActionListener(this);
-        Frm.btnsalir.addActionListener(this);
         
         Frm.TMesa.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
@@ -67,7 +66,6 @@ public class CtrlMesa implements ActionListener{
     
     public void Iniciar(){
         Frm.setTitle("REGISTRO DE MESAS");
-        Frm.setLocationRelativeTo(null);
         
         Frm.TMesa.setModel(DTM);
         DTM.setColumnIdentifiers(new String[]{"CODIGO","RESTAURANTE","NUM. MESA","CANT. PERSONAS", "FUMADOR", "UBICACION", "ESTADO"});
@@ -239,10 +237,6 @@ public class CtrlMesa implements ActionListener{
             }else{
                 C.Mensaje("SELECCIONA MESA PARA ELIMINAR");
             }
-        }
-        
-        if(e.getSource() == Frm.btnsalir){
-            System.exit(0);
         }
         
         if(e.getSource() == Frm.btnlimpiar){
