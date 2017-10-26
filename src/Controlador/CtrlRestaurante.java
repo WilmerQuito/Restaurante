@@ -5,32 +5,28 @@
  */
 package Controlador;
 
-import Modelo.*;
+import Modelo.Controlador;
 import Vista.*;
-import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Wilmer Quito
  */
-public class CtrlCliente implements ActionListener{
+public class CtrlRestaurante implements ActionListener{
     
     private DefaultTableModel DTM=new DefaultTableModel();
     private Controlador C=new Controlador();
-    private FrmCliente Frm;
+    private FrmRestaurante Frm;
     
-    public CtrlCliente (FrmCliente Frm){
+    public CtrlRestaurante (FrmRestaurante Frm){
         this.Frm = Frm;
        
         Frm.btneditar.addActionListener(this);
@@ -39,15 +35,15 @@ public class CtrlCliente implements ActionListener{
         Frm.btnlimpiar.addActionListener(this);
         Frm.btnsalir.addActionListener(this);
         
-        Frm.TCliente.addMouseListener(new MouseAdapter() {
+        Frm.TRestaurante.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
             if (e.getClickCount() == 1) {
-                C.fila = Frm.TCliente.getSelectedRow();
+                C.fila = Frm.TRestaurante.getSelectedRow();
                 if (C.fila > -1) {
-                    Frm.txtCodigo.setText(Frm.TCliente.getValueAt(C.fila, 0).toString());
-                    Frm.txtNombre.setText(Frm.TCliente.getValueAt(C.fila, 1).toString());
-                    Frm.txtDNI.setText(Frm.TCliente.getValueAt(C.fila, 2).toString());
-                    Frm.txtCelular.setText(Frm.TCliente.getValueAt(C.fila, 3).toString());
+                    Frm.txtCodigo.setText(Frm.TRestaurante.getValueAt(C.fila, 0).toString());
+                    Frm.txtNombre.setText(Frm.TRestaurante.getValueAt(C.fila, 1).toString());
+                    Frm.txtDireccion.setText(Frm.TRestaurante.getValueAt(C.fila, 2).toString());
+                    Frm.txtTelefono.setText(Frm.TRestaurante.getValueAt(C.fila, 3).toString());
                 }
             }    
             }
@@ -67,11 +63,11 @@ public class CtrlCliente implements ActionListener{
     }
     
     public void Iniciar(){
-        Frm.setTitle("REGISTRO DE CLIENTES");
+        Frm.setTitle("REGISTRO DE RESTAURANTES");
         Frm.setLocationRelativeTo(null);
         
-        Frm.TCliente.setModel(DTM);
-        DTM.setColumnIdentifiers(new String[]{"CODIGO","NOMBRE","DNI","CELULAR"});
+        Frm.TRestaurante.setModel(DTM);
+        DTM.setColumnIdentifiers(new String[]{"CODIGO","NOMBRE","DIRECCION","TELEFONO"});
         
         Tabla();
     }
@@ -83,26 +79,20 @@ public class CtrlCliente implements ActionListener{
             JOptionPane.showMessageDialog(null, "INGRESA EL NOMBRE");
             Frm.txtNombre.grabFocus();
         } else {
-            if (Frm.txtDNI.getText().trim().length() == 0) {
+            if (Frm.txtDireccion.getText().trim().length() == 0) {
                 C.flag = false;
-                JOptionPane.showMessageDialog(null, "INGRESA UN DNI");
-                Frm.txtDNI.grabFocus();
+                JOptionPane.showMessageDialog(null, "INGRESA UN DIRECCION");
+                Frm.txtDireccion.grabFocus();
             } else {
-                if (Frm.txtCelular.getText().trim().length() == 0) {
+                if (Frm.txtTelefono.getText().trim().length() == 0) {
                     C.flag = false;
-                    JOptionPane.showMessageDialog(null, "INGRESA UN CELULAR");
-                    Frm.txtCelular.grabFocus();
+                    JOptionPane.showMessageDialog(null, "INGRESA UN TELEFONO");
+                    Frm.txtTelefono.grabFocus();
                 }else{
-                    if(Frm.txtDNI.getText().trim().length() < 8){
+                    if(Frm.txtTelefono.getText().trim().length() < 9){
                         C.flag = false;
-                        JOptionPane.showMessageDialog(null, "LONGITUD DE DNI INCORRECTO");
-                        Frm.txtDNI.grabFocus();
-                    }else{
-                        if(Frm.txtCelular.getText().trim().length() < 9) {
-                            C.flag = false;
-                            JOptionPane.showMessageDialog(null, "LONGITUD DE CELULAR INCORRECTO");
-                            Frm.txtCelular.grabFocus();
-                        }
+                        JOptionPane.showMessageDialog(null, "LONGITUD DE TELEFONO INCORRECTO");
+                        Frm.txtTelefono.grabFocus();
                     }
                 }
             }
@@ -112,20 +102,20 @@ public class CtrlCliente implements ActionListener{
     
     public void Limpiar(){
         Frm.txtBuscar.setText(null);
-        Frm.txtCelular.setText(null);
+        Frm.txtTelefono.setText(null);
         Frm.txtCodigo.setText(null);
-        Frm.txtDNI.setText(null);
+        Frm.txtDireccion.setText(null);
         Frm.txtNombre.setText(null);
         Frm.txtNombre.grabFocus();
-        Frm.TCliente.clearSelection();
+        Frm.TRestaurante.clearSelection();
         Tabla();
     }
     
     public void Tabla() {
-        C.sql = "SELECT * FROM cliente WHERE Cod_Cliente LIKE '" + Frm.txtBuscar.getText() 
+        C.sql = "SELECT * FROM restaurante WHERE Cod_Restaurante LIKE '" + Frm.txtBuscar.getText() 
                 + "%' or Nombre like '" + Frm.txtBuscar.getText()
-                + "%' or DNI like '" + Frm.txtBuscar.getText()
-                + "%' or Celular like '" + Frm.txtBuscar.getText()
+                + "%' or Direccion like '" + Frm.txtBuscar.getText()
+                + "%' or Telefono like '" + Frm.txtBuscar.getText()
                 + "%'";
         C.MostrarenJTable(DTM, C.sql, 4);
     }
@@ -134,32 +124,32 @@ public class CtrlCliente implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         
         if(e.getSource() == Frm.btnguardar){
-            String sql="SELECT * FROM Cliente WHERE DNI='"+Frm.txtDNI.getText()+"';";
+            String sql="SELECT * FROM restaurante WHERE Nombre='"+Frm.txtNombre.getText()+"';";
             if(!C.VerificarConsulta(sql)){
                 if (Validar()) {
-                    String Cod="10"+Frm.txtDNI.getText().toUpperCase();
-                    C.InsertaRegistro("INSERT INTO cliente VALUES('"+Cod+"','"
+                    String Cod=C.GeneraCodigo(Frm.txtNombre.getText().toUpperCase(), "Restaurante", "Cod_Restaurante");
+                    C.InsertaRegistro("INSERT INTO restaurante VALUES('"+Cod+"','"
                             +Frm.txtNombre.getText().toUpperCase()+"','"
-                            +Frm.txtDNI.getText().toUpperCase()+"','"
-                            +Frm.txtCelular.getText().toUpperCase()+"')");
-                    C.Mensaje("CLIENTE REGISTRADO");
+                            +Frm.txtDireccion.getText().toUpperCase()+"','"
+                            +Frm.txtTelefono.getText().toUpperCase()+"')");
+                    C.Mensaje("RESTAURANTE REGISTRADO");
                     Tabla();
                     Limpiar();
                 }
             }else{
-                C.Mensaje("CLIENTE YA SE ENCUENTRA REGISTRADO");
+                C.Mensaje("RESTAURANTE YA SE ENCUENTRA REGISTRADO");
             }
         }
         
         if(e.getSource() == Frm.btneditar){
-            String sql="SELECT * FROM Cliente WHERE Nombre='"+Frm.txtNombre.getText()+"' AND DNI='"+Frm.txtDNI.getText()+"' AND Celular='"+Frm.txtCelular.getText()+"';";
+            String sql="SELECT * FROM Restaurante WHERE Nombre='"+Frm.txtNombre.getText()+"' AND Direccion='"+Frm.txtDireccion.getText()+"' AND Telefono='"+Frm.txtTelefono.getText()+"';";
             if(!C.VerificarConsulta(sql)){
                 if (Validar()) {
-                    C.InsertaRegistro("UPDATE cliente SET Nombre='"+Frm.txtNombre.getText().toUpperCase()
-                            +"', DNI='"+Frm.txtDNI.getText().toUpperCase()
-                            +"', Celular='"+Frm.txtCelular.getText().toUpperCase()
-                            +"' WHERE Cod_Cliente='"+Frm.txtCodigo.getText()+"'");
-                    C.Mensaje("CLIENTE ACTUALIZADO");
+                    C.InsertaRegistro("UPDATE Restaurante SET Nombre='"+Frm.txtNombre.getText().toUpperCase()
+                            +"', Direccion='"+Frm.txtDireccion.getText().toUpperCase()
+                            +"', Telefono='"+Frm.txtTelefono.getText().toUpperCase()
+                            +"' WHERE Cod_Restaurante='"+Frm.txtCodigo.getText()+"'");
+                    C.Mensaje("RESTAURANTE ACTUALIZADO");
                     Tabla();
                     Limpiar();
                 }
@@ -169,16 +159,16 @@ public class CtrlCliente implements ActionListener{
         }
         
         if(e.getSource() == Frm.btneliminar){
-            C.fila = Frm.TCliente.getSelectedRow();
-            if (Frm.TCliente.getSelectedRow() > -1) {
+            C.fila = Frm.TRestaurante.getSelectedRow();
+            if (Frm.TRestaurante.getSelectedRow() > -1) {
                 if (JOptionPane.showConfirmDialog(null, "¿Estas Seguro?", "Eliminar", 0) == 0) {
-                    C.InsertaRegistro("DELETE FROM cliente WHERE Cod_Cliente='"+Frm.TCliente.getValueAt(C.fila, 0).toString()+"'");
-                    C.Mensaje("CLIENTE ELIMINADO");
+                    C.InsertaRegistro("DELETE FROM Restaurante WHERE Cod_Restaurante='"+Frm.TRestaurante.getValueAt(C.fila, 0).toString()+"'");
+                    C.Mensaje("RESTAURANTE ELIMINADO");
                     Tabla();
                     Limpiar();
                 }
             }else{
-                C.Mensaje("SELECCIONA CLIENTE PARA ELIMINAR");
+                C.Mensaje("SELECCIONA UN RESTAURANTE PARA ELIMINAR");
             }
         }
         

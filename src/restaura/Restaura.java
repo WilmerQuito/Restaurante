@@ -23,8 +23,8 @@ public class Restaura {
         CtrlLogin Ctl= new CtrlLogin(Frm);
         */
         
-        FrmUbicacion Frm = new FrmUbicacion();
-        CtrlUbicacion Ctl= new CtrlUbicacion(Frm);
+        FrmMesa Frm = new FrmMesa();
+        CtrlMesa Ctl= new CtrlMesa(Frm);
         
         Ctl.Iniciar();
         Frm.setVisible(true);
