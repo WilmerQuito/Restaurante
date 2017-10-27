@@ -56,7 +56,9 @@ public class FrmMesa extends javax.swing.JInternalFrame {
         setTitle("REGISTRO DE MESAS");
 
         btneliminar.setText("ELIMINAR");
+        btneliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        txtNumMesa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtNumMesa.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNumMesaKeyTyped(evt);
@@ -64,33 +66,43 @@ public class FrmMesa extends javax.swing.JInternalFrame {
         });
 
         btnguardar.setText("GUARDAR");
+        btnguardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         txtCodigo.setEditable(false);
+        txtCodigo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("REGISTRO DE MESAS");
 
         cboFumador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboFumador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         btnlimpiar.setText("LIMPIAR");
+        btnlimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel2.setText("CODIGO:");
 
         cboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboEstado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         btneditar.setText("EDITAR");
+        btneditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel3.setText("CANT. PERSONAS:");
 
         cboUbicacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboUbicacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel4.setText("NUMERO MESA:");
 
         cboRest.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboRest.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel5.setText("FUMADOR:");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("BUSCAR:"));
+
+        txtBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         TMesa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -103,6 +115,7 @@ public class FrmMesa extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        TMesa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jScrollPane1.setViewportView(TMesa);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -132,6 +145,7 @@ public class FrmMesa extends javax.swing.JInternalFrame {
 
         jLabel8.setText("RESTAURANTE:");
 
+        txtCantPer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtCantPer.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCantPerKeyTyped(evt);

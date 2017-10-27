@@ -45,6 +45,7 @@ public class FrmUbicacion extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setTitle("REGISTRO DE UBICACIONES");
 
+        txtUbicacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtUbicacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUbicacionActionPerformed(evt);
@@ -57,25 +58,31 @@ public class FrmUbicacion extends javax.swing.JInternalFrame {
         });
 
         btnguardar.setText("GUARDAR");
+        btnguardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("REGISTRO DE UBICACIONES");
 
         btnlimpiar.setText("LIMPIAR");
+        btnlimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         btneditar.setText("EDITAR");
+        btneditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         txtCodigo.setEditable(false);
+        txtCodigo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel2.setText("CODIGO:");
 
         btneliminar.setText("ELIMINAR");
+        btneliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel3.setText("UBICACION:");
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("BUSCAR:"));
         jPanel4.setToolTipText("");
 
+        txtBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBuscarKeyReleased(evt);
@@ -108,6 +115,7 @@ public class FrmUbicacion extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        TUbicacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         TUbicacion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TUbicacionMouseClicked(evt);

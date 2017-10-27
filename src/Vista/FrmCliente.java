@@ -51,19 +51,23 @@ public class FrmCliente extends javax.swing.JInternalFrame {
         setToolTipText("");
 
         txtCodigo.setEditable(false);
+        txtCodigo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        txtNombre.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreKeyTyped(evt);
             }
         });
 
+        txtCelular.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtCelular.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCelularKeyTyped(evt);
             }
         });
 
+        txtDNI.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtDNI.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtDNIKeyTyped(evt);
@@ -71,23 +75,28 @@ public class FrmCliente extends javax.swing.JInternalFrame {
         });
 
         btnlimpiar.setText("LIMPIAR");
+        btnlimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         btnguardar.setText("GUARDAR");
+        btnguardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("REGISTRO DE CLIENTES");
 
         btneditar.setText("EDITAR");
+        btneditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel2.setText("CODIGO:");
 
         btneliminar.setText("ELIMINAR");
+        btneliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel3.setText("NOMBRE:");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("BUSCAR:"));
         jPanel1.setToolTipText("");
 
+        txtBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBuscarKeyReleased(evt);
@@ -120,6 +129,7 @@ public class FrmCliente extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        TCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         TCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TClienteMouseClicked(evt);

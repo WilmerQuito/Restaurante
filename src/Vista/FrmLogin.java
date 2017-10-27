@@ -7,6 +7,7 @@ package Vista;
 
 import Modelo.Controlador;
 import Vista.*;
+import com.placeholder.PlaceHolder;
 
 /**
  *
@@ -14,6 +15,8 @@ import Vista.*;
  */
 public class FrmLogin extends javax.swing.JFrame {
     private Controlador C=new Controlador();
+    private FrmPrincipal Frm;
+    PlaceHolder holder;
 
     /**
      * Creates new form FrmLogin
@@ -62,6 +65,8 @@ public class FrmLogin extends javax.swing.JFrame {
     public void Acceso(){
         if(Validar()){
             C.Acceso(this, new FrmPrincipal(), txtUsu.getText(), txtPsw.getText(), cbRol.getSelectedItem().toString());
+            Frm.lblnombre.setText(null);
+            Frm.lblnombre.setText(txtUsu.getText().toUpperCase());
             Limpiar();
         }else{
             C.Mensaje("ACCEDO DENEGADO");
@@ -96,6 +101,7 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel1.setText("INCIAR SESION");
 
         cbRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbRol.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel2.setText("ROL:");
 
@@ -104,7 +110,16 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel4.setText("CONTRASEÑA:");
 
         txtUsu.setToolTipText("");
+        txtUsu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtUsu.setName("");
+        txtUsu.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtUsuFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtUsuFocusLost(evt);
+            }
+        });
         txtUsu.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtUsuKeyReleased(evt);
@@ -114,6 +129,7 @@ public class FrmLogin extends javax.swing.JFrame {
             }
         });
 
+        txtPsw.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtPsw.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtPswKeyTyped(evt);
@@ -121,6 +137,7 @@ public class FrmLogin extends javax.swing.JFrame {
         });
 
         btnAcceder.setText("ACCEDER");
+        btnAcceder.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAcceder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAccederActionPerformed(evt);
@@ -128,6 +145,7 @@ public class FrmLogin extends javax.swing.JFrame {
         });
 
         btnLimpiar.setText("LIMPIAR");
+        btnLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarActionPerformed(evt);
@@ -135,6 +153,7 @@ public class FrmLogin extends javax.swing.JFrame {
         });
 
         btnSalir.setText("SALIR");
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
@@ -226,7 +245,7 @@ public class FrmLogin extends javax.swing.JFrame {
     private void txtUsuKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuKeyTyped
         if(txtUsu.getText().length()>=15){ 
             evt.consume(); 
-        } 
+        }
     }//GEN-LAST:event_txtUsuKeyTyped
 
     private void txtPswKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPswKeyTyped
@@ -238,6 +257,14 @@ public class FrmLogin extends javax.swing.JFrame {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void txtUsuFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuFocusGained
+
+    }//GEN-LAST:event_txtUsuFocusGained
+
+    private void txtUsuFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuFocusLost
+
+    }//GEN-LAST:event_txtUsuFocusLost
 
     /**
      * @param args the command line arguments

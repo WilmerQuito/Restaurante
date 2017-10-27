@@ -2,6 +2,7 @@ package Modelo;
 import Controlador.CtrlCliente;
 import Modelo.Conexion;
 import Vista.FrmCliente;
+import com.placeholder.PlaceHolder;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Image;
@@ -14,6 +15,7 @@ public class Controlador {
     public boolean flag;
     public String[] Data = new String[15];
     public int fila;
+    public PlaceHolder holder;
     
     public void LlenarCombo(JComboBox cb, String cons, String ini,int colum) {
         cb.removeAllItems();
@@ -182,6 +184,10 @@ public class Controlador {
             }
         }
         return valor;
+    }
+    
+    public void Holder(JTextField txt, String msj){
+        holder = new PlaceHolder(txt, msj);
     }
     
 }

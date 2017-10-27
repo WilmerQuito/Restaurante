@@ -48,12 +48,14 @@ public class FrmRol extends javax.swing.JInternalFrame {
         jLabel2.setText("CODIGO:");
 
         btneliminar.setText("ELIMINAR");
+        btneliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel3.setText("ROL:");
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("BUSCAR:"));
         jPanel4.setToolTipText("");
 
+        txtBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBuscarKeyReleased(evt);
@@ -86,6 +88,7 @@ public class FrmRol extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        TRol.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         TRol.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TRolMouseClicked(evt);
@@ -114,6 +117,7 @@ public class FrmRol extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        txtRol.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtRol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtRolActionPerformed(evt);
@@ -126,15 +130,19 @@ public class FrmRol extends javax.swing.JInternalFrame {
         });
 
         btnlimpiar.setText("LIMPIAR");
+        btnlimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         txtCodigo.setEditable(false);
+        txtCodigo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         btnguardar.setText("GUARDAR");
+        btnguardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("REGISTRO DE ROLES");
 
         btneditar.setText("EDITAR");
+        btneditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

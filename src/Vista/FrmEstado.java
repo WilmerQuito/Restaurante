@@ -49,20 +49,25 @@ public class FrmEstado extends javax.swing.JInternalFrame {
         jLabel1.setText("REGISTRO DE ESTADOS");
 
         btnlimpiar.setText("LIMPIAR");
+        btnlimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         btneditar.setText("EDITAR");
+        btneditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         txtCodigo.setEditable(false);
+        txtCodigo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel2.setText("CODIGO:");
 
         btneliminar.setText("ELIMINAR");
+        btneliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel3.setText("ESTADO:");
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("BUSCAR:"));
         jPanel4.setToolTipText("");
 
+        txtBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBuscarKeyReleased(evt);
@@ -95,6 +100,7 @@ public class FrmEstado extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        TEstado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         TEstado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TEstadoMouseClicked(evt);
@@ -123,6 +129,7 @@ public class FrmEstado extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        txtEstado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEstadoActionPerformed(evt);
@@ -135,6 +142,7 @@ public class FrmEstado extends javax.swing.JInternalFrame {
         });
 
         btnguardar.setText("GUARDAR");
+        btnguardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

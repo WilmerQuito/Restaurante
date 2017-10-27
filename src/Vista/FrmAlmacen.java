@@ -47,6 +47,7 @@ public class FrmAlmacen extends javax.swing.JInternalFrame {
         setTitle("REGISTRO DE ALMACENES");
 
         btnguardar.setText("GUARDAR");
+        btnguardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel5.setText("DESCRIPCION:");
 
@@ -54,7 +55,9 @@ public class FrmAlmacen extends javax.swing.JInternalFrame {
         jLabel1.setText("REGISTRO DE ALMACENES");
 
         txtCodigo.setEditable(false);
+        txtCodigo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        txtDescri.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtDescri.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtDescriKeyTyped(evt);
@@ -62,20 +65,25 @@ public class FrmAlmacen extends javax.swing.JInternalFrame {
         });
 
         btneditar.setText("EDITAR");
+        btneditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         btnlimpiar.setText("LIMPIAR");
+        btnlimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         cboRest.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboRest.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel2.setText("CODIGO:");
 
         btneliminar.setText("ELIMINAR");
+        btneliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel3.setText("RESTAURANTE:");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("BUSCAR:"));
         jPanel1.setToolTipText("");
 
+        txtBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBuscarKeyReleased(evt);
@@ -108,6 +116,7 @@ public class FrmAlmacen extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        TAlmacen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         TAlmacen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TAlmacenMouseClicked(evt);
