@@ -47,7 +47,7 @@ public class FrmRestaurante extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setTitle("REGISTRO DE MESAS");
+        setTitle("RESTAURANTES");
 
         txtCodigo.setEditable(false);
         txtCodigo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

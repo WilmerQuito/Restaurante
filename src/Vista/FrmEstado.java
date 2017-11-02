@@ -43,7 +43,7 @@ public class FrmEstado extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setTitle("REGISTRO DE ESTADOS");
+        setTitle("ESTADOS");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("REGISTRO DE ESTADOS");

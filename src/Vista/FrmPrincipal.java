@@ -6,15 +6,17 @@
 package Vista;
 
 import Controlador.*;
+import Modelo.Controlador;
 import Vista.*;
 import java.awt.Dimension;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Wilmer Quito
  */
 public class FrmPrincipal extends javax.swing.JFrame {
-    private FrmLogin Frm;
+    Controlador C=new Controlador();
 
     /**
      * Creates new form FrmPrincipal
@@ -51,6 +53,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jmRoles = new javax.swing.JMenuItem();
+        jmEmpleado = new javax.swing.JMenuItem();
         jmUsuario = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -188,6 +191,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jmRoles);
 
+        jmEmpleado.setText("EMPLEADOS");
+        jmEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmEmpleadoActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmEmpleado);
+
         jmUsuario.setText("USUARIO");
         jmUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -220,7 +231,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void jmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmSalirActionPerformed
-        System.exit(0);
+        if (JOptionPane.showConfirmDialog(null, "¿QUIERES CERRAR EL SISTEMA?", "SALIR", 0) == 0) {
+            C.Mostrar(this, new FrmLogin());
+        }
     }//GEN-LAST:event_jmSalirActionPerformed
 
     private void jmRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmRolesActionPerformed
@@ -311,6 +324,19 @@ public class FrmPrincipal extends javax.swing.JFrame {
         Frm.show();
     }//GEN-LAST:event_jmUbicacionActionPerformed
 
+    private void jmEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmEmpleadoActionPerformed
+        FrmEmpleado Frm=new FrmEmpleado();
+        CtrlEmpleado Ctl=new CtrlEmpleado(Frm);
+        jdpPrincipal.add(Frm);
+        Dimension Tam = jdpPrincipal.getSize();
+        Dimension FrameSize = Frm.getSize();
+        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
+        Ctl.Iniciar();
+        Frm.show();
+    }//GEN-LAST:event_jmEmpleadoActionPerformed
+
+    
+    
     
     /**
      * @param args the command line arguments
@@ -358,6 +384,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jdpPrincipal;
     private javax.swing.JMenuItem jmAlmacen;
     private javax.swing.JMenu jmCliente;
+    private javax.swing.JMenuItem jmEmpleado;
     private javax.swing.JMenuItem jmEstado;
     private javax.swing.JMenuItem jmMesas;
     private javax.swing.JMenuItem jmRestaurante;

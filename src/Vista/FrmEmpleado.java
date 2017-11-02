@@ -9,12 +9,12 @@ package Vista;
  *
  * @author Wilmer Quito
  */
-public class FrmCliente extends javax.swing.JInternalFrame {
+public class FrmEmpleado extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form FrmCliente
+     * Creates new form FrmEmpleado
      */
-    public FrmCliente() {
+    public FrmEmpleado() {
         initComponents();
     }
 
@@ -27,31 +27,29 @@ public class FrmCliente extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtCodigo = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
-        txtCelular = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
         txtDNI = new javax.swing.JTextField();
         btnlimpiar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         btnguardar = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         btneditar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         btneliminar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        txtCodigo = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         txtBuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TCliente = new javax.swing.JTable();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        TEmpleado = new javax.swing.JTable();
+        jLabel6 = new javax.swing.JLabel();
+        txtDireccion = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
-        setTitle("CLIENTES");
-        setToolTipText("");
-
-        txtCodigo.setEditable(false);
-        txtCodigo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        setTitle("EMPLEADOS");
 
         txtNombre.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -60,10 +58,10 @@ public class FrmCliente extends javax.swing.JInternalFrame {
             }
         });
 
-        txtCelular.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        txtCelular.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtTelefono.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCelularKeyTyped(evt);
+                txtTelefonoKeyTyped(evt);
             }
         });
 
@@ -77,11 +75,15 @@ public class FrmCliente extends javax.swing.JInternalFrame {
         btnlimpiar.setText("LIMPIAR");
         btnlimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        jLabel4.setText("TELEFONO:");
+
         btnguardar.setText("GUARDAR");
         btnguardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        jLabel5.setText("DNI:");
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("REGISTRO DE CLIENTES");
+        jLabel1.setText("REGISTRO DE EMPLEADOS");
 
         btneditar.setText("EDITAR");
         btneditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -93,6 +95,9 @@ public class FrmCliente extends javax.swing.JInternalFrame {
 
         jLabel3.setText("NOMBRE:");
 
+        txtCodigo.setEditable(false);
+        txtCodigo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("BUSCAR:"));
         jPanel1.setToolTipText("");
 
@@ -103,7 +108,7 @@ public class FrmCliente extends javax.swing.JInternalFrame {
             }
         });
 
-        TCliente.setModel(new javax.swing.table.DefaultTableModel(
+        TEmpleado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -129,13 +134,13 @@ public class FrmCliente extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        TCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        TCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+        TEmpleado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TClienteMouseClicked(evt);
+                TEmpleadoMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(TCliente);
+        jScrollPane1.setViewportView(TEmpleado);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -158,9 +163,19 @@ public class FrmCliente extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel4.setText("CELULAR:");
+        jLabel6.setText("DIRECCION:");
 
-        jLabel5.setText("DNI:");
+        txtDireccion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtDireccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDireccionActionPerformed(evt);
+            }
+        });
+        txtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDireccionKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -170,38 +185,37 @@ public class FrmCliente extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnguardar)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btneditar)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btneliminar))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addGap(23, 23, 23)
-                                        .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18, 18, 18)
-                                .addComponent(btnlimpiar))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel2))
-                                .addGap(25, 25, 25)
+                                .addGap(39, 39, 39)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNombre)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, Short.MAX_VALUE))))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addComponent(jLabel1)))
+                                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
+                                        .addComponent(txtNombre)
+                                        .addComponent(txtTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
+                                        .addComponent(txtDNI))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addComponent(btnguardar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btneditar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btneliminar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnlimpiar))
+                            .addComponent(jLabel6))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(138, 138, 138)
+                .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -224,7 +238,11 @@ public class FrmCliente extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnguardar)
@@ -248,14 +266,14 @@ public class FrmCliente extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtNombreKeyTyped
 
-    private void txtCelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCelularKeyTyped
-        if(txtCelular.getText().length()>=9){
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+        if(txtTelefono.getText().length()>=9){
             evt.consume();
         }
         if(Character.isLetter(evt.getKeyChar())) {
             evt.consume();
         }
-    }//GEN-LAST:event_txtCelularKeyTyped
+    }//GEN-LAST:event_txtTelefonoKeyTyped
 
     private void txtDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIKeyTyped
         if(txtDNI.getText().length()>=8){
@@ -270,13 +288,23 @@ public class FrmCliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarKeyReleased
 
-    private void TClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TClienteMouseClicked
+    private void TEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TEmpleadoMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_TClienteMouseClicked
+    }//GEN-LAST:event_TEmpleadoMouseClicked
+
+    private void txtDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyTyped
+        if(txtDireccion.getText().length()>=100){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDireccionKeyTyped
+
+    private void txtDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDireccionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTable TCliente;
+    public javax.swing.JTable TEmpleado;
     public javax.swing.JButton btneditar;
     public javax.swing.JButton btneliminar;
     public javax.swing.JButton btnguardar;
@@ -286,12 +314,14 @@ public class FrmCliente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTextField txtBuscar;
-    public javax.swing.JTextField txtCelular;
     public javax.swing.JTextField txtCodigo;
     public javax.swing.JTextField txtDNI;
+    public javax.swing.JTextField txtDireccion;
     public javax.swing.JTextField txtNombre;
+    public javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }

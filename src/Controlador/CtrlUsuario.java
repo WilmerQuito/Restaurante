@@ -40,8 +40,11 @@ public class CtrlUsuario implements ActionListener{
                 C.fila = Frm.TUsuario.getSelectedRow();
                 if (C.fila > -1) {
                     Frm.txtCodigo.setText(Frm.TUsuario.getValueAt(C.fila, 0).toString());
-                    Frm.txtUsuario.setText(Frm.TUsuario.getValueAt(C.fila, 1).toString());
+                    C.MostrarenCombo(Frm.cboEmpleado, Frm.TUsuario.getValueAt(C.fila,1).toString());
                     C.MostrarenCombo(Frm.cboRol, Frm.TUsuario.getValueAt(C.fila,2).toString());
+                    Frm.txtUsuario.setText(Frm.TUsuario.getValueAt(C.fila, 3).toString());
+                    Frm.txtPsw1.setText(Frm.TUsuario.getValueAt(C.fila, 4).toString());
+                    Frm.txtPsw2.setText(Frm.TUsuario.getValueAt(C.fila, 4).toString());
                 }
             }    
             }
@@ -63,17 +66,21 @@ public class CtrlUsuario implements ActionListener{
     public void Iniciar(){
         Frm.setTitle("REGISTRO DE USUARIOS");
         Frm.TUsuario.setModel(DTM);
-        DTM.setColumnIdentifiers(new String[]{"CODIGO","USUARIO","ROL"});
-        Frm.TUsuario.getColumnModel().getColumn(1).setPreferredWidth(300);
-        Frm.TUsuario.getColumnModel().getColumn(2).setPreferredWidth(300);
+        DTM.setColumnIdentifiers(new String[]{"CODIGO","EMPLEADO","ROL","USUARIO","CLAVE"});
 
         Tabla();
         Rol();
+        Empleado();
     }
     
     public void Rol(){
         C.sql= "SELECT * FROM Rol";
         C.LlenarCombo(Frm.cboRol, C.sql, "<SELECCIONE>",2);
+    }
+    
+    public void Empleado(){
+        C.sql= "SELECT * FROM Empleado";
+        C.LlenarCombo(Frm.cboEmpleado, C.sql, "<SELECCIONE>",2);
     }
     
     public boolean Validar(){
@@ -112,6 +119,12 @@ public class CtrlUsuario implements ActionListener{
                                     C.flag = false;
                                     C.Mensaje("SELECCIONA UN ROL");
                                     Frm.txtPsw2.grabFocus();
+                                }else{
+                                    if(Frm.cboEmpleado.getSelectedIndex() == 0){
+                                        C.flag = false;
+                                        C.Mensaje("SELECCIONA AL EMPLEADO");
+                                        Frm.txtPsw2.grabFocus();
+                                    }
                                 }
                             }
                         }
@@ -130,48 +143,53 @@ public class CtrlUsuario implements ActionListener{
         Frm.txtUsuario.setText(null);
         Frm.txtUsuario.grabFocus();
         Frm.cboRol.setSelectedIndex(0);
+        Frm.cboEmpleado.setSelectedIndex(0);
         Frm.TUsuario.clearSelection();
         Tabla();
     }
     
     public void Tabla() {
         C.sql = "SELECT * FROM VtaSesion WHERE Cod_Usuario LIKE '" + Frm.txtBuscar.getText() 
+                + "%' or Empleado like '" + Frm.txtBuscar.getText()
+                + "%' or Rol like '" + Frm.txtBuscar.getText()
                 + "%' or Usuario like '" + Frm.txtBuscar.getText()
-                + "%' or Nombre like '" + Frm.txtBuscar.getText()
+                + "%' or Clave like '" + Frm.txtBuscar.getText()
                 + "%'";
-        C.MostrarenJTable(DTM, C.sql, 3);
+        C.MostrarenJTable(DTM, C.sql, 5);
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
+        String Rol=C.DatoCombo("SELECT * FROM Rol WHERE Nombre='"+Frm.cboRol.getSelectedItem().toString()+"'",1);
+        String Empleado=C.DatoCombo("SELECT * FROM Empleado WHERE Nombre='"+Frm.cboEmpleado.getSelectedItem().toString()+"'",1);
         
         if(e.getSource() == Frm.btnguardar){
-            String sql="SELECT * FROM Usuario WHERE Usuario='"+Frm.txtUsuario.getText()+"';";
+            String sql="SELECT * FROM Usuario WHERE Usuario='"+Frm.txtUsuario.getText()+"' OR Cod_Empleado='"+Empleado+"';";
             if(!C.VerificarConsulta(sql)){
                 if (Validar()) {
                     String Cod=C.GeneraCodigo(Frm.txtUsuario.getText().toUpperCase(), "Usuario", "Cod_Usuario");
-                    C.sql=C.DatoCombo("SELECT * FROM Rol WHERE Nombre='"+Frm.cboRol.getSelectedItem().toString()+"'",1);
                     C.InsertaRegistro("INSERT INTO Usuario VALUES('"+Cod+"','"
                             +Frm.txtUsuario.getText().toUpperCase()+"','"
                             +Frm.txtPsw1.getText().toUpperCase()+"','"
-                            +C.sql+"')");
+                            +Empleado+"','"
+                            +Rol+"')");
                     C.Mensaje("USUARIO REGISTRADO");
                     Tabla();
                     Limpiar();
                 }
             }else{
-                C.Mensaje("USUARIO YA SE ENCUENTRA REGISTRADO");
+                C.Mensaje("IMPOSIBLE REGISTRAR AL USUARIO");
             }
         }
         
         if(e.getSource() == Frm.btneditar){
-            C.sql=C.DatoCombo("SELECT * FROM Rol WHERE Nombre='"+Frm.cboRol.getSelectedItem().toString()+"'",1);
-            String sql="SELECT * FROM Usuario WHERE Usuario='"+Frm.txtUsuario.getText()+"' AND Cod_Rol='"+C.sql+"';";
+            String sql="SELECT * FROM Usuario WHERE Usuario='"+Frm.txtUsuario.getText()+"' AND Cod_Empleado='"+Empleado+"' AND Cod_Rol='"+Rol+"';";
             if(!C.VerificarConsulta(sql)){
                 if (Validar()) {
                     C.InsertaRegistro("UPDATE Usuario SET Usuario='"+Frm.txtUsuario.getText().toUpperCase()
                             +"', Clave='"+Frm.txtPsw1.getText().toUpperCase()
-                            +"', Cod_Rol='"+C.sql
+                            +"', empleado_idempleado='"+Empleado
+                            +"', rol_cod_rol='"+Rol
                             +"' WHERE Cod_Usuario='"+Frm.txtCodigo.getText()+"'");
                     C.Mensaje("USUARIO ACTUALIZADO");
                     Tabla();

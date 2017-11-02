@@ -43,7 +43,7 @@ public class FrmUbicacion extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setTitle("REGISTRO DE UBICACIONES");
+        setTitle("UBICACIONES");
 
         txtUbicacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtUbicacion.addActionListener(new java.awt.event.ActionListener() {

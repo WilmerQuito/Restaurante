@@ -53,7 +53,7 @@ public class FrmMesa extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setTitle("REGISTRO DE MESAS");
+        setTitle("MESAS");
 
         btneliminar.setText("ELIMINAR");
         btneliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

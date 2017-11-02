@@ -7,6 +7,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import java.awt.Dimension;
 
 
 public class Controlador {
@@ -151,7 +152,7 @@ public class Controlador {
     
     public void Acceso(JFrame Actual, JFrame Siguiente, String Usu, String Contra, String Rol){
         try {
-            sql="SELECT * FROM VtaSesion WHERE Usuario='"+Usu+"' AND Clave='"+Contra+"' AND Nombre='"+Rol+"'";
+            sql="SELECT * FROM VtaSesion WHERE Usuario='"+Usu+"' AND Clave='"+Contra+"' AND Rol='"+Rol+"'";
             base.st = base.conn.createStatement();
             base.rs = base.st.executeQuery(sql);
             if(base.rs.next()){
