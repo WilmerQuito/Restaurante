@@ -20,12 +20,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Wilmer Quito
  */
-public class CtrlEstado implements ActionListener{
+public class CtrlOrigenComida implements ActionListener{
     private DefaultTableModel DTM=new DefaultTableModel();
     private Controlador C=new Controlador();
-    private FrmEstado Frm;
+    private FrmOrigenComida Frm;
     
-    public CtrlEstado(FrmEstado Frm){
+    public CtrlOrigenComida(FrmOrigenComida Frm){
         this.Frm = Frm;
        
         Frm.btneditar.addActionListener(this);
@@ -33,13 +33,13 @@ public class CtrlEstado implements ActionListener{
         Frm.btnguardar.addActionListener(this);
         Frm.btnlimpiar.addActionListener(this);
         
-        Frm.TEstado.addMouseListener(new MouseAdapter() {
+        Frm.TOrigen.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
             if (e.getClickCount() == 1) {
-                C.fila = Frm.TEstado.getSelectedRow();
+                C.fila = Frm.TOrigen.getSelectedRow();
                 if (C.fila > -1) {
-                    Frm.txtCodigo.setText(Frm.TEstado.getValueAt(C.fila, 0).toString());
-                    Frm.txtEstado.setText(Frm.TEstado.getValueAt(C.fila, 1).toString());
+                    Frm.txtCodigo.setText(Frm.TOrigen.getValueAt(C.fila, 0).toString());
+                    Frm.txtOrigen.setText(Frm.TOrigen.getValueAt(C.fila, 1).toString());
                 }
             }    
             }
@@ -59,34 +59,35 @@ public class CtrlEstado implements ActionListener{
     }
     
     public void Iniciar(){
-        Frm.TEstado.setModel(DTM);
-        DTM.setColumnIdentifiers(new String[]{"CODIGO","ESTADO"});
-        Frm.TEstado.getColumnModel().getColumn(1).setPreferredWidth(300);
+        
+        Frm.TOrigen.setModel(DTM);
+        DTM.setColumnIdentifiers(new String[]{"CODIGO","ORIGEN DE COMIDA"});
+        Frm.TOrigen.getColumnModel().getColumn(1).setPreferredWidth(300);
         
         Tabla();
     }
     
     public boolean Validar(){
         C.flag = true;
-        if (Frm.txtEstado.getText().trim().length() == 0) {
+        if (Frm.txtOrigen.getText().trim().length() == 0) {
             C.flag = false;
-            JOptionPane.showMessageDialog(null, "INGRESA EL ESTADO");
-            Frm.txtEstado.grabFocus();
+            JOptionPane.showMessageDialog(null, "INGRESA EL ORIGEN DE LA COMIDA");
+            Frm.txtOrigen.grabFocus();
         }
         return C.flag;
     }
     
     public void Limpiar(){
         Frm.txtBuscar.setText(null);
-        Frm.txtEstado.setText(null);
+        Frm.txtOrigen.setText(null);
         Frm.txtCodigo.setText(null);
-        Frm.txtEstado.grabFocus();
+        Frm.txtOrigen.grabFocus();
         Tabla();
     }
     
     public void Tabla() {
-        C.sql = "SELECT * FROM estado WHERE Cod_Estado LIKE '" + Frm.txtBuscar.getText() 
-                + "%' or Estado like '" + Frm.txtBuscar.getText()
+        C.sql = "SELECT * FROM origen WHERE idorigen LIKE '" + Frm.txtBuscar.getText() 
+                + "%' or origencol like '" + Frm.txtBuscar.getText()
                 + "%'";
         C.MostrarenJTable(DTM, C.sql, 2);
     }
@@ -95,28 +96,28 @@ public class CtrlEstado implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         
         if(e.getSource() == Frm.btnguardar){
-            String sql="SELECT * FROM estado WHERE Estado='"+Frm.txtEstado.getText()+"';";
+            String sql="SELECT * FROM origen WHERE origencol='"+Frm.txtOrigen.getText()+"';";
             if(!C.VerificarConsulta(sql)){
                 if (Validar()) {
-                    String Cod=C.GeneraCodigo(Frm.txtEstado.getText().toUpperCase(), "Estado", "Cod_Estado");
-                    C.InsertaRegistro("INSERT INTO estado VALUES('"+Cod+"','"
-                            +Frm.txtEstado.getText().toUpperCase()+"')");
-                    C.Mensaje("ESTADO REGISTRADO");
+                    String Cod=C.GeneraCodigo(Frm.txtOrigen.getText().toUpperCase(), "origen", "idorigen");
+                    C.InsertaRegistro("INSERT INTO origen VALUES('"+Cod+"','"
+                            +Frm.txtOrigen.getText().toUpperCase()+"')");
+                    C.Mensaje("ORIGEN REGISTRADO");
                     Tabla();
                     Limpiar();
                 }
             }else{
-                C.Mensaje("EL ESTADO YA SE ENCUENTRA REGISTRADO");
+                C.Mensaje("EL ORIGEN YA SE ENCUENTRA REGISTRADO");
             }
         }
         
         if(e.getSource() == Frm.btneditar){
-            String sql="SELECT * FROM estado WHERE Estado='"+Frm.txtEstado.getText()+"';";
+            String sql="SELECT * FROM origen WHERE origencol='"+Frm.txtOrigen.getText()+"';";
             if(!C.VerificarConsulta(sql)){
                 if (Validar()) {
-                    C.InsertaRegistro("UPDATE estado SET Estado='"+Frm.txtEstado.getText().toUpperCase()
-                            +"' WHERE Cod_Estado='"+Frm.txtCodigo.getText()+"'");
-                    C.Mensaje("ESTADO ACTUALIZADA");
+                    C.InsertaRegistro("UPDATE origen SET origencol='"+Frm.txtOrigen.getText().toUpperCase()
+                            +"' WHERE idorigen='"+Frm.txtCodigo.getText()+"'");
+                    C.Mensaje("ORIGEN ACTUALIZADO");
                     Tabla();
                     Limpiar();
                 }
@@ -126,16 +127,16 @@ public class CtrlEstado implements ActionListener{
         }
         
         if(e.getSource() == Frm.btneliminar){
-            C.fila = Frm.TEstado.getSelectedRow();
-            if (Frm.TEstado.getSelectedRow() > -1) {
+            C.fila = Frm.TOrigen.getSelectedRow();
+            if (Frm.TOrigen.getSelectedRow() > -1) {
                 if (JOptionPane.showConfirmDialog(null, "¿Estas Seguro?", "Eliminar", 0) == 0) {
-                    C.InsertaRegistro("DELETE FROM estado WHERE Cod_Estado='"+Frm.TEstado.getValueAt(C.fila, 0).toString()+"'");
-                    C.Mensaje("ESTADO ELIMINADO");
+                    C.InsertaRegistro("DELETE FROM origen WHERE idorigen='"+Frm.TOrigen.getValueAt(C.fila, 0).toString()+"'");
+                    C.Mensaje("ORIGEN ELIMINADO");
                     Tabla();
                     Limpiar();
                 }
             }else{
-                C.Mensaje("SELECCIONA UN ESTADO PARA ELIMINAR");
+                C.Mensaje("SELECCIONA UN ORIGEN PARA ELIMINAR");
             }
         }
         

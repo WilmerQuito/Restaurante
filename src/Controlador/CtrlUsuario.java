@@ -64,7 +64,6 @@ public class CtrlUsuario implements ActionListener{
     }
     
     public void Iniciar(){
-        Frm.setTitle("REGISTRO DE USUARIOS");
         Frm.TUsuario.setModel(DTM);
         DTM.setColumnIdentifiers(new String[]{"CODIGO","EMPLEADO","ROL","USUARIO","CLAVE"});
 

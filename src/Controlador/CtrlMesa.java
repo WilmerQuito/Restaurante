@@ -65,7 +65,6 @@ public class CtrlMesa implements ActionListener{
     }
     
     public void Iniciar(){
-        Frm.setTitle("REGISTRO DE MESAS");
         
         Frm.TMesa.setModel(DTM);
         DTM.setColumnIdentifiers(new String[]{"CODIGO","RESTAURANTE","NUM. MESA","CANT. PERSONAS", "FUMADOR", "UBICACION", "ESTADO"});

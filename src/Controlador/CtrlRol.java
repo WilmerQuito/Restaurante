@@ -59,7 +59,6 @@ public class CtrlRol implements ActionListener{
     }
     
     public void Iniciar(){
-        Frm.setTitle("REGISTRO DE ROLES");
         Frm.TRol.setModel(DTM);
         DTM.setColumnIdentifiers(new String[]{"CODIGO","ROL"});
         Frm.TRol.getColumnModel().getColumn(1).setPreferredWidth(300);

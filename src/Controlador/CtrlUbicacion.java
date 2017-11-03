@@ -58,9 +58,7 @@ public class CtrlUbicacion implements ActionListener{
       
     }
     
-    public void Iniciar(){
-        Frm.setTitle("REGISTRO DE UBICACIONES");
-        
+    public void Iniciar(){        
         Frm.TUbicacion.setModel(DTM);
         DTM.setColumnIdentifiers(new String[]{"CODIGO","UBICACION"});
         Frm.TUbicacion.getColumnModel().getColumn(1).setPreferredWidth(300);

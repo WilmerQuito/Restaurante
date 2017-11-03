@@ -9,12 +9,12 @@ package Vista;
  *
  * @author Wilmer Quito
  */
-public class FrmUbicacion extends javax.swing.JInternalFrame {
+public class FrmOrigenComida extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form FrmUbicacion
+     * Creates new form FrmOrigenComida
      */
-    public FrmUbicacion() {
+    public FrmOrigenComida() {
         initComponents();
     }
 
@@ -27,10 +27,10 @@ public class FrmUbicacion extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtUbicacion = new javax.swing.JTextField();
-        btnguardar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        txtOrigen = new javax.swing.JTextField();
         btnlimpiar = new javax.swing.JButton();
+        btnguardar = new javax.swing.JButton();
         btneditar = new javax.swing.JButton();
         txtCodigo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -39,32 +39,32 @@ public class FrmUbicacion extends javax.swing.JInternalFrame {
         jPanel4 = new javax.swing.JPanel();
         txtBuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TUbicacion = new javax.swing.JTable();
+        TOrigen = new javax.swing.JTable();
 
         setClosable(true);
-        setIconifiable(true);
-        setTitle("UBICACIONES");
-
-        txtUbicacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        txtUbicacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUbicacionActionPerformed(evt);
-            }
-        });
-        txtUbicacion.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtUbicacionKeyTyped(evt);
-            }
-        });
-
-        btnguardar.setText("GUARDAR");
-        btnguardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        setMaximizable(true);
+        setTitle("ORIGEN DE COMIDA");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("REGISTRO DE UBICACIONES");
+        jLabel1.setText("REGISTRO DE ORIGEN DE COMIDAS");
+
+        txtOrigen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtOrigen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtOrigenActionPerformed(evt);
+            }
+        });
+        txtOrigen.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtOrigenKeyTyped(evt);
+            }
+        });
 
         btnlimpiar.setText("LIMPIAR");
         btnlimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        btnguardar.setText("GUARDAR");
+        btnguardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         btneditar.setText("EDITAR");
         btneditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -77,7 +77,7 @@ public class FrmUbicacion extends javax.swing.JInternalFrame {
         btneliminar.setText("ELIMINAR");
         btneliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jLabel3.setText("UBICACION:");
+        jLabel3.setText("ORIGEN:");
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("BUSCAR:"));
         jPanel4.setToolTipText("");
@@ -89,7 +89,7 @@ public class FrmUbicacion extends javax.swing.JInternalFrame {
             }
         });
 
-        TUbicacion.setModel(new javax.swing.table.DefaultTableModel(
+        TOrigen.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -100,13 +100,13 @@ public class FrmUbicacion extends javax.swing.JInternalFrame {
 
             }
         ));
-        TUbicacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        TUbicacion.addMouseListener(new java.awt.event.MouseAdapter() {
+        TOrigen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TOrigen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TUbicacionMouseClicked(evt);
+                TOrigenMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(TUbicacion);
+        jScrollPane1.setViewportView(TOrigen);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -135,42 +135,43 @@ public class FrmUbicacion extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2))
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(txtUbicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnguardar)
-                                .addGap(18, 18, 18)
-                                .addComponent(btneditar)
-                                .addGap(18, 18, 18)
-                                .addComponent(btneliminar)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnlimpiar))
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtOrigen)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnguardar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btneditar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btneliminar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnlimpiar))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(55, 55, 55))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(7, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(19, 19, 19)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtUbicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnguardar)
@@ -178,37 +179,36 @@ public class FrmUbicacion extends javax.swing.JInternalFrame {
                     .addComponent(btneliminar)
                     .addComponent(btnlimpiar))
                 .addGap(18, 18, 18)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtUbicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUbicacionActionPerformed
+    private void txtOrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOrigenActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtUbicacionActionPerformed
+    }//GEN-LAST:event_txtOrigenActionPerformed
 
-    private void txtUbicacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUbicacionKeyTyped
-        if(txtUbicacion.getText().length()>=15){
+    private void txtOrigenKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrigenKeyTyped
+        if(txtOrigen.getText().length()>=45){
             evt.consume();
         }
         if(Character.isDigit(evt.getKeyChar())) {
             evt.consume();
         }
-    }//GEN-LAST:event_txtUbicacionKeyTyped
+    }//GEN-LAST:event_txtOrigenKeyTyped
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarKeyReleased
 
-    private void TUbicacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TUbicacionMouseClicked
+    private void TOrigenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TOrigenMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_TUbicacionMouseClicked
+    }//GEN-LAST:event_TOrigenMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTable TUbicacion;
+    public javax.swing.JTable TOrigen;
     public javax.swing.JButton btneditar;
     public javax.swing.JButton btneliminar;
     public javax.swing.JButton btnguardar;
@@ -220,6 +220,6 @@ public class FrmUbicacion extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTextField txtBuscar;
     public javax.swing.JTextField txtCodigo;
-    public javax.swing.JTextField txtUbicacion;
+    public javax.swing.JTextField txtOrigen;
     // End of variables declaration//GEN-END:variables
 }

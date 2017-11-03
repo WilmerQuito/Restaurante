@@ -63,8 +63,6 @@ public class CtrlEmpleado implements ActionListener{
     }
     
     public void Iniciar(){
-        Frm.setTitle("REGISTRO DE CLIENTES");
-        
         Frm.TEmpleado.setModel(DTM);
         DTM.setColumnIdentifiers(new String[]{"CODIGO","NOMBRE","DNI","CELULAR","DIRECCION"});
         

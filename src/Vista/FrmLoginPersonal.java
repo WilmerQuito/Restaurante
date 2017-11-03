@@ -7,21 +7,19 @@ package Vista;
 
 import Modelo.Controlador;
 import Vista.*;
-import com.placeholder.PlaceHolder;
 
 /**
  *
  * @author Wilmer Quito
  */
-public class FrmLogin extends javax.swing.JFrame {
+public class FrmLoginPersonal extends javax.swing.JFrame {
     private Controlador C=new Controlador();
     private FrmPrincipal Frm;
-    PlaceHolder holder;
 
     /**
      * Creates new form FrmLogin
      */
-    public FrmLogin() {
+    public FrmLoginPersonal() {
         initComponents();
         setTitle("INICIAR SESION");
         setLocationRelativeTo(null);
@@ -251,7 +249,7 @@ public class FrmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPswKeyTyped
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        System.exit(0);
+        C.Mostrar(this, new FrmBuscarCli());
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void txtUsuFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuFocusGained
@@ -279,20 +277,21 @@ public class FrmLogin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmLoginPersonal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmLoginPersonal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmLoginPersonal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmLoginPersonal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmLogin().setVisible(true);
+                new FrmLoginPersonal().setVisible(true);
             }
         });
     }

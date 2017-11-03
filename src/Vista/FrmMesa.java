@@ -106,13 +106,13 @@ public class FrmMesa extends javax.swing.JInternalFrame {
 
         TMesa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         TMesa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

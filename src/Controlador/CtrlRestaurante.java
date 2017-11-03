@@ -62,7 +62,6 @@ public class CtrlRestaurante implements ActionListener{
     }
     
     public void Iniciar(){
-        Frm.setTitle("REGISTRO DE RESTAURANTES");
         Frm.TRestaurante.setModel(DTM);
         DTM.setColumnIdentifiers(new String[]{"CODIGO","NOMBRE","DIRECCION","TELEFONO"});
         

@@ -61,8 +61,6 @@ public class CtrlAlmacen implements ActionListener{
     }
     
     public void Iniciar(){
-        Frm.setTitle("REGISTRO DE ALMACEN");
-        
         Frm.TAlmacen.setModel(DTM);
         DTM.setColumnIdentifiers(new String[]{"CODIGO","RESTAURANTE","DESCRIPCION"});
         Frm.TAlmacen.getColumnModel().getColumn(1).setPreferredWidth(300);

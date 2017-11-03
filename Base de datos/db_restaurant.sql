@@ -23,10 +23,10 @@ DROP TABLE IF EXISTS `almacen`;
 CREATE TABLE `almacen` (
   `Cod_Almacen` char(10) NOT NULL,
   `ingredientes_Cod_Ingredientes` char(10) DEFAULT NULL,
-  `bebidas_idbebidas` int(11) DEFAULT NULL,
+  `bebidas_idbebidas` char(10) DEFAULT NULL,
   `cantidad` varchar(45) NOT NULL,
   `FechaExp` date NOT NULL,
-  `Unidades_medida_idUnidades_medida` int(11) NOT NULL,
+  `Unidades_medida_idUnidades_medida` char(10) NOT NULL,
   `tamaño_medida` varchar(45) DEFAULT NULL,
   `Cod_Restaurante` char(10) NOT NULL,
   `usuario_Cod_Usuario` char(10) NOT NULL,
@@ -50,15 +50,15 @@ CREATE TABLE `almacen` (
 DROP TABLE IF EXISTS `bebidas`;
 
 CREATE TABLE `bebidas` (
-  `idbebidas` int(11) NOT NULL,
-  `tipoBebida_idtipoBebida` int(11) NOT NULL,
-  `marca_idmarca` int(11) DEFAULT NULL,
-  `sabor_idsabor` int(11) DEFAULT NULL,
+  `idbebidas` char(10) NOT NULL,
+  `tipoBebida_idtipoBebida` char(10) NOT NULL,
+  `marca_idmarca` char(10) DEFAULT NULL,
+  `sabor_idsabor` char(10) DEFAULT NULL,
   `Costo` double(8,2) NOT NULL,
   PRIMARY KEY (`idbebidas`),
+  KEY `fk_bebidas_tipoBebida1_idx` (`tipoBebida_idtipoBebida`),
   KEY `fk_bebidas_marca1_idx` (`marca_idmarca`),
   KEY `fk_bebidas_sabor1_idx` (`sabor_idsabor`),
-  KEY `fk_bebidas_tipoBebida1_idx` (`tipoBebida_idtipoBebida`),
   CONSTRAINT `fk_bebidas_marca1` FOREIGN KEY (`marca_idmarca`) REFERENCES `marca` (`idmarca`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_bebidas_sabor1` FOREIGN KEY (`sabor_idsabor`) REFERENCES `sabor` (`idsabor`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_bebidas_tipoBebida1` FOREIGN KEY (`tipoBebida_idtipoBebida`) REFERENCES `tipobebida` (`idtipoBebida`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -80,12 +80,14 @@ CREATE TABLE `cliente` (
 
 /*Data for the table `cliente` */
 
+insert  into `cliente`(`Cod_Cliente`,`Nombre`,`DNI`,`Celular`) values ('1012345678','MARIA SANCHEZ','12345678','946513516'),('1064683453','KUJAGHUAJGDH','64683453','645138451'),('1098765432','FAVIO','98765432','894684563'),('J','Juan Saenz','76225203','943187153');
+
 /*Table structure for table `color` */
 
 DROP TABLE IF EXISTS `color`;
 
 CREATE TABLE `color` (
-  `idcolor` int(11) NOT NULL,
+  `idcolor` char(10) NOT NULL,
   `color` varchar(45) NOT NULL,
   PRIMARY KEY (`idcolor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -97,16 +99,18 @@ CREATE TABLE `color` (
 DROP TABLE IF EXISTS `comida`;
 
 CREATE TABLE `comida` (
-  `idcomida` int(11) NOT NULL,
+  `idcomida` char(10) NOT NULL,
   `nombre_comida` varchar(45) NOT NULL,
   `Costo` double(8,2) NOT NULL,
-  `origen_idorigen` int(11) NOT NULL,
+  `origen_idorigen` char(10) NOT NULL,
   PRIMARY KEY (`idcomida`),
   KEY `fk_comida_origen1_idx` (`origen_idorigen`),
   CONSTRAINT `fk_comida_origen1` FOREIGN KEY (`origen_idorigen`) REFERENCES `origen` (`idorigen`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `comida` */
+
+insert  into `comida`(`idcomida`,`nombre_comida`,`Costo`,`origen_idorigen`) values ('L','LOMO SALTADO',17.20,'P'),('P','PIZZA',15.50,'A'),('T','TACOS',5.00,'M');
 
 /*Table structure for table `comprobante` */
 
@@ -141,8 +145,8 @@ DROP TABLE IF EXISTS `consumicion`;
 
 CREATE TABLE `consumicion` (
   `Cod_Consumicion` char(10) NOT NULL,
-  `comida_idcomida` int(11) DEFAULT NULL,
-  `bebidas_idbebidas` int(11) DEFAULT NULL,
+  `comida_idcomida` char(10) DEFAULT NULL,
+  `bebidas_idbebidas` char(10) DEFAULT NULL,
   `Cantidad` int(3) NOT NULL,
   `pedido_Cod_Pedido` char(10) NOT NULL,
   PRIMARY KEY (`Cod_Consumicion`),
@@ -161,14 +165,17 @@ CREATE TABLE `consumicion` (
 DROP TABLE IF EXISTS `empleado`;
 
 CREATE TABLE `empleado` (
-  `idempleado` int(11) NOT NULL,
-  `nombrel` varchar(45) DEFAULT NULL,
-  `dni` int(11) DEFAULT NULL,
-  `telefono` varchar(45) DEFAULT NULL,
+  `idempleado` char(10) NOT NULL,
+  `nombre` varchar(45) NOT NULL,
+  `dni` int(11) NOT NULL,
+  `telefono` varchar(45) NOT NULL,
+  `Direccion` varchar(45) NOT NULL,
   PRIMARY KEY (`idempleado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `empleado` */
+
+insert  into `empleado`(`idempleado`,`nombre`,`dni`,`telefono`,`Direccion`) values ('1076225203','WILMER QUITO CUEVA',76225203,'943187153','AV 27 DE NOVIEMBRE 964');
 
 /*Table structure for table `estado` */
 
@@ -182,12 +189,14 @@ CREATE TABLE `estado` (
 
 /*Data for the table `estado` */
 
+insert  into `estado`(`Cod_Estado`,`Estado`) values ('L','LIBRE'),('O','OCUPADO'),('R','RESERVADO');
+
 /*Table structure for table `estadopedido` */
 
 DROP TABLE IF EXISTS `estadopedido`;
 
 CREATE TABLE `estadopedido` (
-  `idEstadoPedido` int(11) NOT NULL,
+  `idEstadoPedido` char(10) NOT NULL,
   `Estado` varchar(45) NOT NULL,
   PRIMARY KEY (`idEstadoPedido`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -201,16 +210,16 @@ DROP TABLE IF EXISTS `ingredientes`;
 CREATE TABLE `ingredientes` (
   `Cod_Ingredientes` char(10) NOT NULL,
   `Nom_ingrediente` varchar(100) NOT NULL,
-  `color_idcolor` int(11) DEFAULT NULL,
-  `presentacion_idpresentacion` int(11) NOT NULL,
-  `tipoIngre_idtipo` int(11) NOT NULL,
+  `color_idcolor` char(10) DEFAULT NULL,
+  `presentacion_idpresentacion` char(10) NOT NULL,
+  `tipoIngre_idtipoIngre` char(10) NOT NULL,
   PRIMARY KEY (`Cod_Ingredientes`),
   KEY `fk_ingredientes_color1_idx` (`color_idcolor`),
   KEY `fk_ingredientes_presentacion1_idx` (`presentacion_idpresentacion`),
-  KEY `fk_ingredientes_tipoIngre1_idx` (`tipoIngre_idtipo`),
+  KEY `fk_ingredientes_tipoIngre1_idx` (`tipoIngre_idtipoIngre`),
   CONSTRAINT `fk_ingredientes_color1` FOREIGN KEY (`color_idcolor`) REFERENCES `color` (`idcolor`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ingredientes_presentacion1` FOREIGN KEY (`presentacion_idpresentacion`) REFERENCES `presentacion` (`idpresentacion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_ingredientes_tipoIngre1` FOREIGN KEY (`tipoIngre_idtipo`) REFERENCES `tipoingre` (`idtipoIngre`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_ingredientes_tipoIngre1` FOREIGN KEY (`tipoIngre_idtipoIngre`) REFERENCES `tipoingre` (`idtipoIngre`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `ingredientes` */
@@ -220,7 +229,7 @@ CREATE TABLE `ingredientes` (
 DROP TABLE IF EXISTS `marca`;
 
 CREATE TABLE `marca` (
-  `idmarca` int(11) NOT NULL,
+  `idmarca` char(10) NOT NULL,
   `marcacol` varchar(45) NOT NULL,
   PRIMARY KEY (`idmarca`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -250,17 +259,21 @@ CREATE TABLE `mesa` (
 
 /*Data for the table `mesa` */
 
+insert  into `mesa`(`Cod_Mesa`,`Cant_Personas`,`Num_Mesa`,`Fumador`,`Cod_Estado`,`Cod_Ubicacion`,`Cod_Restaurante`) values ('1',2,1,'NO','L','C','L'),('2',5,2,'SI','O','E','L'),('3',10,3,'Si','R','F','L'),('4',7,4,'SI','L','F','L');
+
 /*Table structure for table `origen` */
 
 DROP TABLE IF EXISTS `origen`;
 
 CREATE TABLE `origen` (
-  `idorigen` int(11) NOT NULL,
+  `idorigen` char(10) NOT NULL,
   `origencol` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idorigen`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `origen` */
+
+insert  into `origen`(`idorigen`,`origencol`) values ('A','AMERICANO'),('I','ITALIANO'),('M','MEXICANO'),('P','PERUANO');
 
 /*Table structure for table `pedido` */
 
@@ -269,13 +282,13 @@ DROP TABLE IF EXISTS `pedido`;
 CREATE TABLE `pedido` (
   `Cod_Pedido` char(10) NOT NULL,
   `Hora` time NOT NULL,
-  `EstadoPedido_idEstadoPedido` int(11) NOT NULL,
+  `EstadoPedido_idEstadoPedido` char(10) NOT NULL,
   `reserva_Cod_Reserva` char(10) NOT NULL,
   `usuario_Cod_Usuario` char(10) NOT NULL,
   PRIMARY KEY (`Cod_Pedido`),
   KEY `fk_pedido_usuario1_idx` (`usuario_Cod_Usuario`),
-  KEY `fk_pedido_EstadoPedido1_idx` (`EstadoPedido_idEstadoPedido`),
   KEY `fk_pedido_reserva1_idx` (`reserva_Cod_Reserva`),
+  KEY `fk_pedido_EstadoPedido1_idx` (`EstadoPedido_idEstadoPedido`),
   CONSTRAINT `fk_pedido_EstadoPedido1` FOREIGN KEY (`EstadoPedido_idEstadoPedido`) REFERENCES `estadopedido` (`idEstadoPedido`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_pedido_reserva1` FOREIGN KEY (`reserva_Cod_Reserva`) REFERENCES `reserva` (`Cod_Reserva`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_pedido_usuario1` FOREIGN KEY (`usuario_Cod_Usuario`) REFERENCES `usuario` (`Cod_Usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -288,7 +301,7 @@ CREATE TABLE `pedido` (
 DROP TABLE IF EXISTS `presentacion`;
 
 CREATE TABLE `presentacion` (
-  `idpresentacion` int(11) NOT NULL,
+  `idpresentacion` char(10) NOT NULL,
   `presentacion` varchar(45) NOT NULL,
   PRIMARY KEY (`idpresentacion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -330,6 +343,8 @@ CREATE TABLE `restaurante` (
 
 /*Data for the table `restaurante` */
 
+insert  into `restaurante`(`Cod_Restaurante`,`Nombre`,`Direccion`,`Telefono`) values ('L','LA DELICIA','AV. LUZURIAGA 254','943257854');
+
 /*Table structure for table `rol` */
 
 DROP TABLE IF EXISTS `rol`;
@@ -342,12 +357,14 @@ CREATE TABLE `rol` (
 
 /*Data for the table `rol` */
 
+insert  into `rol`(`Cod_Rol`,`Nombre`) values ('A','ADMINISTRADOR');
+
 /*Table structure for table `sabor` */
 
 DROP TABLE IF EXISTS `sabor`;
 
 CREATE TABLE `sabor` (
-  `idsabor` int(11) NOT NULL,
+  `idsabor` char(10) NOT NULL,
   `saborcol` varchar(45) NOT NULL,
   PRIMARY KEY (`idsabor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -359,7 +376,7 @@ CREATE TABLE `sabor` (
 DROP TABLE IF EXISTS `tipobebida`;
 
 CREATE TABLE `tipobebida` (
-  `idtipoBebida` int(11) NOT NULL,
+  `idtipoBebida` char(10) NOT NULL,
   `nomTipo` varchar(45) NOT NULL,
   PRIMARY KEY (`idtipoBebida`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -383,7 +400,7 @@ CREATE TABLE `tipocomprobante` (
 DROP TABLE IF EXISTS `tipoingre`;
 
 CREATE TABLE `tipoingre` (
-  `idtipoIngre` int(11) NOT NULL,
+  `idtipoIngre` char(10) NOT NULL,
   `nom_tipo` varchar(45) NOT NULL,
   PRIMARY KEY (`idtipoIngre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -402,12 +419,14 @@ CREATE TABLE `ubicacion` (
 
 /*Data for the table `ubicacion` */
 
+insert  into `ubicacion`(`Cod_Ubicacion`,`Ubicacion`) values ('C','CENTRO'),('E','ENTRADA'),('F','FONDO');
+
 /*Table structure for table `unidades_medida` */
 
 DROP TABLE IF EXISTS `unidades_medida`;
 
 CREATE TABLE `unidades_medida` (
-  `idUnidades_medida` int(11) NOT NULL,
+  `idUnidades_medida` char(10) NOT NULL,
   `Unidades_medidacol` varchar(45) NOT NULL,
   PRIMARY KEY (`idUnidades_medida`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -419,10 +438,10 @@ CREATE TABLE `unidades_medida` (
 DROP TABLE IF EXISTS `usoingredientes`;
 
 CREATE TABLE `usoingredientes` (
-  `idusoIngredientes` int(11) NOT NULL,
-  `comida_idcomida` int(11) NOT NULL,
+  `idusoIngredientes` char(10) NOT NULL,
+  `comida_idcomida` char(10) NOT NULL,
   `almacen_Cod_Almacen` char(10) NOT NULL,
-  `Unidades_medida_idUnidades_medida` int(11) NOT NULL,
+  `Unidades_medida_idUnidades_medida` char(10) NOT NULL,
   `cantidad` int(11) NOT NULL,
   PRIMARY KEY (`idusoIngredientes`),
   KEY `fk_usoIngredientes_comida1_idx` (`comida_idcomida`),
@@ -443,7 +462,7 @@ CREATE TABLE `usuario` (
   `Cod_Usuario` char(10) NOT NULL,
   `Usuario` varchar(30) NOT NULL,
   `Clave` varchar(30) NOT NULL,
-  `empleado_idempleado` int(11) NOT NULL,
+  `empleado_idempleado` char(10) NOT NULL,
   `rol_Cod_Rol` char(10) NOT NULL,
   PRIMARY KEY (`Cod_Usuario`),
   KEY `fk_usuario_empleado1_idx` (`empleado_idempleado`),
@@ -453,6 +472,8 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `usuario` */
+
+insert  into `usuario`(`Cod_Usuario`,`Usuario`,`Clave`,`empleado_idempleado`,`rol_Cod_Rol`) values ('W','WILMER','123456789','1076225203','A');
 
 /*Table structure for table `vtaalmacenbebida` */
 
@@ -500,10 +521,24 @@ DROP TABLE IF EXISTS `vtabebida`;
 /*!50001 DROP TABLE IF EXISTS `vtabebida` */;
 
 /*!50001 CREATE TABLE  `vtabebida`(
- `idbebidas` int(11) ,
+ `idbebidas` char(10) ,
  `Tipo` varchar(45) ,
  `Marca` varchar(45) ,
  `Sabor` varchar(45) ,
+ `costo` double(8,2) 
+)*/;
+
+/*Table structure for table `vtacomida` */
+
+DROP TABLE IF EXISTS `vtacomida`;
+
+/*!50001 DROP VIEW IF EXISTS `vtacomida` */;
+/*!50001 DROP TABLE IF EXISTS `vtacomida` */;
+
+/*!50001 CREATE TABLE  `vtacomida`(
+ `idcomida` char(10) ,
+ `origencol` varchar(45) ,
+ `nombre_comida` varchar(45) ,
  `costo` double(8,2) 
 )*/;
 
@@ -598,7 +633,7 @@ DROP TABLE IF EXISTS `vtausoingrediente`;
 /*!50001 DROP TABLE IF EXISTS `vtausoingrediente` */;
 
 /*!50001 CREATE TABLE  `vtausoingrediente`(
- `idusoingredientes` int(11) ,
+ `idusoingredientes` char(10) ,
  `comida` varchar(45) ,
  `Ingrediente` varchar(100) ,
  `inidadmedida` varchar(45) ,
@@ -626,12 +661,19 @@ DROP TABLE IF EXISTS `vtausoingrediente`;
 
 /*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vtabebida` AS select `bebidas`.`idbebidas` AS `idbebidas`,`tipobebida`.`nomTipo` AS `Tipo`,`marca`.`marcacol` AS `Marca`,`sabor`.`saborcol` AS `Sabor`,`bebidas`.`Costo` AS `costo` from (((`bebidas` left join `tipobebida` on((`bebidas`.`tipoBebida_idtipoBebida` = `tipobebida`.`idtipoBebida`))) left join `marca` on((`bebidas`.`marca_idmarca` = `marca`.`idmarca`))) left join `sabor` on((`bebidas`.`sabor_idsabor` = `sabor`.`idsabor`))) */;
 
+/*View structure for view vtacomida */
+
+/*!50001 DROP TABLE IF EXISTS `vtacomida` */;
+/*!50001 DROP VIEW IF EXISTS `vtacomida` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vtacomida` AS select `comida`.`idcomida` AS `idcomida`,`origen`.`origencol` AS `origencol`,`comida`.`nombre_comida` AS `nombre_comida`,`comida`.`Costo` AS `costo` from (`comida` join `origen` on((`comida`.`origen_idorigen` = `origen`.`idorigen`))) */;
+
 /*View structure for view vtaingredientes */
 
 /*!50001 DROP TABLE IF EXISTS `vtaingredientes` */;
 /*!50001 DROP VIEW IF EXISTS `vtaingredientes` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vtaingredientes` AS select `ingredientes`.`Cod_Ingredientes` AS `Cod_Ingredientes`,`ingredientes`.`Nom_ingrediente` AS `Nom_Ingrediente`,`color`.`color` AS `color`,`presentacion`.`presentacion` AS `presentacion`,`tipoingre`.`nom_tipo` AS `nom_tipo` from (((`ingredientes` left join `color` on((`ingredientes`.`color_idcolor` = `color`.`idcolor`))) left join `presentacion` on((`ingredientes`.`presentacion_idpresentacion` = `presentacion`.`idpresentacion`))) left join `tipoingre` on((`ingredientes`.`tipoIngre_idtipo` = `tipoingre`.`idtipoIngre`))) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vtaingredientes` AS select `ingredientes`.`Cod_Ingredientes` AS `Cod_Ingredientes`,`ingredientes`.`Nom_ingrediente` AS `Nom_Ingrediente`,`color`.`color` AS `color`,`presentacion`.`presentacion` AS `presentacion`,`tipoingre`.`nom_tipo` AS `nom_tipo` from (((`ingredientes` left join `color` on((`ingredientes`.`color_idcolor` = `color`.`idcolor`))) left join `presentacion` on((`ingredientes`.`presentacion_idpresentacion` = `presentacion`.`idpresentacion`))) left join `tipoingre` on((`ingredientes`.`tipoIngre_idtipoIngre` = `tipoingre`.`idtipoIngre`))) */;
 
 /*View structure for view vtamesa */
 
@@ -659,7 +701,7 @@ DROP TABLE IF EXISTS `vtausoingrediente`;
 /*!50001 DROP TABLE IF EXISTS `vtasesion` */;
 /*!50001 DROP VIEW IF EXISTS `vtasesion` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vtasesion` AS select `usuario`.`Cod_Usuario` AS `Cod_Usuario`,`empleado`.`nombrel` AS `Empleado`,`rol`.`Nombre` AS `Rol`,`usuario`.`Usuario` AS `Usuario`,`usuario`.`Clave` AS `Clave` from ((`usuario` join `rol`) join `empleado` on(((`usuario`.`rol_Cod_Rol` = `rol`.`Cod_Rol`) and (`usuario`.`empleado_idempleado` = `empleado`.`idempleado`)))) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vtasesion` AS select `usuario`.`Cod_Usuario` AS `Cod_Usuario`,`empleado`.`nombre` AS `Empleado`,`rol`.`Nombre` AS `Rol`,`usuario`.`Usuario` AS `Usuario`,`usuario`.`Clave` AS `Clave` from ((`usuario` join `rol`) join `empleado` on(((`usuario`.`rol_Cod_Rol` = `rol`.`Cod_Rol`) and (`usuario`.`empleado_idempleado` = `empleado`.`idempleado`)))) */;
 
 /*View structure for view vtausoingrediente */
 
