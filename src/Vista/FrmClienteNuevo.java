@@ -5,91 +5,18 @@
  */
 package Vista;
 
-import Modelo.Controlador;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author Wilmer Quito
  */
 public class FrmClienteNuevo extends javax.swing.JFrame {
-    private Controlador C=new Controlador();
     /**
      * Creates new form FrmClienteNuevo
      */
     public FrmClienteNuevo() {
+        this.setUndecorated(true);
         initComponents();
-        setTitle("REGISTRATE...!!!");
-        setLocationRelativeTo(null);
     }
-
-    
-    public boolean Validar(){
-        C.flag = true;
-        if (txtNombre.getText().trim().length() == 0) {
-            C.flag = false;
-            C.Mensaje("INGRESA EL NOMBRE");
-            txtNombre.grabFocus();
-        } else {
-            if (txtDNI.getText().trim().length() == 0) {
-                C.flag = false;
-                C.Mensaje("INGRESA UN DNI");
-                txtDNI.grabFocus();
-            } else {
-                if (txtCelular.getText().trim().length() == 0) {
-                    C.flag = false;
-                    C.Mensaje("INGRESA UN CELULAR");
-                    txtCelular.grabFocus();
-                }else{
-                    if(txtDNI.getText().trim().length() < 8){
-                        C.flag = false;
-                        C.Mensaje("LONGITUD DE DNI INCORRECTO");
-                        txtDNI.grabFocus();
-                    }else{
-                        if(txtCelular.getText().trim().length() < 9) {
-                            C.flag = false;
-                            C.Mensaje("LONGITUD DE CELULAR INCORRECTO");
-                            txtCelular.grabFocus();
-                        }
-                    }
-                }
-            }
-        }
-        return C.flag;
-    }
-    
-    public void Limpiar(){
-        txtCelular.setText(null);
-        txtDNI.setText(null);
-        txtNombre.setText(null);
-        txtNombre.grabFocus();
-    }
-    
-    public void Guardar(){
-        String sql="SELECT * FROM Cliente WHERE DNI='"+txtDNI.getText()+"';";
-        if(!C.VerificarConsulta(sql)){
-            if (Validar()) {
-                if (JOptionPane.showConfirmDialog(null, "¿SON CORRECTOS TUS DATOS?", "CONSULTA", 0) == 0) {
-                    String Cod="10"+txtDNI.getText().toUpperCase();
-                    C.InsertaRegistro("INSERT INTO cliente VALUES('"+Cod+"','"
-                            +txtNombre.getText().toUpperCase()+"','"
-                            +txtDNI.getText().toUpperCase()+"','"
-                            +txtCelular.getText().toUpperCase()+"')");
-                    C.Mensaje("YA ESTAS REGISTRADO");
-                    Limpiar();
-                    if(JOptionPane.showConfirmDialog(null, "¿QUIERES RESERVAR UNA MESA?", "CONSULTA", 0) == 0){
-                        C.Mensaje("RESERVA MESA");
-                    }else{
-                        C.Mostrar(this, new FrmBuscarCli());
-                    }
-                }
-            }
-        }else{
-            C.Mensaje("EL DNI YA ESTA REGISTRADO");
-        }
-    }
-    
-    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -107,6 +34,7 @@ public class FrmClienteNuevo extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         txtNombre.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -252,15 +180,15 @@ public class FrmClienteNuevo extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDNIKeyTyped
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
-        Guardar();
+        
     }//GEN-LAST:event_btnguardarActionPerformed
 
     private void btnlimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimpiarActionPerformed
-        Limpiar();
+       
     }//GEN-LAST:event_btnlimpiarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        C.Mostrar(this, new FrmBuscarCli());
+        
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     /**
@@ -299,7 +227,7 @@ public class FrmClienteNuevo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnRegresar;
+    public javax.swing.JButton btnRegresar;
     public javax.swing.JButton btnguardar;
     public javax.swing.JButton btnlimpiar;
     private javax.swing.JLabel jLabel1;

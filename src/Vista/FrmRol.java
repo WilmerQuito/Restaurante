@@ -43,7 +43,6 @@ public class FrmRol extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setResizable(true);
         setTitle("ROLES");
 
         jLabel2.setText("CODIGO:");

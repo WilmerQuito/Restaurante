@@ -149,7 +149,7 @@ public class Controlador {
         next.setVisible(true);
         actual.setVisible(false);
     }
-    
+        
     public void Acceso(JFrame Actual, JFrame Siguiente, String Usu, String Contra, String Rol){
         try {
             sql="SELECT * FROM VtaSesion WHERE Usuario='"+Usu+"' AND Clave='"+Contra+"' AND Rol='"+Rol+"'";
@@ -189,6 +189,38 @@ public class Controlador {
     
     public void Holder(JTextField txt, String msj){
         holder = new PlaceHolder(txt, msj);
+    }
+    
+    public String DevolverDatoString(String cnst, int posdev) {
+        String dto = "";
+        try {
+            base.st = base.conn.createStatement();
+            base.rs = base.st.executeQuery(cnst);
+            if (base.rs.next()) {
+                dto = base.rs.getString(posdev);
+            }
+        } catch (Exception e) {
+        }
+        return dto;
+    }
+    
+    public Double DevolverDatoDouble(String cnst, int posdev) {
+        double dto =0;
+        try {
+            base.st = base.conn.createStatement();
+            base.rs = base.st.executeQuery(cnst);
+            if (base.rs.next()) {
+                dto = base.rs.getDouble(posdev);
+            }
+        } catch (Exception e) {
+        }
+        return dto;
+    }
+    
+    public void MarcarTexto(JTextField txt) {
+        txt.setSelectionStart(0);
+        txt.setSelectionEnd(txt.getText().length());
+        txt.requestFocus();
     }
     
 }

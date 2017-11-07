@@ -5,82 +5,19 @@
  */
 package Vista;
 
-import Modelo.Controlador;
-import javax.swing.table.DefaultTableModel;
-
 /**
  *
  * @author Wilmer Quito
  */
 public class FrmReservas extends javax.swing.JFrame {
-    Controlador C=new Controlador();
-    private DefaultTableModel DTM=new DefaultTableModel();
     /**
      * Creates new form FrmReservas
      */
     public FrmReservas() {
+        this.setUndecorated(true);
         initComponents();
-        setTitle("RESERVA TU MESA...!!!");
-        setLocationRelativeTo(null);
         
-        TReservas.setModel(DTM);
-        DTM.setColumnIdentifiers(new String[]{"CODIGO","RESTAURANTE","NUM. MESA","CANT. PERSONAS", "FUMADOR", "UBICACION", "ESTADO"});
-        
-        Restaurante();
-        Limpiar();
     }
-    
-    public void Restaurante(){
-        C.sql= "SELECT * FROM restaurante";
-        C.LlenarCombo(cboRestaurante, C.sql, "<SELECCIONE>",2);
-    }
-    
-    public void Limpiar(){
-        lblDireccion.setText(null);
-        lblRestaurante.setText(null);
-        lblTelefono.setText(null);
-        cboRestaurante.setSelectedIndex(0);
-        TReservas.clearSelection();
-        cboRestaurante.grabFocus();
-    }
-    
-    public boolean Validar(){
-        C.flag = true;
-        if (cboRestaurante.getSelectedIndex() == 0) {
-            C.flag = false;
-            C.Mensaje("SELECCIONA UN RESTAURANTE");
-            cboRestaurante.grabFocus();
-        }
-        return C.flag;
-    }
-    
-    public void RestLibre() {
-        C.sql = "SELECT * FROM VtaMesa WHERE Nombre='"+cboRestaurante.getSelectedItem().toString()+"' AND Estado='Libre'";
-        C.MostrarenJTable(DTM, C.sql, 7);
-    }
-    
-    public void Visualizar(){
-        if(cboRestaurante.getSelectedIndex() > 0){
-            String RS=cboRestaurante.getSelectedItem().toString();
-            String Rest=C.DatoCombo("SELECT * FROM restaurante WHERE Nombre='"+RS+"'",2);
-            String Dire=C.DatoCombo("SELECT * FROM restaurante WHERE Nombre='"+RS+"'",3);
-            String Telef=C.DatoCombo("SELECT * FROM restaurante WHERE Nombre='"+RS+"'",4);
-
-            lblRestaurante.setText(Rest);
-            lblDireccion.setText(Dire);
-            lblTelefono.setText(Telef);
-            
-            RestLibre();
-        }
-        if(cboRestaurante.getSelectedIndex() == 0){
-            Limpiar();
-            C.LimpiarTabla(DTM);
-        }
-    }
-    
-    
-    
-    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -98,10 +35,15 @@ public class FrmReservas extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TReservas = new javax.swing.JTable();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         cboRestaurante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboRestaurante.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cboRestaurante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboRestauranteActionPerformed(evt);
@@ -163,6 +105,15 @@ public class FrmReservas extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel3.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        jLabel3.setText("RESTAURANTE:");
+
+        jLabel4.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        jLabel4.setText("DIRECCION:");
+
+        jLabel5.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        jLabel5.setText("TELEFONO:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -177,20 +128,23 @@ public class FrmReservas extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLabel2)))
-                        .addGap(0, 247, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(cboRestaurante, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(73, 73, 73)
+                                .addGap(53, 53, 53)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(lblRestaurante, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                                    .addComponent(lblTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblRestaurante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
@@ -203,16 +157,24 @@ public class FrmReservas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(lblRestaurante))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblDireccion)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(lblRestaurante))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblTelefono))
-                    .addComponent(cboRestaurante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblDireccion)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblTelefono))
+                            .addComponent(cboRestaurante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51)
@@ -224,7 +186,7 @@ public class FrmReservas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cboRestauranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboRestauranteActionPerformed
-        Visualizar();
+        
     }//GEN-LAST:event_cboRestauranteActionPerformed
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
@@ -268,16 +230,19 @@ public class FrmReservas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTable TReservas;
-    private javax.swing.JComboBox<String> cboRestaurante;
+    public javax.swing.JComboBox<String> cboRestaurante;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private lu.tudor.santec.jtimechooser.demo.JTimeChooserDemo jTimeChooserDemo1;
-    private javax.swing.JLabel lblDireccion;
-    private javax.swing.JLabel lblRestaurante;
-    private javax.swing.JLabel lblTelefono;
+    public javax.swing.JLabel lblDireccion;
+    public javax.swing.JLabel lblRestaurante;
+    public javax.swing.JLabel lblTelefono;
     public javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }

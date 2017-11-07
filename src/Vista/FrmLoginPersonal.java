@@ -5,72 +5,21 @@
  */
 package Vista;
 
-import Modelo.Controlador;
-import Vista.*;
-
 /**
  *
  * @author Wilmer Quito
  */
 public class FrmLoginPersonal extends javax.swing.JFrame {
-    private Controlador C=new Controlador();
-    private FrmPrincipal Frm;
 
     /**
      * Creates new form FrmLogin
      */
     public FrmLoginPersonal() {
+        this.setUndecorated(true);
         initComponents();
-        setTitle("INICIAR SESION");
-        setLocationRelativeTo(null);
-        Rol();
     }
       
-    public void Rol(){
-        C.sql= "SELECT * FROM Rol;";
-        C.LlenarCombo(cbRol, C.sql, "<SELECCIONE>",2);
-    }
-    
-    public boolean Validar(){
-        C.flag = true;
-        if (txtUsu.getText().trim().length() == 0) {
-            C.flag = false;
-            C.Mensaje("INGRESA TU USUARIO");
-            txtUsu.grabFocus();
-        } else {
-            if (txtPsw.getText().trim().length() == 0) {
-                C.flag = false;
-                C.Mensaje("INGRESA UN CONSTRASEÑA");
-                txtPsw.grabFocus();
-            } else {
-                if (cbRol.getSelectedIndex() == 0) {
-                    C.flag = false;
-                    C.Mensaje("SELECCIONA TU ROL");
-                    cbRol.grabFocus();
-                }
-            }
-        }
-        return C.flag;
-    }
-    
-    public void Limpiar(){
-        txtUsu.setText(null);
-        txtPsw.setText(null);
-        cbRol.setSelectedIndex(0);
-        cbRol.grabFocus();
-    }
-    
-    public void Acceso(){
-        if(Validar()){
-            C.Acceso(this, new FrmPrincipal(), txtUsu.getText(), txtPsw.getText(), cbRol.getSelectedItem().toString());
-            Frm.lblnombre.setText(null);
-            Frm.lblnombre.setText(txtUsu.getText().toUpperCase());
-            Limpiar();
-        }else{
-            C.Mensaje("ACCEDO DENEGADO");
-        }
-    }
-    
+        
     
     
     /**
@@ -94,6 +43,7 @@ public class FrmLoginPersonal extends javax.swing.JFrame {
         btnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("INCIAR SESION");
@@ -225,11 +175,11 @@ public class FrmLoginPersonal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAccederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccederActionPerformed
-        Acceso();
+        
     }//GEN-LAST:event_btnAccederActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        Limpiar();
+        
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void txtUsuKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuKeyReleased
@@ -249,7 +199,7 @@ public class FrmLoginPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPswKeyTyped
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        C.Mostrar(this, new FrmBuscarCli());
+        
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void txtUsuFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuFocusGained

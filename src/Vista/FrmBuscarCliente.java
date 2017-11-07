@@ -5,62 +5,19 @@
  */
 package Vista;
 
-import Modelo.Controlador;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author Wilmer Quito
  */
-public class FrmBuscarCli extends javax.swing.JFrame {
-    private Controlador C=new Controlador();
-    private FrmPrincipal Frm;
+public class FrmBuscarCliente extends javax.swing.JFrame {
     /**
      * Creates new form FrmBuscarCli
      */
-    public FrmBuscarCli() {
+    public FrmBuscarCliente() {
+        this.setUndecorated(true);
         initComponents();
-        setTitle("BIENVENIDO");
-        setLocationRelativeTo(null);
     }
 
-    public void Limpiar(){
-        txtDni.setText(null);
-        txtDni.grabFocus();
-    }
-    
-    public boolean Validar(){
-        C.flag = true;
-        if (txtDni.getText().trim().length() == 0) {
-            C.flag = false;
-            C.Mensaje("INGRESA TU DNI");
-            txtDni.grabFocus();
-        }
-        return C.flag;
-    }
-    
-    public void Acceder(){
-        C.sql="SELECT * FROM cliente WHERE DNI='"+txtDni.getText()+"'";
-        
-        if(Validar()){
-            if(!C.VerificarConsulta(C.sql)){
-                if (JOptionPane.showConfirmDialog(null, "NO REGISTRADO, ¿DESEAS REGISTRARTE?", "CONSULTA", 0) == 0) {
-                    C.Mostrar(this, new FrmClienteNuevo());
-                }else{
-                    Limpiar();
-                }
-            }else{
-                C.Mensaje("Ingresa a reservas");
-            }
-        }
-        
-    }
-    
-    
-    
-    
-    
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -74,6 +31,7 @@ public class FrmBuscarCli extends javax.swing.JFrame {
         lblAcceso = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("BIENVENIDOS");
@@ -131,7 +89,9 @@ public class FrmBuscarCli extends javax.swing.JFrame {
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(73, 73, 73)
                         .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblAcceso))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblAcceso)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -156,15 +116,15 @@ public class FrmBuscarCli extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblAccesoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAccesoMouseClicked
-       C.Mostrar(this, new FrmLoginPersonal());
+   
     }//GEN-LAST:event_lblAccesoMouseClicked
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        Acceder();
+        
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        Limpiar();
+        
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void txtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyTyped
@@ -193,20 +153,21 @@ public class FrmBuscarCli extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmBuscarCli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmBuscarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmBuscarCli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmBuscarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmBuscarCli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmBuscarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmBuscarCli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmBuscarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmBuscarCli().setVisible(true);
+                new FrmBuscarCliente().setVisible(true);
             }
         });
     }

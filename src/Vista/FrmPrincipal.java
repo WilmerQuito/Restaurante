@@ -22,6 +22,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
      * Creates new form FrmPrincipal
      */
     public FrmPrincipal() {
+        this.setUndecorated(true);
         initComponents();
         setLocationRelativeTo(null);
         setTitle("MENU PRINCIPAL");
@@ -60,6 +61,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jmComida = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
