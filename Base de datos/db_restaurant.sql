@@ -80,7 +80,7 @@ CREATE TABLE `cliente` (
 
 /*Data for the table `cliente` */
 
-insert  into `cliente`(`Cod_Cliente`,`Nombre`,`DNI`,`Celular`) values ('1012345678','MARIA SANCHEZ','12345678','946513516'),('1064683453','KUJAGHUAJGDH','64683453','645138451'),('1098765432','FAVIO','98765432','894684563'),('J','Juan Saenz','76225203','943187153');
+insert  into `cliente`(`Cod_Cliente`,`Nombre`,`DNI`,`Celular`) values ('1012345678','MARIA SANCHEZ','12345678','946513516'),('1054684564','JUAN DE LA CRUZ','54684564','459613653'),('1064683453','KUJAGHUAJGDH','64683453','645138451'),('1098765432','FAVIO','98765432','894684563'),('J','Juan Saenz','76225203','943187153');
 
 /*Table structure for table `color` */
 
@@ -343,7 +343,7 @@ CREATE TABLE `restaurante` (
 
 /*Data for the table `restaurante` */
 
-insert  into `restaurante`(`Cod_Restaurante`,`Nombre`,`Direccion`,`Telefono`) values ('L','LA DELICIA','AV. LUZURIAGA 254','943257854');
+insert  into `restaurante`(`Cod_Restaurante`,`Nombre`,`Direccion`,`Telefono`) values ('D','DON JUAN','LO OLIVOS 625','948751257'),('L','LA DELICIA','AV. LUZURIAGA 254','943257854');
 
 /*Table structure for table `rol` */
 
@@ -574,6 +574,23 @@ DROP TABLE IF EXISTS `vtamesa`;
  `Estado` varchar(30) 
 )*/;
 
+/*Table structure for table `vtamesalibre` */
+
+DROP TABLE IF EXISTS `vtamesalibre`;
+
+/*!50001 DROP VIEW IF EXISTS `vtamesalibre` */;
+/*!50001 DROP TABLE IF EXISTS `vtamesalibre` */;
+
+/*!50001 CREATE TABLE  `vtamesalibre`(
+ `Cod_Mesa` char(10) ,
+ `Nombre` varchar(100) ,
+ `Num_Mesa` int(2) ,
+ `Cant_Personas` int(2) ,
+ `Fumador` char(20) ,
+ `Ubicacion` varchar(30) ,
+ `Estado` varchar(30) 
+)*/;
+
 /*Table structure for table `vtapedido` */
 
 DROP TABLE IF EXISTS `vtapedido`;
@@ -681,6 +698,13 @@ DROP TABLE IF EXISTS `vtausoingrediente`;
 /*!50001 DROP VIEW IF EXISTS `vtamesa` */;
 
 /*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vtamesa` AS select `mesa`.`Cod_Mesa` AS `Cod_Mesa`,`restaurante`.`Nombre` AS `Nombre`,`mesa`.`Num_Mesa` AS `Num_Mesa`,`mesa`.`Cant_Personas` AS `Cant_Personas`,`mesa`.`Fumador` AS `Fumador`,`ubicacion`.`Ubicacion` AS `Ubicacion`,`estado`.`Estado` AS `Estado` from (((`mesa` join `estado`) join `ubicacion`) join `restaurante` on(((`mesa`.`Cod_Estado` = `estado`.`Cod_Estado`) and (`mesa`.`Cod_Ubicacion` = `ubicacion`.`Cod_Ubicacion`) and (`mesa`.`Cod_Restaurante` = `restaurante`.`Cod_Restaurante`)))) */;
+
+/*View structure for view vtamesalibre */
+
+/*!50001 DROP TABLE IF EXISTS `vtamesalibre` */;
+/*!50001 DROP VIEW IF EXISTS `vtamesalibre` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vtamesalibre` AS select `vtamesa`.`Cod_Mesa` AS `Cod_Mesa`,`vtamesa`.`Nombre` AS `Nombre`,`vtamesa`.`Num_Mesa` AS `Num_Mesa`,`vtamesa`.`Cant_Personas` AS `Cant_Personas`,`vtamesa`.`Fumador` AS `Fumador`,`vtamesa`.`Ubicacion` AS `Ubicacion`,`vtamesa`.`Estado` AS `Estado` from `vtamesa` where (`vtamesa`.`Estado` = 'Libre') */;
 
 /*View structure for view vtapedido */
 
