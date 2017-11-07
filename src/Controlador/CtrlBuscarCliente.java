@@ -63,11 +63,11 @@ public class CtrlBuscarCliente implements ActionListener{
     }
     
     public void Reservas(){
-        /*FrmReservas Frm2=new FrmReservas();
-        CtrlReservas Ctl= new CtrlReservas(Frm2);
+        FrmReservaCliente Frm2=new FrmReservaCliente();
+        CtrlReservaCliente Ctl= new CtrlReservaCliente(Frm2);
         Ctl.Iniciar();
         Frm2.setVisible(true);
-        Frm.setVisible(false);*/
+        Frm.setVisible(false);
     }
     
     public void LoginPersonal(){
@@ -85,12 +85,14 @@ public class CtrlBuscarCliente implements ActionListener{
             if(!C.VerificarConsulta(C.sql)){
                 if (JOptionPane.showConfirmDialog(null, "NO REGISTRADO, ¿DESEAS REGISTRARTE?", "CONSULTA", 0) == 0) {
                     ClienteNuevo();
+                    FrmClienteNuevo.txtDNI.setText(Frm.txtDni.getText());
                 }else{
                     Limpiar();
                 }
             }else{
-                C.Mensaje("BIENVENIDO "+C.DevolverDatoString("SELECT * FROM cliente WHERE DNI='"+Frm.txtDni.getText()+"'",2).toUpperCase());
                 Reservas();
+                FrmReservaCliente.lblCliente.setText(null);
+                FrmReservaCliente.lblCliente.setText(C.DevolverDatoString("SELECT * FROM cliente WHERE DNI='"+Frm.txtDni.getText()+"'",2).toUpperCase());
             }
         }
     }

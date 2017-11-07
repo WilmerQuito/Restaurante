@@ -235,7 +235,7 @@ public class FrmClienteNuevo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     public javax.swing.JTextField txtCelular;
-    public javax.swing.JTextField txtDNI;
+    public static javax.swing.JTextField txtDNI;
     public javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

@@ -33,7 +33,7 @@ public class Controlador {
     }
     
     public void MostrarenJTable(DefaultTableModel mdl, String cns, int ctdclmns) {
-        LimpJTable(mdl);
+        LimpiarTabla(mdl);
         try {
             base.st = base.conn.createStatement();
             base.rs = base.st.executeQuery(cns);
@@ -44,12 +44,6 @@ public class Controlador {
                 mdl.addRow(Data);
             }
         } catch (Exception e) {
-        }
-    }
-    
-    public void LimpJTable(DefaultTableModel mdtb) {
-        while (mdtb.getRowCount() > 0) {
-            mdtb.removeRow(0);
         }
     }
     
@@ -211,6 +205,19 @@ public class Controlador {
             base.rs = base.st.executeQuery(cnst);
             if (base.rs.next()) {
                 dto = base.rs.getDouble(posdev);
+            }
+        } catch (Exception e) {
+        }
+        return dto;
+    }
+    
+    public Double DevolverDatoInteger(String cnst, int posdev) {
+        double dto =0;
+        try {
+            base.st = base.conn.createStatement();
+            base.rs = base.st.executeQuery(cnst);
+            if (base.rs.next()) {
+                dto = base.rs.getInt(posdev);
             }
         } catch (Exception e) {
         }

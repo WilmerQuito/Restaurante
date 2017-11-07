@@ -18,9 +18,11 @@ public class Restaurante {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        FrmBuscarCliente Frm=new FrmBuscarCliente();
-        CtrlBuscarCliente Ctl= new CtrlBuscarCliente(Frm);
-        
+        FrmBuscarCliente Frm = new FrmBuscarCliente();
+        CtrlBuscarCliente Ctl = new CtrlBuscarCliente(Frm);
+
+        /*FrmReservaCliente Frm = new FrmReservaCliente();
+        CtrlReservaCliente Ctl = new CtrlReservaCliente(Frm);*/
         
         Ctl.Iniciar();
         Frm.setVisible(true);
