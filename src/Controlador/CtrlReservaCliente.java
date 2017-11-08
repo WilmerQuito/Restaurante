@@ -216,6 +216,8 @@ public class CtrlReservaCliente implements ActionListener {
         }
         return fechaDate;
     }*/
+    
+    
     public String Fecha() {
         String dia = Integer.toString(Frm.jdcFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
         String mes = Integer.toString(Frm.jdcFecha.getCalendar().get(Calendar.MONTH) + 1);

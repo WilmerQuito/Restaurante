@@ -69,10 +69,9 @@ public class CtrlLoginPersonal implements ActionListener{
     
     public void Acceso(){
         if(Validar()){
-            C.Mensaje("BIENVENIDO "+C.DevolverDatoString("SELECT * FROM VataSesion WHERE Usuario='"+Frm.txtUsu.getText()+"'",2).toUpperCase());
             C.Acceso(Frm, new FrmPrincipal(), Frm.txtUsu.getText(), Frm.txtPsw.getText(), Frm.cbRol.getSelectedItem().toString());
             FrmPrincipal.lblnombre.setText(null);
-            FrmPrincipal.lblnombre.setText(Frm.txtUsu.getText().toUpperCase());
+            FrmPrincipal.lblnombre.setText(C.DevolverDatoString("SELECT * FROM VtaSesion WHERE Usuario='"+Frm.txtUsu.getText()+"'",2).toUpperCase());
             Limpiar();
         }else{
             C.Mensaje("ACCEDO DENEGADO");

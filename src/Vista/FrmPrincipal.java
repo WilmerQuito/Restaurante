@@ -59,16 +59,21 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         jmOrigen = new javax.swing.JMenuItem();
         jmComida = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        jmPresentacion = new javax.swing.JMenuItem();
+        jmColor = new javax.swing.JMenuItem();
+        jmTipo = new javax.swing.JMenuItem();
+        jmIngrediente = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("BIENVENIDO:");
 
         lblnombre.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        lblnombre.setForeground(new java.awt.Color(255, 255, 255));
+        lblnombre.setForeground(new java.awt.Color(0, 0, 0));
         lblnombre.setText("BBBBBBBBBBBBBBBBBBBBBBBBB");
 
         jdpPrincipal.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -235,6 +240,42 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
+        jMenu6.setText("INGREDIENTES");
+
+        jmPresentacion.setText("PRESENTACION");
+        jmPresentacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmPresentacionActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jmPresentacion);
+
+        jmColor.setText("COLOR");
+        jmColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmColorActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jmColor);
+
+        jmTipo.setText("TIPO");
+        jmTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmTipoActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jmTipo);
+
+        jmIngrediente.setText("INGREDIENTE");
+        jmIngrediente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmIngredienteActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jmIngrediente);
+
+        jMenuBar1.add(jMenu6);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -257,7 +298,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void jmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmSalirActionPerformed
         if (JOptionPane.showConfirmDialog(null, "¿QUIERES CERRAR EL SISTEMA?", "SALIR", 0) == 0) {
-            C.Mostrar(this, new FrmLoginPersonal());
+            FrmLoginPersonal Frm2 = new FrmLoginPersonal();
+            CtrlLoginPersonal Ctl = new CtrlLoginPersonal(Frm2);
+            Ctl.Iniciar();
+            Frm2.setVisible(true);
+            this.setVisible(false);
         }
     }//GEN-LAST:event_jmSalirActionPerformed
 
@@ -382,6 +427,50 @@ public class FrmPrincipal extends javax.swing.JFrame {
         Frm.show();
     }//GEN-LAST:event_jmComidaActionPerformed
 
+    private void jmPresentacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmPresentacionActionPerformed
+        FrmPresentacion Frm=new FrmPresentacion();
+        CtrlPresentacion Ctl=new CtrlPresentacion(Frm);
+        jdpPrincipal.add(Frm);
+        Dimension Tam = jdpPrincipal.getSize();
+        Dimension FrameSize = Frm.getSize();
+        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
+        Ctl.Iniciar();
+        Frm.show();
+    }//GEN-LAST:event_jmPresentacionActionPerformed
+
+    private void jmColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmColorActionPerformed
+        FrmColor Frm=new FrmColor();
+        CtrlColor Ctl=new CtrlColor(Frm);
+        jdpPrincipal.add(Frm);
+        Dimension Tam = jdpPrincipal.getSize();
+        Dimension FrameSize = Frm.getSize();
+        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
+        Ctl.Iniciar();
+        Frm.show();
+    }//GEN-LAST:event_jmColorActionPerformed
+
+    private void jmTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmTipoActionPerformed
+        FrmTipoIngrediente Frm=new FrmTipoIngrediente();
+        CtrlTipoIngrediente Ctl=new CtrlTipoIngrediente(Frm);
+        jdpPrincipal.add(Frm);
+        Dimension Tam = jdpPrincipal.getSize();
+        Dimension FrameSize = Frm.getSize();
+        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
+        Ctl.Iniciar();
+        Frm.show();
+    }//GEN-LAST:event_jmTipoActionPerformed
+
+    private void jmIngredienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmIngredienteActionPerformed
+        /*FrmIngrediente Frm=new FrmIngrediente();
+        CtrlIngrediente Ctl=new CtrlIngrediente(Frm);
+        jdpPrincipal.add(Frm);
+        Dimension Tam = jdpPrincipal.getSize();
+        Dimension FrameSize = Frm.getSize();
+        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
+        Ctl.Iniciar();
+        Frm.show();*/
+    }//GEN-LAST:event_jmIngredienteActionPerformed
+
     
     
     
@@ -427,19 +516,24 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JDesktopPane jdpPrincipal;
     private javax.swing.JMenuItem jmAlmacen;
     private javax.swing.JMenu jmCliente;
+    private javax.swing.JMenuItem jmColor;
     private javax.swing.JMenuItem jmComida;
     private javax.swing.JMenuItem jmEmpleado;
     private javax.swing.JMenuItem jmEstado;
+    private javax.swing.JMenuItem jmIngrediente;
     private javax.swing.JMenuItem jmMesas;
     private javax.swing.JMenuItem jmOrigen;
+    private javax.swing.JMenuItem jmPresentacion;
     private javax.swing.JMenuItem jmRestaurante;
     private javax.swing.JMenuItem jmRoles;
     private javax.swing.JMenuItem jmSalir;
+    private javax.swing.JMenuItem jmTipo;
     private javax.swing.JMenuItem jmUbicacion;
     private javax.swing.JMenuItem jmUsuario;
     public static javax.swing.JLabel lblnombre;
