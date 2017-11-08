@@ -73,6 +73,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jmEstadoPedido = new javax.swing.JMenuItem();
         jmPedido = new javax.swing.JMenuItem();
         jmConsumicion = new javax.swing.JMenuItem();
+        jMenu9 = new javax.swing.JMenu();
+        jmMedida = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -349,6 +351,18 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu8);
 
+        jMenu9.setText("MEDIDA");
+
+        jmMedida.setText("UNIDADES MEDIDA");
+        jmMedida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmMedidaActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jmMedida);
+
+        jMenuBar1.add(jMenu9);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -600,14 +614,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmEstadoPedidoActionPerformed
 
     private void jmPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmPedidoActionPerformed
-        FrmPedido Frm=new FrmPedido();
+        /*FrmPedido Frm=new FrmPedido();
         CtrlPedido Ctl=new CtrlPedido(Frm);
         jdpPrincipal.add(Frm);
         Dimension Tam = jdpPrincipal.getSize();
         Dimension FrameSize = Frm.getSize();
         Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
         Ctl.Iniciar();
-        Frm.show();
+        Frm.show();*/
     }//GEN-LAST:event_jmPedidoActionPerformed
 
     private void jmConsumicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmConsumicionActionPerformed
@@ -620,6 +634,17 @@ public class FrmPrincipal extends javax.swing.JFrame {
         Ctl.Iniciar();
         Frm.show();*/
     }//GEN-LAST:event_jmConsumicionActionPerformed
+
+    private void jmMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmMedidaActionPerformed
+        FrmUnidadMedida Frm=new FrmUnidadMedida();
+        CtrlUnidadMedida Ctl=new CtrlUnidadMedida(Frm);
+        jdpPrincipal.add(Frm);
+        Dimension Tam = jdpPrincipal.getSize();
+        Dimension FrameSize = Frm.getSize();
+        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
+        Ctl.Iniciar();
+        Frm.show();
+    }//GEN-LAST:event_jmMedidaActionPerformed
 
     
     
@@ -669,6 +694,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JDesktopPane jdpPrincipal;
@@ -683,6 +709,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmEstadoPedido;
     private javax.swing.JMenuItem jmIngrediente;
     private javax.swing.JMenuItem jmMarca;
+    private javax.swing.JMenuItem jmMedida;
     private javax.swing.JMenuItem jmMesas;
     private javax.swing.JMenuItem jmOrigen;
     private javax.swing.JMenuItem jmPedido;
