@@ -9,12 +9,12 @@ package Vista;
  *
  * @author Wilmer Quito
  */
-public class FrmEstado extends javax.swing.JInternalFrame {
+public class FrmEstadoMesas extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FrmEstado
      */
-    public FrmEstado() {
+    public FrmEstadoMesas() {
         initComponents();
     }
 

@@ -9,6 +9,6 @@ package Controlador;
  *
  * @author Wilmer Quito
  */
-public class CtrlIngrediente {
+public class CtrlPedido {
     
 }

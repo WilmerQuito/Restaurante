@@ -20,12 +20,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Wilmer Quito
  */
-public class CtrlEstado implements ActionListener{
+public class CtrlEstadoMesas implements ActionListener{
     private DefaultTableModel DTM=new DefaultTableModel();
     private Controlador C=new Controlador();
-    private FrmEstado Frm;
+    private FrmEstadoMesas Frm;
     
-    public CtrlEstado(FrmEstado Frm){
+    public CtrlEstadoMesas(FrmEstadoMesas Frm){
         this.Frm = Frm;
        
         Frm.btneditar.addActionListener(this);

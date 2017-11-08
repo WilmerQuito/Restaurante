@@ -9,12 +9,12 @@ package Vista;
  *
  * @author Wilmer Quito
  */
-public class FrmPresentacion extends javax.swing.JInternalFrame {
+public class FrmSabor extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form FrmPresentacion
+     * Creates new form FrmSabor
      */
-    public FrmPresentacion() {
+    public FrmSabor() {
         initComponents();
     }
 
@@ -27,28 +27,57 @@ public class FrmPresentacion extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btneliminar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        btneliminar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        txtCodigo = new javax.swing.JTextField();
+        btneditar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        btnlimpiar = new javax.swing.JButton();
+        txtSabor = new javax.swing.JTextField();
+        btnguardar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         txtBuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TPresentacion = new javax.swing.JTable();
-        txtPresentacion = new javax.swing.JTextField();
-        btnguardar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        btnlimpiar = new javax.swing.JButton();
-        btneditar = new javax.swing.JButton();
-        txtCodigo = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        TSabor = new javax.swing.JTable();
 
         setClosable(true);
         setIconifiable(true);
-        setTitle("PRESENTACION DE INGREDIENTE");
+        setTitle("SABOR DE BEBIDA");
+
+        jLabel3.setText("SABOR:");
 
         btneliminar.setText("ELIMINAR");
         btneliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jLabel3.setText("PRESENTACION:");
+        jLabel2.setText("CODIGO:");
+
+        txtCodigo.setEditable(false);
+        txtCodigo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        btneditar.setText("EDITAR");
+        btneditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("SABOR DE BEBIDA");
+
+        btnlimpiar.setText("LIMPIAR");
+        btnlimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        txtSabor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtSabor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSaborActionPerformed(evt);
+            }
+        });
+        txtSabor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSaborKeyTyped(evt);
+            }
+        });
+
+        btnguardar.setText("GUARDAR");
+        btnguardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("BUSCAR:"));
         jPanel4.setToolTipText("");
@@ -60,7 +89,7 @@ public class FrmPresentacion extends javax.swing.JInternalFrame {
             }
         });
 
-        TPresentacion.setModel(new javax.swing.table.DefaultTableModel(
+        TSabor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -71,13 +100,13 @@ public class FrmPresentacion extends javax.swing.JInternalFrame {
 
             }
         ));
-        TPresentacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        TPresentacion.addMouseListener(new java.awt.event.MouseAdapter() {
+        TSabor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TSabor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TPresentacionMouseClicked(evt);
+                TSaborMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(TPresentacion);
+        jScrollPane1.setViewportView(TSabor);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -100,35 +129,6 @@ public class FrmPresentacion extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        txtPresentacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        txtPresentacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPresentacionActionPerformed(evt);
-            }
-        });
-        txtPresentacion.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtPresentacionKeyTyped(evt);
-            }
-        });
-
-        btnguardar.setText("GUARDAR");
-        btnguardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("PRESENTACION DE INGREDIENTE");
-
-        btnlimpiar.setText("LIMPIAR");
-        btnlimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        btneditar.setText("EDITAR");
-        btneditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        txtCodigo.setEditable(false);
-        txtCodigo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        jLabel2.setText("CODIGO:");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -143,7 +143,7 @@ public class FrmPresentacion extends javax.swing.JInternalFrame {
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPresentacion)))
+                            .addComponent(txtSabor)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnguardar)
                         .addGap(18, 18, 18)
@@ -157,28 +157,28 @@ public class FrmPresentacion extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(63, 63, 63))
+                .addGap(122, 122, 122))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(7, 7, 7)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(txtSabor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnguardar)
                     .addComponent(btneditar)
                     .addComponent(btneliminar)
                     .addComponent(btnlimpiar))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -186,30 +186,30 @@ public class FrmPresentacion extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
+    private void txtSaborActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSaborActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtBuscarKeyReleased
+    }//GEN-LAST:event_txtSaborActionPerformed
 
-    private void TPresentacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TPresentacionMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TPresentacionMouseClicked
-
-    private void txtPresentacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPresentacionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPresentacionActionPerformed
-
-    private void txtPresentacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPresentacionKeyTyped
-        if(txtPresentacion.getText().length()>=45){
+    private void txtSaborKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSaborKeyTyped
+        if(txtSabor.getText().length()>=45){
             evt.consume();
         }
         if(Character.isDigit(evt.getKeyChar())) {
             evt.consume();
         }
-    }//GEN-LAST:event_txtPresentacionKeyTyped
+    }//GEN-LAST:event_txtSaborKeyTyped
+
+    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarKeyReleased
+
+    private void TSaborMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TSaborMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TSaborMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTable TPresentacion;
+    public javax.swing.JTable TSabor;
     public javax.swing.JButton btneditar;
     public javax.swing.JButton btneliminar;
     public javax.swing.JButton btnguardar;
@@ -221,6 +221,6 @@ public class FrmPresentacion extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTextField txtBuscar;
     public javax.swing.JTextField txtCodigo;
-    public javax.swing.JTextField txtPresentacion;
+    public javax.swing.JTextField txtSabor;
     // End of variables declaration//GEN-END:variables
 }

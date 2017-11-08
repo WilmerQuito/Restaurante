@@ -48,7 +48,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jmAlmacen = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jmMesas = new javax.swing.JMenuItem();
-        jmEstado = new javax.swing.JMenuItem();
+        jmEstadoMesa = new javax.swing.JMenuItem();
         jmUbicacion = new javax.swing.JMenuItem();
         jmCliente = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -62,8 +62,17 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenu6 = new javax.swing.JMenu();
         jmPresentacion = new javax.swing.JMenuItem();
         jmColor = new javax.swing.JMenuItem();
-        jmTipo = new javax.swing.JMenuItem();
+        jmTipoIngrediente = new javax.swing.JMenuItem();
         jmIngrediente = new javax.swing.JMenuItem();
+        jMenu7 = new javax.swing.JMenu();
+        jmSabor = new javax.swing.JMenuItem();
+        jmTipoBebida = new javax.swing.JMenuItem();
+        jmMarca = new javax.swing.JMenuItem();
+        jmBebida = new javax.swing.JMenuItem();
+        jMenu8 = new javax.swing.JMenu();
+        jmEstadoPedido = new javax.swing.JMenuItem();
+        jmPedido = new javax.swing.JMenuItem();
+        jmConsumicion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -155,14 +164,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jMenu3.add(jmMesas);
 
-        jmEstado.setText("ESTADO");
-        jmEstado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jmEstado.addActionListener(new java.awt.event.ActionListener() {
+        jmEstadoMesa.setText("ESTADO");
+        jmEstadoMesa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jmEstadoMesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmEstadoActionPerformed(evt);
+                jmEstadoMesaActionPerformed(evt);
             }
         });
-        jMenu3.add(jmEstado);
+        jMenu3.add(jmEstadoMesa);
 
         jmUbicacion.setText("UBICACION");
         jmUbicacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -258,15 +267,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jMenu6.add(jmColor);
 
-        jmTipo.setText("TIPO");
-        jmTipo.addActionListener(new java.awt.event.ActionListener() {
+        jmTipoIngrediente.setText("TIPO");
+        jmTipoIngrediente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmTipoActionPerformed(evt);
+                jmTipoIngredienteActionPerformed(evt);
             }
         });
-        jMenu6.add(jmTipo);
+        jMenu6.add(jmTipoIngrediente);
 
-        jmIngrediente.setText("INGREDIENTE");
+        jmIngrediente.setText("INGREDIENTES");
         jmIngrediente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmIngredienteActionPerformed(evt);
@@ -275,6 +284,70 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenu6.add(jmIngrediente);
 
         jMenuBar1.add(jMenu6);
+
+        jMenu7.setText("BEBIDAS");
+
+        jmSabor.setText("SABOR");
+        jmSabor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmSaborActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jmSabor);
+
+        jmTipoBebida.setText("TIPO");
+        jmTipoBebida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmTipoBebidaActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jmTipoBebida);
+
+        jmMarca.setText("MARCA");
+        jmMarca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmMarcaActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jmMarca);
+
+        jmBebida.setText("BEBIDA");
+        jmBebida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmBebidaActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jmBebida);
+
+        jMenuBar1.add(jMenu7);
+
+        jMenu8.setText("PEDIDOS");
+
+        jmEstadoPedido.setText("ESTADO");
+        jmEstadoPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmEstadoPedidoActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jmEstadoPedido);
+
+        jmPedido.setText("PEDIDO");
+        jmPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmPedidoActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jmPedido);
+
+        jmConsumicion.setText("CONSUMICION");
+        jmConsumicion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmConsumicionActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jmConsumicion);
+
+        jMenuBar1.add(jMenu8);
 
         setJMenuBar(jMenuBar1);
 
@@ -286,7 +359,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jdpPrincipal)
+            .addComponent(jdpPrincipal, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
@@ -372,16 +445,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
         Frm.show();
     }//GEN-LAST:event_jmMesasActionPerformed
 
-    private void jmEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmEstadoActionPerformed
-        FrmEstado Frm=new FrmEstado();
-        CtrlEstado Ctl= new CtrlEstado(Frm);
+    private void jmEstadoMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmEstadoMesaActionPerformed
+        FrmEstadoMesas Frm=new FrmEstadoMesas();
+        CtrlEstadoMesas Ctl= new CtrlEstadoMesas(Frm);
         jdpPrincipal.add(Frm);
         Dimension Tam = jdpPrincipal.getSize();
         Dimension FrameSize = Frm.getSize();
         Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
         Ctl.Iniciar();
         Frm.show();
-    }//GEN-LAST:event_jmEstadoActionPerformed
+    }//GEN-LAST:event_jmEstadoMesaActionPerformed
 
     private void jmUbicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmUbicacionActionPerformed
         FrmUbicacion Frm=new FrmUbicacion();
@@ -449,7 +522,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         Frm.show();
     }//GEN-LAST:event_jmColorActionPerformed
 
-    private void jmTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmTipoActionPerformed
+    private void jmTipoIngredienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmTipoIngredienteActionPerformed
         FrmTipoIngrediente Frm=new FrmTipoIngrediente();
         CtrlTipoIngrediente Ctl=new CtrlTipoIngrediente(Frm);
         jdpPrincipal.add(Frm);
@@ -458,18 +531,95 @@ public class FrmPrincipal extends javax.swing.JFrame {
         Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
         Ctl.Iniciar();
         Frm.show();
-    }//GEN-LAST:event_jmTipoActionPerformed
+    }//GEN-LAST:event_jmTipoIngredienteActionPerformed
 
     private void jmIngredienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmIngredienteActionPerformed
-        /*FrmIngrediente Frm=new FrmIngrediente();
-        CtrlIngrediente Ctl=new CtrlIngrediente(Frm);
+        FrmIngredientes Frm=new FrmIngredientes();
+        CtrlIngredientes Ctl=new CtrlIngredientes(Frm);
+        jdpPrincipal.add(Frm);
+        Dimension Tam = jdpPrincipal.getSize();
+        Dimension FrameSize = Frm.getSize();
+        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
+        Ctl.Iniciar();
+        Frm.show();
+    }//GEN-LAST:event_jmIngredienteActionPerformed
+
+    private void jmSaborActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmSaborActionPerformed
+        FrmSabor Frm=new FrmSabor();
+        CtrlSabor Ctl=new CtrlSabor(Frm);
+        jdpPrincipal.add(Frm);
+        Dimension Tam = jdpPrincipal.getSize();
+        Dimension FrameSize = Frm.getSize();
+        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
+        Ctl.Iniciar();
+        Frm.show();
+    }//GEN-LAST:event_jmSaborActionPerformed
+
+    private void jmTipoBebidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmTipoBebidaActionPerformed
+        FrmTipoBebida Frm=new FrmTipoBebida();
+        CtrlTipoBebida Ctl=new CtrlTipoBebida(Frm);
+        jdpPrincipal.add(Frm);
+        Dimension Tam = jdpPrincipal.getSize();
+        Dimension FrameSize = Frm.getSize();
+        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
+        Ctl.Iniciar();
+        Frm.show();
+    }//GEN-LAST:event_jmTipoBebidaActionPerformed
+
+    private void jmMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmMarcaActionPerformed
+        FrmMarca Frm=new FrmMarca();
+        CtrlMarca Ctl=new CtrlMarca(Frm);
+        jdpPrincipal.add(Frm);
+        Dimension Tam = jdpPrincipal.getSize();
+        Dimension FrameSize = Frm.getSize();
+        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
+        Ctl.Iniciar();
+        Frm.show();
+    }//GEN-LAST:event_jmMarcaActionPerformed
+
+    private void jmBebidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmBebidaActionPerformed
+        FrmBebida Frm=new FrmBebida();
+        CtrlBebida Ctl=new CtrlBebida(Frm);
+        jdpPrincipal.add(Frm);
+        Dimension Tam = jdpPrincipal.getSize();
+        Dimension FrameSize = Frm.getSize();
+        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
+        Ctl.Iniciar();
+        Frm.show();
+    }//GEN-LAST:event_jmBebidaActionPerformed
+
+    private void jmEstadoPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmEstadoPedidoActionPerformed
+        FrmEstadoPedido Frm=new FrmEstadoPedido();
+        CtrlEstadoPedido Ctl=new CtrlEstadoPedido(Frm);
+        jdpPrincipal.add(Frm);
+        Dimension Tam = jdpPrincipal.getSize();
+        Dimension FrameSize = Frm.getSize();
+        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
+        Ctl.Iniciar();
+        Frm.show();
+    }//GEN-LAST:event_jmEstadoPedidoActionPerformed
+
+    private void jmPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmPedidoActionPerformed
+        FrmPedido Frm=new FrmPedido();
+        CtrlPedido Ctl=new CtrlPedido(Frm);
+        jdpPrincipal.add(Frm);
+        Dimension Tam = jdpPrincipal.getSize();
+        Dimension FrameSize = Frm.getSize();
+        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
+        Ctl.Iniciar();
+        Frm.show();
+    }//GEN-LAST:event_jmPedidoActionPerformed
+
+    private void jmConsumicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmConsumicionActionPerformed
+        /*FrmConsumicion Frm=new FrmConsumicion();
+        CtrlConsumicion Ctl=new CtrlConsumicion(Frm);
         jdpPrincipal.add(Frm);
         Dimension Tam = jdpPrincipal.getSize();
         Dimension FrameSize = Frm.getSize();
         Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
         Ctl.Iniciar();
         Frm.show();*/
-    }//GEN-LAST:event_jmIngredienteActionPerformed
+    }//GEN-LAST:event_jmConsumicionActionPerformed
 
     
     
@@ -517,23 +667,32 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JDesktopPane jdpPrincipal;
     private javax.swing.JMenuItem jmAlmacen;
+    private javax.swing.JMenuItem jmBebida;
     private javax.swing.JMenu jmCliente;
     private javax.swing.JMenuItem jmColor;
     private javax.swing.JMenuItem jmComida;
+    private javax.swing.JMenuItem jmConsumicion;
     private javax.swing.JMenuItem jmEmpleado;
-    private javax.swing.JMenuItem jmEstado;
+    private javax.swing.JMenuItem jmEstadoMesa;
+    private javax.swing.JMenuItem jmEstadoPedido;
     private javax.swing.JMenuItem jmIngrediente;
+    private javax.swing.JMenuItem jmMarca;
     private javax.swing.JMenuItem jmMesas;
     private javax.swing.JMenuItem jmOrigen;
+    private javax.swing.JMenuItem jmPedido;
     private javax.swing.JMenuItem jmPresentacion;
     private javax.swing.JMenuItem jmRestaurante;
     private javax.swing.JMenuItem jmRoles;
+    private javax.swing.JMenuItem jmSabor;
     private javax.swing.JMenuItem jmSalir;
-    private javax.swing.JMenuItem jmTipo;
+    private javax.swing.JMenuItem jmTipoBebida;
+    private javax.swing.JMenuItem jmTipoIngrediente;
     private javax.swing.JMenuItem jmUbicacion;
     private javax.swing.JMenuItem jmUsuario;
     public static javax.swing.JLabel lblnombre;
