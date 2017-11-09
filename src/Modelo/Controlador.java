@@ -1,13 +1,10 @@
 package Modelo;
-import Controlador.CtrlCliente;
 import Modelo.Conexion;
-import Vista.FrmCliente;
 import com.placeholder.PlaceHolder;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Image;
 import javax.swing.ImageIcon;
-import java.awt.Dimension;
 
 
 public class Controlador {

@@ -26,6 +26,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("MENU PRINCIPAL");
+        
     }
 
     /**
@@ -41,39 +42,39 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         lblnombre = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        mArchivo = new javax.swing.JMenu();
         jmSalir = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
+        mRestaurante = new javax.swing.JMenu();
         jmRestaurante = new javax.swing.JMenuItem();
         jmAlmacen = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        mMesas = new javax.swing.JMenu();
         jmMesas = new javax.swing.JMenuItem();
         jmEstadoMesa = new javax.swing.JMenuItem();
         jmUbicacion = new javax.swing.JMenuItem();
-        jmCliente = new javax.swing.JMenu();
+        mCliente = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        mUsuario = new javax.swing.JMenu();
         jmRoles = new javax.swing.JMenuItem();
         jmEmpleado = new javax.swing.JMenuItem();
         jmUsuario = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
+        mComidas = new javax.swing.JMenu();
         jmOrigen = new javax.swing.JMenuItem();
         jmComida = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
+        mIngredientes = new javax.swing.JMenu();
         jmPresentacion = new javax.swing.JMenuItem();
         jmColor = new javax.swing.JMenuItem();
         jmTipoIngrediente = new javax.swing.JMenuItem();
         jmIngrediente = new javax.swing.JMenuItem();
-        jMenu7 = new javax.swing.JMenu();
+        mBebidas = new javax.swing.JMenu();
         jmSabor = new javax.swing.JMenuItem();
         jmTipoBebida = new javax.swing.JMenuItem();
         jmMarca = new javax.swing.JMenuItem();
         jmBebida = new javax.swing.JMenuItem();
-        jMenu8 = new javax.swing.JMenu();
+        mPedidos = new javax.swing.JMenu();
         jmEstadoPedido = new javax.swing.JMenuItem();
         jmPedido = new javax.swing.JMenuItem();
         jmConsumicion = new javax.swing.JMenuItem();
-        jMenu9 = new javax.swing.JMenu();
+        mMedida = new javax.swing.JMenu();
         jmMedida = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -111,11 +112,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jMenu1.setText("ARCHIVO");
-        jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+        mArchivo.setText("ARCHIVO");
+        mArchivo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        mArchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1ActionPerformed(evt);
+                mArchivoActionPerformed(evt);
             }
         });
 
@@ -127,12 +128,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 jmSalirActionPerformed(evt);
             }
         });
-        jMenu1.add(jmSalir);
+        mArchivo.add(jmSalir);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(mArchivo);
 
-        jMenu4.setText("RESTAURANTE");
-        jMenu4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        mRestaurante.setText("RESTAURANTE");
+        mRestaurante.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jmRestaurante.setText("RESTAURANTE");
         jmRestaurante.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -141,7 +142,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 jmRestauranteActionPerformed(evt);
             }
         });
-        jMenu4.add(jmRestaurante);
+        mRestaurante.add(jmRestaurante);
 
         jmAlmacen.setText("ALMACEN");
         jmAlmacen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -150,12 +151,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 jmAlmacenActionPerformed(evt);
             }
         });
-        jMenu4.add(jmAlmacen);
+        mRestaurante.add(jmAlmacen);
 
-        jMenuBar1.add(jMenu4);
+        jMenuBar1.add(mRestaurante);
 
-        jMenu3.setText("MESAS");
-        jMenu3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        mMesas.setText("MESAS");
+        mMesas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jmMesas.setText("MESAS");
         jmMesas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -164,7 +165,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 jmMesasActionPerformed(evt);
             }
         });
-        jMenu3.add(jmMesas);
+        mMesas.add(jmMesas);
 
         jmEstadoMesa.setText("ESTADO");
         jmEstadoMesa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -173,7 +174,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 jmEstadoMesaActionPerformed(evt);
             }
         });
-        jMenu3.add(jmEstadoMesa);
+        mMesas.add(jmEstadoMesa);
 
         jmUbicacion.setText("UBICACION");
         jmUbicacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -182,12 +183,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 jmUbicacionActionPerformed(evt);
             }
         });
-        jMenu3.add(jmUbicacion);
+        mMesas.add(jmUbicacion);
 
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(mMesas);
 
-        jmCliente.setText("CLIENTE");
-        jmCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        mCliente.setText("CLIENTE");
+        mCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jMenuItem1.setText("CLIENTE");
         jMenuItem1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -196,12 +197,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        jmCliente.add(jMenuItem1);
+        mCliente.add(jMenuItem1);
 
-        jMenuBar1.add(jmCliente);
+        jMenuBar1.add(mCliente);
 
-        jMenu2.setText("USUARIO");
-        jMenu2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        mUsuario.setText("USUARIO");
+        mUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jmRoles.setText("ROLES");
         jmRoles.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -210,7 +211,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 jmRolesActionPerformed(evt);
             }
         });
-        jMenu2.add(jmRoles);
+        mUsuario.add(jmRoles);
 
         jmEmpleado.setText("EMPLEADOS");
         jmEmpleado.addActionListener(new java.awt.event.ActionListener() {
@@ -218,7 +219,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 jmEmpleadoActionPerformed(evt);
             }
         });
-        jMenu2.add(jmEmpleado);
+        mUsuario.add(jmEmpleado);
 
         jmUsuario.setText("USUARIO");
         jmUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -227,11 +228,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 jmUsuarioActionPerformed(evt);
             }
         });
-        jMenu2.add(jmUsuario);
+        mUsuario.add(jmUsuario);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(mUsuario);
 
-        jMenu5.setText("COMIDAS");
+        mComidas.setText("COMIDAS");
 
         jmOrigen.setText("ORIGEN DE COMIDAS");
         jmOrigen.addActionListener(new java.awt.event.ActionListener() {
@@ -239,7 +240,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 jmOrigenActionPerformed(evt);
             }
         });
-        jMenu5.add(jmOrigen);
+        mComidas.add(jmOrigen);
 
         jmComida.setText("COMIDA");
         jmComida.addActionListener(new java.awt.event.ActionListener() {
@@ -247,11 +248,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 jmComidaActionPerformed(evt);
             }
         });
-        jMenu5.add(jmComida);
+        mComidas.add(jmComida);
 
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(mComidas);
 
-        jMenu6.setText("INGREDIENTES");
+        mIngredientes.setText("INGREDIENTES");
 
         jmPresentacion.setText("PRESENTACION");
         jmPresentacion.addActionListener(new java.awt.event.ActionListener() {
@@ -259,7 +260,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 jmPresentacionActionPerformed(evt);
             }
         });
-        jMenu6.add(jmPresentacion);
+        mIngredientes.add(jmPresentacion);
 
         jmColor.setText("COLOR");
         jmColor.addActionListener(new java.awt.event.ActionListener() {
@@ -267,7 +268,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 jmColorActionPerformed(evt);
             }
         });
-        jMenu6.add(jmColor);
+        mIngredientes.add(jmColor);
 
         jmTipoIngrediente.setText("TIPO");
         jmTipoIngrediente.addActionListener(new java.awt.event.ActionListener() {
@@ -275,7 +276,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 jmTipoIngredienteActionPerformed(evt);
             }
         });
-        jMenu6.add(jmTipoIngrediente);
+        mIngredientes.add(jmTipoIngrediente);
 
         jmIngrediente.setText("INGREDIENTES");
         jmIngrediente.addActionListener(new java.awt.event.ActionListener() {
@@ -283,11 +284,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 jmIngredienteActionPerformed(evt);
             }
         });
-        jMenu6.add(jmIngrediente);
+        mIngredientes.add(jmIngrediente);
 
-        jMenuBar1.add(jMenu6);
+        jMenuBar1.add(mIngredientes);
 
-        jMenu7.setText("BEBIDAS");
+        mBebidas.setText("BEBIDAS");
 
         jmSabor.setText("SABOR");
         jmSabor.addActionListener(new java.awt.event.ActionListener() {
@@ -295,7 +296,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 jmSaborActionPerformed(evt);
             }
         });
-        jMenu7.add(jmSabor);
+        mBebidas.add(jmSabor);
 
         jmTipoBebida.setText("TIPO");
         jmTipoBebida.addActionListener(new java.awt.event.ActionListener() {
@@ -303,7 +304,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 jmTipoBebidaActionPerformed(evt);
             }
         });
-        jMenu7.add(jmTipoBebida);
+        mBebidas.add(jmTipoBebida);
 
         jmMarca.setText("MARCA");
         jmMarca.addActionListener(new java.awt.event.ActionListener() {
@@ -311,7 +312,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 jmMarcaActionPerformed(evt);
             }
         });
-        jMenu7.add(jmMarca);
+        mBebidas.add(jmMarca);
 
         jmBebida.setText("BEBIDA");
         jmBebida.addActionListener(new java.awt.event.ActionListener() {
@@ -319,11 +320,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 jmBebidaActionPerformed(evt);
             }
         });
-        jMenu7.add(jmBebida);
+        mBebidas.add(jmBebida);
 
-        jMenuBar1.add(jMenu7);
+        jMenuBar1.add(mBebidas);
 
-        jMenu8.setText("PEDIDOS");
+        mPedidos.setText("PEDIDOS");
 
         jmEstadoPedido.setText("ESTADO");
         jmEstadoPedido.addActionListener(new java.awt.event.ActionListener() {
@@ -331,7 +332,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 jmEstadoPedidoActionPerformed(evt);
             }
         });
-        jMenu8.add(jmEstadoPedido);
+        mPedidos.add(jmEstadoPedido);
 
         jmPedido.setText("PEDIDO");
         jmPedido.addActionListener(new java.awt.event.ActionListener() {
@@ -339,7 +340,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 jmPedidoActionPerformed(evt);
             }
         });
-        jMenu8.add(jmPedido);
+        mPedidos.add(jmPedido);
 
         jmConsumicion.setText("CONSUMICION");
         jmConsumicion.addActionListener(new java.awt.event.ActionListener() {
@@ -347,11 +348,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 jmConsumicionActionPerformed(evt);
             }
         });
-        jMenu8.add(jmConsumicion);
+        mPedidos.add(jmConsumicion);
 
-        jMenuBar1.add(jMenu8);
+        jMenuBar1.add(mPedidos);
 
-        jMenu9.setText("MEDIDA");
+        mMedida.setText("MEDIDA");
 
         jmMedida.setText("UNIDADES MEDIDA");
         jmMedida.addActionListener(new java.awt.event.ActionListener() {
@@ -359,9 +360,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 jmMedidaActionPerformed(evt);
             }
         });
-        jMenu9.add(jmMedida);
+        mMedida.add(jmMedida);
 
-        jMenuBar1.add(jMenu9);
+        jMenuBar1.add(mMedida);
 
         setJMenuBar(jMenuBar1);
 
@@ -379,9 +380,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+    private void mArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mArchivoActionPerformed
         
-    }//GEN-LAST:event_jMenu1ActionPerformed
+    }//GEN-LAST:event_mArchivoActionPerformed
 
     private void jmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmSalirActionPerformed
         if (JOptionPane.showConfirmDialog(null, "¿QUIERES CERRAR EL SISTEMA?", "SALIR", 0) == 0) {
@@ -686,21 +687,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenu jMenu9;
-    private javax.swing.JMenuBar jMenuBar1;
+    public javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JDesktopPane jdpPrincipal;
     private javax.swing.JMenuItem jmAlmacen;
     private javax.swing.JMenuItem jmBebida;
-    private javax.swing.JMenu jmCliente;
     private javax.swing.JMenuItem jmColor;
     private javax.swing.JMenuItem jmComida;
     private javax.swing.JMenuItem jmConsumicion;
@@ -717,11 +708,21 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmRestaurante;
     private javax.swing.JMenuItem jmRoles;
     private javax.swing.JMenuItem jmSabor;
-    private javax.swing.JMenuItem jmSalir;
+    public javax.swing.JMenuItem jmSalir;
     private javax.swing.JMenuItem jmTipoBebida;
     private javax.swing.JMenuItem jmTipoIngrediente;
     private javax.swing.JMenuItem jmUbicacion;
     private javax.swing.JMenuItem jmUsuario;
     public static javax.swing.JLabel lblnombre;
+    public static javax.swing.JMenu mArchivo;
+    public static javax.swing.JMenu mBebidas;
+    public static javax.swing.JMenu mCliente;
+    public static javax.swing.JMenu mComidas;
+    public static javax.swing.JMenu mIngredientes;
+    public static javax.swing.JMenu mMedida;
+    public static javax.swing.JMenu mMesas;
+    public static javax.swing.JMenu mPedidos;
+    public static javax.swing.JMenu mRestaurante;
+    public static javax.swing.JMenu mUsuario;
     // End of variables declaration//GEN-END:variables
 }

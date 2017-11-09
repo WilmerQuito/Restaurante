@@ -41,7 +41,6 @@ public class Restaurante {
                 CtrlBuscarCliente Ctl = new CtrlBuscarCliente(Frm);
 
                 Ctl.Iniciar();
-                Frm.setVisible(true);
             }
         });
     }

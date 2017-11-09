@@ -66,6 +66,8 @@ CREATE TABLE `bebidas` (
 
 /*Data for the table `bebidas` */
 
+insert  into `bebidas`(`idbebidas`,`tipoBebida_idtipoBebida`,`marca_idmarca`,`sabor_idsabor`,`Costo`) values ('B','G','C',NULL,2.50),('B-2','R',NULL,'M',2.00);
+
 /*Table structure for table `cliente` */
 
 DROP TABLE IF EXISTS `cliente`;
@@ -80,7 +82,7 @@ CREATE TABLE `cliente` (
 
 /*Data for the table `cliente` */
 
-insert  into `cliente`(`Cod_Cliente`,`Nombre`,`DNI`,`Celular`) values ('1012345678','MARIA SANCHEZ','12345678','946513516'),('1054684564','JUAN DE LA CRUZ','54684564','459613653'),('1064683453','KUJAGHUAJGDH','64683453','645138451'),('1098765432','FAVIO','98765432','894684563'),('J','Juan Saenz','76225203','943187153');
+insert  into `cliente`(`Cod_Cliente`,`Nombre`,`DNI`,`Celular`) values ('1012345678','MARIA SANCHEZ','12345678','946513516'),('1074616351','JUAN','74616351','856341556'),('1076225203','DARIO SALAS','76225203','123456789'),('1087654321','JUANA DE ARCO','87654321','942312311');
 
 /*Table structure for table `color` */
 
@@ -93,6 +95,8 @@ CREATE TABLE `color` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `color` */
+
+insert  into `color`(`idcolor`,`color`) values ('R','ROJO'),('V','VERDE');
 
 /*Table structure for table `comida` */
 
@@ -175,7 +179,7 @@ CREATE TABLE `empleado` (
 
 /*Data for the table `empleado` */
 
-insert  into `empleado`(`idempleado`,`nombre`,`dni`,`telefono`,`Direccion`) values ('1076225203','WILMER QUITO CUEVA',76225203,'943187153','AV 27 DE NOVIEMBRE 964');
+insert  into `empleado`(`idempleado`,`nombre`,`dni`,`telefono`,`Direccion`) values ('1056465316','CARMEN SOTO',56465316,'945312065','AV LUZURIAGA 1582'),('1065412354','MARIA RAMIREZ',65412354,'912635120','AV. RAYMONDI 581'),('1065416531','JUAN DE LA CRUZ',65416531,'941563516','JR CAJAMARCA 6541'),('1076225203','WILMER QUITO CUEVA',76225203,'943187153','AV 27 DE NOVIEMBRE 964');
 
 /*Table structure for table `estado` */
 
@@ -203,6 +207,8 @@ CREATE TABLE `estadopedido` (
 
 /*Data for the table `estadopedido` */
 
+insert  into `estadopedido`(`idEstadoPedido`,`Estado`) values ('P','PIDIENDO'),('S','SERVIDO');
+
 /*Table structure for table `ingredientes` */
 
 DROP TABLE IF EXISTS `ingredientes`;
@@ -224,6 +230,8 @@ CREATE TABLE `ingredientes` (
 
 /*Data for the table `ingredientes` */
 
+insert  into `ingredientes`(`Cod_Ingredientes`,`Nom_ingrediente`,`color_idcolor`,`presentacion_idpresentacion`,`tipoIngre_idtipoIngre`) values ('C','CEBOLLA',NULL,'C','C'),('P','PAPA',NULL,'C','C');
+
 /*Table structure for table `marca` */
 
 DROP TABLE IF EXISTS `marca`;
@@ -235,6 +243,8 @@ CREATE TABLE `marca` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `marca` */
+
+insert  into `marca`(`idmarca`,`marcacol`) values ('C','COCA COLA'),('I','INKA COLA');
 
 /*Table structure for table `mesa` */
 
@@ -259,7 +269,7 @@ CREATE TABLE `mesa` (
 
 /*Data for the table `mesa` */
 
-insert  into `mesa`(`Cod_Mesa`,`Cant_Personas`,`Num_Mesa`,`Fumador`,`Cod_Estado`,`Cod_Ubicacion`,`Cod_Restaurante`) values ('1',2,1,'NO','L','C','L'),('2',5,2,'SI','O','E','L'),('3',10,3,'Si','R','F','L'),('4',7,4,'SI','L','F','L');
+insert  into `mesa`(`Cod_Mesa`,`Cant_Personas`,`Num_Mesa`,`Fumador`,`Cod_Estado`,`Cod_Ubicacion`,`Cod_Restaurante`) values ('1',2,1,'NO','L','C','L'),('2',5,2,'SI','L','E','L'),('3',10,3,'Si','L','F','L'),('4',7,4,'SI','L','F','L');
 
 /*Table structure for table `origen` */
 
@@ -308,6 +318,8 @@ CREATE TABLE `presentacion` (
 
 /*Data for the table `presentacion` */
 
+insert  into `presentacion`(`idpresentacion`,`presentacion`) values ('C','CAJA');
+
 /*Table structure for table `reserva` */
 
 DROP TABLE IF EXISTS `reserva`;
@@ -317,7 +329,7 @@ CREATE TABLE `reserva` (
   `Hora` time NOT NULL,
   `Fecha` date NOT NULL,
   `Cant_Personas` int(2) NOT NULL,
-  `Detalle` varchar(250) DEFAULT NULL,
+  `Detalle` varchar(500) DEFAULT NULL,
   `Cod_Cliente` char(10) NOT NULL,
   `Cod_Mesa` char(10) NOT NULL,
   PRIMARY KEY (`Cod_Reserva`),
@@ -357,7 +369,7 @@ CREATE TABLE `rol` (
 
 /*Data for the table `rol` */
 
-insert  into `rol`(`Cod_Rol`,`Nombre`) values ('A','ADMINISTRADOR');
+insert  into `rol`(`Cod_Rol`,`Nombre`) values ('A','ADMINISTRADOR'),('A-1','ALMACENERO'),('C','CAJERO'),('M','MOZO');
 
 /*Table structure for table `sabor` */
 
@@ -371,6 +383,8 @@ CREATE TABLE `sabor` (
 
 /*Data for the table `sabor` */
 
+insert  into `sabor`(`idsabor`,`saborcol`) values ('M','MARACUYA'),('P','PIÑA');
+
 /*Table structure for table `tipobebida` */
 
 DROP TABLE IF EXISTS `tipobebida`;
@@ -382,6 +396,8 @@ CREATE TABLE `tipobebida` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `tipobebida` */
+
+insert  into `tipobebida`(`idtipoBebida`,`nomTipo`) values ('G','GASEOSAS'),('R','REFRESCO');
 
 /*Table structure for table `tipocomprobante` */
 
@@ -406,6 +422,8 @@ CREATE TABLE `tipoingre` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `tipoingre` */
+
+insert  into `tipoingre`(`idtipoIngre`,`nom_tipo`) values ('B','BOLSA'),('C','CAJA');
 
 /*Table structure for table `ubicacion` */
 
@@ -432,6 +450,8 @@ CREATE TABLE `unidades_medida` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `unidades_medida` */
+
+insert  into `unidades_medida`(`idUnidades_medida`,`Unidades_medidacol`) values ('G','GRAMOS'),('K','KILOS'),('L','LITROS');
 
 /*Table structure for table `usoingredientes` */
 
@@ -473,7 +493,7 @@ CREATE TABLE `usuario` (
 
 /*Data for the table `usuario` */
 
-insert  into `usuario`(`Cod_Usuario`,`Usuario`,`Clave`,`empleado_idempleado`,`rol_Cod_Rol`) values ('W','WILMER','123456789','1076225203','A');
+insert  into `usuario`(`Cod_Usuario`,`Usuario`,`Clave`,`empleado_idempleado`,`rol_Cod_Rol`) values ('C','CARMEN','123456789','1056465316','A-1'),('J','JUAN','123456789','1065416531','M'),('M','MARIA','123456789','1065412354','C'),('W','WILMER','123456789','1076225203','A');
 
 /*Table structure for table `vtaalmacenbebida` */
 
@@ -620,7 +640,7 @@ DROP TABLE IF EXISTS `vtareserva`;
  `Fecha` date ,
  `Hora` time ,
  `Cant_Personas` int(2) ,
- `Detalle` varchar(250) ,
+ `Detalle` varchar(500) ,
  `cliente` varchar(100) ,
  `Celular` char(9) ,
  `Num_Mesa` int(2) ,

@@ -15,30 +15,32 @@ import java.awt.event.ActionListener;
  *
  * @author Wilmer Quito
  */
-public class CtrlLoginPersonal implements ActionListener{
-    private Controlador C=new Controlador();
+public class CtrlLoginPersonal implements ActionListener {
+
+    private Controlador C = new Controlador();
     private FrmLoginPersonal Frm;
-    
-    public CtrlLoginPersonal(FrmLoginPersonal Frm){
+    private FrmPrincipal FrmP;
+
+    public CtrlLoginPersonal(FrmLoginPersonal Frm) {
         this.Frm = Frm;
-       
+
         Frm.btnAcceder.addActionListener(this);
         Frm.btnLimpiar.addActionListener(this);
         Frm.btnSalir.addActionListener(this);
     }
-    
-    public void Iniciar(){
+
+    public void Iniciar() {
         Frm.setTitle("INICIAR SESION");
         Frm.setLocationRelativeTo(null);
         Rol();
     }
-    
-    public void Rol(){
-        C.sql= "SELECT * FROM Rol;";
-        C.LlenarCombo(Frm.cbRol, C.sql, "<SELECCIONE>",2);
+
+    public void Rol() {
+        C.sql = "SELECT * FROM Rol;";
+        C.LlenarCombo(Frm.cbRol, C.sql, "<SELECCIONE>", 2);
     }
-    
-    public boolean Validar(){
+
+    public boolean Validar() {
         C.flag = true;
         if (Frm.txtUsu.getText().trim().length() == 0) {
             C.flag = false;
@@ -59,45 +61,102 @@ public class CtrlLoginPersonal implements ActionListener{
         }
         return C.flag;
     }
-    
-    public void Limpiar(){
+
+    public void Limpiar() {
         Frm.txtUsu.setText(null);
         Frm.txtPsw.setText(null);
         Frm.cbRol.setSelectedIndex(0);
         Frm.cbRol.grabFocus();
     }
-    
-    public void Acceso(){
-        if(Validar()){
+
+    public void Privilegios() {
+        String Rol = C.DevolverDatoString("SELECT * FROM VtaSesion WHERE Usuario='" + Frm.txtUsu.getText() + "'", 3).toUpperCase();
+
+        if (Rol.equalsIgnoreCase("ALMACENERO")) {
+            FrmP.mArchivo.setVisible(true);
+            FrmP.mBebidas.setVisible(true);
+            FrmP.mCliente.setVisible(false);
+            FrmP.mComidas.setVisible(false);
+            FrmP.mIngredientes.setVisible(true);
+            FrmP.mMedida.setVisible(false);
+            FrmP.mMesas.setVisible(false);
+            FrmP.mPedidos.setVisible(false);
+            FrmP.mRestaurante.setVisible(false);
+            FrmP.mUsuario.setVisible(false);
+        } else {
+            if (Rol.equalsIgnoreCase("MOZO")) {
+                FrmP.mArchivo.setVisible(true);
+                FrmP.mBebidas.setVisible(false);
+                FrmP.mCliente.setVisible(false);
+                FrmP.mComidas.setVisible(false);
+                FrmP.mIngredientes.setVisible(false);
+                FrmP.mMedida.setVisible(false);
+                FrmP.mMesas.setVisible(false);
+                FrmP.mPedidos.setVisible(true);
+                FrmP.mRestaurante.setVisible(false);
+                FrmP.mUsuario.setVisible(false);
+            } else {
+                if (Rol.equalsIgnoreCase("CAJERO")) {
+                    FrmP.mArchivo.setVisible(true);
+                    FrmP.mBebidas.setVisible(false);
+                    FrmP.mCliente.setVisible(false);
+                    FrmP.mComidas.setVisible(false);
+                    FrmP.mIngredientes.setVisible(false);
+                    FrmP.mMedida.setVisible(false);
+                    FrmP.mMesas.setVisible(false);
+                    FrmP.mPedidos.setVisible(false);
+                    FrmP.mRestaurante.setVisible(false);
+                    FrmP.mUsuario.setVisible(false);
+                } else {
+                    if (Rol.equalsIgnoreCase("ADMINISTRADOR")) {
+                        FrmP.mArchivo.setVisible(true);
+                        FrmP.mBebidas.setVisible(true);
+                        FrmP.mCliente.setVisible(true);
+                        FrmP.mComidas.setVisible(true);
+                        FrmP.mIngredientes.setVisible(true);
+                        FrmP.mMedida.setVisible(true);
+                        FrmP.mMesas.setVisible(true);
+                        FrmP.mPedidos.setVisible(true);
+                        FrmP.mRestaurante.setVisible(true);
+                        FrmP.mUsuario.setVisible(true);
+                    }
+                }
+            }
+        }
+    }
+
+    public void Acceso() {
+        if (Validar()) {
             C.Acceso(Frm, new FrmPrincipal(), Frm.txtUsu.getText(), Frm.txtPsw.getText(), Frm.cbRol.getSelectedItem().toString());
-            FrmPrincipal.lblnombre.setText(null);
-            FrmPrincipal.lblnombre.setText(C.DevolverDatoString("SELECT * FROM VtaSesion WHERE Usuario='"+Frm.txtUsu.getText()+"'",2).toUpperCase());
+            FrmP.lblnombre.setText(null);
+            FrmP.lblnombre.setText(C.DevolverDatoString("SELECT * FROM VtaSesion WHERE Usuario='" + Frm.txtUsu.getText() + "'", 2).toUpperCase());
+            Privilegios();
             Limpiar();
-        }else{
+        } else {
             C.Mensaje("ACCEDO DENEGADO");
         }
     }
-    
-    public void BuscarCliente(){
-        FrmBuscarCliente Frm2=new FrmBuscarCliente();
-        CtrlBuscarCliente Ctl= new CtrlBuscarCliente(Frm2);
+
+    public void BuscarCliente() {
+        FrmBuscarCliente Frm2 = new FrmBuscarCliente();
+        CtrlBuscarCliente Ctl = new CtrlBuscarCliente(Frm2);
         Ctl.Iniciar();
         Frm2.setVisible(true);
         Frm.setVisible(false);
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        
-        if(e.getSource() == Frm.btnAcceder){
+
+        if (e.getSource() == Frm.btnAcceder) {
             Acceso();
         }
-        
-        if(e.getSource() == Frm.btnLimpiar){
+
+        if (e.getSource() == Frm.btnLimpiar) {
             Limpiar();
         }
-        
-        if(e.getSource() == Frm.btnSalir){
+
+        if (e.getSource() == Frm.btnSalir) {
             BuscarCliente();
         }
     }

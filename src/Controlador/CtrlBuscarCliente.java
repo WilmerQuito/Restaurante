@@ -35,6 +35,7 @@ public class CtrlBuscarCliente implements ActionListener{
     }
     
     public void Iniciar(){
+        Frm.setVisible(true);
         Frm.setTitle("BIENVENIDO");
         Frm.setLocationRelativeTo(null);
     }
@@ -83,9 +84,10 @@ public class CtrlBuscarCliente implements ActionListener{
         
         if(Validar()){
             if(!C.VerificarConsulta(C.sql)){
-                if (JOptionPane.showConfirmDialog(null, "NO REGISTRADO, ¿DESEAS REGISTRARTE?", "CONSULTA", 0) == 0) {
+                if (JOptionPane.showConfirmDialog(null, "NO ESTAS REGISTRADO, ¿DESEAS REGISTRARTE?", "CONSULTA", 0) == 0) {
                     ClienteNuevo();
                     FrmClienteNuevo.txtDNI.setText(Frm.txtDni.getText());
+                    FrmClienteNuevo.txtDNI.setEditable(false);
                 }else{
                     Limpiar();
                 }
