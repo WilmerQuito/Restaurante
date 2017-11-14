@@ -76,6 +76,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jmConsumicion = new javax.swing.JMenuItem();
         mMedida = new javax.swing.JMenu();
         jmMedida = new javax.swing.JMenuItem();
+        jmReportes = new javax.swing.JMenu();
+        rptEmpleados = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -364,6 +366,18 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(mMedida);
 
+        jmReportes.setText("REPORTES");
+
+        rptEmpleados.setText("EMPLEADOS");
+        rptEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rptEmpleadosActionPerformed(evt);
+            }
+        });
+        jmReportes.add(rptEmpleados);
+
+        jMenuBar1.add(jmReportes);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -647,6 +661,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         Frm.show();
     }//GEN-LAST:event_jmMedidaActionPerformed
 
+    private void rptEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rptEmpleadosActionPerformed
+        C.impri.Imprimir("RptEmpleado");
+    }//GEN-LAST:event_rptEmpleadosActionPerformed
+
     
     
     
@@ -705,6 +723,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmOrigen;
     private javax.swing.JMenuItem jmPedido;
     private javax.swing.JMenuItem jmPresentacion;
+    public static javax.swing.JMenu jmReportes;
     private javax.swing.JMenuItem jmRestaurante;
     private javax.swing.JMenuItem jmRoles;
     private javax.swing.JMenuItem jmSabor;
@@ -724,5 +743,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
     public static javax.swing.JMenu mPedidos;
     public static javax.swing.JMenu mRestaurante;
     public static javax.swing.JMenu mUsuario;
+    private javax.swing.JMenuItem rptEmpleados;
     // End of variables declaration//GEN-END:variables
 }

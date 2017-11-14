@@ -7,12 +7,17 @@ package Controlador;
 
 import Modelo.Controlador;
 import Vista.*;
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -41,6 +46,7 @@ public class CtrlReservaCliente implements ActionListener {
         Frm.btnCancelar.addActionListener(this);
         Frm.btnReservar.addActionListener(this);
         Frm.btnLimpiar.addActionListener(this);
+        Frm.btnManual.addActionListener(this);
 
         Frm.TMesasLibres.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
@@ -78,14 +84,14 @@ public class CtrlReservaCliente implements ActionListener {
         Frm.setLocationRelativeTo(null);
 
         Frm.TMesasLibres.setModel(DTM);
-        DTM.setColumnIdentifiers(new String[]{"CODIGO", "RESTAURANTE", "NUM. MESA", "CAPACIDAD", "FUMADOR", "UBICACION", "ESTADO"});
+        DTM.setColumnIdentifiers(new String[]{"CODIGO", "RESTAURANTE", "NUM. MESA", "CAPACIDAD", "FUMADOR", "UBICACION"});
 
         Restaurante();
         Limpiar();
         FechaActual();
         Asistentes();
     }
-    
+
     public void Asistentes() {
         nm.setValue(1);
         nm.setMaximum(20);
@@ -115,6 +121,10 @@ public class CtrlReservaCliente implements ActionListener {
     }
 
     public boolean Validar() {
+        JSpinner.DateEditor de1 = new JSpinner.DateEditor(Frm.jspHora, "HH:mm.ss");
+        DateFormat HoraFormat = new SimpleDateFormat("HH:mm:ss");
+        DateFormat FechaFormat = new SimpleDateFormat("yyyy-MM-dd");
+
         C.flag = true;
         if (Frm.cboRestaurante.getSelectedIndex() == 0) {
             C.flag = false;
@@ -140,35 +150,43 @@ public class CtrlReservaCliente implements ActionListener {
                             C.flag = false;
                             C.Mensaje("INGRESA UNA HORA VALIDA");
                             Frm.jdcFecha.grabFocus();
-                        }else{
-                            if(Integer.parseInt(String.valueOf(Frm.jspAsistentes.getValue())) > Cant){
+                        } else {
+                            if (Integer.parseInt(String.valueOf(Frm.jspAsistentes.getValue())) > Cant) {
                                 C.flag = false;
                                 C.Mensaje("PERSONAS ASISTENTES SUPERA LA CAPACIDAD DE MESA");
                                 Frm.jdcFecha.grabFocus();
+                            }else {
+                                if (Fecha().equals(FechaFormat.format(dat))) {
+                                    if (de1.getFormat().format(Frm.jspHora.getValue()).compareTo(HoraFormat.format(dat)) <= 0) {
+                                        C.flag = false;
+                                        C.Mensaje("LA HORA NO ES ACEPTABLE");
+                                        Frm.jspHora.grabFocus();
+                                    }
+                                }
                             }
                         }
                     }
                 }
             }
         }
+
         return C.flag;
     }
-
-    public void RestLibre() {
-        C.sql = "SELECT * FROM VtaMesaLibre WHERE Nombre='" + Frm.cboRestaurante.getSelectedItem().toString() + "' AND Estado='Libre'";
-        C.MostrarenJTable(DTM, C.sql, 7);
+    
+        public void MesasRestaurante() {
+        C.sql = "SELECT * FROM VtaMesa WHERE Nombre='"+Frm.cboRestaurante.getSelectedItem().toString()+"' ";
+        C.MostrarenJTable(DTM, C.sql, 6);
     }
 
     public void Tabla() {
-        C.sql = "SELECT * FROM VtaMesaLibre WHERE Cod_Mesa LIKE '" + Frm.txtBuscar.getText()
+        C.sql = "SELECT * FROM VtaMesa WHERE Cod_Mesa LIKE '" + Frm.txtBuscar.getText()
                 + "%' or Nombre like '" + Frm.txtBuscar.getText()
                 + "%' or Num_Mesa like '" + Frm.txtBuscar.getText()
                 + "%' or Cant_Personas like '" + Frm.txtBuscar.getText()
                 + "%' or Fumador like '" + Frm.txtBuscar.getText()
                 + "%' or Ubicacion like '" + Frm.txtBuscar.getText()
-                + "%' or Estado like '" + Frm.txtBuscar.getText()
                 + "%'";
-        C.MostrarenJTable(DTM, C.sql, 7);
+        C.MostrarenJTable(DTM, C.sql, 6);
     }
 
     public void Visualizar() {
@@ -182,7 +200,7 @@ public class CtrlReservaCliente implements ActionListener {
             Frm.lblDireccion.setText(Dire);
             Frm.lblTelefono.setText(Telef);
 
-            RestLibre();
+            MesasRestaurante();
 
             if (DTM.getRowCount() <= 0) {
                 C.Mensaje("NO HAY MESAS LIBRES, PRUEBE EN OTRO RESTAURANTE");
@@ -216,8 +234,6 @@ public class CtrlReservaCliente implements ActionListener {
         }
         return fechaDate;
     }*/
-    
-    
     public String Fecha() {
         String dia = Integer.toString(Frm.jdcFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
         String mes = Integer.toString(Frm.jdcFecha.getCalendar().get(Calendar.MONTH) + 1);
@@ -227,43 +243,50 @@ public class CtrlReservaCliente implements ActionListener {
     }
 
     public void BuscarCliente() {
-        if (JOptionPane.showConfirmDialog(null, "¿QUIERES CANCELAR LA RESERVA?", "CONSULTA", 0) == 0) {
-            FrmBuscarCliente Frm2 = new FrmBuscarCliente();
-            CtrlBuscarCliente Ctl = new CtrlBuscarCliente(Frm2);
-            Ctl.Iniciar();
-            Frm2.setVisible(true);
-            Frm.setVisible(false);
-        }
+        FrmBuscarCliente Frm2 = new FrmBuscarCliente();
+        CtrlBuscarCliente Ctl = new CtrlBuscarCliente(Frm2);
+        Ctl.Iniciar();
+        Frm2.setVisible(true);
+        Frm.setVisible(false);
     }
 
     public void Reservar() {
-        CodCli = C.DevolverDatoString("SELECT * FROM cliente WHERE Nombre='"+Frm.lblCliente.getText()+"'", 1);
+        CodCli = C.DevolverDatoString("SELECT * FROM cliente WHERE Nombre='" + Frm.lblCliente.getText() + "'", 1);
         
-        JSpinner.DateEditor de1 = new JSpinner.DateEditor(Frm.jspHora, "HH:mm.ss");
+        JSpinner.DateEditor de1 = new JSpinner.DateEditor(Frm.jspHora, "HH:mm");
         JSpinner.DateEditor de2 = new JSpinner.DateEditor(Frm.jspHora, "hh:mm a");
-        if (Validar()) {
-            if (JOptionPane.showConfirmDialog(null, "¿LA RESERVA ES CORRECTA?"
-                    +"\n\nCLIENTE: "+Frm.lblCliente.getText()
-                    +"\nRESTAURANTE: "+Frm.lblRestaurante.getText().toUpperCase()
-                    +"\nMESA: "+NumMesa
-                    +"\nHORA: "+de2.getFormat().format(Frm.jspHora.getValue())
-                    +"\nFECHA: "+Fecha() 
-                    +"\nASISTENTES: "+Frm.jspAsistentes.getValue(), "CONSULTA", 0) == 0) {
-                
-                String Cod = C.GeneraCodigo("R", "Reserva", "Cod_Reserva");
-                C.InsertaRegistro("INSERT INTO Reserva VALUES('" + Cod + "','"
-                        + de1.getFormat().format(Frm.jspHora.getValue()) + "','"
-                        + Fecha() + "','"
-                        + Frm.jspAsistentes.getValue() + "','"
-                        + Frm.txtComentario.getText().toString().toUpperCase() + "','"
-                        + CodCli + "','"
-                        + CodMesa + "')");
-                C.Mensaje("RESERVA REALIZADA");
-                RestLibre();
-                Limpiar();
-                
-                C.InsertaRegistro("UPDATE mesa SET Cod_Estado='R' WHERE Cod_Mesa='"+CodMesa+"'");
 
+        if (Validar()) {
+            C.sql = "SELECT * FROM VtaReserva WHERE Fecha='"+Fecha()
+                    +"' AND Hora<='"+de1.getFormat().format(Frm.jspHora.getValue())
+                    +"' AND Num_mesa='"+NumMesa
+                    +"' AND Resta='"+Frm.lblRestaurante.getText().toUpperCase()+"';";
+            
+            if (!C.VerificarConsulta(C.sql)) {
+                if (JOptionPane.showConfirmDialog(null, "¿LA RESERVA ES CORRECTA?"
+                        + "\n\nCLIENTE: " + Frm.lblCliente.getText()
+                        + "\nRESTAURANTE: " + Frm.lblRestaurante.getText().toUpperCase()
+                        + "\nMESA: " + NumMesa
+                        + "\nHORA: " + de2.getFormat().format(Frm.jspHora.getValue())
+                        + "\nFECHA: " + Fecha()
+                        + "\nASISTENTES: " + Frm.jspAsistentes.getValue(), "CONSULTA", 0) == 0) {
+
+                    String Cod = C.GeneraCodigo("R", "Reserva", "Cod_Reserva");
+                    C.InsertaRegistro("INSERT INTO Reserva VALUES('" + Cod + "','"
+                            + de1.getFormat().format(Frm.jspHora.getValue()) + "','"
+                            + Fecha() + "','"
+                            + Frm.jspAsistentes.getValue() + "','"
+                            + Frm.txtComentario.getText().toString().toUpperCase() + "','"
+                            + CodCli + "','"
+                            + CodMesa + "')");
+                    C.Mensaje("RESERVA REALIZADA");
+                    Tabla();
+                    Limpiar();
+                    BuscarCliente();
+                    C.InsertaRegistro("UPDATE mesa SET Cod_Estado='R' WHERE Cod_Mesa='" + CodMesa + "'");
+                }
+            }else{
+                C.Mensaje("LA MESA ESTA RESERVADA PARA ESE DIA Y HORA");
             }
         }
     }
@@ -276,7 +299,9 @@ public class CtrlReservaCliente implements ActionListener {
         }
 
         if (e.getSource() == Frm.btnCancelar) {
-            BuscarCliente();
+            if (JOptionPane.showConfirmDialog(null, "¿QUIERES CANCELAR LA RESERVA?", "CONSULTA", 0) == 0) {
+                BuscarCliente();
+            }
         }
 
         if (e.getSource() == Frm.btnReservar) {
@@ -285,6 +310,15 @@ public class CtrlReservaCliente implements ActionListener {
 
         if (e.getSource() == Frm.btnLimpiar) {
             Limpiar();
+        }
+        
+        if (e.getSource() == Frm.btnManual) {
+            try {
+                File path = new File("C://restosist/Manual.pdf");
+                Desktop.getDesktop().open(path);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
 
     }

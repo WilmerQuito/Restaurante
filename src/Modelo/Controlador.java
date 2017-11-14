@@ -4,6 +4,7 @@ import com.placeholder.PlaceHolder;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Image;
+import java.util.Date;
 import javax.swing.ImageIcon;
 
 
@@ -14,6 +15,7 @@ public class Controlador {
     public String[] Data = new String[15];
     public int fila;
     public PlaceHolder holder;
+    public Imprimir impri = new Imprimir();
     
     public void LlenarCombo(JComboBox cb, String cons, String ini,int colum) {
         cb.removeAllItems();
@@ -24,6 +26,7 @@ public class Controlador {
             while (base.rs.next()) {
                 cb.addItem(base.rs.getString(colum));
             }
+            
             cb.setSelectedIndex(0);
         } catch (Exception e) {
         }
@@ -215,6 +218,19 @@ public class Controlador {
             base.rs = base.st.executeQuery(cnst);
             if (base.rs.next()) {
                 dto = base.rs.getInt(posdev);
+            }
+        } catch (Exception e) {
+        }
+        return dto;
+    }
+    
+    public Date DevolverDatoDate(String cnst, int posdev) {
+        Date dto=null;
+        try {
+            base.st = base.conn.createStatement();
+            base.rs = base.st.executeQuery(cnst);
+            if (base.rs.next()) {
+                dto = base.rs.getDate(posdev);
             }
         } catch (Exception e) {
         }

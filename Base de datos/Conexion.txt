@@ -1,0 +1,8 @@
+#USUARIO
+root
+#PASSWORD
+root123456
+#HOST DE ACCESO
+localhost
+#BASE DE DATOS
+db_restaurante

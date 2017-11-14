@@ -269,7 +269,7 @@ CREATE TABLE `mesa` (
 
 /*Data for the table `mesa` */
 
-insert  into `mesa`(`Cod_Mesa`,`Cant_Personas`,`Num_Mesa`,`Fumador`,`Cod_Estado`,`Cod_Ubicacion`,`Cod_Restaurante`) values ('1',2,1,'NO','L','C','L'),('2',5,2,'SI','L','E','L'),('3',10,3,'Si','L','F','L'),('4',7,4,'SI','L','F','L');
+insert  into `mesa`(`Cod_Mesa`,`Cant_Personas`,`Num_Mesa`,`Fumador`,`Cod_Estado`,`Cod_Ubicacion`,`Cod_Restaurante`) values ('1',2,1,'NO','l','C','L'),('2',5,2,'SI','l','E','L'),('3',10,3,'Si','l','F','L'),('4',7,4,'SI','l','F','L');
 
 /*Table structure for table `origen` */
 
@@ -340,6 +340,8 @@ CREATE TABLE `reserva` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `reserva` */
+
+insert  into `reserva`(`Cod_Reserva`,`Hora`,`Fecha`,`Cant_Personas`,`Detalle`,`Cod_Cliente`,`Cod_Mesa`) values ('R','14:05:00','2017-11-11',1,'TMR','1012345678','1'),('R-1','12:00:00','2017-11-09',1,'WDAWDD','1074616351','2'),('R-2','16:58:00','2017-11-12',1,'','1076225203','1');
 
 /*Table structure for table `restaurante` */
 
@@ -628,6 +630,26 @@ DROP TABLE IF EXISTS `vtapedido`;
  `usuario` varchar(30) 
 )*/;
 
+/*Table structure for table `vtaprueba` */
+
+DROP TABLE IF EXISTS `vtaprueba`;
+
+/*!50001 DROP VIEW IF EXISTS `vtaprueba` */;
+/*!50001 DROP TABLE IF EXISTS `vtaprueba` */;
+
+/*!50001 CREATE TABLE  `vtaprueba`(
+ `Cod_Reserva` char(10) ,
+ `Fecha` date ,
+ `Hora` time ,
+ `Cant_Personas` int(2) ,
+ `Detalle` varchar(500) ,
+ `cliente` varchar(100) ,
+ `Celular` char(9) ,
+ `Num_Mesa` int(2) ,
+ `personasmesa` int(2) ,
+ `Hasta` time 
+)*/;
+
 /*Table structure for table `vtareserva` */
 
 DROP TABLE IF EXISTS `vtareserva`;
@@ -732,6 +754,13 @@ DROP TABLE IF EXISTS `vtausoingrediente`;
 /*!50001 DROP VIEW IF EXISTS `vtapedido` */;
 
 /*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vtapedido` AS select `pedido`.`Cod_Pedido` AS `Cod_Pedido`,`pedido`.`Hora` AS `hora`,`estadopedido`.`Estado` AS `estado`,`vtareserva`.`cliente` AS `cliente`,`vtareserva`.`Num_Mesa` AS `Num_Mesa`,`vtareserva`.`Cant_Personas` AS `Cant_Personas`,`usuario`.`Usuario` AS `usuario` from (((`pedido` join `estadopedido`) join `vtareserva`) join `usuario` on(((`pedido`.`EstadoPedido_idEstadoPedido` = `estadopedido`.`idEstadoPedido`) and (`pedido`.`reserva_Cod_Reserva` = `vtareserva`.`Cod_Reserva`) and (`pedido`.`usuario_Cod_Usuario` = `usuario`.`Cod_Usuario`)))) */;
+
+/*View structure for view vtaprueba */
+
+/*!50001 DROP TABLE IF EXISTS `vtaprueba` */;
+/*!50001 DROP VIEW IF EXISTS `vtaprueba` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vtaprueba` AS select `vtareserva`.`Cod_Reserva` AS `Cod_Reserva`,`vtareserva`.`Fecha` AS `Fecha`,`vtareserva`.`Hora` AS `Hora`,`vtareserva`.`Cant_Personas` AS `Cant_Personas`,`vtareserva`.`Detalle` AS `Detalle`,`vtareserva`.`cliente` AS `cliente`,`vtareserva`.`Celular` AS `Celular`,`vtareserva`.`Num_Mesa` AS `Num_Mesa`,`vtareserva`.`personasmesa` AS `personasmesa`,addtime(`vtareserva`.`Hora`,'00:15:00') AS `Hasta` from `vtareserva` */;
 
 /*View structure for view vtareserva */
 

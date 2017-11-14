@@ -40,6 +40,9 @@ public class Restaurante {
                 FrmBuscarCliente Frm = new FrmBuscarCliente();
                 CtrlBuscarCliente Ctl = new CtrlBuscarCliente(Frm);
 
+                /*FrmReservaCliente Frm = new FrmReservaCliente();
+                CtrlReservaCliente Ctl = new CtrlReservaCliente(Frm);*/
+                
                 Ctl.Iniciar();
             }
         });

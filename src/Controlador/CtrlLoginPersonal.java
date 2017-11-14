@@ -83,6 +83,7 @@ public class CtrlLoginPersonal implements ActionListener {
             FrmP.mPedidos.setVisible(false);
             FrmP.mRestaurante.setVisible(false);
             FrmP.mUsuario.setVisible(false);
+            FrmP.jmReportes.setVisible(false);
         } else {
             if (Rol.equalsIgnoreCase("MOZO")) {
                 FrmP.mArchivo.setVisible(true);
@@ -95,6 +96,7 @@ public class CtrlLoginPersonal implements ActionListener {
                 FrmP.mPedidos.setVisible(true);
                 FrmP.mRestaurante.setVisible(false);
                 FrmP.mUsuario.setVisible(false);
+                FrmP.jmReportes.setVisible(false);
             } else {
                 if (Rol.equalsIgnoreCase("CAJERO")) {
                     FrmP.mArchivo.setVisible(true);
@@ -107,6 +109,7 @@ public class CtrlLoginPersonal implements ActionListener {
                     FrmP.mPedidos.setVisible(false);
                     FrmP.mRestaurante.setVisible(false);
                     FrmP.mUsuario.setVisible(false);
+                    FrmP.jmReportes.setVisible(false);
                 } else {
                     if (Rol.equalsIgnoreCase("ADMINISTRADOR")) {
                         FrmP.mArchivo.setVisible(true);
@@ -119,6 +122,7 @@ public class CtrlLoginPersonal implements ActionListener {
                         FrmP.mPedidos.setVisible(true);
                         FrmP.mRestaurante.setVisible(true);
                         FrmP.mUsuario.setVisible(true);
+                        FrmP.jmReportes.setVisible(true);
                     }
                 }
             }
