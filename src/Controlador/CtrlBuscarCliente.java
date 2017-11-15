@@ -19,10 +19,10 @@ import javax.swing.JOptionPane;
  */
 public class CtrlBuscarCliente implements ActionListener{
     Controlador C = Controlador.getInstance();
-    private FrmBuscarCliente Frm;
-    public static int CV=0;
+    private static FrmBuscarCliente Frm;
+    private static CtrlBuscarCliente Single;
     
-    public CtrlBuscarCliente (FrmBuscarCliente Frm){
+    private CtrlBuscarCliente (FrmBuscarCliente Frm){
         this.Frm = Frm;
         
         Frm.btnBuscar.addActionListener(this);
@@ -33,6 +33,13 @@ public class CtrlBuscarCliente implements ActionListener{
                 C.LoginPersonal(Frm);
             }
         } );
+    }
+
+    public static synchronized CtrlBuscarCliente getInstance(FrmBuscarCliente Frm) {
+        if (Single == null) {
+            Single = new CtrlBuscarCliente(Frm);
+        }
+        return Single;
     }
     
     public void Iniciar(){

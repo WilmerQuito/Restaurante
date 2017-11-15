@@ -24,7 +24,8 @@ public class CtrlTipoIngrediente implements ActionListener {
 
     private DefaultTableModel DTM = new DefaultTableModel();
     Controlador C = Controlador.getInstance();
-    private FrmTipoIngrediente Frm;
+    private static FrmTipoIngrediente Frm;
+    private static CtrlTipoIngrediente Single;
 
     public CtrlTipoIngrediente(FrmTipoIngrediente Frm) {
         this.Frm = Frm;
@@ -63,6 +64,13 @@ public class CtrlTipoIngrediente implements ActionListener {
 
     }
 
+    public static synchronized CtrlTipoIngrediente getInstance(FrmTipoIngrediente Frm){
+        if(Single == null){
+            Single = new CtrlTipoIngrediente(Frm);
+        }
+        return Single;
+    }
+    
     public void Iniciar() {
         Frm.TTipo.setModel(DTM);
         DTM.setColumnIdentifiers(new String[]{"CODIGO", "TIPO DE INGREDIENTE"});

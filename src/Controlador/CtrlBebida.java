@@ -24,9 +24,10 @@ public class CtrlBebida implements ActionListener {
 
     private DefaultTableModel DTM = new DefaultTableModel();
     Controlador C = Controlador.getInstance();
-    private FrmBebida Frm;
+    private static FrmBebida Frm;
+    private static CtrlBebida Single;
 
-    public CtrlBebida(FrmBebida Frm) {
+    private CtrlBebida(FrmBebida Frm) {
         this.Frm = Frm;
 
         Frm.btneditar.addActionListener(this);
@@ -63,6 +64,13 @@ public class CtrlBebida implements ActionListener {
         });
     }
 
+    public static synchronized CtrlBebida getInstance(FrmBebida Frm){
+        if(Single == null){
+            Single = new CtrlBebida(Frm);
+        }
+        return Single;
+    }
+    
     public void Iniciar() {
         Frm.TBebidas.setModel(DTM);
         DTM.setColumnIdentifiers(new String[]{"CODIGO", "TIPO", "MARCA", "SABOR", "COSTO"});

@@ -24,9 +24,10 @@ public class CtrlCliente implements ActionListener{
     
     private DefaultTableModel DTM=new DefaultTableModel();
     Controlador C = Controlador.getInstance();
-    private FrmCliente Frm;
+    private static FrmCliente Frm;
+    private static CtrlCliente Single;
     
-    public CtrlCliente (FrmCliente Frm){
+    private CtrlCliente (FrmCliente Frm){
         this.Frm = Frm;
        
         Frm.btneditar.addActionListener(this);
@@ -59,6 +60,13 @@ public class CtrlCliente implements ActionListener{
             public void keyPressed(KeyEvent e) {}
         });
       
+    }
+    
+    public static synchronized CtrlCliente getInstance(FrmCliente Frm){
+        if(Single == null){
+            Single = new CtrlCliente(Frm);
+        }
+        return Single;
     }
     
     public void Iniciar(){

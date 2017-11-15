@@ -24,9 +24,10 @@ public class CtrlMesa implements ActionListener{
     
     private DefaultTableModel DTM=new DefaultTableModel();
     Controlador C = Controlador.getInstance();
-    private FrmMesa Frm;
+    private static FrmMesa Frm;
+    private static CtrlMesa Single;
     
-    public CtrlMesa (FrmMesa Frm){
+    private CtrlMesa (FrmMesa Frm){
         this.Frm = Frm;
        
         Frm.btneditar.addActionListener(this);
@@ -62,6 +63,13 @@ public class CtrlMesa implements ActionListener{
             public void keyPressed(KeyEvent e) {}
         });
       
+    }
+    
+    public static synchronized CtrlMesa getInstance(FrmMesa Frm){
+        if(Single == null){
+            Single = new CtrlMesa(Frm);
+        }
+        return Single;
     }
     
     public void Iniciar(){

@@ -18,9 +18,10 @@ import javax.swing.JOptionPane;
 public class CtrlClienteNuevo implements ActionListener {
 
     Controlador C = Controlador.getInstance();
-    private FrmClienteNuevo Frm;
+    private static FrmClienteNuevo Frm;
+    private static CtrlClienteNuevo Single;
 
-    public CtrlClienteNuevo(FrmClienteNuevo Frm) {
+    private CtrlClienteNuevo(FrmClienteNuevo Frm) {
         this.Frm = Frm;
 
         Frm.btnRegresar.addActionListener(this);
@@ -28,6 +29,13 @@ public class CtrlClienteNuevo implements ActionListener {
         Frm.btnlimpiar.addActionListener(this);
     }
 
+    public static synchronized CtrlClienteNuevo getInstance(FrmClienteNuevo Frm){
+        if(Single == null){
+            Single = new CtrlClienteNuevo(Frm);
+        }
+        return Single;
+    }
+    
     public void Iniciar() {
         Frm.setTitle("REGISTRATE...!!!");
         Frm.setLocationRelativeTo(null);

@@ -24,9 +24,10 @@ public class CtrlUnidadMedida implements ActionListener {
 
     private DefaultTableModel DTM = new DefaultTableModel();
     Controlador C = Controlador.getInstance();
-    private FrmUnidadMedida Frm;
+    private static FrmUnidadMedida Frm;
+    private static CtrlUnidadMedida Single;
 
-    public CtrlUnidadMedida(FrmUnidadMedida Frm) {
+    private CtrlUnidadMedida(FrmUnidadMedida Frm) {
         this.Frm = Frm;
 
         Frm.btneditar.addActionListener(this);
@@ -63,6 +64,13 @@ public class CtrlUnidadMedida implements ActionListener {
 
     }
 
+    public static synchronized CtrlUnidadMedida getInstance(FrmUnidadMedida Frm){
+        if(Single == null){
+            Single = new CtrlUnidadMedida(Frm);
+        }
+        return Single;
+    }
+    
     public void Iniciar() {
         Frm.TUnidadMedida.setModel(DTM);
         DTM.setColumnIdentifiers(new String[]{"CODIGO", "UNIDAD DE MEDIDA"});

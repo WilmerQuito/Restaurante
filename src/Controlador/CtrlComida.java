@@ -24,9 +24,10 @@ public class CtrlComida implements ActionListener{
     
     private DefaultTableModel DTM=new DefaultTableModel();
     Controlador C = Controlador.getInstance();
-    private FrmComida Frm;
+    private static FrmComida Frm;
+    private static CtrlComida Single;
     
-    public CtrlComida (FrmComida Frm){
+    private CtrlComida (FrmComida Frm){
         this.Frm = Frm;
        
         Frm.btneditar.addActionListener(this);
@@ -59,6 +60,13 @@ public class CtrlComida implements ActionListener{
             public void keyPressed(KeyEvent e) {}
         });
       
+    }
+    
+    public static synchronized CtrlComida getInstance(FrmComida Frm){
+        if(Single == null){
+            Single = new CtrlComida(Frm);
+        }
+        return Single;
     }
     
     public void Iniciar(){

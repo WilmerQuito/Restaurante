@@ -18,10 +18,11 @@ import java.awt.event.ActionListener;
 public class CtrlLoginPersonal implements ActionListener {
 
     Controlador C = Controlador.getInstance();
-    private FrmLoginPersonal Frm;
+    private static FrmLoginPersonal Frm;
+    private static CtrlLoginPersonal Single;
     private FrmPrincipal FrmP;
 
-    public CtrlLoginPersonal(FrmLoginPersonal Frm) {
+    private CtrlLoginPersonal(FrmLoginPersonal Frm) {
         this.Frm = Frm;
 
         Frm.btnAcceder.addActionListener(this);
@@ -29,6 +30,13 @@ public class CtrlLoginPersonal implements ActionListener {
         Frm.btnSalir.addActionListener(this);
     }
 
+    public static synchronized CtrlLoginPersonal getInstance(FrmLoginPersonal Frm){
+        if(Single == null){
+            Single = new CtrlLoginPersonal(Frm);
+        }
+        return Single;
+    }
+    
     public void Iniciar() {
         Frm.setTitle("INICIAR SESION");
         Frm.setLocationRelativeTo(null);

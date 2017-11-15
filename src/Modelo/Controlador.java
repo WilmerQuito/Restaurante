@@ -1,8 +1,8 @@
 package Modelo;
 
+import PatronVistas.*;
 import Controlador.*;
 import Modelo.Conexion;
-import Patron.*;
 import Vista.*;
 import com.placeholder.PlaceHolder;
 import javax.swing.*;
@@ -269,7 +269,7 @@ public class Controlador {
     public void BuscarCliente(JFrame Actual) {
         try {
             FrmBuscarCliente Frm = PtBuscarCliente.getInstance();
-            CtrlBuscarCliente Ctl = new CtrlBuscarCliente(Frm);
+            CtrlBuscarCliente Ctl = CtrlBuscarCliente.getInstance(Frm);
             Ctl.Iniciar();
             Frm.setVisible(true);
             Actual.setVisible(false);
@@ -281,7 +281,7 @@ public class Controlador {
     public void BuscarClienteInicial() {
         try {
             FrmBuscarCliente Frm = PtBuscarCliente.getInstance();
-            CtrlBuscarCliente Ctl = new CtrlBuscarCliente(Frm);
+            CtrlBuscarCliente Ctl = CtrlBuscarCliente.getInstance(Frm);
             Ctl.Iniciar();
             Frm.setVisible(true);
         } catch (Exception e) {
@@ -292,7 +292,7 @@ public class Controlador {
     public void ClienteNuevo(JFrame Actual) {
         try {
             FrmClienteNuevo Frm = PtClienteNuevo.getInstance();
-            CtrlClienteNuevo Ctl = new CtrlClienteNuevo(Frm);
+            CtrlClienteNuevo Ctl = CtrlClienteNuevo.getInstance(Frm);
             Ctl.Iniciar();
             Frm.setVisible(true);
             Actual.setVisible(false);
@@ -304,7 +304,7 @@ public class Controlador {
     public void LoginPersonal(JFrame Actual) {
         try {
             FrmLoginPersonal Frm = PtLoginPersonal.getInstance();
-            CtrlLoginPersonal Ctl = new CtrlLoginPersonal(Frm);
+            CtrlLoginPersonal Ctl = CtrlLoginPersonal.getInstance(Frm);
             Ctl.Iniciar();
             Frm.setVisible(true);
             Actual.setVisible(false);
@@ -316,7 +316,7 @@ public class Controlador {
     public void Reservas(JFrame Actual) {
         try {
             FrmReservaCliente Frm = PtReservaCliente.getInstance();
-            CtrlReservaCliente Ctl = new CtrlReservaCliente(Frm);
+            CtrlReservaCliente Ctl = CtrlReservaCliente.getInstance(Frm);
             Ctl.Iniciar();
             Frm.setVisible(true);
             Actual.setVisible(false);

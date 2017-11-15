@@ -5,11 +5,11 @@
  */
 package Vista;
 
+import PatronVistas.*;
 import Controlador.*;
 import Modelo.Controlador;
 import Vista.*;
 import java.awt.Dimension;
-import Patron.*;
 import javax.swing.JOptionPane;
 
 /**
@@ -390,7 +390,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void jmRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmRolesActionPerformed
         FrmRol Frm = PtRol.getInstance();
-        CtrlRol Ctl = new CtrlRol(Frm);
+        CtrlRol Ctl = CtrlRol.getInstance(Frm);
         if (!jdpPrincipal.isAncestorOf(Frm)) {
             jdpPrincipal.add(Frm);
             Dimension Tam = jdpPrincipal.getSize();
@@ -405,7 +405,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void jmUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmUsuarioActionPerformed
         FrmUsuario Frm = PtUsuario.getInstance();
-        CtrlUsuario Ctl = new CtrlUsuario(Frm);
+        CtrlUsuario Ctl = CtrlUsuario.getInstance(Frm);
         if (!jdpPrincipal.isAncestorOf(Frm)) {
             jdpPrincipal.add(Frm);
             Dimension Tam = jdpPrincipal.getSize();
@@ -420,7 +420,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void jmClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmClienteActionPerformed
         FrmCliente Frm = PtCliente.getInstance();
-        CtrlCliente Ctl = new CtrlCliente(Frm);
+        CtrlCliente Ctl = CtrlCliente.getInstance(Frm);
         if (!jdpPrincipal.isAncestorOf(Frm)) {
             jdpPrincipal.add(Frm);
             Dimension Tam = jdpPrincipal.getSize();
@@ -435,7 +435,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void jmRestauranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmRestauranteActionPerformed
         FrmRestaurante Frm = PtRestaurante.getInstance();
-        CtrlRestaurante Ctl = new CtrlRestaurante(Frm);
+        CtrlRestaurante Ctl = CtrlRestaurante.getInstance(Frm);
         if (!jdpPrincipal.isAncestorOf(Frm)) {
             jdpPrincipal.add(Frm);
             Dimension Tam = jdpPrincipal.getSize();
@@ -450,7 +450,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void jmAlmacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAlmacenActionPerformed
         /*FrmAlmacen Frm = PtAlmacen.getInstance();
-        CtrlAlmacen Ctl = new CtrlAlmacen(Frm);
+        CtrlAlmacen Ctl = CtrlAlmacen.getInstance(Frm);
         if (!jdpPrincipal.isAncestorOf(Frm)) {
             jdpPrincipal.add(Frm);
             Dimension Tam = jdpPrincipal.getSize();
@@ -465,7 +465,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void jmMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmMesasActionPerformed
         FrmMesa Frm = PtMesa.getInstance();
-        CtrlMesa Ctl = new CtrlMesa(Frm);
+        CtrlMesa Ctl = CtrlMesa.getInstance(Frm);
         if (!jdpPrincipal.isAncestorOf(Frm)) {
             jdpPrincipal.add(Frm);
             Dimension Tam = jdpPrincipal.getSize();
@@ -480,7 +480,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void jmEstadoMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmEstadoMesaActionPerformed
         FrmEstadoMesas Frm = PtEstadoMesas.getInstance();
-        CtrlEstadoMesas Ctl = new CtrlEstadoMesas(Frm);
+        CtrlEstadoMesas Ctl = CtrlEstadoMesas.getInstance(Frm);
         if (!jdpPrincipal.isAncestorOf(Frm)) {
             jdpPrincipal.add(Frm);
             Dimension Tam = jdpPrincipal.getSize();
@@ -495,7 +495,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void jmUbicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmUbicacionActionPerformed
         FrmUbicacion Frm = PtUbicacion.getInstance();
-        CtrlUbicacion Ctl = new CtrlUbicacion(Frm);
+        CtrlUbicacion Ctl = CtrlUbicacion.getInstance(Frm);
         if (!jdpPrincipal.isAncestorOf(Frm)) {
             jdpPrincipal.add(Frm);
             Dimension Tam = jdpPrincipal.getSize();
@@ -510,7 +510,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void jmEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmEmpleadoActionPerformed
         FrmEmpleado Frm = PtEmpleado.getInstance();
-        CtrlEmpleado Ctl = new CtrlEmpleado(Frm);
+        CtrlEmpleado Ctl = CtrlEmpleado.getInstance(Frm);
         if (!jdpPrincipal.isAncestorOf(Frm)) {
             jdpPrincipal.add(Frm);
             Dimension Tam = jdpPrincipal.getSize();
@@ -525,7 +525,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void jmOrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmOrigenActionPerformed
         FrmOrigenComida Frm = PtOrigenComida.getInstance();
-        CtrlOrigenComida Ctl = new CtrlOrigenComida(Frm);
+        CtrlOrigenComida Ctl = CtrlOrigenComida.getInstance(Frm);
         if (!jdpPrincipal.isAncestorOf(Frm)) {
             jdpPrincipal.add(Frm);
             Dimension Tam = jdpPrincipal.getSize();
@@ -540,7 +540,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void jmComidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmComidaActionPerformed
         FrmComida Frm = PtComida.getInstance();
-        CtrlComida Ctl = new CtrlComida(Frm);
+        CtrlComida Ctl = CtrlComida.getInstance(Frm);
         if (!jdpPrincipal.isAncestorOf(Frm)) {
             jdpPrincipal.add(Frm);
             Dimension Tam = jdpPrincipal.getSize();
@@ -555,7 +555,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void jmPresentacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmPresentacionActionPerformed
         FrmPresentacion Frm = PtPresentacion.getInstance();
-        CtrlPresentacion Ctl = new CtrlPresentacion(Frm);
+        CtrlPresentacion Ctl = CtrlPresentacion.getInstance(Frm);
         if (!jdpPrincipal.isAncestorOf(Frm)) {
             jdpPrincipal.add(Frm);
             Dimension Tam = jdpPrincipal.getSize();
@@ -570,7 +570,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void jmColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmColorActionPerformed
         FrmColor Frm = PtColor.getInstance();
-        CtrlColor Ctl = new CtrlColor(Frm);
+        CtrlColor Ctl = CtrlColor.getInstance(Frm);
         if (!jdpPrincipal.isAncestorOf(Frm)) {
             jdpPrincipal.add(Frm);
             Dimension Tam = jdpPrincipal.getSize();
@@ -585,7 +585,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void jmTipoIngredienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmTipoIngredienteActionPerformed
         FrmTipoIngrediente Frm = PtTipoIngrediente.getInstance();
-        CtrlTipoIngrediente Ctl = new CtrlTipoIngrediente(Frm);
+        CtrlTipoIngrediente Ctl = CtrlTipoIngrediente.getInstance(Frm);
         if (!jdpPrincipal.isAncestorOf(Frm)) {
             jdpPrincipal.add(Frm);
             Dimension Tam = jdpPrincipal.getSize();
@@ -600,7 +600,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void jmIngredienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmIngredienteActionPerformed
         FrmIngredientes Frm = PtIngredientes.getInstance();
-        CtrlIngredientes Ctl = new CtrlIngredientes(Frm);
+        CtrlIngredientes Ctl = CtrlIngredientes.getInstance(Frm);
         if (!jdpPrincipal.isAncestorOf(Frm)) {
             jdpPrincipal.add(Frm);
             Dimension Tam = jdpPrincipal.getSize();
@@ -615,7 +615,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void jmSaborActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmSaborActionPerformed
         FrmSabor Frm = PtSabor.getInstance();
-        CtrlSabor Ctl = new CtrlSabor(Frm);
+        CtrlSabor Ctl = CtrlSabor.getInstance(Frm);
         if (!jdpPrincipal.isAncestorOf(Frm)) {
             jdpPrincipal.add(Frm);
             Dimension Tam = jdpPrincipal.getSize();
@@ -630,7 +630,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void jmTipoBebidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmTipoBebidaActionPerformed
         FrmTipoBebida Frm = PtTipoBebida.getInstance();
-        CtrlTipoBebida Ctl = new CtrlTipoBebida(Frm);
+        CtrlTipoBebida Ctl = CtrlTipoBebida.getInstance(Frm);
         if (!jdpPrincipal.isAncestorOf(Frm)) {
             jdpPrincipal.add(Frm);
             Dimension Tam = jdpPrincipal.getSize();
@@ -645,7 +645,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void jmMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmMarcaActionPerformed
         FrmMarca Frm = PtMarca.getInstance();
-        CtrlMarca Ctl = new CtrlMarca(Frm);
+        CtrlMarca Ctl = CtrlMarca.getInstance(Frm);
         if (!jdpPrincipal.isAncestorOf(Frm)) {
             jdpPrincipal.add(Frm);
             Dimension Tam = jdpPrincipal.getSize();
@@ -660,7 +660,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void jmBebidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmBebidaActionPerformed
         FrmBebida Frm = PtBebida.getInstance();
-        CtrlBebida Ctl = new CtrlBebida(Frm);
+        CtrlBebida Ctl = CtrlBebida.getInstance(Frm);
         if (!jdpPrincipal.isAncestorOf(Frm)) {
             jdpPrincipal.add(Frm);
             Dimension Tam = jdpPrincipal.getSize();
@@ -675,7 +675,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void jmEstadoPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmEstadoPedidoActionPerformed
         FrmEstadoPedido Frm = PtEstadoPedido.getInstance();
-        CtrlEstadoPedido Ctl = new CtrlEstadoPedido(Frm);
+        CtrlEstadoPedido Ctl = CtrlEstadoPedido.getInstance(Frm);
         if (!jdpPrincipal.isAncestorOf(Frm)) {
             jdpPrincipal.add(Frm);
             Dimension Tam = jdpPrincipal.getSize();
@@ -690,7 +690,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void jmMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmMedidaActionPerformed
         FrmUnidadMedida Frm = PtUnidadMedida.getInstance();
-        CtrlUnidadMedida Ctl = new CtrlUnidadMedida(Frm);
+        CtrlUnidadMedida Ctl = CtrlUnidadMedida.getInstance(Frm);
         if (!jdpPrincipal.isAncestorOf(Frm)) {
             jdpPrincipal.add(Frm);
             Dimension Tam = jdpPrincipal.getSize();

@@ -23,9 +23,10 @@ import javax.swing.table.DefaultTableModel;
 public class CtrlOrigenComida implements ActionListener{
     private DefaultTableModel DTM=new DefaultTableModel();
     Controlador C = Controlador.getInstance();
-    private FrmOrigenComida Frm;
+    private static FrmOrigenComida Frm;
+    private static CtrlOrigenComida Single;
     
-    public CtrlOrigenComida(FrmOrigenComida Frm){
+    private CtrlOrigenComida(FrmOrigenComida Frm){
         this.Frm = Frm;
        
         Frm.btneditar.addActionListener(this);
@@ -56,6 +57,13 @@ public class CtrlOrigenComida implements ActionListener{
             public void keyPressed(KeyEvent e) {}
         });
       
+    }
+    
+    public static synchronized CtrlOrigenComida getInstance(FrmOrigenComida Frm){
+        if(Single == null){
+            Single = new CtrlOrigenComida(Frm);
+        }
+        return Single;
     }
     
     public void Iniciar(){

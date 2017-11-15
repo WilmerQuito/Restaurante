@@ -24,9 +24,10 @@ public class CtrlEstadoPedido implements ActionListener {
 
     private DefaultTableModel DTM = new DefaultTableModel();
     Controlador C = Controlador.getInstance();
-    private FrmEstadoPedido Frm;
+    private static FrmEstadoPedido Frm;
+    private static CtrlEstadoPedido Single;
 
-    public CtrlEstadoPedido(FrmEstadoPedido Frm) {
+    private CtrlEstadoPedido(FrmEstadoPedido Frm) {
         this.Frm = Frm;
 
         Frm.btneditar.addActionListener(this);
@@ -63,6 +64,13 @@ public class CtrlEstadoPedido implements ActionListener {
 
     }
 
+    public static synchronized CtrlEstadoPedido getInstance(FrmEstadoPedido Frm){
+        if(Single == null){
+            Single = new CtrlEstadoPedido(Frm);
+        }
+        return Single;
+    }
+    
     public void Iniciar() {
         Frm.TEstadoPedido.setModel(DTM);
         DTM.setColumnIdentifiers(new String[]{"CODIGO", "ESTADO DE PEDIDO"});

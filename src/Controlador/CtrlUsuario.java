@@ -24,9 +24,10 @@ public class CtrlUsuario implements ActionListener{
     
     private DefaultTableModel DTM=new DefaultTableModel();
     Controlador C = Controlador.getInstance();
-    private FrmUsuario Frm;
+    private static FrmUsuario Frm;
+    private static CtrlUsuario Single;
     
-    public CtrlUsuario(FrmUsuario Frm){
+    private CtrlUsuario(FrmUsuario Frm){
         this.Frm = Frm;
        
         Frm.btneditar.addActionListener(this);
@@ -61,6 +62,13 @@ public class CtrlUsuario implements ActionListener{
             public void keyPressed(KeyEvent e) {}
         });
       
+    }
+    
+    public static synchronized CtrlUsuario getInstance(FrmUsuario Frm){
+        if(Single == null){
+            Single = new CtrlUsuario(Frm);
+        }
+        return Single;
     }
     
     public void Iniciar(){

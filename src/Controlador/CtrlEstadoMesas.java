@@ -23,9 +23,10 @@ import javax.swing.table.DefaultTableModel;
 public class CtrlEstadoMesas implements ActionListener{
     private DefaultTableModel DTM=new DefaultTableModel();
     Controlador C = Controlador.getInstance();
-    private FrmEstadoMesas Frm;
+    private static FrmEstadoMesas Frm;
+    private static CtrlEstadoMesas Single;
     
-    public CtrlEstadoMesas(FrmEstadoMesas Frm){
+    private CtrlEstadoMesas(FrmEstadoMesas Frm){
         this.Frm = Frm;
        
         Frm.btneditar.addActionListener(this);
@@ -56,6 +57,13 @@ public class CtrlEstadoMesas implements ActionListener{
             public void keyPressed(KeyEvent e) {}
         });
       
+    }
+    
+    public static synchronized CtrlEstadoMesas getInstance(FrmEstadoMesas Frm){
+        if(Single == null){
+            Single = new CtrlEstadoMesas(Frm);
+        }
+        return Single;
     }
     
     public void Iniciar(){

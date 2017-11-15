@@ -24,9 +24,10 @@ public class CtrlSabor implements ActionListener {
 
     private DefaultTableModel DTM = new DefaultTableModel();
     Controlador C = Controlador.getInstance();
-    private FrmSabor Frm;
+    private static FrmSabor Frm;
+    private static CtrlSabor Single;
 
-    public CtrlSabor(FrmSabor Frm) {
+    private CtrlSabor(FrmSabor Frm) {
         this.Frm = Frm;
 
         Frm.btneditar.addActionListener(this);
@@ -63,6 +64,13 @@ public class CtrlSabor implements ActionListener {
 
     }
 
+    public static synchronized CtrlSabor getInstance(FrmSabor Frm){
+        if(Single == null){
+            Single = new CtrlSabor(Frm);
+        }
+        return Single;
+    }
+    
     public void Iniciar() {
         Frm.TSabor.setModel(DTM);
         DTM.setColumnIdentifiers(new String[]{"CODIGO", "SABOR DE BEBIDA"});

@@ -24,9 +24,10 @@ public class CtrlColor implements ActionListener {
 
     private DefaultTableModel DTM = new DefaultTableModel();
     Controlador C = Controlador.getInstance();
-    private FrmColor Frm;
+    private static FrmColor Frm;
+    private static CtrlColor Single;
 
-    public CtrlColor(FrmColor Frm) {
+    private CtrlColor(FrmColor Frm) {
         this.Frm = Frm;
 
         Frm.btneditar.addActionListener(this);
@@ -63,6 +64,13 @@ public class CtrlColor implements ActionListener {
 
     }
 
+    public static synchronized CtrlColor getInstance(FrmColor Frm){
+        if(Single == null){
+            Single = new CtrlColor(Frm);
+        }
+        return Single;
+    }
+    
     public void Iniciar() {
         Frm.TColor.setModel(DTM);
         DTM.setColumnIdentifiers(new String[]{"CODIGO", "COLOR DE INGREDIENTE"});

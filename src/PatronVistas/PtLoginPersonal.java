@@ -3,28 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Patron;
+package PatronVistas;
 
-import Vista.*;
+import Vista.FrmLoginPersonal;
 
 /**
  *
  * @author Wilmer Quito
  */
-public class PtUbicacion {
-    private static FrmUbicacion Single;
+public class PtLoginPersonal {
+    private static FrmLoginPersonal Single;
 
-    public PtUbicacion() {
+    private PtLoginPersonal() {
     }
     
     private static synchronized void Instancia() {
         if (Single == null) {
-            Single = new FrmUbicacion();
+            Single = new FrmLoginPersonal();
         }
     }
 
-    public static FrmUbicacion getInstance() {
-        if (Single == null) {
+    public static FrmLoginPersonal getInstance() {
+        if(Single == null){
             Instancia();
         }
         return Single;

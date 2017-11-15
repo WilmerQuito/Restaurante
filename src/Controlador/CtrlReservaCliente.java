@@ -34,13 +34,14 @@ public class CtrlReservaCliente implements ActionListener {
 
     private DefaultTableModel DTM = new DefaultTableModel();
     Controlador C = Controlador.getInstance();
-    private FrmReservaCliente Frm;
+    private static FrmReservaCliente Frm;
+    private static CtrlReservaCliente Single;
     Date dat = new Date();
     SpinnerNumberModel nm = new SpinnerNumberModel();
     String CodMesa, CodCli, NumMesa;
     Integer Cant;
 
-    public CtrlReservaCliente(FrmReservaCliente Frm) {
+    private CtrlReservaCliente(FrmReservaCliente Frm) {
         this.Frm = Frm;
         Frm.cboRestaurante.addActionListener(this);
         Frm.btnCancelar.addActionListener(this);
@@ -78,6 +79,13 @@ public class CtrlReservaCliente implements ActionListener {
 
     }
 
+    public static synchronized CtrlReservaCliente getInstance(FrmReservaCliente Frm){
+        if(Single == null){
+            Single = new CtrlReservaCliente(Frm);
+        }
+        return Single;
+    }
+    
     public void Iniciar() {
 
         Frm.setTitle("RESERVA TU MESA...!!!");

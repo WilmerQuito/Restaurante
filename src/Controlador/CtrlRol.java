@@ -23,9 +23,10 @@ import javax.swing.table.DefaultTableModel;
 public class CtrlRol implements ActionListener{
     private DefaultTableModel DTM=new DefaultTableModel();
     Controlador C = Controlador.getInstance();
-    private FrmRol Frm;
+    private static FrmRol Frm;
+    private static CtrlRol Single;
     
-    public CtrlRol (FrmRol Frm){
+    private CtrlRol (FrmRol Frm){
         this.Frm = Frm;
         
         Frm.btneditar.addActionListener(this);
@@ -56,6 +57,13 @@ public class CtrlRol implements ActionListener{
             public void keyPressed(KeyEvent e) {}
         });
       
+    }
+    
+    public static synchronized CtrlRol getInstance(FrmRol Frm){
+        if(Single == null){
+            Single = new CtrlRol(Frm);
+        }
+        return Single;
     }
     
     public void Iniciar(){

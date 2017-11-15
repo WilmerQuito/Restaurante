@@ -24,9 +24,10 @@ public class CtrlPresentacion implements ActionListener {
 
     private DefaultTableModel DTM = new DefaultTableModel();
     Controlador C = Controlador.getInstance();
-    private FrmPresentacion Frm;
+    private static FrmPresentacion Frm;
+    private static CtrlPresentacion Single;
 
-    public CtrlPresentacion(FrmPresentacion Frm) {
+    private CtrlPresentacion(FrmPresentacion Frm) {
         this.Frm = Frm;
 
         Frm.btneditar.addActionListener(this);
@@ -63,6 +64,13 @@ public class CtrlPresentacion implements ActionListener {
 
     }
 
+    public static synchronized CtrlPresentacion getInstance(FrmPresentacion Frm){
+        if(Single == null){
+            Single = new CtrlPresentacion(Frm);
+        }
+        return Single;
+    }
+    
     public void Iniciar() {
         Frm.TPresentacion.setModel(DTM);
         DTM.setColumnIdentifiers(new String[]{"CODIGO", "PRESENTACION DEL INGREDIENTE"});

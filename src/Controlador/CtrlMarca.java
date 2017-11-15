@@ -24,9 +24,10 @@ public class CtrlMarca implements ActionListener {
 
     private DefaultTableModel DTM = new DefaultTableModel();
     Controlador C = Controlador.getInstance();
-    private FrmMarca Frm;
+    private static FrmMarca Frm;
+    private static CtrlMarca Single;
 
-    public CtrlMarca(FrmMarca Frm) {
+    private CtrlMarca(FrmMarca Frm) {
         this.Frm = Frm;
 
         Frm.btneditar.addActionListener(this);
@@ -62,6 +63,13 @@ public class CtrlMarca implements ActionListener {
         });
     }
 
+    public static synchronized CtrlMarca getInstance(FrmMarca Frm){
+        if(Single == null){
+            Single = new CtrlMarca(Frm);
+        }
+        return Single;
+    }
+    
     public void Iniciar() {
         Frm.TTipo.setModel(DTM);
         DTM.setColumnIdentifiers(new String[]{"CODIGO", "MARCA DE BEBIDA"});

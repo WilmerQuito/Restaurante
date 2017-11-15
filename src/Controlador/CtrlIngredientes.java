@@ -24,9 +24,10 @@ public class CtrlIngredientes implements ActionListener {
 
     private DefaultTableModel DTM = new DefaultTableModel();
     Controlador C = Controlador.getInstance();
-    private FrmIngredientes Frm;
+    private static FrmIngredientes Frm;
+    private static CtrlIngredientes Single;
 
-    public CtrlIngredientes(FrmIngredientes Frm) {
+    private CtrlIngredientes(FrmIngredientes Frm) {
         this.Frm = Frm;
 
         Frm.btneditar.addActionListener(this);
@@ -65,6 +66,13 @@ public class CtrlIngredientes implements ActionListener {
         });
     }
 
+    public static synchronized CtrlIngredientes getInstance(FrmIngredientes Frm){
+        if(Single == null){
+            Single = new CtrlIngredientes(Frm);
+        }
+        return Single;
+    }
+    
     public void Iniciar() {
         Frm.TIngredientes.setModel(DTM);
         DTM.setColumnIdentifiers(new String[]{"CODIGO", "INGREDIENTE", "COLOR", "PRESENTACION", "TIPO"});

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Patron;
+package PatronVistas;
 
 import Vista.*;
 
@@ -11,19 +11,19 @@ import Vista.*;
  *
  * @author Wilmer Quito
  */
-public class PtAlmacen {
-    private static FrmAlmacen Single;
+public class PtSabor {
+    private static FrmSabor Single;
 
-    public PtAlmacen() {
+    public PtSabor() {
     }
     
     private static synchronized void Instancia() {
         if (Single == null) {
-            Single = new FrmAlmacen();
+            Single = new FrmSabor();
         }
     }
 
-    public static FrmAlmacen getInstance() {
+    public static FrmSabor getInstance() {
         if (Single == null) {
             Instancia();
         }

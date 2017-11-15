@@ -23,9 +23,10 @@ import javax.swing.table.DefaultTableModel;
 public class CtrlUbicacion implements ActionListener{
     private DefaultTableModel DTM=new DefaultTableModel();
     Controlador C = Controlador.getInstance();
-    private FrmUbicacion Frm;
+    private static FrmUbicacion Frm;
+    private static CtrlUbicacion Single;
     
-    public CtrlUbicacion (FrmUbicacion Frm){
+    private CtrlUbicacion (FrmUbicacion Frm){
         this.Frm = Frm;
        
         Frm.btneditar.addActionListener(this);
@@ -56,6 +57,13 @@ public class CtrlUbicacion implements ActionListener{
             public void keyPressed(KeyEvent e) {}
         });
       
+    }
+    
+    public static synchronized CtrlUbicacion getInstance(FrmUbicacion Frm){
+        if(Single == null){
+            Single = new CtrlUbicacion(Frm);
+        }
+        return Single;
     }
     
     public void Iniciar(){        

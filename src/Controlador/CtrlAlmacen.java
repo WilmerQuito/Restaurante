@@ -24,9 +24,10 @@ public class CtrlAlmacen implements ActionListener{
     
     private DefaultTableModel DTM=new DefaultTableModel();
     Controlador C = Controlador.getInstance();
-    private FrmAlmacen Frm;
+    private static FrmAlmacen Frm;
+    private static CtrlAlmacen Single;
     
-    public CtrlAlmacen(FrmAlmacen Frm){
+    private CtrlAlmacen(FrmAlmacen Frm){
         this.Frm = Frm;
        
         Frm.btneditar.addActionListener(this);
@@ -58,6 +59,13 @@ public class CtrlAlmacen implements ActionListener{
             public void keyPressed(KeyEvent e) {}
         });
       
+    }
+    
+    public static synchronized CtrlAlmacen getInstance(FrmAlmacen Frm){
+        if(Single == null){
+            Single = new CtrlAlmacen(Frm);
+        }
+        return Single;
     }
     
     public void Iniciar(){
