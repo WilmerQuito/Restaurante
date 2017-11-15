@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 public class CtrlPresentacion implements ActionListener {
 
     private DefaultTableModel DTM = new DefaultTableModel();
-    private Controlador C = new Controlador();
+    Controlador C = Controlador.getInstance();
     private FrmPresentacion Frm;
 
     public CtrlPresentacion(FrmPresentacion Frm) {

@@ -33,7 +33,7 @@ import javax.swing.table.DefaultTableModel;
 public class CtrlReservaCliente implements ActionListener {
 
     private DefaultTableModel DTM = new DefaultTableModel();
-    private Controlador C = new Controlador();
+    Controlador C = Controlador.getInstance();
     private FrmReservaCliente Frm;
     Date dat = new Date();
     SpinnerNumberModel nm = new SpinnerNumberModel();
@@ -242,14 +242,6 @@ public class CtrlReservaCliente implements ActionListener {
         return fecha;
     }
 
-    public void BuscarCliente() {
-        FrmBuscarCliente Frm2 = new FrmBuscarCliente();
-        CtrlBuscarCliente Ctl = new CtrlBuscarCliente(Frm2);
-        Ctl.Iniciar();
-        Frm2.setVisible(true);
-        Frm.setVisible(false);
-    }
-
     public void Reservar() {
         CodCli = C.DevolverDatoString("SELECT * FROM cliente WHERE Nombre='" + Frm.lblCliente.getText() + "'", 1);
         
@@ -282,7 +274,7 @@ public class CtrlReservaCliente implements ActionListener {
                     C.Mensaje("RESERVA REALIZADA");
                     Tabla();
                     Limpiar();
-                    BuscarCliente();
+                    C.BuscarCliente(Frm);
                     C.InsertaRegistro("UPDATE mesa SET Cod_Estado='R' WHERE Cod_Mesa='" + CodMesa + "'");
                 }
             }else{
@@ -300,7 +292,7 @@ public class CtrlReservaCliente implements ActionListener {
 
         if (e.getSource() == Frm.btnCancelar) {
             if (JOptionPane.showConfirmDialog(null, "¿QUIERES CANCELAR LA RESERVA?", "CONSULTA", 0) == 0) {
-                BuscarCliente();
+                C.BuscarCliente(Frm);
             }
         }
 

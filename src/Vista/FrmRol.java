@@ -14,6 +14,7 @@ public class FrmRol extends javax.swing.JInternalFrame {
     /**
      * Creates new form FrmRol
      */
+    
     public FrmRol() {
         initComponents();
     }

@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 public class CtrlUnidadMedida implements ActionListener {
 
     private DefaultTableModel DTM = new DefaultTableModel();
-    private Controlador C = new Controlador();
+    Controlador C = Controlador.getInstance();
     private FrmUnidadMedida Frm;
 
     public CtrlUnidadMedida(FrmUnidadMedida Frm) {

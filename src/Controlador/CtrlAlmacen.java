@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 public class CtrlAlmacen implements ActionListener{
     
     private DefaultTableModel DTM=new DefaultTableModel();
-    private Controlador C=new Controlador();
+    Controlador C = Controlador.getInstance();
     private FrmAlmacen Frm;
     
     public CtrlAlmacen(FrmAlmacen Frm){

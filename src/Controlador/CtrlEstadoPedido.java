@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 public class CtrlEstadoPedido implements ActionListener {
 
     private DefaultTableModel DTM = new DefaultTableModel();
-    private Controlador C = new Controlador();
+    Controlador C = Controlador.getInstance();
     private FrmEstadoPedido Frm;
 
     public CtrlEstadoPedido(FrmEstadoPedido Frm) {

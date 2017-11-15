@@ -71,23 +71,24 @@ public class Imprimir {
         }
     }
     
-    public void Imprimir(String nomrep) {
+    public void Imprimir(String NomRepor, String Titulo) {
         try {
             Map parametro = new HashMap();
-            rta = System.getProperties().getProperty("user.dir") + "/src/Reportes/"+ nomrep +".jrxml";
+            rta = System.getProperties().getProperty("user.dir") + "/src/Reportes/"+ NomRepor +".jrxml";
             parametro.put("", "");
             JasperPrint prt = JasperFillManager.fillReport(rta, parametro, Conexion.conn);
             int n = prt.getPages().size();
             if (n > 0) {
                 JasperViewer JsperView = new JasperViewer(prt, false);
-                JsperView.setTitle("Reporte de Empleados");
+                JsperView.setTitle(Titulo);
                 JsperView.setExtendedState(6);
                 JsperView.show();
             } else {
-                JOptionPane.showMessageDialog(null, "No hay datos");
+                JOptionPane.showMessageDialog(null, "NO HAY DATOS");
             }
-        } catch (Exception E) {
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
-    
+
 }

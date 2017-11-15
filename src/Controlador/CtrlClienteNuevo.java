@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  */
 public class CtrlClienteNuevo implements ActionListener {
 
-    private Controlador C = new Controlador();
+    Controlador C = Controlador.getInstance();
     private FrmClienteNuevo Frm;
 
     public CtrlClienteNuevo(FrmClienteNuevo Frm) {
@@ -74,23 +74,7 @@ public class CtrlClienteNuevo implements ActionListener {
         Frm.txtNombre.setText(null);
         Frm.txtNombre.grabFocus();
     }
-
-    public void BuscarCliente() {
-        FrmBuscarCliente Frm2 = new FrmBuscarCliente();
-        CtrlBuscarCliente Ctl = new CtrlBuscarCliente(Frm2);
-        Ctl.Iniciar();
-        Frm2.setVisible(true);
-        Frm.setVisible(false);
-    }
-
-    public void Reservas() {
-        FrmReservaCliente Frm2 = new FrmReservaCliente();
-        CtrlReservaCliente Ctl = new CtrlReservaCliente(Frm2);
-        Ctl.Iniciar();
-        Frm2.setVisible(true);
-        Frm.setVisible(false);
-    }
-
+    
     public void Guardar() {
         String sql = "SELECT * FROM Cliente WHERE DNI='" + Frm.txtDNI.getText() + "';";
         if (!C.VerificarConsulta(sql)) {
@@ -107,11 +91,11 @@ public class CtrlClienteNuevo implements ActionListener {
                             + Frm.txtCelular.getText().toUpperCase() + "')");
                     C.Mensaje("YA ESTAS REGISTRADO");
                     if (JOptionPane.showConfirmDialog(null, "¿QUIERES RESERVAR UNA MESA?", "CONSULTA", 0) == 0) {
-                        Reservas();
+                        C.Reservas(Frm);
                         FrmReservaCliente.lblCliente.setText(null);
                         FrmReservaCliente.lblCliente.setText(Frm.txtNombre.getText().toUpperCase());
                     } else {
-                        BuscarCliente();
+                        C.BuscarCliente(Frm);
                     }
                 }
             }
@@ -124,7 +108,7 @@ public class CtrlClienteNuevo implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == Frm.btnRegresar) {
-            BuscarCliente();
+            C.BuscarCliente(Frm);
         }
 
         if (e.getSource() == Frm.btnguardar) {

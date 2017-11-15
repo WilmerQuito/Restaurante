@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 public class CtrlMarca implements ActionListener {
 
     private DefaultTableModel DTM = new DefaultTableModel();
-    private Controlador C = new Controlador();
+    Controlador C = Controlador.getInstance();
     private FrmMarca Frm;
 
     public CtrlMarca(FrmMarca Frm) {

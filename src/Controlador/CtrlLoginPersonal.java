@@ -17,7 +17,7 @@ import java.awt.event.ActionListener;
  */
 public class CtrlLoginPersonal implements ActionListener {
 
-    private Controlador C = new Controlador();
+    Controlador C = Controlador.getInstance();
     private FrmLoginPersonal Frm;
     private FrmPrincipal FrmP;
 
@@ -141,14 +141,6 @@ public class CtrlLoginPersonal implements ActionListener {
         }
     }
 
-    public void BuscarCliente() {
-        FrmBuscarCliente Frm2 = new FrmBuscarCliente();
-        CtrlBuscarCliente Ctl = new CtrlBuscarCliente(Frm2);
-        Ctl.Iniciar();
-        Frm2.setVisible(true);
-        Frm.setVisible(false);
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -161,7 +153,7 @@ public class CtrlLoginPersonal implements ActionListener {
         }
 
         if (e.getSource() == Frm.btnSalir) {
-            BuscarCliente();
+            C.BuscarCliente(Frm);
         }
     }
 }

@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 public class CtrlBebida implements ActionListener {
 
     private DefaultTableModel DTM = new DefaultTableModel();
-    private Controlador C = new Controlador();
+    Controlador C = Controlador.getInstance();
     private FrmBebida Frm;
 
     public CtrlBebida(FrmBebida Frm) {

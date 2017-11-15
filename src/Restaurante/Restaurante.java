@@ -6,6 +6,7 @@
 package Restaurante;
 
 import Controlador.*;
+import Modelo.Controlador;
 import Vista.*;
 
 /**
@@ -18,6 +19,7 @@ public class Restaurante {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        Controlador C = Controlador.getInstance();
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -34,16 +36,10 @@ public class Restaurante {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FrmBuscarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FrmBuscarCliente Frm = new FrmBuscarCliente();
-                CtrlBuscarCliente Ctl = new CtrlBuscarCliente(Frm);
-
-                /*FrmReservaCliente Frm = new FrmReservaCliente();
-                CtrlReservaCliente Ctl = new CtrlReservaCliente(Frm);*/
-                
-                Ctl.Iniciar();
+                C.BuscarClienteInicial();
             }
         });
     }

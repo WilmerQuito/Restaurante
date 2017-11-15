@@ -18,8 +18,9 @@ import javax.swing.JOptionPane;
  * @author Wilmer Quito
  */
 public class CtrlBuscarCliente implements ActionListener{
-    private Controlador C=new Controlador();
+    Controlador C = Controlador.getInstance();
     private FrmBuscarCliente Frm;
+    public static int CV=0;
     
     public CtrlBuscarCliente (FrmBuscarCliente Frm){
         this.Frm = Frm;
@@ -29,13 +30,12 @@ public class CtrlBuscarCliente implements ActionListener{
         
         Frm.lblAcceso.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                LoginPersonal();
+                C.LoginPersonal(Frm);
             }
         } );
     }
     
     public void Iniciar(){
-        Frm.setVisible(true);
         Frm.setTitle("BIENVENIDO");
         Frm.setLocationRelativeTo(null);
     }
@@ -55,44 +55,20 @@ public class CtrlBuscarCliente implements ActionListener{
         return C.flag;
     }
     
-    public void ClienteNuevo(){
-        FrmClienteNuevo Frm2=new FrmClienteNuevo();
-        CtrlClienteNuevo Ctl= new CtrlClienteNuevo(Frm2);
-        Ctl.Iniciar();
-        Frm2.setVisible(true);
-        Frm.setVisible(false);
-    }
-    
-    public void Reservas(){
-        FrmReservaCliente Frm2=new FrmReservaCliente();
-        CtrlReservaCliente Ctl= new CtrlReservaCliente(Frm2);
-        Ctl.Iniciar();
-        Frm2.setVisible(true);
-        Frm.setVisible(false);
-    }
-    
-    public void LoginPersonal(){
-        FrmLoginPersonal Frm2=new FrmLoginPersonal();
-        CtrlLoginPersonal Ctl= new CtrlLoginPersonal(Frm2);
-        Ctl.Iniciar();
-        Frm2.setVisible(true);
-        Frm.setVisible(false);
-    }
-    
     public void Acceder(){
         C.sql="SELECT * FROM cliente WHERE DNI='"+Frm.txtDni.getText()+"'";
         
         if(Validar()){
             if(!C.VerificarConsulta(C.sql)){
                 if (JOptionPane.showConfirmDialog(null, "NO ESTAS REGISTRADO, ¿DESEAS REGISTRARTE?", "CONSULTA", 0) == 0) {
-                    ClienteNuevo();
+                    C.ClienteNuevo(Frm);
                     FrmClienteNuevo.txtDNI.setText(Frm.txtDni.getText());
                     FrmClienteNuevo.txtDNI.setEditable(false);
                 }else{
                     Limpiar();
                 }
             }else{
-                Reservas();
+                C.Reservas(Frm);
                 FrmReservaCliente.lblCliente.setText(null);
                 FrmReservaCliente.lblCliente.setText(C.DevolverDatoString("SELECT * FROM cliente WHERE DNI='"+Frm.txtDni.getText()+"'",2).toUpperCase());
             }

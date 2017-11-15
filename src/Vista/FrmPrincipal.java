@@ -9,6 +9,7 @@ import Controlador.*;
 import Modelo.Controlador;
 import Vista.*;
 import java.awt.Dimension;
+import Patron.*;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,7 +17,8 @@ import javax.swing.JOptionPane;
  * @author Wilmer Quito
  */
 public class FrmPrincipal extends javax.swing.JFrame {
-    Controlador C=new Controlador();
+
+    Controlador C = Controlador.getInstance();
 
     /**
      * Creates new form FrmPrincipal
@@ -26,7 +28,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("MENU PRINCIPAL");
-        
+
     }
 
     /**
@@ -52,7 +54,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jmEstadoMesa = new javax.swing.JMenuItem();
         jmUbicacion = new javax.swing.JMenuItem();
         mCliente = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jmCliente = new javax.swing.JMenuItem();
         mUsuario = new javax.swing.JMenu();
         jmRoles = new javax.swing.JMenuItem();
         jmEmpleado = new javax.swing.JMenuItem();
@@ -72,8 +74,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jmBebida = new javax.swing.JMenuItem();
         mPedidos = new javax.swing.JMenu();
         jmEstadoPedido = new javax.swing.JMenuItem();
-        jmPedido = new javax.swing.JMenuItem();
-        jmConsumicion = new javax.swing.JMenuItem();
         mMedida = new javax.swing.JMenu();
         jmMedida = new javax.swing.JMenuItem();
         jmReportes = new javax.swing.JMenu();
@@ -192,14 +192,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
         mCliente.setText("CLIENTE");
         mCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jMenuItem1.setText("CLIENTE");
-        jMenuItem1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jmCliente.setText("CLIENTE");
+        jmCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jmCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jmClienteActionPerformed(evt);
             }
         });
-        mCliente.add(jMenuItem1);
+        mCliente.add(jmCliente);
 
         jMenuBar1.add(mCliente);
 
@@ -336,22 +336,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         mPedidos.add(jmEstadoPedido);
 
-        jmPedido.setText("PEDIDO");
-        jmPedido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmPedidoActionPerformed(evt);
-            }
-        });
-        mPedidos.add(jmPedido);
-
-        jmConsumicion.setText("CONSUMICION");
-        jmConsumicion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmConsumicionActionPerformed(evt);
-            }
-        });
-        mPedidos.add(jmConsumicion);
-
         jMenuBar1.add(mPedidos);
 
         mMedida.setText("MEDIDA");
@@ -395,279 +379,334 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mArchivoActionPerformed
-        
+
     }//GEN-LAST:event_mArchivoActionPerformed
 
     private void jmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmSalirActionPerformed
         if (JOptionPane.showConfirmDialog(null, "¿QUIERES CERRAR EL SISTEMA?", "SALIR", 0) == 0) {
-            FrmLoginPersonal Frm2 = new FrmLoginPersonal();
-            CtrlLoginPersonal Ctl = new CtrlLoginPersonal(Frm2);
-            Ctl.Iniciar();
-            Frm2.setVisible(true);
-            this.setVisible(false);
+            C.LoginPersonal(this);
         }
     }//GEN-LAST:event_jmSalirActionPerformed
 
     private void jmRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmRolesActionPerformed
-        FrmRol Frm=new FrmRol();
-        CtrlRol Ctl= new CtrlRol(Frm);
-        jdpPrincipal.add(Frm);
-        Dimension Tam = jdpPrincipal.getSize();
-        Dimension FrameSize = Frm.getSize();
-        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
-        Ctl.Iniciar();
-        Frm.show();
+        FrmRol Frm = PtRol.getInstance();
+        CtrlRol Ctl = new CtrlRol(Frm);
+        if (!jdpPrincipal.isAncestorOf(Frm)) {
+            jdpPrincipal.add(Frm);
+            Dimension Tam = jdpPrincipal.getSize();
+            Dimension FrameSize = Frm.getSize();
+            Frm.setLocation((Tam.width - FrameSize.width) / 2, (Tam.height - FrameSize.height) / 2);
+            Ctl.Iniciar();
+            Frm.show();
+        } else {
+            jdpPrincipal.setSelectedFrame(Frm);
+        }
     }//GEN-LAST:event_jmRolesActionPerformed
 
     private void jmUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmUsuarioActionPerformed
-        FrmUsuario Frm=new FrmUsuario();
-        CtrlUsuario Ctl= new CtrlUsuario(Frm);
-        jdpPrincipal.add(Frm);
-        Dimension Tam = jdpPrincipal.getSize();
-        Dimension FrameSize = Frm.getSize();
-        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
-        Ctl.Iniciar();
-        Frm.show();
+        FrmUsuario Frm = PtUsuario.getInstance();
+        CtrlUsuario Ctl = new CtrlUsuario(Frm);
+        if (!jdpPrincipal.isAncestorOf(Frm)) {
+            jdpPrincipal.add(Frm);
+            Dimension Tam = jdpPrincipal.getSize();
+            Dimension FrameSize = Frm.getSize();
+            Frm.setLocation((Tam.width - FrameSize.width) / 2, (Tam.height - FrameSize.height) / 2);
+            Ctl.Iniciar();
+            Frm.show();
+        } else {
+            jdpPrincipal.setSelectedFrame(Frm);
+        }
     }//GEN-LAST:event_jmUsuarioActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        FrmCliente Frm=new FrmCliente();
-        CtrlCliente Ctl= new CtrlCliente(Frm);
-        jdpPrincipal.add(Frm);
-        Dimension Tam = jdpPrincipal.getSize();
-        Dimension FrameSize = Frm.getSize();
-        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
-        Ctl.Iniciar();
-        Frm.show();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void jmClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmClienteActionPerformed
+        FrmCliente Frm = PtCliente.getInstance();
+        CtrlCliente Ctl = new CtrlCliente(Frm);
+        if (!jdpPrincipal.isAncestorOf(Frm)) {
+            jdpPrincipal.add(Frm);
+            Dimension Tam = jdpPrincipal.getSize();
+            Dimension FrameSize = Frm.getSize();
+            Frm.setLocation((Tam.width - FrameSize.width) / 2, (Tam.height - FrameSize.height) / 2);
+            Ctl.Iniciar();
+            Frm.show();
+        } else {
+            jdpPrincipal.setSelectedFrame(Frm);
+        }
+    }//GEN-LAST:event_jmClienteActionPerformed
 
     private void jmRestauranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmRestauranteActionPerformed
-        FrmRestaurante Frm=new FrmRestaurante();
-        CtrlRestaurante Ctl= new CtrlRestaurante(Frm);
-        jdpPrincipal.add(Frm);
-        Dimension Tam = jdpPrincipal.getSize();
-        Dimension FrameSize = Frm.getSize();
-        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
-        Ctl.Iniciar();
-        Frm.show();
+        FrmRestaurante Frm = PtRestaurante.getInstance();
+        CtrlRestaurante Ctl = new CtrlRestaurante(Frm);
+        if (!jdpPrincipal.isAncestorOf(Frm)) {
+            jdpPrincipal.add(Frm);
+            Dimension Tam = jdpPrincipal.getSize();
+            Dimension FrameSize = Frm.getSize();
+            Frm.setLocation((Tam.width - FrameSize.width) / 2, (Tam.height - FrameSize.height) / 2);
+            Ctl.Iniciar();
+            Frm.show();
+        } else {
+            jdpPrincipal.setSelectedFrame(Frm);
+        }
     }//GEN-LAST:event_jmRestauranteActionPerformed
 
     private void jmAlmacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAlmacenActionPerformed
-        /*FrmAlmacen Frm=new FrmAlmacen();
-        CtrlAlmacen Ctl= new CtrlAlmacen(Frm);
-        jdpPrincipal.add(Frm);
-        Dimension Tam = jdpPrincipal.getSize();
-        Dimension FrameSize = Frm.getSize();
-        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
-        Ctl.Iniciar();
-        Frm.show();*/
+        /*FrmAlmacen Frm = PtAlmacen.getInstance();
+        CtrlAlmacen Ctl = new CtrlAlmacen(Frm);
+        if (!jdpPrincipal.isAncestorOf(Frm)) {
+            jdpPrincipal.add(Frm);
+            Dimension Tam = jdpPrincipal.getSize();
+            Dimension FrameSize = Frm.getSize();
+            Frm.setLocation((Tam.width - FrameSize.width) / 2, (Tam.height - FrameSize.height) / 2);
+            Ctl.Iniciar();
+            Frm.show();
+        } else {
+            jdpPrincipal.setSelectedFrame(Frm);
+        }*/
     }//GEN-LAST:event_jmAlmacenActionPerformed
 
     private void jmMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmMesasActionPerformed
-        FrmMesa Frm=new FrmMesa();
-        CtrlMesa Ctl= new CtrlMesa(Frm);
-        jdpPrincipal.add(Frm);
-        Dimension Tam = jdpPrincipal.getSize();
-        Dimension FrameSize = Frm.getSize();
-        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
-        Ctl.Iniciar();
-        Frm.show();
+        FrmMesa Frm = PtMesa.getInstance();
+        CtrlMesa Ctl = new CtrlMesa(Frm);
+        if (!jdpPrincipal.isAncestorOf(Frm)) {
+            jdpPrincipal.add(Frm);
+            Dimension Tam = jdpPrincipal.getSize();
+            Dimension FrameSize = Frm.getSize();
+            Frm.setLocation((Tam.width - FrameSize.width) / 2, (Tam.height - FrameSize.height) / 2);
+            Ctl.Iniciar();
+            Frm.show();
+        } else {
+            jdpPrincipal.setSelectedFrame(Frm);
+        }
     }//GEN-LAST:event_jmMesasActionPerformed
 
     private void jmEstadoMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmEstadoMesaActionPerformed
-        FrmEstadoMesas Frm=new FrmEstadoMesas();
-        CtrlEstadoMesas Ctl= new CtrlEstadoMesas(Frm);
-        jdpPrincipal.add(Frm);
-        Dimension Tam = jdpPrincipal.getSize();
-        Dimension FrameSize = Frm.getSize();
-        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
-        Ctl.Iniciar();
-        Frm.show();
+        FrmEstadoMesas Frm = PtEstadoMesas.getInstance();
+        CtrlEstadoMesas Ctl = new CtrlEstadoMesas(Frm);
+        if (!jdpPrincipal.isAncestorOf(Frm)) {
+            jdpPrincipal.add(Frm);
+            Dimension Tam = jdpPrincipal.getSize();
+            Dimension FrameSize = Frm.getSize();
+            Frm.setLocation((Tam.width - FrameSize.width) / 2, (Tam.height - FrameSize.height) / 2);
+            Ctl.Iniciar();
+            Frm.show();
+        } else {
+            jdpPrincipal.setSelectedFrame(Frm);
+        }
     }//GEN-LAST:event_jmEstadoMesaActionPerformed
 
     private void jmUbicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmUbicacionActionPerformed
-        FrmUbicacion Frm=new FrmUbicacion();
-        CtrlUbicacion Ctl= new CtrlUbicacion(Frm);
-        jdpPrincipal.add(Frm);
-        Dimension Tam = jdpPrincipal.getSize();
-        Dimension FrameSize = Frm.getSize();
-        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
-        Ctl.Iniciar();
-        Frm.show();
+        FrmUbicacion Frm = PtUbicacion.getInstance();
+        CtrlUbicacion Ctl = new CtrlUbicacion(Frm);
+        if (!jdpPrincipal.isAncestorOf(Frm)) {
+            jdpPrincipal.add(Frm);
+            Dimension Tam = jdpPrincipal.getSize();
+            Dimension FrameSize = Frm.getSize();
+            Frm.setLocation((Tam.width - FrameSize.width) / 2, (Tam.height - FrameSize.height) / 2);
+            Ctl.Iniciar();
+            Frm.show();
+        } else {
+            jdpPrincipal.setSelectedFrame(Frm);
+        }
     }//GEN-LAST:event_jmUbicacionActionPerformed
 
     private void jmEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmEmpleadoActionPerformed
-        FrmEmpleado Frm=new FrmEmpleado();
-        CtrlEmpleado Ctl=new CtrlEmpleado(Frm);
-        jdpPrincipal.add(Frm);
-        Dimension Tam = jdpPrincipal.getSize();
-        Dimension FrameSize = Frm.getSize();
-        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
-        Ctl.Iniciar();
-        Frm.show();
+        FrmEmpleado Frm = PtEmpleado.getInstance();
+        CtrlEmpleado Ctl = new CtrlEmpleado(Frm);
+        if (!jdpPrincipal.isAncestorOf(Frm)) {
+            jdpPrincipal.add(Frm);
+            Dimension Tam = jdpPrincipal.getSize();
+            Dimension FrameSize = Frm.getSize();
+            Frm.setLocation((Tam.width - FrameSize.width) / 2, (Tam.height - FrameSize.height) / 2);
+            Ctl.Iniciar();
+            Frm.show();
+        } else {
+            jdpPrincipal.setSelectedFrame(Frm);
+        }
     }//GEN-LAST:event_jmEmpleadoActionPerformed
 
     private void jmOrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmOrigenActionPerformed
-        FrmOrigenComida Frm=new FrmOrigenComida();
-        CtrlOrigenComida Ctl=new CtrlOrigenComida(Frm);
-        jdpPrincipal.add(Frm);
-        Dimension Tam = jdpPrincipal.getSize();
-        Dimension FrameSize = Frm.getSize();
-        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
-        Ctl.Iniciar();
-        Frm.show();
+        FrmOrigenComida Frm = PtOrigenComida.getInstance();
+        CtrlOrigenComida Ctl = new CtrlOrigenComida(Frm);
+        if (!jdpPrincipal.isAncestorOf(Frm)) {
+            jdpPrincipal.add(Frm);
+            Dimension Tam = jdpPrincipal.getSize();
+            Dimension FrameSize = Frm.getSize();
+            Frm.setLocation((Tam.width - FrameSize.width) / 2, (Tam.height - FrameSize.height) / 2);
+            Ctl.Iniciar();
+            Frm.show();
+        } else {
+            jdpPrincipal.setSelectedFrame(Frm);
+        }
     }//GEN-LAST:event_jmOrigenActionPerformed
-        
+
     private void jmComidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmComidaActionPerformed
-        FrmComida Frm=new FrmComida();
-        CtrlComida Ctl=new CtrlComida(Frm);
-        jdpPrincipal.add(Frm);
-        Dimension Tam = jdpPrincipal.getSize();
-        Dimension FrameSize = Frm.getSize();
-        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
-        Ctl.Iniciar();
-        Frm.show();
+        FrmComida Frm = PtComida.getInstance();
+        CtrlComida Ctl = new CtrlComida(Frm);
+        if (!jdpPrincipal.isAncestorOf(Frm)) {
+            jdpPrincipal.add(Frm);
+            Dimension Tam = jdpPrincipal.getSize();
+            Dimension FrameSize = Frm.getSize();
+            Frm.setLocation((Tam.width - FrameSize.width) / 2, (Tam.height - FrameSize.height) / 2);
+            Ctl.Iniciar();
+            Frm.show();
+        } else {
+            jdpPrincipal.setSelectedFrame(Frm);
+        }
     }//GEN-LAST:event_jmComidaActionPerformed
 
     private void jmPresentacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmPresentacionActionPerformed
-        FrmPresentacion Frm=new FrmPresentacion();
-        CtrlPresentacion Ctl=new CtrlPresentacion(Frm);
-        jdpPrincipal.add(Frm);
-        Dimension Tam = jdpPrincipal.getSize();
-        Dimension FrameSize = Frm.getSize();
-        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
-        Ctl.Iniciar();
-        Frm.show();
+        FrmPresentacion Frm = PtPresentacion.getInstance();
+        CtrlPresentacion Ctl = new CtrlPresentacion(Frm);
+        if (!jdpPrincipal.isAncestorOf(Frm)) {
+            jdpPrincipal.add(Frm);
+            Dimension Tam = jdpPrincipal.getSize();
+            Dimension FrameSize = Frm.getSize();
+            Frm.setLocation((Tam.width - FrameSize.width) / 2, (Tam.height - FrameSize.height) / 2);
+            Ctl.Iniciar();
+            Frm.show();
+        } else {
+            jdpPrincipal.setSelectedFrame(Frm);
+        }
     }//GEN-LAST:event_jmPresentacionActionPerformed
 
     private void jmColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmColorActionPerformed
-        FrmColor Frm=new FrmColor();
-        CtrlColor Ctl=new CtrlColor(Frm);
-        jdpPrincipal.add(Frm);
-        Dimension Tam = jdpPrincipal.getSize();
-        Dimension FrameSize = Frm.getSize();
-        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
-        Ctl.Iniciar();
-        Frm.show();
+        FrmColor Frm = PtColor.getInstance();
+        CtrlColor Ctl = new CtrlColor(Frm);
+        if (!jdpPrincipal.isAncestorOf(Frm)) {
+            jdpPrincipal.add(Frm);
+            Dimension Tam = jdpPrincipal.getSize();
+            Dimension FrameSize = Frm.getSize();
+            Frm.setLocation((Tam.width - FrameSize.width) / 2, (Tam.height - FrameSize.height) / 2);
+            Ctl.Iniciar();
+            Frm.show();
+        } else {
+            jdpPrincipal.setSelectedFrame(Frm);
+        }
     }//GEN-LAST:event_jmColorActionPerformed
 
     private void jmTipoIngredienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmTipoIngredienteActionPerformed
-        FrmTipoIngrediente Frm=new FrmTipoIngrediente();
-        CtrlTipoIngrediente Ctl=new CtrlTipoIngrediente(Frm);
-        jdpPrincipal.add(Frm);
-        Dimension Tam = jdpPrincipal.getSize();
-        Dimension FrameSize = Frm.getSize();
-        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
-        Ctl.Iniciar();
-        Frm.show();
+        FrmTipoIngrediente Frm = PtTipoIngrediente.getInstance();
+        CtrlTipoIngrediente Ctl = new CtrlTipoIngrediente(Frm);
+        if (!jdpPrincipal.isAncestorOf(Frm)) {
+            jdpPrincipal.add(Frm);
+            Dimension Tam = jdpPrincipal.getSize();
+            Dimension FrameSize = Frm.getSize();
+            Frm.setLocation((Tam.width - FrameSize.width) / 2, (Tam.height - FrameSize.height) / 2);
+            Ctl.Iniciar();
+            Frm.show();
+        } else {
+            jdpPrincipal.setSelectedFrame(Frm);
+        }
     }//GEN-LAST:event_jmTipoIngredienteActionPerformed
 
     private void jmIngredienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmIngredienteActionPerformed
-        FrmIngredientes Frm=new FrmIngredientes();
-        CtrlIngredientes Ctl=new CtrlIngredientes(Frm);
-        jdpPrincipal.add(Frm);
-        Dimension Tam = jdpPrincipal.getSize();
-        Dimension FrameSize = Frm.getSize();
-        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
-        Ctl.Iniciar();
-        Frm.show();
+        FrmIngredientes Frm = PtIngredientes.getInstance();
+        CtrlIngredientes Ctl = new CtrlIngredientes(Frm);
+        if (!jdpPrincipal.isAncestorOf(Frm)) {
+            jdpPrincipal.add(Frm);
+            Dimension Tam = jdpPrincipal.getSize();
+            Dimension FrameSize = Frm.getSize();
+            Frm.setLocation((Tam.width - FrameSize.width) / 2, (Tam.height - FrameSize.height) / 2);
+            Ctl.Iniciar();
+            Frm.show();
+        } else {
+            jdpPrincipal.setSelectedFrame(Frm);
+        }
     }//GEN-LAST:event_jmIngredienteActionPerformed
 
     private void jmSaborActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmSaborActionPerformed
-        FrmSabor Frm=new FrmSabor();
-        CtrlSabor Ctl=new CtrlSabor(Frm);
-        jdpPrincipal.add(Frm);
-        Dimension Tam = jdpPrincipal.getSize();
-        Dimension FrameSize = Frm.getSize();
-        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
-        Ctl.Iniciar();
-        Frm.show();
+        FrmSabor Frm = PtSabor.getInstance();
+        CtrlSabor Ctl = new CtrlSabor(Frm);
+        if (!jdpPrincipal.isAncestorOf(Frm)) {
+            jdpPrincipal.add(Frm);
+            Dimension Tam = jdpPrincipal.getSize();
+            Dimension FrameSize = Frm.getSize();
+            Frm.setLocation((Tam.width - FrameSize.width) / 2, (Tam.height - FrameSize.height) / 2);
+            Ctl.Iniciar();
+            Frm.show();
+        } else {
+            jdpPrincipal.setSelectedFrame(Frm);
+        }
     }//GEN-LAST:event_jmSaborActionPerformed
 
     private void jmTipoBebidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmTipoBebidaActionPerformed
-        FrmTipoBebida Frm=new FrmTipoBebida();
-        CtrlTipoBebida Ctl=new CtrlTipoBebida(Frm);
-        jdpPrincipal.add(Frm);
-        Dimension Tam = jdpPrincipal.getSize();
-        Dimension FrameSize = Frm.getSize();
-        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
-        Ctl.Iniciar();
-        Frm.show();
+        FrmTipoBebida Frm = PtTipoBebida.getInstance();
+        CtrlTipoBebida Ctl = new CtrlTipoBebida(Frm);
+        if (!jdpPrincipal.isAncestorOf(Frm)) {
+            jdpPrincipal.add(Frm);
+            Dimension Tam = jdpPrincipal.getSize();
+            Dimension FrameSize = Frm.getSize();
+            Frm.setLocation((Tam.width - FrameSize.width) / 2, (Tam.height - FrameSize.height) / 2);
+            Ctl.Iniciar();
+            Frm.show();
+        } else {
+            jdpPrincipal.setSelectedFrame(Frm);
+        }
     }//GEN-LAST:event_jmTipoBebidaActionPerformed
 
     private void jmMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmMarcaActionPerformed
-        FrmMarca Frm=new FrmMarca();
-        CtrlMarca Ctl=new CtrlMarca(Frm);
-        jdpPrincipal.add(Frm);
-        Dimension Tam = jdpPrincipal.getSize();
-        Dimension FrameSize = Frm.getSize();
-        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
-        Ctl.Iniciar();
-        Frm.show();
+        FrmMarca Frm = PtMarca.getInstance();
+        CtrlMarca Ctl = new CtrlMarca(Frm);
+        if (!jdpPrincipal.isAncestorOf(Frm)) {
+            jdpPrincipal.add(Frm);
+            Dimension Tam = jdpPrincipal.getSize();
+            Dimension FrameSize = Frm.getSize();
+            Frm.setLocation((Tam.width - FrameSize.width) / 2, (Tam.height - FrameSize.height) / 2);
+            Ctl.Iniciar();
+            Frm.show();
+        } else {
+            jdpPrincipal.setSelectedFrame(Frm);
+        }
     }//GEN-LAST:event_jmMarcaActionPerformed
 
     private void jmBebidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmBebidaActionPerformed
-        FrmBebida Frm=new FrmBebida();
-        CtrlBebida Ctl=new CtrlBebida(Frm);
-        jdpPrincipal.add(Frm);
-        Dimension Tam = jdpPrincipal.getSize();
-        Dimension FrameSize = Frm.getSize();
-        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
-        Ctl.Iniciar();
-        Frm.show();
+        FrmBebida Frm = PtBebida.getInstance();
+        CtrlBebida Ctl = new CtrlBebida(Frm);
+        if (!jdpPrincipal.isAncestorOf(Frm)) {
+            jdpPrincipal.add(Frm);
+            Dimension Tam = jdpPrincipal.getSize();
+            Dimension FrameSize = Frm.getSize();
+            Frm.setLocation((Tam.width - FrameSize.width) / 2, (Tam.height - FrameSize.height) / 2);
+            Ctl.Iniciar();
+            Frm.show();
+        } else {
+            jdpPrincipal.setSelectedFrame(Frm);
+        }
     }//GEN-LAST:event_jmBebidaActionPerformed
 
     private void jmEstadoPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmEstadoPedidoActionPerformed
-        FrmEstadoPedido Frm=new FrmEstadoPedido();
-        CtrlEstadoPedido Ctl=new CtrlEstadoPedido(Frm);
-        jdpPrincipal.add(Frm);
-        Dimension Tam = jdpPrincipal.getSize();
-        Dimension FrameSize = Frm.getSize();
-        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
-        Ctl.Iniciar();
-        Frm.show();
+        FrmEstadoPedido Frm = PtEstadoPedido.getInstance();
+        CtrlEstadoPedido Ctl = new CtrlEstadoPedido(Frm);
+        if (!jdpPrincipal.isAncestorOf(Frm)) {
+            jdpPrincipal.add(Frm);
+            Dimension Tam = jdpPrincipal.getSize();
+            Dimension FrameSize = Frm.getSize();
+            Frm.setLocation((Tam.width - FrameSize.width) / 2, (Tam.height - FrameSize.height) / 2);
+            Ctl.Iniciar();
+            Frm.show();
+        } else {
+            jdpPrincipal.setSelectedFrame(Frm);
+        }
     }//GEN-LAST:event_jmEstadoPedidoActionPerformed
 
-    private void jmPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmPedidoActionPerformed
-        /*FrmPedido Frm=new FrmPedido();
-        CtrlPedido Ctl=new CtrlPedido(Frm);
-        jdpPrincipal.add(Frm);
-        Dimension Tam = jdpPrincipal.getSize();
-        Dimension FrameSize = Frm.getSize();
-        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
-        Ctl.Iniciar();
-        Frm.show();*/
-    }//GEN-LAST:event_jmPedidoActionPerformed
-
-    private void jmConsumicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmConsumicionActionPerformed
-        /*FrmConsumicion Frm=new FrmConsumicion();
-        CtrlConsumicion Ctl=new CtrlConsumicion(Frm);
-        jdpPrincipal.add(Frm);
-        Dimension Tam = jdpPrincipal.getSize();
-        Dimension FrameSize = Frm.getSize();
-        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
-        Ctl.Iniciar();
-        Frm.show();*/
-    }//GEN-LAST:event_jmConsumicionActionPerformed
-
     private void jmMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmMedidaActionPerformed
-        FrmUnidadMedida Frm=new FrmUnidadMedida();
-        CtrlUnidadMedida Ctl=new CtrlUnidadMedida(Frm);
-        jdpPrincipal.add(Frm);
-        Dimension Tam = jdpPrincipal.getSize();
-        Dimension FrameSize = Frm.getSize();
-        Frm.setLocation((Tam.width - FrameSize.width)/2, (Tam.height- FrameSize.height)/2);
-        Ctl.Iniciar();
-        Frm.show();
+        FrmUnidadMedida Frm = PtUnidadMedida.getInstance();
+        CtrlUnidadMedida Ctl = new CtrlUnidadMedida(Frm);
+        if (!jdpPrincipal.isAncestorOf(Frm)) {
+            jdpPrincipal.add(Frm);
+            Dimension Tam = jdpPrincipal.getSize();
+            Dimension FrameSize = Frm.getSize();
+            Frm.setLocation((Tam.width - FrameSize.width) / 2, (Tam.height - FrameSize.height) / 2);
+            Ctl.Iniciar();
+            Frm.show();
+        } else {
+            jdpPrincipal.setSelectedFrame(Frm);
+        }
     }//GEN-LAST:event_jmMedidaActionPerformed
 
     private void rptEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rptEmpleadosActionPerformed
-        C.impri.Imprimir("RptEmpleado");
+        C.impri.Imprimir("Rpt_Empleados", "REPORTE DE EMPLEADOS");
     }//GEN-LAST:event_rptEmpleadosActionPerformed
 
-    
-    
-    
     /**
      * @param args the command line arguments
      */
@@ -706,13 +745,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     public javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JDesktopPane jdpPrincipal;
     private javax.swing.JMenuItem jmAlmacen;
     private javax.swing.JMenuItem jmBebida;
+    private javax.swing.JMenuItem jmCliente;
     private javax.swing.JMenuItem jmColor;
     private javax.swing.JMenuItem jmComida;
-    private javax.swing.JMenuItem jmConsumicion;
     private javax.swing.JMenuItem jmEmpleado;
     private javax.swing.JMenuItem jmEstadoMesa;
     private javax.swing.JMenuItem jmEstadoPedido;
@@ -721,7 +759,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmMedida;
     private javax.swing.JMenuItem jmMesas;
     private javax.swing.JMenuItem jmOrigen;
-    private javax.swing.JMenuItem jmPedido;
     private javax.swing.JMenuItem jmPresentacion;
     public static javax.swing.JMenu jmReportes;
     private javax.swing.JMenuItem jmRestaurante;

@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CtrlUbicacion implements ActionListener{
     private DefaultTableModel DTM=new DefaultTableModel();
-    private Controlador C=new Controlador();
+    Controlador C = Controlador.getInstance();
     private FrmUbicacion Frm;
     
     public CtrlUbicacion (FrmUbicacion Frm){
