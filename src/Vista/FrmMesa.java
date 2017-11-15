@@ -103,6 +103,11 @@ public class FrmMesa extends javax.swing.JInternalFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("BUSCAR:"));
 
         txtBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyTyped(evt);
+            }
+        });
 
         TMesa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -250,7 +255,10 @@ public class FrmMesa extends javax.swing.JInternalFrame {
         if(txtNumMesa.getText().length()>=2){
             evt.consume();
         }
-        if(Character.isLetter(evt.getKeyChar())) {
+        char car = evt.getKeyChar();
+        
+        //SOLO NUMERO ENTERO
+        if((car < '0') || (car > '9')){
             evt.consume();
         }
     }//GEN-LAST:event_txtNumMesaKeyTyped
@@ -259,10 +267,28 @@ public class FrmMesa extends javax.swing.JInternalFrame {
         if(txtCantPer.getText().length()>=2){
             evt.consume();
         }
-        if(Character.isLetter(evt.getKeyChar())) {
+        char car = evt.getKeyChar();
+        
+        //SOLO NUMERO ENTERO
+        if((car < '0') || (car > '9')){
             evt.consume();
         }
+        
     }//GEN-LAST:event_txtCantPerKeyTyped
+
+    private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
+        char car = evt.getKeyChar();
+        
+        //LONGITUD
+        if(txtBuscar.getText().length()>=50){
+            evt.consume();
+        }
+        
+        //SOLO NUMEROS Y LETRAS
+        if((car < '0') || (car > '9') && (car < 'A') || (car > 'Z')&& (car < 'a') || (car > 'z')){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtBuscarKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

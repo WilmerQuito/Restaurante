@@ -186,8 +186,14 @@ public class FrmLoginPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsuKeyReleased
 
     private void txtUsuKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuKeyTyped
-        if(txtUsu.getText().length()>=15){ 
+        if(txtUsu.getText().length()>=25){ 
             evt.consume(); 
+        }
+        char car = evt.getKeyChar();
+        
+        //SOLO LETRAS
+        if(((car < 'A') || (car > 'Z')) && (((car < 'a') || (car > 'z')))){
+            evt.consume();
         }
     }//GEN-LAST:event_txtUsuKeyTyped
 
@@ -195,6 +201,12 @@ public class FrmLoginPersonal extends javax.swing.JFrame {
         if(txtPsw.getText().length()>=15){ 
             evt.consume(); 
         } 
+        char car = evt.getKeyChar();
+        
+        //SOLO NUMEROS Y LETRAS
+        if((car < '0') || (car > '9') && (car < 'A') || (car > 'Z')&& (car < 'a') || (car > 'z')){
+            evt.consume();
+        }
     }//GEN-LAST:event_txtPswKeyTyped
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed

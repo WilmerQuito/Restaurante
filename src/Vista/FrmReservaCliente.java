@@ -89,6 +89,9 @@ public class FrmReservaCliente extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBuscarKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyTyped(evt);
+            }
         });
 
         TMesasLibres.setModel(new javax.swing.table.DefaultTableModel(
@@ -149,6 +152,11 @@ public class FrmReservaCliente extends javax.swing.JFrame {
 
         txtComentario.setColumns(20);
         txtComentario.setRows(5);
+        txtComentario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtComentarioKeyTyped(evt);
+            }
+        });
         jScrollPane2.setViewportView(txtComentario);
 
         btnReservar.setText("REALIZAR RESERVA");
@@ -160,6 +168,11 @@ public class FrmReservaCliente extends javax.swing.JFrame {
         JSpinner spinner = new JSpinner(sm);
         JSpinner.DateEditor de = new JSpinner.DateEditor(jspHora, "hh:mm a");
         jspHora.setEditor(de);
+        jspHora.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jspHoraKeyTyped(evt);
+            }
+        });
 
         btnManual.setText("MANUAL");
 
@@ -291,6 +304,38 @@ public class FrmReservaCliente extends javax.swing.JFrame {
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
        
     }//GEN-LAST:event_txtBuscarKeyReleased
+
+    private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
+        char car = evt.getKeyChar();
+        
+        //LONGITUD
+        if(txtBuscar.getText().length()>=50){
+            evt.consume();
+        }
+        
+        //SOLO NUMEROS Y LETRAS
+        if((car < '0') || (car > '9') && (car < 'A') || (car > 'Z')&& (car < 'a') || (car > 'z')){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtBuscarKeyTyped
+
+    private void txtComentarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtComentarioKeyTyped
+        char car = evt.getKeyChar();
+        
+        //LONGITUD
+        if(txtComentario.getText().length()>=150){
+            evt.consume();
+        }
+        
+        //SOLO NUMEROS Y LETRAS
+        if((evt.VK_SPACE!=car)&&(car < '0') || (car > '9') && (car < 'A') || (car > 'Z')&& (car < 'a') || (car > 'z')){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtComentarioKeyTyped
+
+    private void jspHoraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jspHoraKeyTyped
+        
+    }//GEN-LAST:event_jspHoraKeyTyped
 
     /**
      * @param args the command line arguments

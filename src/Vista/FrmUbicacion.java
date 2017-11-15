@@ -87,6 +87,9 @@ public class FrmUbicacion extends javax.swing.JInternalFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBuscarKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyTyped(evt);
+            }
         });
 
         TUbicacion.setModel(new javax.swing.table.DefaultTableModel(
@@ -193,7 +196,10 @@ public class FrmUbicacion extends javax.swing.JInternalFrame {
         if(txtUbicacion.getText().length()>=15){
             evt.consume();
         }
-        if(Character.isDigit(evt.getKeyChar())) {
+        char car = evt.getKeyChar();
+        
+        //SOLO LETRAS CON ESPACIO
+        if(((car < 'A') || (car > 'Z')) && (((car < 'a') || (car > 'z'))) && (evt.VK_SPACE!=car)){
             evt.consume();
         }
     }//GEN-LAST:event_txtUbicacionKeyTyped
@@ -205,6 +211,20 @@ public class FrmUbicacion extends javax.swing.JInternalFrame {
     private void TUbicacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TUbicacionMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_TUbicacionMouseClicked
+
+    private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
+        char car = evt.getKeyChar();
+        
+        //LONGITUD
+        if(txtBuscar.getText().length()>=50){
+            evt.consume();
+        }
+        
+        //SOLO NUMEROS Y LETRAS
+        if((car < '0') || (car > '9') && (car < 'A') || (car > 'Z')&& (car < 'a') || (car > 'z')){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtBuscarKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

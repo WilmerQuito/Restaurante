@@ -58,6 +58,12 @@ public class CtrlBuscarCliente implements ActionListener{
             C.flag = false;
             C.Mensaje("INGRESA TU DNI"); 
             Frm.txtDni.grabFocus();
+        }else{
+            if(Frm.txtDni.getText().trim().length() < 8){
+                C.flag = false;
+                C.Mensaje("LONGITUD INCORRECTA");
+                Frm.txtDni.grabFocus();
+            }
         }
         return C.flag;
     }

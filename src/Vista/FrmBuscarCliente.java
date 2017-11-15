@@ -5,6 +5,7 @@
  */
 package Vista;
 
+
 /**
  *
  * @author Wilmer Quito
@@ -136,10 +137,14 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void txtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyTyped
+        //LONGITUD
         if(txtDni.getText().length()>=8){
             evt.consume();
         }
-        if(Character.isLetter(evt.getKeyChar())) {
+        
+        //SOLO NUMERO ENTERO
+        char car = evt.getKeyChar();
+        if((car < '0') || (car > '9')){
             evt.consume();
         }
     }//GEN-LAST:event_txtDniKeyTyped

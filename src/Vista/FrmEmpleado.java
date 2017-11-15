@@ -106,6 +106,9 @@ public class FrmEmpleado extends javax.swing.JInternalFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBuscarKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyTyped(evt);
+            }
         });
 
         TEmpleado.setModel(new javax.swing.table.DefaultTableModel(
@@ -243,28 +246,34 @@ public class FrmEmpleado extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-        if(txtNombre.getText().length()>=100){
+        if (txtNombre.getText().length() >= 100) {
             evt.consume();
         }
-        if(Character.isDigit(evt.getKeyChar())) {
+        char car = evt.getKeyChar();
+        //SOLO LETRAS CON ESPACIO
+        if (((car < 'A') || (car > 'Z')) && (((car < 'a') || (car > 'z'))) && (evt.VK_SPACE != car)) {
             evt.consume();
         }
     }//GEN-LAST:event_txtNombreKeyTyped
 
     private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
-        if(txtTelefono.getText().length()>=9){
+        if (txtTelefono.getText().length() >= 9) {
             evt.consume();
         }
-        if(Character.isLetter(evt.getKeyChar())) {
+        char car = evt.getKeyChar();
+        //SOLO NUMERO ENTERO
+        if ((car < '0') || (car > '9')) {
             evt.consume();
         }
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
     private void txtDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIKeyTyped
-        if(txtDNI.getText().length()>=8){
+        if (txtDNI.getText().length() >= 8) {
             evt.consume();
         }
-        if(Character.isLetter(evt.getKeyChar())) {
+        char car = evt.getKeyChar();
+        //SOLO NUMERO ENTERO
+        if ((car < '0') || (car > '9')) {
             evt.consume();
         }
     }//GEN-LAST:event_txtDNIKeyTyped
@@ -278,7 +287,12 @@ public class FrmEmpleado extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_TEmpleadoMouseClicked
 
     private void txtDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyTyped
-        if(txtDireccion.getText().length()>=100){
+        if (txtDireccion.getText().length() >= 100) {
+            evt.consume();
+        }
+        char car = evt.getKeyChar();
+        //SOLO NUMEROS Y LETRAS CON ESPACIOS
+        if ((evt.VK_SPACE != car) && (car < '0') || (car > '9') && (car < 'A') || (car > 'Z') && (car < 'a') || (car > 'z')) {
             evt.consume();
         }
     }//GEN-LAST:event_txtDireccionKeyTyped
@@ -286,6 +300,20 @@ public class FrmEmpleado extends javax.swing.JInternalFrame {
     private void txtDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDireccionActionPerformed
+
+    private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
+        char car = evt.getKeyChar();
+
+        //LONGITUD
+        if (txtBuscar.getText().length() >= 50) {
+            evt.consume();
+        }
+
+        //SOLO NUMEROS Y LETRAS
+        if ((car < '0') || (car > '9') && (car < 'A') || (car > 'Z') && (car < 'a') || (car > 'z')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtBuscarKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -87,6 +87,9 @@ public class FrmUsuario extends javax.swing.JInternalFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBuscarKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyTyped(evt);
+            }
         });
 
         TUsuario.setModel(new javax.swing.table.DefaultTableModel(
@@ -258,13 +261,29 @@ public class FrmUsuario extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPsw1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPsw1KeyTyped
+        char car = evt.getKeyChar();
+        
+        //LONGITUD
         if(txtPsw1.getText().length()>=15){
+            evt.consume();
+        }
+        
+        //SOLO NUMEROS Y LETRAS
+        if((car < '0') || (car > '9') && (car < 'A') || (car > 'Z')&& (car < 'a') || (car > 'z')){
             evt.consume();
         }
     }//GEN-LAST:event_txtPsw1KeyTyped
 
     private void txtPsw2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPsw2KeyTyped
+        char car = evt.getKeyChar();
+        
+        //LONGITUD
         if(txtPsw2.getText().length()>=15){
+            evt.consume();
+        }
+        
+        //SOLO NUMEROS Y LETRAS
+        if((car < '0') || (car > '9') && (car < 'A') || (car > 'Z')&& (car < 'a') || (car > 'z')){
             evt.consume();
         }
     }//GEN-LAST:event_txtPsw2KeyTyped
@@ -278,7 +297,15 @@ public class FrmUsuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_TUsuarioMouseClicked
 
     private void txtUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyTyped
+        char car = evt.getKeyChar();
+        
+        //LONGITUD
         if(txtUsuario.getText().length()>=25){
+            evt.consume();
+        }
+        
+        //SOLO LETRAS
+        if(((car < 'A') || (car > 'Z')) && (((car < 'a') || (car > 'z')))){
             evt.consume();
         }
     }//GEN-LAST:event_txtUsuarioKeyTyped
@@ -286,6 +313,20 @@ public class FrmUsuario extends javax.swing.JInternalFrame {
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodigoActionPerformed
+
+    private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
+        char car = evt.getKeyChar();
+        
+        //LONGITUD
+        if(txtBuscar.getText().length()>=50){
+            evt.consume();
+        }
+        
+        //SOLO NUMEROS Y LETRAS
+        if((car < '0') || (car > '9') && (car < 'A') || (car > 'Z')&& (car < 'a') || (car > 'z')){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtBuscarKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -101,6 +101,9 @@ public class FrmCliente extends javax.swing.JInternalFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBuscarKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyTyped(evt);
+            }
         });
 
         TCliente.setModel(new javax.swing.table.DefaultTableModel(
@@ -228,7 +231,10 @@ public class FrmCliente extends javax.swing.JInternalFrame {
         if(txtNombre.getText().length()>=100){
             evt.consume();
         }
-        if(Character.isDigit(evt.getKeyChar())) {
+        char car = evt.getKeyChar();
+        
+        //SOLO LETRAS CON ESPACIO
+        if(((car < 'A') || (car > 'Z')) && (((car < 'a') || (car > 'z'))) && (evt.VK_SPACE!=car)){
             evt.consume();
         }
     }//GEN-LAST:event_txtNombreKeyTyped
@@ -237,7 +243,10 @@ public class FrmCliente extends javax.swing.JInternalFrame {
         if(txtCelular.getText().length()>=9){
             evt.consume();
         }
-        if(Character.isLetter(evt.getKeyChar())) {
+        char car = evt.getKeyChar();
+        
+        //SOLO NUMERO ENTERO
+        if((car < '0') || (car > '9')){
             evt.consume();
         }
     }//GEN-LAST:event_txtCelularKeyTyped
@@ -246,7 +255,11 @@ public class FrmCliente extends javax.swing.JInternalFrame {
         if(txtDNI.getText().length()>=8){
             evt.consume();
         }
-        if(Character.isLetter(evt.getKeyChar())) {
+        
+        char car = evt.getKeyChar();
+        
+        //SOLO NUMERO ENTERO
+        if((car < '0') || (car > '9')){
             evt.consume();
         }
     }//GEN-LAST:event_txtDNIKeyTyped
@@ -258,6 +271,15 @@ public class FrmCliente extends javax.swing.JInternalFrame {
     private void TClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TClienteMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_TClienteMouseClicked
+
+    private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
+        char car = evt.getKeyChar();
+        
+        //SOLO LETRAS
+        if(((car < 'A') || (car > 'Z')) && (((car < 'a') || (car > 'z')))){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtBuscarKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

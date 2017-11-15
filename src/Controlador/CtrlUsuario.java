@@ -5,8 +5,8 @@
  */
 package Controlador;
 
-import Modelo.Controlador;
-import Vista.FrmUsuario;
+import Modelo.*;
+import Vista.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -24,6 +24,7 @@ public class CtrlUsuario implements ActionListener{
     
     private DefaultTableModel DTM=new DefaultTableModel();
     Controlador C = Controlador.getInstance();
+    Encriptado E = Encriptado.getInstance();
     private static FrmUsuario Frm;
     private static CtrlUsuario Single;
     
@@ -44,8 +45,8 @@ public class CtrlUsuario implements ActionListener{
                     C.MostrarenCombo(Frm.cboEmpleado, Frm.TUsuario.getValueAt(C.fila,1).toString());
                     C.MostrarenCombo(Frm.cboRol, Frm.TUsuario.getValueAt(C.fila,2).toString());
                     Frm.txtUsuario.setText(Frm.TUsuario.getValueAt(C.fila, 3).toString());
-                    Frm.txtPsw1.setText(Frm.TUsuario.getValueAt(C.fila, 4).toString());
-                    Frm.txtPsw2.setText(Frm.TUsuario.getValueAt(C.fila, 4).toString());
+                    Frm.txtPsw1.setText(E.Desencriptar(Frm.TUsuario.getValueAt(C.fila, 4).toString()));
+                    Frm.txtPsw2.setText(E.Desencriptar(Frm.TUsuario.getValueAt(C.fila, 4).toString()));
                 }
             }    
             }
@@ -170,6 +171,7 @@ public class CtrlUsuario implements ActionListener{
         String Rol=C.DatoCombo("SELECT * FROM Rol WHERE Nombre='"+Frm.cboRol.getSelectedItem().toString()+"'",1);
         String Empleado=C.DatoCombo("SELECT * FROM Empleado WHERE Nombre='"+Frm.cboEmpleado.getSelectedItem().toString()+"'",1);
         
+        //INSERCION DE DATOS A LA BD
         if(e.getSource() == Frm.btnguardar){
             String sql="SELECT * FROM Usuario WHERE Usuario='"+Frm.txtUsuario.getText()+"' OR Cod_Empleado='"+Empleado+"';";
             if(!C.VerificarConsulta(sql)){
@@ -177,7 +179,7 @@ public class CtrlUsuario implements ActionListener{
                     String Cod=C.GeneraCodigo(Frm.txtUsuario.getText().toUpperCase(), "Usuario", "Cod_Usuario");
                     C.InsertaRegistro("INSERT INTO Usuario VALUES('"+Cod+"','"
                             +Frm.txtUsuario.getText().toUpperCase()+"','"
-                            +Frm.txtPsw1.getText().toUpperCase()+"','"
+                            +E.Encriptar(Frm.txtPsw1.getText().toUpperCase())+"','"
                             +Empleado+"','"
                             +Rol+"')");
                     C.Mensaje("USUARIO REGISTRADO");
@@ -189,12 +191,13 @@ public class CtrlUsuario implements ActionListener{
             }
         }
         
+        //EDICION DE DATOS EN LA BD
         if(e.getSource() == Frm.btneditar){
             String sql="SELECT * FROM Usuario WHERE Usuario='"+Frm.txtUsuario.getText()+"' AND Cod_Empleado='"+Empleado+"' AND Cod_Rol='"+Rol+"';";
             if(!C.VerificarConsulta(sql)){
                 if (Validar()) {
                     C.InsertaRegistro("UPDATE Usuario SET Usuario='"+Frm.txtUsuario.getText().toUpperCase()
-                            +"', Clave='"+Frm.txtPsw1.getText().toUpperCase()
+                            +"', Clave='"+E.Encriptar(Frm.txtPsw1.getText().toUpperCase())
                             +"', empleado_idempleado='"+Empleado
                             +"', rol_cod_rol='"+Rol
                             +"' WHERE Cod_Usuario='"+Frm.txtCodigo.getText()+"'");
@@ -207,6 +210,7 @@ public class CtrlUsuario implements ActionListener{
             }
         }
         
+        //ELIMINACION DE DATOS EN LA BD
         if(e.getSource() == Frm.btneliminar){
             C.fila = Frm.TUsuario.getSelectedRow();
             if (Frm.TUsuario.getSelectedRow() > -1) {

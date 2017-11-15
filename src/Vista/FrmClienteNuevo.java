@@ -156,7 +156,10 @@ public class FrmClienteNuevo extends javax.swing.JFrame {
         if(txtNombre.getText().length()>=100){
             evt.consume();
         }
-        if(Character.isDigit(evt.getKeyChar())) {
+        char car = evt.getKeyChar();
+        
+        //SOLO LETRAS CON ESPACIO
+        if(((car < 'A') || (car > 'Z')) && (((car < 'a') || (car > 'z'))) && (evt.VK_SPACE!=car)){
             evt.consume();
         }
     }//GEN-LAST:event_txtNombreKeyTyped
@@ -165,7 +168,10 @@ public class FrmClienteNuevo extends javax.swing.JFrame {
         if(txtCelular.getText().length()>=9){
             evt.consume();
         }
-        if(Character.isLetter(evt.getKeyChar())) {
+        char car = evt.getKeyChar();
+        
+        //SOLO NUMERO ENTERO
+        if((car < '0') || (car > '9')){
             evt.consume();
         }
     }//GEN-LAST:event_txtCelularKeyTyped
@@ -174,7 +180,10 @@ public class FrmClienteNuevo extends javax.swing.JFrame {
         if(txtDNI.getText().length()>=8){
             evt.consume();
         }
-        if(Character.isLetter(evt.getKeyChar())) {
+        char car = evt.getKeyChar();
+        
+        //SOLO NUMERO ENTERO
+        if((car < '0') || (car > '9')){
             evt.consume();
         }
     }//GEN-LAST:event_txtDNIKeyTyped

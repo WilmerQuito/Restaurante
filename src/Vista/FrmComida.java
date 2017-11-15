@@ -88,6 +88,9 @@ public class FrmComida extends javax.swing.JInternalFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBuscarKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyTyped(evt);
+            }
         });
 
         TComida.setModel(new javax.swing.table.DefaultTableModel(
@@ -220,9 +223,16 @@ public class FrmComida extends javax.swing.JInternalFrame {
         if(txtPrecio.getText().length()>=10){
             evt.consume();
         }
-        if(Character.isLetter(evt.getKeyChar())) {
+        char car = evt.getKeyChar();
+        
+        //SOLO NUMERO DECIMAL
+        if((evt.VK_PERIOD!=car) && (car < '0') || (car > '9')){
             evt.consume();
         }
+        if (evt.VK_PERIOD==car && txtPrecio.getText().contains(".")) {
+            evt.consume();
+        }
+        
     }//GEN-LAST:event_txtPrecioKeyTyped
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
@@ -237,10 +247,27 @@ public class FrmComida extends javax.swing.JInternalFrame {
         if(txtNombre.getText().length()>=45){
             evt.consume();
         }
-        if(Character.isDigit(evt.getKeyChar())) {
+        char car = evt.getKeyChar();
+        
+        //SOLO LETRAS CON ESPACIO
+        if(((car < 'A') || (car > 'Z')) && (((car < 'a') || (car > 'z'))) && (evt.VK_SPACE!=car)){
             evt.consume();
         }
     }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
+        char car = evt.getKeyChar();
+        
+        //LONGITUD
+        if(txtBuscar.getText().length()>=50){
+            evt.consume();
+        }
+        
+        //SOLO NUMEROS Y LETRAS
+        if((car < '0') || (car > '9') && (car < 'A') || (car > 'Z')&& (car < 'a') || (car > 'z')){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtBuscarKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

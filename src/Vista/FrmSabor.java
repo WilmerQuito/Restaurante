@@ -87,6 +87,9 @@ public class FrmSabor extends javax.swing.JInternalFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBuscarKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyTyped(evt);
+            }
         });
 
         TSabor.setModel(new javax.swing.table.DefaultTableModel(
@@ -194,7 +197,10 @@ public class FrmSabor extends javax.swing.JInternalFrame {
         if(txtSabor.getText().length()>=45){
             evt.consume();
         }
-        if(Character.isDigit(evt.getKeyChar())) {
+        char car = evt.getKeyChar();
+                
+        //SOLO LETRAS CON ESPACIO
+        if(((car < 'A') || (car > 'Z')) && (((car < 'a') || (car > 'z'))) && (evt.VK_SPACE!=car)){
             evt.consume();
         }
     }//GEN-LAST:event_txtSaborKeyTyped
@@ -206,6 +212,20 @@ public class FrmSabor extends javax.swing.JInternalFrame {
     private void TSaborMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TSaborMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_TSaborMouseClicked
+
+    private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
+        char car = evt.getKeyChar();
+        
+        //LONGITUD
+        if(txtBuscar.getText().length()>=50){
+            evt.consume();
+        }
+        
+        //SOLO NUMEROS Y LETRAS
+        if((car < '0') || (car > '9') && (car < 'A') || (car > 'Z')&& (car < 'a') || (car > 'z')){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtBuscarKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

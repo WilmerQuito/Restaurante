@@ -6,6 +6,7 @@
 package Controlador;
 
 import Modelo.Controlador;
+import Modelo.Encriptado;
 import Vista.*;
 import Vista.FrmPrincipal;
 import java.awt.event.ActionEvent;
@@ -18,6 +19,7 @@ import java.awt.event.ActionListener;
 public class CtrlLoginPersonal implements ActionListener {
 
     Controlador C = Controlador.getInstance();
+    Encriptado E = Encriptado.getInstance();
     private static FrmLoginPersonal Frm;
     private static CtrlLoginPersonal Single;
     private FrmPrincipal FrmP;
@@ -139,13 +141,11 @@ public class CtrlLoginPersonal implements ActionListener {
 
     public void Acceso() {
         if (Validar()) {
-            C.Acceso(Frm, new FrmPrincipal(), Frm.txtUsu.getText(), Frm.txtPsw.getText(), Frm.cbRol.getSelectedItem().toString());
+            C.Acceso(Frm, new FrmPrincipal(), Frm.txtUsu.getText(), E.Encriptar(Frm.txtPsw.getText()), Frm.cbRol.getSelectedItem().toString());
             FrmP.lblnombre.setText(null);
             FrmP.lblnombre.setText(C.DevolverDatoString("SELECT * FROM VtaSesion WHERE Usuario='" + Frm.txtUsu.getText() + "'", 2).toUpperCase());
             Privilegios();
             Limpiar();
-        } else {
-            C.Mensaje("ACCEDO DENEGADO");
         }
     }
 
