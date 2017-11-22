@@ -7,15 +7,12 @@ package Controlador;
 
 import Modelo.Controlador;
 import Vista.*;
-import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -181,13 +178,15 @@ public class CtrlReservaCliente implements ActionListener {
         return C.flag;
     }
     
-        public void MesasRestaurante() {
-        C.sql = "SELECT * FROM VtaMesa WHERE Nombre='"+Frm.cboRestaurante.getSelectedItem().toString()+"' ";
+    public void MesasRestaurante() {
+        C.InsertaRegistro("CREATE OR REPLACE VIEW VtaMesaResta AS SELECT * FROM VtaMesa WHERE Nombre='"+Frm.cboRestaurante.getSelectedItem().toString()+"'");
+        C.sql = "SELECT * FROM VtaMesaResta";
         C.MostrarenJTable(DTM, C.sql, 6);
     }
 
     public void Tabla() {
-        C.sql = "SELECT * FROM VtaMesa WHERE Cod_Mesa LIKE '" + Frm.txtBuscar.getText()
+        
+        C.sql = "SELECT * FROM VtaMesaResta WHERE Cod_Mesa LIKE '" + Frm.txtBuscar.getText()
                 + "%' or Nombre like '" + Frm.txtBuscar.getText()
                 + "%' or Num_Mesa like '" + Frm.txtBuscar.getText()
                 + "%' or Cant_Personas like '" + Frm.txtBuscar.getText()
@@ -283,7 +282,7 @@ public class CtrlReservaCliente implements ActionListener {
                     Tabla();
                     Limpiar();
                     C.BuscarCliente(Frm);
-                    C.InsertaRegistro("UPDATE mesa SET Cod_Estado='R' WHERE Cod_Mesa='" + CodMesa + "'");
+                    //C.InsertaRegistro("UPDATE mesa SET Cod_Estado='R' WHERE Cod_Mesa='" + CodMesa + "'");
                 }
             }else{
                 C.Mensaje("LA MESA ESTA RESERVADA PARA ESE DIA Y HORA");
@@ -313,12 +312,13 @@ public class CtrlReservaCliente implements ActionListener {
         }
         
         if (e.getSource() == Frm.btnManual) {
-            try {
+            /*try {
                 File path = new File("C://restosist/Manual.pdf");
                 Desktop.getDesktop().open(path);
             } catch (IOException ex) {
                 ex.printStackTrace();
-            }
+            }*/
+            C.Video();
         }
 
     }

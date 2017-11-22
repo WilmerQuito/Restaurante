@@ -66,8 +66,6 @@ CREATE TABLE `bebidas` (
 
 /*Data for the table `bebidas` */
 
-insert  into `bebidas`(`idbebidas`,`tipoBebida_idtipoBebida`,`marca_idmarca`,`sabor_idsabor`,`Costo`) values ('B','G','C',NULL,2.50),('B-2','R',NULL,'M',2.00);
-
 /*Table structure for table `cliente` */
 
 DROP TABLE IF EXISTS `cliente`;
@@ -82,7 +80,7 @@ CREATE TABLE `cliente` (
 
 /*Data for the table `cliente` */
 
-insert  into `cliente`(`Cod_Cliente`,`Nombre`,`DNI`,`Celular`) values ('1012345678','MARIA SANCHEZ','12345678','946513516'),('1074616351','JUAN','74616351','856341556'),('1076225203','DARIO SALAS','76225203','123456789'),('1087654321','JUANA DE ARCO','87654321','942312311');
+insert  into `cliente`(`Cod_Cliente`,`Nombre`,`DNI`,`Celular`) values ('1076225203','JACINTO REYES SANCHEZ','76225203','951254120');
 
 /*Table structure for table `color` */
 
@@ -95,8 +93,6 @@ CREATE TABLE `color` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `color` */
-
-insert  into `color`(`idcolor`,`color`) values ('R','ROJO'),('V','VERDE');
 
 /*Table structure for table `comida` */
 
@@ -113,8 +109,6 @@ CREATE TABLE `comida` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `comida` */
-
-insert  into `comida`(`idcomida`,`nombre_comida`,`Costo`,`origen_idorigen`) values ('L','LOMO SALTADO',17.20,'P'),('P','PIZZA',15.50,'A'),('T','TACOS',5.00,'M');
 
 /*Table structure for table `comprobante` */
 
@@ -179,7 +173,7 @@ CREATE TABLE `empleado` (
 
 /*Data for the table `empleado` */
 
-insert  into `empleado`(`idempleado`,`nombre`,`dni`,`telefono`,`Direccion`) values ('1056465316','CARMEN SOTO',56465316,'945312065','AV LUZURIAGA 1582'),('1065412354','MARIA RAMIREZ',65412354,'912635120','AV. RAYMONDI 581'),('1065416531','JUAN DE LA CRUZ',65416531,'941563516','JR CAJAMARCA 6541'),('1076225203','WILMER QUITO CUEVA',76225203,'943187153','AV 27 DE NOVIEMBRE 964');
+insert  into `empleado`(`idempleado`,`nombre`,`dni`,`telefono`,`Direccion`) values ('1058987854','MARIA SANCHEZ RAMIREZ',58987854,'946513215','AV. RAYMONDI 1025'),('1076225203','WILMER QUITO CUEVA',76225203,'943187153','AV. 27 DE NOVIEMBRE 694');
 
 /*Table structure for table `estado` */
 
@@ -193,7 +187,7 @@ CREATE TABLE `estado` (
 
 /*Data for the table `estado` */
 
-insert  into `estado`(`Cod_Estado`,`Estado`) values ('L','LIBRE'),('O','OCUPADO'),('R','RESERVADO');
+insert  into `estado`(`Cod_Estado`,`Estado`) values ('L','LIBRE');
 
 /*Table structure for table `estadopedido` */
 
@@ -207,7 +201,7 @@ CREATE TABLE `estadopedido` (
 
 /*Data for the table `estadopedido` */
 
-insert  into `estadopedido`(`idEstadoPedido`,`Estado`) values ('P','PIDIENDO'),('S','SERVIDO');
+insert  into `estadopedido`(`idEstadoPedido`,`Estado`) values ('A','AWD'),('L','LIBRE'),('R','RESERVADO');
 
 /*Table structure for table `ingredientes` */
 
@@ -230,8 +224,6 @@ CREATE TABLE `ingredientes` (
 
 /*Data for the table `ingredientes` */
 
-insert  into `ingredientes`(`Cod_Ingredientes`,`Nom_ingrediente`,`color_idcolor`,`presentacion_idpresentacion`,`tipoIngre_idtipoIngre`) values ('C','CEBOLLA',NULL,'C','C'),('P','PAPA',NULL,'C','C');
-
 /*Table structure for table `marca` */
 
 DROP TABLE IF EXISTS `marca`;
@@ -243,8 +235,6 @@ CREATE TABLE `marca` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `marca` */
-
-insert  into `marca`(`idmarca`,`marcacol`) values ('C','COCA COLA'),('I','INKA COLA');
 
 /*Table structure for table `mesa` */
 
@@ -269,7 +259,7 @@ CREATE TABLE `mesa` (
 
 /*Data for the table `mesa` */
 
-insert  into `mesa`(`Cod_Mesa`,`Cant_Personas`,`Num_Mesa`,`Fumador`,`Cod_Estado`,`Cod_Ubicacion`,`Cod_Restaurante`) values ('1',2,1,'NO','l','C','L'),('2',5,2,'SI','l','E','L'),('3',10,3,'Si','l','F','L'),('4',7,4,'SI','l','F','L');
+insert  into `mesa`(`Cod_Mesa`,`Cant_Personas`,`Num_Mesa`,`Fumador`,`Cod_Estado`,`Cod_Ubicacion`,`Cod_Restaurante`) values ('M',2,1,'NO','L','C','L'),('M-1',5,2,'SI','L','F','L'),('M-2',4,3,'NO','L','M','L'),('M-3',5,1,'SI','L','C','D'),('M-4',2,2,'NO','L','F','D');
 
 /*Table structure for table `origen` */
 
@@ -282,8 +272,6 @@ CREATE TABLE `origen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `origen` */
-
-insert  into `origen`(`idorigen`,`origencol`) values ('A','AMERICANO'),('I','ITALIANO'),('M','MEXICANO'),('P','PERUANO');
 
 /*Table structure for table `pedido` */
 
@@ -318,8 +306,6 @@ CREATE TABLE `presentacion` (
 
 /*Data for the table `presentacion` */
 
-insert  into `presentacion`(`idpresentacion`,`presentacion`) values ('C','CAJA');
-
 /*Table structure for table `reserva` */
 
 DROP TABLE IF EXISTS `reserva`;
@@ -341,7 +327,7 @@ CREATE TABLE `reserva` (
 
 /*Data for the table `reserva` */
 
-insert  into `reserva`(`Cod_Reserva`,`Hora`,`Fecha`,`Cant_Personas`,`Detalle`,`Cod_Cliente`,`Cod_Mesa`) values ('R','14:05:00','2017-11-11',1,'TMR','1012345678','1'),('R-1','12:00:00','2017-11-09',1,'WDAWDD','1074616351','2'),('R-2','16:58:00','2017-11-12',1,'','1076225203','1');
+insert  into `reserva`(`Cod_Reserva`,`Hora`,`Fecha`,`Cant_Personas`,`Detalle`,`Cod_Cliente`,`Cod_Mesa`) values ('R','20:00:00','2017-11-25',2,'GRACIAS','1076225203','M');
 
 /*Table structure for table `restaurante` */
 
@@ -357,7 +343,7 @@ CREATE TABLE `restaurante` (
 
 /*Data for the table `restaurante` */
 
-insert  into `restaurante`(`Cod_Restaurante`,`Nombre`,`Direccion`,`Telefono`) values ('D','DON JUAN','LO OLIVOS 625','948751257'),('L','LA DELICIA','AV. LUZURIAGA 254','943257854');
+insert  into `restaurante`(`Cod_Restaurante`,`Nombre`,`Direccion`,`Telefono`) values ('D','DON LUCHO','JR CAJAMARCA 255','943187153'),('L','LA DELICIA','AV. LUZURIAGA 254','943158751');
 
 /*Table structure for table `rol` */
 
@@ -371,7 +357,7 @@ CREATE TABLE `rol` (
 
 /*Data for the table `rol` */
 
-insert  into `rol`(`Cod_Rol`,`Nombre`) values ('A','ADMINISTRADOR'),('A-1','ALMACENERO'),('C','CAJERO'),('M','MOZO');
+insert  into `rol`(`Cod_Rol`,`Nombre`) values ('R','ADMINISTRADOR'),('R-1','CAJERO'),('R-2','MOZO'),('R-3','ALMACENERO');
 
 /*Table structure for table `sabor` */
 
@@ -385,8 +371,6 @@ CREATE TABLE `sabor` (
 
 /*Data for the table `sabor` */
 
-insert  into `sabor`(`idsabor`,`saborcol`) values ('M','MARACUYA'),('P','PIÑA');
-
 /*Table structure for table `tipobebida` */
 
 DROP TABLE IF EXISTS `tipobebida`;
@@ -398,8 +382,6 @@ CREATE TABLE `tipobebida` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `tipobebida` */
-
-insert  into `tipobebida`(`idtipoBebida`,`nomTipo`) values ('G','GASEOSAS'),('R','REFRESCO');
 
 /*Table structure for table `tipocomprobante` */
 
@@ -425,8 +407,6 @@ CREATE TABLE `tipoingre` (
 
 /*Data for the table `tipoingre` */
 
-insert  into `tipoingre`(`idtipoIngre`,`nom_tipo`) values ('B','BOLSA'),('C','CAJA');
-
 /*Table structure for table `ubicacion` */
 
 DROP TABLE IF EXISTS `ubicacion`;
@@ -439,7 +419,7 @@ CREATE TABLE `ubicacion` (
 
 /*Data for the table `ubicacion` */
 
-insert  into `ubicacion`(`Cod_Ubicacion`,`Ubicacion`) values ('C','CENTRO'),('E','ENTRADA'),('F','FONDO');
+insert  into `ubicacion`(`Cod_Ubicacion`,`Ubicacion`) values ('C','CENTRO'),('F','FONDO'),('M','MEDIO');
 
 /*Table structure for table `unidades_medida` */
 
@@ -452,8 +432,6 @@ CREATE TABLE `unidades_medida` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `unidades_medida` */
-
-insert  into `unidades_medida`(`idUnidades_medida`,`Unidades_medidacol`) values ('G','GRAMOS'),('K','KILOS'),('L','LITROS');
 
 /*Table structure for table `usoingredientes` */
 
@@ -495,7 +473,7 @@ CREATE TABLE `usuario` (
 
 /*Data for the table `usuario` */
 
-insert  into `usuario`(`Cod_Usuario`,`Usuario`,`Clave`,`empleado_idempleado`,`rol_Cod_Rol`) values ('C','CARMEN','123456789','1056465316','A-1'),('J','JUAN','123456789','1065416531','M'),('M','MARIA','123456789','1065412354','C'),('W','WILMER','123456789','1076225203','A');
+insert  into `usuario`(`Cod_Usuario`,`Usuario`,`Clave`,`empleado_idempleado`,`rol_Cod_Rol`) values ('W','WILMER','GrlyJXV9gYlVn/FwnMZYLQ==','1076225203','R');
 
 /*Table structure for table `vtaalmacenbebida` */
 
@@ -596,14 +574,14 @@ DROP TABLE IF EXISTS `vtamesa`;
  `Estado` varchar(30) 
 )*/;
 
-/*Table structure for table `vtamesalibre` */
+/*Table structure for table `vtamesaresta` */
 
-DROP TABLE IF EXISTS `vtamesalibre`;
+DROP TABLE IF EXISTS `vtamesaresta`;
 
-/*!50001 DROP VIEW IF EXISTS `vtamesalibre` */;
-/*!50001 DROP TABLE IF EXISTS `vtamesalibre` */;
+/*!50001 DROP VIEW IF EXISTS `vtamesaresta` */;
+/*!50001 DROP TABLE IF EXISTS `vtamesaresta` */;
 
-/*!50001 CREATE TABLE  `vtamesalibre`(
+/*!50001 CREATE TABLE  `vtamesaresta`(
  `Cod_Mesa` char(10) ,
  `Nombre` varchar(100) ,
  `Num_Mesa` int(2) ,
@@ -666,7 +644,8 @@ DROP TABLE IF EXISTS `vtareserva`;
  `cliente` varchar(100) ,
  `Celular` char(9) ,
  `Num_Mesa` int(2) ,
- `personasmesa` int(2) 
+ `personasmesa` int(2) ,
+ `Resta` varchar(100) 
 )*/;
 
 /*Table structure for table `vtasesion` */
@@ -741,12 +720,12 @@ DROP TABLE IF EXISTS `vtausoingrediente`;
 
 /*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vtamesa` AS select `mesa`.`Cod_Mesa` AS `Cod_Mesa`,`restaurante`.`Nombre` AS `Nombre`,`mesa`.`Num_Mesa` AS `Num_Mesa`,`mesa`.`Cant_Personas` AS `Cant_Personas`,`mesa`.`Fumador` AS `Fumador`,`ubicacion`.`Ubicacion` AS `Ubicacion`,`estado`.`Estado` AS `Estado` from (((`mesa` join `estado`) join `ubicacion`) join `restaurante` on(((`mesa`.`Cod_Estado` = `estado`.`Cod_Estado`) and (`mesa`.`Cod_Ubicacion` = `ubicacion`.`Cod_Ubicacion`) and (`mesa`.`Cod_Restaurante` = `restaurante`.`Cod_Restaurante`)))) */;
 
-/*View structure for view vtamesalibre */
+/*View structure for view vtamesaresta */
 
-/*!50001 DROP TABLE IF EXISTS `vtamesalibre` */;
-/*!50001 DROP VIEW IF EXISTS `vtamesalibre` */;
+/*!50001 DROP TABLE IF EXISTS `vtamesaresta` */;
+/*!50001 DROP VIEW IF EXISTS `vtamesaresta` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vtamesalibre` AS select `vtamesa`.`Cod_Mesa` AS `Cod_Mesa`,`vtamesa`.`Nombre` AS `Nombre`,`vtamesa`.`Num_Mesa` AS `Num_Mesa`,`vtamesa`.`Cant_Personas` AS `Cant_Personas`,`vtamesa`.`Fumador` AS `Fumador`,`vtamesa`.`Ubicacion` AS `Ubicacion`,`vtamesa`.`Estado` AS `Estado` from `vtamesa` where (`vtamesa`.`Estado` = 'Libre') */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vtamesaresta` AS select `vtamesa`.`Cod_Mesa` AS `Cod_Mesa`,`vtamesa`.`Nombre` AS `Nombre`,`vtamesa`.`Num_Mesa` AS `Num_Mesa`,`vtamesa`.`Cant_Personas` AS `Cant_Personas`,`vtamesa`.`Fumador` AS `Fumador`,`vtamesa`.`Ubicacion` AS `Ubicacion`,`vtamesa`.`Estado` AS `Estado` from `vtamesa` where (`vtamesa`.`Nombre` = 'LA DELICIA') */;
 
 /*View structure for view vtapedido */
 
@@ -767,7 +746,7 @@ DROP TABLE IF EXISTS `vtausoingrediente`;
 /*!50001 DROP TABLE IF EXISTS `vtareserva` */;
 /*!50001 DROP VIEW IF EXISTS `vtareserva` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vtareserva` AS select `reserva`.`Cod_Reserva` AS `Cod_Reserva`,`reserva`.`Fecha` AS `Fecha`,`reserva`.`Hora` AS `Hora`,`reserva`.`Cant_Personas` AS `Cant_Personas`,`reserva`.`Detalle` AS `Detalle`,`cliente`.`Nombre` AS `cliente`,`cliente`.`Celular` AS `Celular`,`mesa`.`Num_Mesa` AS `Num_Mesa`,`mesa`.`Cant_Personas` AS `personasmesa` from ((`reserva` left join `cliente` on((`reserva`.`Cod_Cliente` = `cliente`.`Cod_Cliente`))) left join `mesa` on((`reserva`.`Cod_Mesa` = `mesa`.`Cod_Mesa`))) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vtareserva` AS select `reserva`.`Cod_Reserva` AS `Cod_Reserva`,`reserva`.`Fecha` AS `Fecha`,`reserva`.`Hora` AS `Hora`,`reserva`.`Cant_Personas` AS `Cant_Personas`,`reserva`.`Detalle` AS `Detalle`,`cliente`.`Nombre` AS `cliente`,`cliente`.`Celular` AS `Celular`,`mesa`.`Num_Mesa` AS `Num_Mesa`,`mesa`.`Cant_Personas` AS `personasmesa`,`restaurante`.`Nombre` AS `Resta` from (((`reserva` left join `cliente` on((`reserva`.`Cod_Cliente` = `cliente`.`Cod_Cliente`))) left join `mesa` on((`reserva`.`Cod_Mesa` = `mesa`.`Cod_Mesa`))) left join `restaurante` on((`mesa`.`Cod_Restaurante` = `restaurante`.`Cod_Restaurante`))) */;
 
 /*View structure for view vtasesion */
 

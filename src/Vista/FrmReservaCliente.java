@@ -174,7 +174,7 @@ public class FrmReservaCliente extends javax.swing.JFrame {
             }
         });
 
-        btnManual.setText("MANUAL");
+        btnManual.setText("TUTORIAL");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

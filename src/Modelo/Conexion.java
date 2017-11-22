@@ -1,10 +1,6 @@
 package Modelo;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -12,56 +8,26 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 public class Conexion {
-
+    
     public static Connection conn = null;
     public Statement st = null;
     public ResultSet rs = null;
-    public static String usu, psw, host, db, url;
+    public static String host, db, url;
+    public CallableStatement cs = null;
 
-    public Conexion() {
-        Conectar();
+    public Conexion(String UsuServer, String PswServer) {
+        Conectar(UsuServer, PswServer);
     }
 
-    public void Conectar() {
-        //String ruta = "C:\\Users\\wilme\\Documents\\NetBeansProjects\\LeeTXT\\Texto";
-        String ruta = System.getProperties().getProperty("user.dir") + "/Base de datos/Conexion.txt";
-        File archivo = new File(ruta);
-        String linea = null;
-        
+    public void Conectar(String UsuServer, String PswServer) {
         try {
-
-            int numLineas = 8;
-            int contador = 0;
-
-            String datos[] = new String[numLineas];
-
-            BufferedReader reader = new BufferedReader(new FileReader(archivo));
-            linea = reader.readLine();
-
-            while (linea != null && contador < numLineas) {
-                datos[contador] = linea;
-                linea = reader.readLine();
-                contador++;
-            }
-            
-            try {
-                usu = datos[1];
-                psw = datos[3];
-                host = datos[5];
-                db = datos[7];
-                url = "jdbc:mysql://" + host + "/" + db;
-                Class.forName("com.mysql.jdbc.Driver");
-                conn = DriverManager.getConnection(url, usu, psw);
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e.getMessage());
-                System.exit(0);
-            }
-            
-        } catch (FileNotFoundException ex) {
-            JOptionPane.showMessageDialog(null, "NO ENCUENTRA ARCHIVO");
-            System.exit(0);
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "ERROR AL ABRIR");
+            host = "localhost";
+            db = "db_restaurante";
+            url = "jdbc:mysql://" + host + "/" + db;
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection(url, UsuServer, PswServer);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "DATOS INCORRECTOS \n"+e.getMessage());
             System.exit(0);
         }
     }

@@ -435,7 +435,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnManual">
       <Properties>
-        <Property name="text" type="java.lang.String" value="MANUAL"/>
+        <Property name="text" type="java.lang.String" value="TUTORIAL"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

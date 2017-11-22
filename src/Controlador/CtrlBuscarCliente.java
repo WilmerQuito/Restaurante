@@ -77,6 +77,7 @@ public class CtrlBuscarCliente implements ActionListener{
                     C.ClienteNuevo(Frm);
                     FrmClienteNuevo.txtDNI.setText(Frm.txtDni.getText());
                     FrmClienteNuevo.txtDNI.setEditable(false);
+                    Limpiar();
                 }else{
                     Limpiar();
                 }
@@ -84,6 +85,7 @@ public class CtrlBuscarCliente implements ActionListener{
                 C.Reservas(Frm);
                 FrmReservaCliente.lblCliente.setText(null);
                 FrmReservaCliente.lblCliente.setText(C.DevolverDatoString("SELECT * FROM cliente WHERE DNI='"+Frm.txtDni.getText()+"'",2).toUpperCase());
+                Limpiar();
             }
         }
     }

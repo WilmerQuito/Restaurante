@@ -8,13 +8,14 @@ import com.placeholder.PlaceHolder;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
 import java.util.Date;
 import javax.swing.ImageIcon;
 
 public class Controlador {
-
+    public static String UsuServer=null, PswServer=null;
     public String sql = "";
-    public Conexion base = new Conexion();
+    public Conexion base = new Conexion(UsuServer, PswServer);
     public boolean flag;
     public String[] Data = new String[15];
     public int fila;
@@ -51,6 +52,7 @@ public class Controlador {
 
             cb.setSelectedIndex(0);
         } catch (Exception e) {
+            Mensaje(String.valueOf(e));
         }
     }
 
@@ -66,6 +68,7 @@ public class Controlador {
                 mdl.addRow(Data);
             }
         } catch (Exception e) {
+            Mensaje(String.valueOf(e));
         }
     }
 
@@ -74,6 +77,7 @@ public class Controlador {
             base.st = base.conn.createStatement();
             base.st.executeUpdate(cns);
         } catch (Exception e) {
+            Mensaje(String.valueOf(e));
         }
     }
 
@@ -86,6 +90,7 @@ public class Controlador {
                 rst = base.rs.getString(1);
             }
         } catch (Exception e) {
+            Mensaje(String.valueOf(e));
         }
         return rst;
     }
@@ -129,6 +134,7 @@ public class Controlador {
             base.rs = base.st.executeQuery(cns);
             bdr = base.rs.next();
         } catch (Exception e) {
+            Mensaje(String.valueOf(e));
         }
         return bdr;
     }
@@ -152,6 +158,7 @@ public class Controlador {
                 dto = base.rs.getString(pos);
             }
         } catch (Exception e) {
+            Mensaje(String.valueOf(e));
         }
         return dto;
     }
@@ -179,6 +186,7 @@ public class Controlador {
                 Mensaje("ERROR AL INICIAR SESION");
             }
         } catch (Exception e) {
+            Mensaje(String.valueOf(e));
         }
     }
 
@@ -217,6 +225,7 @@ public class Controlador {
                 dto = base.rs.getString(posdev);
             }
         } catch (Exception e) {
+            Mensaje(String.valueOf(e));
         }
         return dto;
     }
@@ -230,6 +239,7 @@ public class Controlador {
                 dto = base.rs.getDouble(posdev);
             }
         } catch (Exception e) {
+            Mensaje(String.valueOf(e));
         }
         return dto;
     }
@@ -243,6 +253,7 @@ public class Controlador {
                 dto = base.rs.getInt(posdev);
             }
         } catch (Exception e) {
+            Mensaje(String.valueOf(e));
         }
         return dto;
     }
@@ -256,6 +267,7 @@ public class Controlador {
                 dto = base.rs.getDate(posdev);
             }
         } catch (Exception e) {
+            Mensaje(String.valueOf(e));
         }
         return dto;
     }
@@ -320,6 +332,17 @@ public class Controlador {
             Ctl.Iniciar();
             Frm.setVisible(true);
             Actual.setVisible(false);
+        } catch (Exception e) {
+            Mensaje(String.valueOf(e));
+        }
+    }
+    
+    public void Video() {
+        try {
+            FrmVideo Frm = PtVideo.getInstance();
+            CtrlVideo Ctl = CtrlVideo.getInstance(Frm);
+            Ctl.Iniciar();
+            Frm.setVisible(true);
         } catch (Exception e) {
             Mensaje(String.valueOf(e));
         }

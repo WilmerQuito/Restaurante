@@ -9,7 +9,10 @@ import PatronVistas.*;
 import Controlador.*;
 import Modelo.Controlador;
 import Vista.*;
+import java.awt.Desktop;
 import java.awt.Dimension;
+import java.io.File;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
 /**
@@ -43,6 +46,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jdpPrincipal = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
         lblnombre = new javax.swing.JLabel();
+        btnManual = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         mArchivo = new javax.swing.JMenu();
         jmSalir = new javax.swing.JMenuItem();
@@ -90,24 +94,37 @@ public class FrmPrincipal extends javax.swing.JFrame {
         lblnombre.setForeground(new java.awt.Color(0, 0, 0));
         lblnombre.setText("BBBBBBBBBBBBBBBBBBBBBBBBB");
 
+        btnManual.setText("MANUAL");
+        btnManual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManualActionPerformed(evt);
+            }
+        });
+
         jdpPrincipal.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jdpPrincipal.setLayer(lblnombre, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdpPrincipal.setLayer(btnManual, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jdpPrincipalLayout = new javax.swing.GroupLayout(jdpPrincipal);
         jdpPrincipal.setLayout(jdpPrincipalLayout);
         jdpPrincipalLayout.setHorizontalGroup(
             jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdpPrincipalLayout.createSequentialGroup()
-                .addContainerGap(933, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblnombre)
+            .addGroup(jdpPrincipalLayout.createSequentialGroup()
+                .addContainerGap(853, Short.MAX_VALUE)
+                .addGroup(jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jdpPrincipalLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnManual))
                 .addContainerGap())
         );
         jdpPrincipalLayout.setVerticalGroup(
             jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdpPrincipalLayout.createSequentialGroup()
-                .addContainerGap(694, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(btnManual)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 660, Short.MAX_VALUE)
                 .addGroup(jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(lblnombre))
@@ -707,6 +724,17 @@ public class FrmPrincipal extends javax.swing.JFrame {
         C.impri.Imprimir("Rpt_Empleados", "REPORTE DE EMPLEADOS");
     }//GEN-LAST:event_rptEmpleadosActionPerformed
 
+    private void btnManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManualActionPerformed
+        try {
+            String ruta = System.getProperties().getProperty("user.dir") + "/src/Complemento/MANUAL.PDF";
+            File path = new File(ruta);
+            Desktop.getDesktop().open(path);
+            //Desktop.getDesktop().print(path);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnManualActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -743,6 +771,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JButton btnManual;
     private javax.swing.JLabel jLabel1;
     public javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JDesktopPane jdpPrincipal;

@@ -6,8 +6,9 @@
 package Restaurante;
 
 import Controlador.*;
-import Modelo.Controlador;
+import PatronVistas.*;
 import Vista.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,7 +20,7 @@ public class Restaurante {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Controlador C = Controlador.getInstance();
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -39,7 +40,14 @@ public class Restaurante {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                C.BuscarClienteInicial();
+                try {
+                    AccesoServer Frm = PtAccesoServer.getInstance();
+                    CtrlAccesoServer Ctl = CtrlAccesoServer.getInstance(Frm);
+                    Ctl.Iniciar();
+                    Frm.setVisible(true);
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, String.valueOf(e));
+                }
             }
         });
     }
