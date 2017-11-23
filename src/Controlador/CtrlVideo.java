@@ -53,7 +53,7 @@ public class CtrlVideo {
              @Override
              public void run() {                 
                 try{
-                    String ruta = System.getProperties().getProperty("user.dir") + "/src/Complemento/Reserva.mp4";
+                    String ruta = System.getProperties().getProperty("user.dir") + "/Complementos/Reserva.mp4";
                     File file = new File(ruta);
                                                  
                     MediaPlayer oracleVid = new MediaPlayer(                                       

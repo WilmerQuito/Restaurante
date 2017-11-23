@@ -110,12 +110,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jdpPrincipalLayout.setHorizontalGroup(
             jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jdpPrincipalLayout.createSequentialGroup()
-                .addContainerGap(853, Short.MAX_VALUE)
+                .addContainerGap(933, Short.MAX_VALUE)
                 .addGroup(jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jdpPrincipalLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblnombre))
                     .addComponent(btnManual))
                 .addContainerGap())
         );
@@ -721,15 +721,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmMedidaActionPerformed
 
     private void rptEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rptEmpleadosActionPerformed
-        C.impri.Imprimir("Rpt_Empleados", "REPORTE DE EMPLEADOS");
+        C.impri.Imprimir("RptEmpleados", "REPORTE DE EMPLEADOS");
     }//GEN-LAST:event_rptEmpleadosActionPerformed
 
     private void btnManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManualActionPerformed
         try {
-            String ruta = System.getProperties().getProperty("user.dir") + "/src/Complemento/MANUAL.PDF";
+            String ruta = System.getProperties().getProperty("user.dir") + "/Complementos/MANUAL.PDF";
             File path = new File(ruta);
             Desktop.getDesktop().open(path);
-            //Desktop.getDesktop().print(path);
         } catch (IOException ex) {
             ex.printStackTrace();
         }

@@ -23,8 +23,8 @@ public class Conexion2 {
     }
 
     public void Conectar() {
-        //String ruta = "C:\\Users\\wilme\\Documents\\NetBeansProjects\\LeeTXT\\Texto";
-        String ruta = System.getProperties().getProperty("user.dir") + "/Base de datos/Conexion.txt";
+        //String ruta = "C://restosist/Conexion.txt";
+        String ruta = System.getProperties().getProperty("user.dir") + "/Complementos/Conexion.txt";
         File archivo = new File(ruta);
         String linea = null;
         

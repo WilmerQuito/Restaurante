@@ -5,7 +5,7 @@
  */
 package Controlador;
 
-import Modelo.Controlador;
+import Modelo.*;
 import Vista.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,6 +31,7 @@ public class CtrlReservaCliente implements ActionListener {
 
     private DefaultTableModel DTM = new DefaultTableModel();
     Controlador C = Controlador.getInstance();
+    ArchivoTXT A= ArchivoTXT.getInstance();
     private static FrmReservaCliente Frm;
     private static CtrlReservaCliente Single;
     Date dat = new Date();
@@ -249,7 +250,7 @@ public class CtrlReservaCliente implements ActionListener {
         return fecha;
     }
 
-    public void Reservar() {
+    public void Reservar(){
         CodCli = C.DevolverDatoString("SELECT * FROM cliente WHERE Nombre='" + Frm.lblCliente.getText() + "'", 1);
         
         JSpinner.DateEditor de1 = new JSpinner.DateEditor(Frm.jspHora, "HH:mm");
@@ -269,7 +270,16 @@ public class CtrlReservaCliente implements ActionListener {
                         + "\nHORA: " + de2.getFormat().format(Frm.jspHora.getValue())
                         + "\nFECHA: " + Fecha()
                         + "\nASISTENTES: " + Frm.jspAsistentes.getValue(), "CONSULTA", 0) == 0) {
-
+                    
+                    A.CrearArchivo("TICKET DE RESERVA");
+                    A.AñadirDatos("Cliente: "+Frm.lblCliente.getText());
+                    A.AñadirDatos("Restaurante: "+Frm.lblRestaurante.getText().toUpperCase());
+                    A.AñadirDatos("Mesa: "+NumMesa);
+                    A.AñadirDatos("Hora: "+de2.getFormat().format(Frm.jspHora.getValue()));
+                    A.AñadirDatos("Fecha: "+Fecha());
+                    A.AñadirDatos("Asistentes: "+Frm.jspAsistentes.getValue());
+                    A.Imprimir();
+                    
                     String Cod = C.GeneraCodigo("R", "Reserva", "Cod_Reserva");
                     C.InsertaRegistro("INSERT INTO Reserva VALUES('" + Cod + "','"
                             + de1.getFormat().format(Frm.jspHora.getValue()) + "','"
@@ -283,6 +293,7 @@ public class CtrlReservaCliente implements ActionListener {
                     Limpiar();
                     C.BuscarCliente(Frm);
                     //C.InsertaRegistro("UPDATE mesa SET Cod_Estado='R' WHERE Cod_Mesa='" + CodMesa + "'");
+      
                 }
             }else{
                 C.Mensaje("LA MESA ESTA RESERVADA PARA ESE DIA Y HORA");
@@ -312,12 +323,6 @@ public class CtrlReservaCliente implements ActionListener {
         }
         
         if (e.getSource() == Frm.btnManual) {
-            /*try {
-                File path = new File("C://restosist/Manual.pdf");
-                Desktop.getDesktop().open(path);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }*/
             C.Video();
         }
 

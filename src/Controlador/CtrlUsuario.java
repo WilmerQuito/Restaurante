@@ -173,7 +173,7 @@ public class CtrlUsuario implements ActionListener{
         
         //INSERCION DE DATOS A LA BD
         if(e.getSource() == Frm.btnguardar){
-            String sql="SELECT * FROM Usuario WHERE Usuario='"+Frm.txtUsuario.getText()+"' OR Cod_Empleado='"+Empleado+"';";
+            String sql="SELECT * FROM Usuario WHERE Usuario='"+Frm.txtUsuario.getText()+"' OR empleado_idEmpleado='"+Empleado+"';";
             if(!C.VerificarConsulta(sql)){
                 if (Validar()) {
                     String Cod=C.GeneraCodigo(Frm.txtUsuario.getText().toUpperCase(), "Usuario", "Cod_Usuario");
@@ -193,7 +193,7 @@ public class CtrlUsuario implements ActionListener{
         
         //EDICION DE DATOS EN LA BD
         if(e.getSource() == Frm.btneditar){
-            String sql="SELECT * FROM Usuario WHERE Usuario='"+Frm.txtUsuario.getText()+"' AND Cod_Empleado='"+Empleado+"' AND Cod_Rol='"+Rol+"';";
+            String sql="SELECT * FROM Usuario WHERE Usuario='"+Frm.txtUsuario.getText()+"' AND empleado_idEmpleado='"+Empleado+"' AND rol_Cod_Rol='"+Rol+"';";
             if(!C.VerificarConsulta(sql)){
                 if (Validar()) {
                     C.InsertaRegistro("UPDATE Usuario SET Usuario='"+Frm.txtUsuario.getText().toUpperCase()

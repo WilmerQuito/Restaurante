@@ -52,7 +52,7 @@ public class FrmUsuario extends javax.swing.JInternalFrame {
         btneditar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         cboEmpleado = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        btnImprimir = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -173,10 +173,10 @@ public class FrmUsuario extends javax.swing.JInternalFrame {
         cboEmpleado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cboEmpleado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnImprimir.setText("IMPRIMIR");
+        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnImprimirActionPerformed(evt);
             }
         });
 
@@ -218,7 +218,7 @@ public class FrmUsuario extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(174, 174, 174)
-                .addComponent(jButton1)
+                .addComponent(btnImprimir)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(160, 160, 160)
@@ -237,7 +237,7 @@ public class FrmUsuario extends javax.swing.JInternalFrame {
                 .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jButton1))
+                    .addComponent(btnImprimir))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -344,24 +344,25 @@ public class FrmUsuario extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtBuscarKeyTyped
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
         try {
             TUsuario.print();
         } catch (PrinterException ex) {
             Logger.getLogger(FrmUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+    }//GEN-LAST:event_btnImprimirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTable TUsuario;
+    private javax.swing.JButton btnImprimir;
     public javax.swing.JButton btneditar;
     public javax.swing.JButton btneliminar;
     public javax.swing.JButton btnguardar;
     public javax.swing.JButton btnlimpiar;
     public javax.swing.JComboBox<String> cboEmpleado;
     public javax.swing.JComboBox<String> cboRol;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -67,7 +67,7 @@ public class CtrlAccesoServer implements ActionListener {
             Controlador.PswServer=Frm.txtPsw.getText().toString();
             Controlador C = Controlador.getInstance();
             C.Mensaje("CONEXION EXITOSA");
-            C.InsertaRegistro("INSERT INTO Server VALUES('1','"+Frm.txtUsu.getText().toString()+"','"+Frm.txtPsw.getText().toString()+"')");
+            //C.InsertaRegistro("INSERT INTO Server VALUES('1','"+Frm.txtUsu.getText().toString()+"','"+Frm.txtPsw.getText().toString()+"')");
             C.BuscarCliente(Frm);
             Limpiar();
         }
@@ -82,6 +82,7 @@ public class CtrlAccesoServer implements ActionListener {
 
         if (e.getSource() == Frm.btnCancelar) {
             Limpiar();
+            System.exit(0);
         }   
     }
 }

@@ -1,0 +1,7 @@
+TICKET DE RESERVA
+Cliente: JACINTO REYES SANCHEZ
+Restaurante: DON LUCHO
+Mesa: 1
+Hora: 06:37 PM
+Fecha: 2017-11-26
+Asistentes: 2

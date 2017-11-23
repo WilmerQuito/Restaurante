@@ -8,6 +8,8 @@ package Restaurante;
 import Controlador.*;
 import PatronVistas.*;
 import Vista.*;
+import it.sauronsoftware.junique.AlreadyLockedException;
+import it.sauronsoftware.junique.JUnique;
 import javax.swing.JOptionPane;
 
 /**
@@ -41,13 +43,20 @@ public class Restaurante {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    AccesoServer Frm = PtAccesoServer.getInstance();
-                    CtrlAccesoServer Ctl = CtrlAccesoServer.getInstance(Frm);
-                    Ctl.Iniciar();
-                    Frm.setVisible(true);
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, String.valueOf(e));
+                    JUnique.acquireLock("krupf");
+                    try {
+                        AccesoServer Frm = PtAccesoServer.getInstance();
+                        CtrlAccesoServer Ctl = CtrlAccesoServer.getInstance(Frm);
+                        Ctl.Iniciar();
+                        Frm.setVisible(true);
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, String.valueOf(e));
+                    }
+                } catch (AlreadyLockedException ex) {
+                    JOptionPane.showMessageDialog(null,"EL SISTEMA YA SE ESTA EJECUTANDO");
+                    System.exit(0);
                 }
+
             }
         });
     }

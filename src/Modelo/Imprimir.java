@@ -7,15 +7,15 @@ import net.sf.jasperreports.view.JasperViewer;
 
 public class Imprimir {
     
-    public String rta="";
+    public String ruta="";
     public int ctdpgns=0;
     
     public void ImprimirConParametro(String nomrep, String Parametro, String Dato, String Titulo) {
         try {
             Map parametro = new HashMap();
-            rta = System.getProperties().getProperty("user.dir") + "/src/Reportes/" + nomrep + ".jasper";
+            ruta = System.getProperties().getProperty("user.dir") + "/Reportes/" + nomrep + ".jasper";
             parametro.put(Parametro,Dato);
-            JasperPrint prt = JasperFillManager.fillReport(rta, parametro, Conexion.conn);
+            JasperPrint prt = JasperFillManager.fillReport(ruta, parametro, Conexion.conn);
             int n = prt.getPages().size();
             if (n > 0) {
                 JasperViewer JsperView = new JasperViewer(prt, false);
@@ -32,11 +32,11 @@ public class Imprimir {
     public void ImprimirParametros(String nomrep, String Parametro1, String Dato1, String Parametro2, String Dato2, String Parametro3, String Dato3, String Titulo) {
         try {
             Map parametro = new HashMap();
-            rta = System.getProperties().getProperty("user.dir") + "/src/Reportes/" + nomrep + ".jasper";
+            ruta = System.getProperties().getProperty("user.dir") + "/Reportes/" + nomrep + ".jasper";
             parametro.put(Parametro1,Dato1);
             parametro.put(Parametro2,Dato2);
             parametro.put(Parametro3,Dato3);
-            JasperPrint prt = JasperFillManager.fillReport(rta, parametro, Conexion.conn);
+            JasperPrint prt = JasperFillManager.fillReport(ruta, parametro, Conexion.conn);
             int n = prt.getPages().size();
             if (n > 0) {
                 JasperViewer JsperView = new JasperViewer(prt, false);
@@ -54,10 +54,10 @@ public class Imprimir {
     public void Imprimir2Param(String nomrep, String Parametro1, String Dato1, String Parametro2, String Dato2, String Titulo) {
         try {
             Map parametro = new HashMap();
-            rta = System.getProperties().getProperty("user.dir") + "/src/Reportes/" + nomrep + ".jasper";
+            ruta = System.getProperties().getProperty("user.dir") + "/Reportes/" + nomrep + ".jasper";
             parametro.put(Parametro1,Dato1);
             parametro.put(Parametro2,Dato2);
-            JasperPrint prt = JasperFillManager.fillReport(rta, parametro, Conexion.conn);
+            JasperPrint prt = JasperFillManager.fillReport(ruta, parametro, Conexion.conn);
             int n = prt.getPages().size();
             if (n > 0) {
                 JasperViewer JsperView = new JasperViewer(prt, false);
@@ -74,9 +74,10 @@ public class Imprimir {
     public void Imprimir(String NomRepor, String Titulo) {
         try {
             Map parametro = new HashMap();
-            rta = System.getProperties().getProperty("user.dir") + "/src/Reportes/"+ NomRepor +".jrxml";
+//            ruta = "C://restosist/Reportes/"+NomRepor+".jasper";
+            ruta = System.getProperties().getProperty("user.dir") + "/Reportes/"+ NomRepor +".jasper";
             parametro.put("", "");
-            JasperPrint prt = JasperFillManager.fillReport(rta, parametro, Conexion.conn);
+            JasperPrint prt = JasperFillManager.fillReport(ruta, parametro, Conexion.conn);
             int n = prt.getPages().size();
             if (n > 0) {
                 JasperViewer JsperView = new JasperViewer(prt, false);
