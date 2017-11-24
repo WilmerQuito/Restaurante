@@ -1,7 +1,7 @@
 TICKET DE RESERVA
-Cliente: JACINTO REYES SANCHEZ
-Restaurante: DON LUCHO
+Cliente: LILIA CUEVA CHAVEZ
+Restaurante: LA DELICIA
 Mesa: 1
-Hora: 06:37 PM
-Fecha: 2017-11-26
-Asistentes: 2
+Hora: 10:44 AM
+Fecha: 2017-11-24
+Asistentes: 1

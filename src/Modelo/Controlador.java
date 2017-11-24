@@ -8,9 +8,9 @@ import com.placeholder.PlaceHolder;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.util.Date;
-import javax.swing.ImageIcon;
+import java.io.*;
+import java.util.*;
+import java.text.*;
 
 public class Controlador {
     public static String UsuServer=null, PswServer=null;
@@ -345,6 +345,27 @@ public class Controlador {
             Frm.setVisible(true);
         } catch (Exception e) {
             Mensaje(String.valueOf(e));
+        }
+    }
+    
+    public static void Backup(){
+        Date date = new Date();
+        DateFormat HoraFecha = new SimpleDateFormat("hh.mm.ss a_dd-MM-yyyy");
+        try {
+            Process p = Runtime.getRuntime().exec("C:\\AppServ\\MySQL\\bin\\mysqldump -e -u "+UsuServer+" -p"+PswServer+" db_Restaurante");
+
+            InputStream is = p.getInputStream();
+            FileOutputStream fos = new FileOutputStream("C:\\Backups\\LaDelicia_"+HoraFecha.format(date)+".sql");
+            byte[] buffer = new byte[1000];
+
+            int leido = is.read(buffer);
+            while (leido > 0) {
+                fos.write(buffer, 0, leido);
+                leido = is.read(buffer);
+            }
+            fos.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

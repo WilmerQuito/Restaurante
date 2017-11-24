@@ -271,6 +271,7 @@ public class CtrlReservaCliente implements ActionListener {
                         + "\nFECHA: " + Fecha()
                         + "\nASISTENTES: " + Frm.jspAsistentes.getValue(), "CONSULTA", 0) == 0) {
                     
+                    //IMPRIME TICKET
                     A.CrearArchivo("TICKET DE RESERVA");
                     A.AñadirDatos("Cliente: "+Frm.lblCliente.getText());
                     A.AñadirDatos("Restaurante: "+Frm.lblRestaurante.getText().toUpperCase());
@@ -280,6 +281,7 @@ public class CtrlReservaCliente implements ActionListener {
                     A.AñadirDatos("Asistentes: "+Frm.jspAsistentes.getValue());
                     A.Imprimir();
                     
+                    //REGISTRA RESERVA
                     String Cod = C.GeneraCodigo("R", "Reserva", "Cod_Reserva");
                     C.InsertaRegistro("INSERT INTO Reserva VALUES('" + Cod + "','"
                             + de1.getFormat().format(Frm.jspHora.getValue()) + "','"

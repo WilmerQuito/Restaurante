@@ -9,11 +9,10 @@ import PatronVistas.*;
 import Controlador.*;
 import Modelo.Controlador;
 import Vista.*;
-import java.awt.Desktop;
-import java.awt.Dimension;
-import java.io.File;
-import java.io.IOException;
+import java.awt.*;
 import javax.swing.JOptionPane;
+import java.io.*;
+import java.util.Calendar;
 
 /**
  *
@@ -22,6 +21,8 @@ import javax.swing.JOptionPane;
 public class FrmPrincipal extends javax.swing.JFrame {
 
     Controlador C = Controlador.getInstance();
+    int dia, mes, año, hora, minutos, segundos;
+    Calendar calendario;
 
     /**
      * Creates new form FrmPrincipal
@@ -31,7 +32,29 @@ public class FrmPrincipal extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("MENU PRINCIPAL");
-
+        reloj();
+    }
+    
+    private void reloj() {
+        calendario = new java.util.GregorianCalendar();
+        segundos = calendario.get(Calendar.SECOND);
+        javax.swing.Timer timer = new javax.swing.Timer(1000, new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent ae) {
+                java.util.Date actual = new java.util.Date();
+                calendario.setTime(actual);
+                dia = calendario.get(Calendar.DAY_OF_MONTH);
+                mes = (calendario.get(Calendar.MONTH) + 1);
+                año = calendario.get(Calendar.YEAR);
+                hora = calendario.get(Calendar.HOUR_OF_DAY);
+                minutos = calendario.get(Calendar.MINUTE);
+                segundos = calendario.get(Calendar.SECOND);
+                String hour = String.format("%02d:%02d:%02d", hora, minutos, segundos);
+                String date = String.format("%02d/%02d/%02d", dia, mes, año);
+                lblHora.setText(date+"   "+hour);
+            }
+        });
+        timer.start();
     }
 
     /**
@@ -47,6 +70,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         lblnombre = new javax.swing.JLabel();
         btnManual = new javax.swing.JButton();
+        lblHora = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         mArchivo = new javax.swing.JMenu();
         jmSalir = new javax.swing.JMenuItem();
@@ -82,16 +106,19 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jmMedida = new javax.swing.JMenuItem();
         jmReportes = new javax.swing.JMenu();
         rptEmpleados = new javax.swing.JMenuItem();
+        jmReservas = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jmExportar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("BIENVENIDO:");
 
         lblnombre.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        lblnombre.setForeground(new java.awt.Color(0, 0, 0));
+        lblnombre.setForeground(new java.awt.Color(255, 255, 255));
         lblnombre.setText("BBBBBBBBBBBBBBBBBBBBBBBBB");
 
         btnManual.setText("MANUAL");
@@ -101,30 +128,40 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
 
+        lblHora.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
+        lblHora.setForeground(new java.awt.Color(255, 255, 255));
+
         jdpPrincipal.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jdpPrincipal.setLayer(lblnombre, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jdpPrincipal.setLayer(btnManual, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdpPrincipal.setLayer(lblHora, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jdpPrincipalLayout = new javax.swing.GroupLayout(jdpPrincipal);
         jdpPrincipal.setLayout(jdpPrincipalLayout);
         jdpPrincipalLayout.setHorizontalGroup(
             jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jdpPrincipalLayout.createSequentialGroup()
-                .addContainerGap(933, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jdpPrincipalLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblnombre))
-                    .addComponent(btnManual))
+                    .addGroup(jdpPrincipalLayout.createSequentialGroup()
+                        .addComponent(lblHora, javax.swing.GroupLayout.PREFERRED_SIZE, 683, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 502, Short.MAX_VALUE)
+                        .addComponent(btnManual)))
                 .addContainerGap())
         );
         jdpPrincipalLayout.setVerticalGroup(
             jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdpPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnManual)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 660, Short.MAX_VALUE)
+                .addGroup(jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnManual)
+                    .addComponent(lblHora, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 647, Short.MAX_VALUE)
                 .addGroup(jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(lblnombre))
@@ -377,7 +414,27 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jmReportes.add(rptEmpleados);
 
+        jmReservas.setText("RESERVAS");
+        jmReservas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmReservasActionPerformed(evt);
+            }
+        });
+        jmReportes.add(jmReservas);
+
         jMenuBar1.add(jmReportes);
+
+        jMenu1.setText("BASE DE DATOS");
+
+        jmExportar.setText("EXPORTAR");
+        jmExportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmExportarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmExportar);
+
+        jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
 
@@ -734,6 +791,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnManualActionPerformed
 
+    private void jmExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmExportarActionPerformed
+        C.Backup();
+    }//GEN-LAST:event_jmExportarActionPerformed
+
+    private void jmReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmReservasActionPerformed
+        C.impri.Imprimir("RptReservas", "REPORTE DE RESERVAS");
+    }//GEN-LAST:event_jmReservasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -772,6 +837,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton btnManual;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
     public javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JDesktopPane jdpPrincipal;
     private javax.swing.JMenuItem jmAlmacen;
@@ -782,6 +848,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmEmpleado;
     private javax.swing.JMenuItem jmEstadoMesa;
     private javax.swing.JMenuItem jmEstadoPedido;
+    private javax.swing.JMenuItem jmExportar;
     private javax.swing.JMenuItem jmIngrediente;
     private javax.swing.JMenuItem jmMarca;
     private javax.swing.JMenuItem jmMedida;
@@ -789,6 +856,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmOrigen;
     private javax.swing.JMenuItem jmPresentacion;
     public static javax.swing.JMenu jmReportes;
+    private javax.swing.JMenuItem jmReservas;
     private javax.swing.JMenuItem jmRestaurante;
     private javax.swing.JMenuItem jmRoles;
     private javax.swing.JMenuItem jmSabor;
@@ -797,6 +865,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmTipoIngrediente;
     private javax.swing.JMenuItem jmUbicacion;
     private javax.swing.JMenuItem jmUsuario;
+    private javax.swing.JLabel lblHora;
     public static javax.swing.JLabel lblnombre;
     public static javax.swing.JMenu mArchivo;
     public static javax.swing.JMenu mBebidas;

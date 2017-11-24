@@ -5,6 +5,9 @@
  */
 package Vista;
 
+import javax.swing.JOptionPane;
+
+
 
 /**
  *
@@ -18,6 +21,7 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
     public FrmBuscarCliente() {
         this.setUndecorated(true);
         initComponents();
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -25,7 +29,7 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
     private void initComponents() {
 
         jTimeChooserDemo1 = new lu.tudor.santec.jtimechooser.demo.JTimeChooserDemo();
-        jLabel1 = new javax.swing.JLabel();
+        lblAccion = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtDni = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
@@ -39,14 +43,30 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
                 formWindowClosing(evt);
             }
         });
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                formKeyReleased(evt);
+            }
+        });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("BIENVENIDOS");
+        lblAccion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblAccion.setText("BIENVENIDOS");
+        lblAccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                lblAccionKeyPressed(evt);
+            }
+        });
 
         jLabel2.setText("INGRESA TU DNI:");
 
         txtDni.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtDni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDniKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtDniKeyTyped(evt);
             }
@@ -85,7 +105,7 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(143, 143, 143)
-                            .addComponent(jLabel1))
+                            .addComponent(lblAccion))
                         .addGroup(layout.createSequentialGroup()
                             .addContainerGap()
                             .addComponent(jLabel2)
@@ -107,7 +127,7 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(lblAccion)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -150,8 +170,24 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDniKeyTyped
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        
+
     }//GEN-LAST:event_formWindowClosing
+
+    private void txtDniKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyPressed
+        
+    }//GEN-LAST:event_txtDniKeyPressed
+
+    private void lblAccionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lblAccionKeyPressed
+        
+    }//GEN-LAST:event_lblAccionKeyPressed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        
+    }//GEN-LAST:event_formKeyPressed
+
+    private void formKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyReleased
+        
+    }//GEN-LAST:event_formKeyReleased
 
     /**
      * @param args the command line arguments
@@ -192,10 +228,10 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnBuscar;
     public javax.swing.JButton btnLimpiar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private lu.tudor.santec.jtimechooser.demo.JTimeChooserDemo jTimeChooserDemo1;
     public javax.swing.JLabel lblAcceso;
+    public javax.swing.JLabel lblAccion;
     public javax.swing.JTextField txtDni;
     // End of variables declaration//GEN-END:variables
 }

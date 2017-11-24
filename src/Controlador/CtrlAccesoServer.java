@@ -66,7 +66,6 @@ public class CtrlAccesoServer implements ActionListener {
             Controlador.UsuServer=Frm.txtUsu.getText().toString();
             Controlador.PswServer=Frm.txtPsw.getText().toString();
             Controlador C = Controlador.getInstance();
-            C.Mensaje("CONEXION EXITOSA");
             //C.InsertaRegistro("INSERT INTO Server VALUES('1','"+Frm.txtUsu.getText().toString()+"','"+Frm.txtPsw.getText().toString()+"')");
             C.BuscarCliente(Frm);
             Limpiar();

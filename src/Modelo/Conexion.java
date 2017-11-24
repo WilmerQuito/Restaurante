@@ -22,12 +22,12 @@ public class Conexion {
     public void Conectar(String UsuServer, String PswServer) {
         try {
             host = "localhost";
-            db = "db_restaurante";
+            db = "db_restaurante2";
             url = "jdbc:mysql://" + host + "/" + db;
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(url, UsuServer, PswServer);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "DATOS INCORRECTOS \n"+e.getMessage());
+            JOptionPane.showMessageDialog(null, "ERROR DE CONEXION \n"+e.getMessage());
             System.exit(0);
         }
     }

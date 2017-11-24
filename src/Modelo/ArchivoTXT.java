@@ -39,7 +39,7 @@ public class ArchivoTXT {
         return Single;
     }
 
-    public static void CrearArchivo(String Datos) {
+    public void CrearArchivo(String Datos) {
         FileWriter flwriter = null;
         try {
             flwriter = new FileWriter(ruta);
@@ -60,7 +60,7 @@ public class ArchivoTXT {
         }
     }
 
-    public static ArrayList LeerArchivo() {
+    public ArrayList LeerArchivo() {
         File file = new File(ruta);
         ArrayList Ticket = new ArrayList<>();
         Scanner scanner;
@@ -83,7 +83,7 @@ public class ArchivoTXT {
     }
 
     //añadir más estudiantes al archivo
-    public static void AñadirDatos(String Datos) {
+    public void AñadirDatos(String Datos) {
         FileWriter flwriter = null;
         try {
             flwriter = new FileWriter(ruta, true);
@@ -105,23 +105,35 @@ public class ArchivoTXT {
     }
 
     public void Imprimir() {
-        java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
-        java.io.File fichero = new java.io.File(ruta);
-        if (desktop.isSupported(Desktop.Action.PRINT)) {
-            try {
-                try {
-                    String nombreImpresora = "HP LaserJet Professional P 1102w"; //NOMBRA LA IMPRESORA
-                    //String nombreImpresora = "Foxit Reader PDF Printer"; //NOMBRA LA IMPRESORA
-                    Process pr = Runtime.getRuntime().exec("Rundll32 printui.dll,PrintUIEntry /y /n \"" + nombreImpresora + "\""); //OBTIENE DRIVER
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-                desktop.print(fichero);//IMPRIME
-            } catch (Exception e) {
-                e.printStackTrace();
+        
+        try {
+            Desktop desktop = null;
+            if (Desktop.isDesktopSupported()) {
+                desktop = Desktop.getDesktop();
             }
-        } else {
-            System.out.print("El sistema no permite imprimir usando la clase Desktop");
+
+            desktop.print(new File(ruta));
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
         }
+        
+//        java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
+//        java.io.File fichero = new java.io.File(ruta);
+//        if (desktop.isSupported(Desktop.Action.PRINT)) {
+//            try {
+//                try {
+//                    String nombreImpresora = "HP LaserJet Professional P 1102w"; //NOMBRA LA IMPRESORA
+//                    //String nombreImpresora = "Foxit Reader PDF Printer"; //NOMBRA LA IMPRESORA
+//                    Process pr = Runtime.getRuntime().exec("Rundll32 printui.dll,PrintUIEntry /y /n \"" + nombreImpresora + "\""); //OBTIENE DRIVER
+//                } catch (Exception ex) {
+//                    ex.printStackTrace();
+//                }
+//                desktop.print(fichero);//IMPRIME
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        } else {
+//            System.out.print("El sistema no permite imprimir usando la clase Desktop");
+//        }
     }
 }
