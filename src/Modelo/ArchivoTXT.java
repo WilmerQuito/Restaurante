@@ -20,7 +20,6 @@ import java.util.Scanner;
  */
 public class ArchivoTXT {
 
-    private static String ruta = System.getProperties().getProperty("user.dir") + "/Complementos/Ticket.txt";
     private static ArchivoTXT Single = null;
 
     private ArchivoTXT() {
@@ -39,7 +38,7 @@ public class ArchivoTXT {
         return Single;
     }
 
-    public void CrearArchivo(String Datos) {
+    public void CrearArchivo(String ruta, String Datos) {
         FileWriter flwriter = null;
         try {
             flwriter = new FileWriter(ruta);
@@ -60,7 +59,7 @@ public class ArchivoTXT {
         }
     }
 
-    public ArrayList LeerArchivo() {
+    public ArrayList LeerArchivo(String ruta) {
         File file = new File(ruta);
         ArrayList Ticket = new ArrayList<>();
         Scanner scanner;
@@ -72,7 +71,7 @@ public class ArchivoTXT {
                 //se usa una expresión regular
                 //que valida que antes o despues de una coma (,) exista cualquier cosa
                 //parte la cadena recibida cada vez que encuentre una coma				
-                delimitar.useDelimiter("\\s*,\\s*");
+                //delimitar.useDelimiter("\\s*,\\s*");
                 Ticket.add(delimitar.next());
             }
             scanner.close();
@@ -83,7 +82,7 @@ public class ArchivoTXT {
     }
 
     //añadir más estudiantes al archivo
-    public void AñadirDatos(String Datos) {
+    public void AñadirDatos(String ruta, String Datos) {
         FileWriter flwriter = null;
         try {
             flwriter = new FileWriter(ruta, true);
@@ -104,8 +103,7 @@ public class ArchivoTXT {
         }
     }
 
-    public void Imprimir() {
-        
+    public void Imprimir(String ruta) {     
         try {
             Desktop desktop = null;
             if (Desktop.isDesktopSupported()) {
@@ -116,24 +114,5 @@ public class ArchivoTXT {
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
-        
-//        java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
-//        java.io.File fichero = new java.io.File(ruta);
-//        if (desktop.isSupported(Desktop.Action.PRINT)) {
-//            try {
-//                try {
-//                    String nombreImpresora = "HP LaserJet Professional P 1102w"; //NOMBRA LA IMPRESORA
-//                    //String nombreImpresora = "Foxit Reader PDF Printer"; //NOMBRA LA IMPRESORA
-//                    Process pr = Runtime.getRuntime().exec("Rundll32 printui.dll,PrintUIEntry /y /n \"" + nombreImpresora + "\""); //OBTIENE DRIVER
-//                } catch (Exception ex) {
-//                    ex.printStackTrace();
-//                }
-//                desktop.print(fichero);//IMPRIME
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        } else {
-//            System.out.print("El sistema no permite imprimir usando la clase Desktop");
-//        }
     }
 }

@@ -5,10 +5,9 @@
  */
 package Controlador;
 
-import Modelo.Controlador;
+import Modelo.*;
 import Vista.AccesoServer;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,13 +27,13 @@ public class CtrlAccesoServer implements ActionListener {
         Frm.btnCancelar.addActionListener(this);
     }
 
-    public static synchronized CtrlAccesoServer getInstance(AccesoServer Frm){
-        if(Single == null){
+    public static synchronized CtrlAccesoServer getInstance(AccesoServer Frm) {
+        if (Single == null) {
             Single = new CtrlAccesoServer(Frm);
         }
         return Single;
     }
-    
+
     public void Iniciar() {
         Frm.setLocationRelativeTo(null);
     }
@@ -43,12 +42,12 @@ public class CtrlAccesoServer implements ActionListener {
         flag = true;
         if (Frm.txtUsu.getText().trim().length() == 0) {
             flag = false;
-            JOptionPane.showMessageDialog(null,"INGRESA TU USUARIO");
+            JOptionPane.showMessageDialog(null, "INGRESA TU USUARIO");
             Frm.txtUsu.grabFocus();
         } else {
             if (Frm.txtPsw.getText().trim().length() == 0) {
                 flag = false;
-                JOptionPane.showMessageDialog(null,"INGRESA UN CONSTRASEÑA");
+                JOptionPane.showMessageDialog(null, "INGRESA UN CONSTRASEÑA");
                 Frm.txtPsw.grabFocus();
             }
         }
@@ -63,11 +62,13 @@ public class CtrlAccesoServer implements ActionListener {
 
     public void Acceso() {
         if (Validar()) {
-            Controlador.UsuServer=Frm.txtUsu.getText().toString();
-            Controlador.PswServer=Frm.txtPsw.getText().toString();
+            Controlador.UsuServer = Frm.txtUsu.getText().toString();
+            Controlador.PswServer = Frm.txtPsw.getText().toString();
+            Controlador.DataBase = Frm.txtDB.getText().toString();
+            Controlador.HostServer = Frm.txtHost.getText().toString();
             Controlador C = Controlador.getInstance();
-            //C.InsertaRegistro("INSERT INTO Server VALUES('1','"+Frm.txtUsu.getText().toString()+"','"+Frm.txtPsw.getText().toString()+"')");
             C.BuscarCliente(Frm);
+            C.AccesoServer();
             Limpiar();
         }
     }
@@ -82,6 +83,6 @@ public class CtrlAccesoServer implements ActionListener {
         if (e.getSource() == Frm.btnCancelar) {
             Limpiar();
             System.exit(0);
-        }   
+        }
     }
 }

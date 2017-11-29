@@ -51,8 +51,10 @@ public class FrmCliente extends javax.swing.JInternalFrame {
         setToolTipText("");
 
         txtCodigo.setEditable(false);
+        txtCodigo.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         txtCodigo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        txtNombre.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         txtNombre.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -60,6 +62,7 @@ public class FrmCliente extends javax.swing.JInternalFrame {
             }
         });
 
+        txtCelular.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         txtCelular.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtCelular.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -67,6 +70,7 @@ public class FrmCliente extends javax.swing.JInternalFrame {
             }
         });
 
+        txtDNI.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         txtDNI.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtDNI.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -74,28 +78,35 @@ public class FrmCliente extends javax.swing.JInternalFrame {
             }
         });
 
+        btnlimpiar.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         btnlimpiar.setText("LIMPIAR");
         btnlimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        btnguardar.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         btnguardar.setText("GUARDAR");
         btnguardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel1.setText("REGISTRO DE CLIENTES");
 
+        btneditar.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         btneditar.setText("EDITAR");
         btneditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel2.setText("CODIGO:");
 
+        btneliminar.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         btneliminar.setText("ELIMINAR");
         btneliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel3.setText("NOMBRE:");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("BUSCAR:"));
         jPanel1.setToolTipText("");
 
+        txtBuscar.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         txtBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -106,6 +117,7 @@ public class FrmCliente extends javax.swing.JInternalFrame {
             }
         });
 
+        TCliente.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         TCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -146,8 +158,10 @@ public class FrmCliente extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel4.setText("CELULAR:");
 
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel5.setText("DNI:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

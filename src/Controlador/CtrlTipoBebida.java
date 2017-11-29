@@ -7,12 +7,7 @@ package Controlador;
 
 import Modelo.Controlador;
 import Vista.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -63,13 +58,13 @@ public class CtrlTipoBebida implements ActionListener {
         });
     }
 
-    public static synchronized CtrlTipoBebida getInstance(FrmTipoBebida Frm){
-        if(Single == null){
+    public static synchronized CtrlTipoBebida getInstance(FrmTipoBebida Frm) {
+        if (Single == null) {
             Single = new CtrlTipoBebida(Frm);
         }
         return Single;
     }
-    
+
     public void Iniciar() {
         Frm.TTipo.setModel(DTM);
         DTM.setColumnIdentifiers(new String[]{"CODIGO", "TIPO DE BEBIDA"});
@@ -97,17 +92,17 @@ public class CtrlTipoBebida implements ActionListener {
     }
 
     public void Tabla() {
-        C.sql = "SELECT * FROM tipobebida WHERE idtipoBebida LIKE '" + Frm.txtBuscar.getText()
-                + "%' or nomTipo like '" + Frm.txtBuscar.getText()
+        C.sql = "SELECT * FROM tipobebida WHERE idtipobebida LIKE '" + Frm.txtBuscar.getText()
+                + "%' or nomtipo like '" + Frm.txtBuscar.getText()
                 + "%'";
         C.MostrarenJTable(DTM, C.sql, 2);
     }
 
     public void Guardar() {
-        String sql = "SELECT * FROM tipobebida WHERE nomTipo='" + Frm.txtTipo.getText() + "';";
+        String sql = "SELECT * FROM tipobebida WHERE nomtipo='" + Frm.txtTipo.getText() + "';";
         if (!C.VerificarConsulta(sql)) {
             if (Validar()) {
-                String Cod = C.GeneraCodigo(Frm.txtTipo.getText().toUpperCase(), "tipobebida", "idtipoBebida");
+                String Cod = C.GeneraCodigo(Frm.txtTipo.getText().toUpperCase(), "tipobebida", "idtipobebida");
                 C.InsertaRegistro("INSERT INTO tipobebida VALUES('" + Cod + "','"
                         + Frm.txtTipo.getText().toUpperCase() + "')");
                 C.Mensaje("TIPO DE BEBIDA REGISTRADO");
@@ -120,11 +115,11 @@ public class CtrlTipoBebida implements ActionListener {
     }
 
     public void Editar() {
-        String sql = "SELECT * FROM tipobebida WHERE nomTipo='" + Frm.txtTipo.getText() + "';";
+        String sql = "SELECT * FROM tipobebida WHERE nomtipo='" + Frm.txtTipo.getText() + "';";
         if (!C.VerificarConsulta(sql)) {
             if (Validar()) {
-                C.InsertaRegistro("UPDATE tipobebida SET nomTipo='" + Frm.txtTipo.getText().toUpperCase()
-                        + "' WHERE idtipoBebida='" + Frm.txtCodigo.getText() + "'");
+                C.InsertaRegistro("UPDATE tipobebida SET nomtipo='" + Frm.txtTipo.getText().toUpperCase()
+                        + "' WHERE idtipobebida='" + Frm.txtCodigo.getText() + "'");
                 C.Mensaje("TIPO DE BEBIDA ACTUALIZADO");
                 Tabla();
                 Limpiar();

@@ -6,11 +6,13 @@
 package Restaurante;
 
 import Controlador.*;
+import Modelo.Controlador;
 import PatronVistas.*;
 import Vista.*;
 import it.sauronsoftware.junique.AlreadyLockedException;
 import it.sauronsoftware.junique.JUnique;
 import javax.swing.JOptionPane;
+import java.io.*;
 
 /**
  *
@@ -43,17 +45,53 @@ public class Restaurante {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
+                    String ruta = System.getProperties().getProperty("user.dir") + "/Complementos/Conexion.txt";
+                    File archivo = new File(ruta);
+                    String linea = null;
                     JUnique.acquireLock("krupf");
                     try {
-                        AccesoServer Frm = PtAccesoServer.getInstance();
-                        CtrlAccesoServer Ctl = CtrlAccesoServer.getInstance(Frm);
-                        Ctl.Iniciar();
-                        Frm.setVisible(true);
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, String.valueOf(e));
+
+                        int numLineas = 8;
+                        int contador = 0;
+
+                        String datos[] = new String[numLineas];
+
+                        BufferedReader reader = new BufferedReader(new FileReader(archivo));
+                        linea = reader.readLine();
+
+                        while (linea != null && contador < numLineas) {
+                            datos[contador] = linea;
+                            linea = reader.readLine();
+                            contador++;
+                        }
+
+                        Controlador.UsuServer = datos[1];
+                        Controlador.PswServer = datos[3];
+                        Controlador.DataBase = datos[5];
+                        Controlador.HostServer = datos[7];
+
+                        try {
+                            FrmBuscarCliente Frm = PtBuscarCliente.getInstance();
+                            CtrlBuscarCliente Ctl = CtrlBuscarCliente.getInstance(Frm);
+                            Ctl.Iniciar();
+                            Frm.setVisible(true);
+                        } catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, String.valueOf(e));
+                        }
+                    } catch (FileNotFoundException ex) {
+                        try {
+                            AccesoServer Frm = PtAccesoServer.getInstance();
+                            CtrlAccesoServer Ctl = CtrlAccesoServer.getInstance(Frm);
+                            Ctl.Iniciar();
+                            Frm.setVisible(true);
+                        } catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, String.valueOf(e));
+                        }
+                    } catch (IOException ex) {
+                        JOptionPane.showMessageDialog(null, "ERROR AL ABRIR\n");
                     }
                 } catch (AlreadyLockedException ex) {
-                    JOptionPane.showMessageDialog(null,"EL SISTEMA YA SE ESTA EJECUTANDO");
+                    JOptionPane.showMessageDialog(null, "EL SISTEMA YA SE ESTA EJECUTANDO\n");
                     System.exit(0);
                 }
 

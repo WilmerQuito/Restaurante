@@ -47,17 +47,21 @@ public class FrmAlmacen extends javax.swing.JInternalFrame {
         setTitle("ALMACENES");
         setToolTipText("");
 
+        btnguardar.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         btnguardar.setText("GUARDAR");
         btnguardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel5.setText("DESCRIPCION:");
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel1.setText("REGISTRO DE ALMACENES");
 
         txtCodigo.setEditable(false);
+        txtCodigo.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         txtCodigo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        txtDescri.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         txtDescri.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtDescri.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -65,25 +69,32 @@ public class FrmAlmacen extends javax.swing.JInternalFrame {
             }
         });
 
+        btneditar.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         btneditar.setText("EDITAR");
         btneditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        btnlimpiar.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         btnlimpiar.setText("LIMPIAR");
         btnlimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        cboRest.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         cboRest.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cboRest.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel2.setText("CODIGO:");
 
+        btneliminar.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         btneliminar.setText("ELIMINAR");
         btneliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel3.setText("RESTAURANTE:");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("BUSCAR:"));
         jPanel1.setToolTipText("");
 
+        txtBuscar.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         txtBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -94,6 +105,7 @@ public class FrmAlmacen extends javax.swing.JInternalFrame {
             }
         });
 
+        TAlmacen.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         TAlmacen.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},

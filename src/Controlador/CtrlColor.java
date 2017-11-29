@@ -7,12 +7,7 @@ package Controlador;
 
 import Modelo.Controlador;
 import Vista.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -64,13 +59,13 @@ public class CtrlColor implements ActionListener {
 
     }
 
-    public static synchronized CtrlColor getInstance(FrmColor Frm){
-        if(Single == null){
+    public static synchronized CtrlColor getInstance(FrmColor Frm) {
+        if (Single == null) {
             Single = new CtrlColor(Frm);
         }
         return Single;
     }
-    
+
     public void Iniciar() {
         Frm.TColor.setModel(DTM);
         DTM.setColumnIdentifiers(new String[]{"CODIGO", "COLOR DE INGREDIENTE"});
@@ -98,7 +93,7 @@ public class CtrlColor implements ActionListener {
     }
 
     public void Tabla() {
-        C.sql = "SELECT * FROM Color WHERE idcolor LIKE '" + Frm.txtBuscar.getText()
+        C.sql = "SELECT * FROM color WHERE idcolor LIKE '" + Frm.txtBuscar.getText()
                 + "%' or color like '" + Frm.txtBuscar.getText()
                 + "%'";
         C.MostrarenJTable(DTM, C.sql, 2);
@@ -108,7 +103,7 @@ public class CtrlColor implements ActionListener {
         String sql = "SELECT * FROM color WHERE color='" + Frm.txtColor.getText() + "';";
         if (!C.VerificarConsulta(sql)) {
             if (Validar()) {
-                String Cod = C.GeneraCodigo(Frm.txtColor.getText().toUpperCase(), "Color", "idColor");
+                String Cod = C.GeneraCodigo(Frm.txtColor.getText().toUpperCase(), "color", "idcolor");
                 C.InsertaRegistro("INSERT INTO color VALUES('" + Cod + "','"
                         + Frm.txtColor.getText().toUpperCase() + "')");
                 C.Mensaje("COLOR REGISTRADO");
@@ -121,11 +116,11 @@ public class CtrlColor implements ActionListener {
     }
 
     public void Editar() {
-        String sql = "SELECT * FROM Color WHERE color='" + Frm.txtColor.getText() + "';";
+        String sql = "SELECT * FROM color WHERE color='" + Frm.txtColor.getText() + "';";
         if (!C.VerificarConsulta(sql)) {
             if (Validar()) {
                 C.InsertaRegistro("UPDATE color SET color='" + Frm.txtColor.getText().toUpperCase()
-                        + "' WHERE idColor='" + Frm.txtCodigo.getText() + "'");
+                        + "' WHERE idcolor='" + Frm.txtCodigo.getText() + "'");
                 C.Mensaje("COLOR ACTUALIZADO");
                 Tabla();
                 Limpiar();
@@ -139,7 +134,7 @@ public class CtrlColor implements ActionListener {
         C.fila = Frm.TColor.getSelectedRow();
         if (Frm.TColor.getSelectedRow() > -1) {
             if (JOptionPane.showConfirmDialog(null, "¿Estas Seguro?", "Eliminar", 0) == 0) {
-                C.InsertaRegistro("DELETE FROM Color WHERE idColor='" + Frm.TColor.getValueAt(C.fila, 0).toString() + "'");
+                C.InsertaRegistro("DELETE FROM color WHERE idcolor='" + Frm.TColor.getValueAt(C.fila, 0).toString() + "'");
                 C.Mensaje("COLOR ELIMINADO");
                 Tabla();
                 Limpiar();

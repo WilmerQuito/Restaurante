@@ -52,23 +52,30 @@ public class FrmBebida extends javax.swing.JInternalFrame {
         setTitle("BEBIDAS");
         setToolTipText("");
 
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel5.setText("MARCA:");
 
+        btneditar.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         btneditar.setText("EDITAR");
         btneditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel6.setText("TIPO:");
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel1.setText("BEBIDAS");
 
+        cboSabor.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         cboSabor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        btnlimpiar.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         btnlimpiar.setText("LIMPIAR");
         btnlimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        cboMarca.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         cboMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        txtCosto.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         txtCosto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtCosto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,14 +88,17 @@ public class FrmBebida extends javax.swing.JInternalFrame {
             }
         });
 
+        cboTipo.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         cboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        btnguardar.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         btnguardar.setText("GUARDAR");
         btnguardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("BUSCAR:"));
         jPanel4.setToolTipText("");
 
+        txtBuscar.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         txtBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -99,6 +109,7 @@ public class FrmBebida extends javax.swing.JInternalFrame {
             }
         });
 
+        TBebidas.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         TBebidas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -139,16 +150,21 @@ public class FrmBebida extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel3.setText("COSTO:");
 
+        btneliminar.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         btneliminar.setText("ELIMINAR");
         btneliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel2.setText("CODIGO:");
 
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel4.setText("SABOR:");
 
         txtCodigo.setEditable(false);
+        txtCodigo.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         txtCodigo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -170,7 +186,7 @@ public class FrmBebida extends javax.swing.JInternalFrame {
                                 .addComponent(btneliminar)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnlimpiar)
-                                .addGap(0, 107, Short.MAX_VALUE))))
+                                .addGap(0, 113, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()

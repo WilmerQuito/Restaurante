@@ -12,7 +12,7 @@ package Modelo;
 public class BaseDatos {
     Controlador C = Controlador.getInstance();
     private static BaseDatos Single = null;
-
+    //IMPLEMENTACION DE SINGLETON
     private BaseDatos() {
     }
 
@@ -28,48 +28,52 @@ public class BaseDatos {
         }
         return Single;
     }
-
+    
+    //ELIMINACION DE LA BASE DE DATOS
     public void EliminarBD() {
-        C.sql = "DROP DATABASE IF EXISTS db_Restaurante2;";
+        C.sql = "DROP DATABASE IF EXISTS restaurante;";
         C.InsertaRegistro(C.sql);
     }
 
+    //CREACION DE LA BASE DE DATOS
     public void CrearBD() {
-        C.sql = "CREATE DATABASE db_Restaurante2;";
+        C.sql = "CREATE DATABASE restaurante;";
         C.InsertaRegistro(C.sql);
     }
 
+    //USO DE LA BASE DE DATOS
     public void UsoDB() {
-        C.sql = "USE db_restaurante2;";
+        C.sql = "USE restaurante;";
         C.InsertaRegistro(C.sql);
     }
 
+    //CREACION DE LAS TABLAS DE LA BASE DE DATOS
     public void CrearTablas() {
         String T1 = "CREATE TABLE almacen ("
-                + "Cod_Almacen CHAR(10) NOT NULL PRIMARY KEY,"
-                + "ingredientes_Cod_Ingredientes CHAR(10) DEFAULT NULL,"
+                + "cod_almacen CHAR(10) NOT NULL PRIMARY KEY,"
+                + "ingredientes_cod_ingredientes CHAR(10) DEFAULT NULL,"
                 + "bebidas_idbebidas CHAR(10) DEFAULT NULL,"
                 + "cantidad VARCHAR(45) NOT NULL,"
-                + "FechaExp DATE NOT NULL,"
-                + "Unidades_medida_idUnidades_medida CHAR(10) NOT NULL,"
+                + "fechaexp DATE NOT NULL,"
+                + "unidades_medida_idunidades_medida CHAR(10) NOT NULL,"
                 + "tamaño_medida VARCHAR(45) DEFAULT NULL,"
-                + "Cod_Restaurante CHAR(10) NOT NULL,"
-                + "usuario_Cod_Usuario CHAR(10) NOT NULL"
-                + ")ENGINE=INNODB;";
+                + "cod_restaurante CHAR(10) NOT NULL,"
+                + "usuario_cod_usuario CHAR(10) NOT NULL"
+                + ") ENGINE=INNODB;";
 
         String T2 = "CREATE TABLE bebidas ("
                 + "idbebidas CHAR(10) NOT NULL PRIMARY KEY,"
-                + "tipoBebida_idtipoBebida CHAR(10) NOT NULL,"
+                + "tipobebida_idtipobebida CHAR(10) NOT NULL,"
                 + "marca_idmarca CHAR(10) DEFAULT NULL,"
                 + "sabor_idsabor CHAR(10) DEFAULT NULL,"
-                + "Costo DOUBLE(8,2) NOT NULL"
+                + "costo DOUBLE(8,2) NOT NULL"
                 + ") ENGINE=INNODB;";
 
         String T3 = "CREATE TABLE cliente ("
-                + "Cod_Cliente CHAR(10) NOT NULL PRIMARY KEY,"
-                + "Nombre VARCHAR(100) NOT NULL,"
-                + "DNI CHAR(8) NOT NULL,"
-                + "Celular CHAR(9) DEFAULT NULL"
+                + "cod_cliente CHAR(10) NOT NULL PRIMARY KEY,"
+                + "nombre VARCHAR(100) NOT NULL,"
+                + "dni CHAR(8) NOT NULL,"
+                + "celular CHAR(9) DEFAULT NULL"
                 + ") ENGINE=INNODB;";
 
         String T4 = "CREATE TABLE color ("
@@ -80,28 +84,28 @@ public class BaseDatos {
         String T5 = "CREATE TABLE comida ("
                 + "idcomida CHAR(10) NOT NULL PRIMARY KEY,"
                 + "nombre_comida VARCHAR(45) NOT NULL,"
-                + "Costo DOUBLE(8,2) NOT NULL,"
+                + "costo DOUBLE(8,2) NOT NULL,"
                 + "origen_idorigen CHAR(10) NOT NULL"
                 + ") ENGINE=INNODB;";
 
         String T6 = "CREATE TABLE comprobante ("
-                + "Cod_Comprobante CHAR(10) NOT NULL PRIMARY KEY,"
-                + "RUC CHAR(11) DEFAULT NULL,"
-                + "Direccion VARCHAR(100) DEFAULT NULL,"
-                + "Fecha DATE NOT NULL,"
-                + "Monto DOUBLE(8,2) NOT NULL,"
-                + "Cod_Tipo CHAR(10) NOT NULL,"
-                + "Cod_Cliente CHAR(10) NOT NULL,"
-                + "usuario_Cod_Usuario CHAR(10) NOT NULL,"
-                + "consumicion_Cod_Consumicion CHAR(10) NOT NULL"
+                + "cod_comprobante CHAR(10) NOT NULL PRIMARY KEY,"
+                + "ruc CHAR(11) DEFAULT NULL,"
+                + "direccion VARCHAR(100) DEFAULT NULL,"
+                + "fecha DATE NOT NULL,"
+                + "monto DOUBLE(8,2) NOT NULL,"
+                + "cod_tipo CHAR(10) NOT NULL,"
+                + "cod_cliente CHAR(10) NOT NULL,"
+                + "usuario_cod_usuario CHAR(10) NOT NULL,"
+                + "consumicion_cod_consumicion CHAR(10) NOT NULL"
                 + ") ENGINE=INNODB;";
 
         String T7 = "CREATE TABLE consumicion ("
-                + "Cod_Consumicion CHAR(10) NOT NULL PRIMARY KEY,"
+                + "cod_consumicion CHAR(10) NOT NULL PRIMARY KEY,"
                 + "comida_idcomida CHAR(10) DEFAULT NULL,"
                 + "bebidas_idbebidas CHAR(10) DEFAULT NULL,"
-                + "Cantidad INT(3) NOT NULL,"
-                + "pedido_Cod_Pedido CHAR(10) NOT NULL"
+                + "cantidad INT(3) NOT NULL,"
+                + "pedido_cod_pedido CHAR(10) NOT NULL"
                 + ") ENGINE=INNODB;";
 
         String T8 = "CREATE TABLE empleado ("
@@ -109,25 +113,25 @@ public class BaseDatos {
                 + "nombre VARCHAR(45) NOT NULL,"
                 + "dni INT(11) NOT NULL,"
                 + "telefono VARCHAR(45) NOT NULL,"
-                + "Direccion VARCHAR(45) NOT NULL"
+                + "direccion VARCHAR(45) NOT NULL"
                 + ") ENGINE=INNODB;";
 
         String T9 = "CREATE TABLE estado ("
-                + "Cod_Estado CHAR(10) NOT NULL PRIMARY KEY,"
-                + "Estado VARCHAR(30) NOT NULL"
+                + "cod_estado CHAR(10) NOT NULL PRIMARY KEY,"
+                + "estado VARCHAR(30) NOT NULL"
                 + ") ENGINE=INNODB;";
 
         String T10 = "CREATE TABLE estadopedido ("
-                + "idEstadoPedido CHAR(10) NOT NULL PRIMARY KEY,"
-                + "Estado VARCHAR(45) NOT NULL"
+                + "idestadopedido CHAR(10) NOT NULL PRIMARY KEY,"
+                + "estado VARCHAR(45) NOT NULL"
                 + ") ENGINE=INNODB;";
 
         String T11 = "CREATE TABLE ingredientes ("
-                + "Cod_Ingredientes CHAR(10) NOT NULL PRIMARY KEY,"
-                + "Nom_ingrediente VARCHAR(100) NOT NULL,"
+                + "cod_ingredientes CHAR(10) NOT NULL PRIMARY KEY,"
+                + "nom_ingrediente VARCHAR(100) NOT NULL,"
                 + "color_idcolor CHAR(10) DEFAULT NULL,"
                 + "presentacion_idpresentacion CHAR(10) NOT NULL,"
-                + "tipoIngre_idtipoIngre CHAR(10) NOT NULL"
+                + "tipoingre_idtipoingre CHAR(10) NOT NULL"
                 + ") ENGINE=INNODB;";
 
         String T12 = "CREATE TABLE marca ("
@@ -136,13 +140,13 @@ public class BaseDatos {
                 + ") ENGINE=INNODB;";
 
         String T13 = "CREATE TABLE mesa ("
-                + "Cod_Mesa CHAR(10) NOT NULL PRIMARY KEY,"
-                + "Cant_Personas INT(2) NOT NULL,"
-                + "Num_Mesa INT(2) NOT NULL,"
-                + "Fumador CHAR(20) NOT NULL,"
-                + "Cod_Estado CHAR(10) NOT NULL,"
-                + "Cod_Ubicacion CHAR(10) NOT NULL,"
-                + "Cod_Restaurante CHAR(10) NOT NULL"
+                + "cod_mesa CHAR(10) NOT NULL PRIMARY KEY,"
+                + "cant_personas INT(2) NOT NULL,"
+                + "num_mesa INT(2) NOT NULL,"
+                + "fumador CHAR(20) NOT NULL,"
+                + "cod_estado CHAR(10) NOT NULL,"
+                + "cod_ubicacion CHAR(10) NOT NULL,"
+                + "cod_restaurante CHAR(10) NOT NULL"
                 + ") ENGINE=INNODB;";
 
         String T14 = "CREATE TABLE origen ("
@@ -151,11 +155,11 @@ public class BaseDatos {
                 + ") ENGINE=INNODB;";
 
         String T15 = "CREATE TABLE pedido ("
-                + "Cod_Pedido CHAR(10) NOT NULL PRIMARY KEY,"
-                + "Hora TIME NOT NULL,"
-                + "EstadoPedido_idEstadoPedido CHAR(10) NOT NULL,"
-                + "reserva_Cod_Reserva CHAR(10) NOT NULL,"
-                + "usuario_Cod_Usuario CHAR(10) NOT NULL"
+                + "cod_pedido CHAR(10) NOT NULL PRIMARY KEY,"
+                + "hora TIME NOT NULL,"
+                + "estadopedido_idestadopedido CHAR(10) NOT NULL,"
+                + "reserva_cod_reserva CHAR(10) NOT NULL,"
+                + "usuario_cod_usuario CHAR(10) NOT NULL"
                 + ") ENGINE=INNODB;";
 
         String T16 = "CREATE TABLE presentacion ("
@@ -164,25 +168,25 @@ public class BaseDatos {
                 + ") ENGINE=INNODB;";
 
         String T17 = "CREATE TABLE reserva ("
-                + "Cod_Reserva CHAR(10) NOT NULL PRIMARY KEY,"
-                + "Hora TIME NOT NULL,"
-                + "Fecha DATE NOT NULL,"
-                + "Cant_Personas INT(2) NOT NULL,"
-                + "Detalle VARCHAR(500) DEFAULT NULL,"
-                + "Cod_Cliente CHAR(10) NOT NULL,"
-                + "Cod_Mesa CHAR(10) NOT NULL"
+                + "cod_reserva CHAR(10) NOT NULL PRIMARY KEY,"
+                + "hora TIME NOT NULL,"
+                + "fecha DATE NOT NULL,"
+                + "cant_personas INT(2) NOT NULL,"
+                + "detalle VARCHAR(500) DEFAULT NULL,"
+                + "cod_cliente CHAR(10) NOT NULL,"
+                + "cod_mesa CHAR(10) NOT NULL"
                 + ") ENGINE=INNODB;";
 
         String T18 = "CREATE TABLE restaurante ("
-                + "Cod_Restaurante CHAR(10) NOT NULL PRIMARY KEY,"
-                + "Nombre VARCHAR(100) NOT NULL,"
-                + "Direccion VARCHAR(100) NOT NULL,"
-                + "Telefono CHAR(9) NOT NULL"
+                + "cod_restaurante CHAR(10) NOT NULL PRIMARY KEY,"
+                + "nombre VARCHAR(100) NOT NULL,"
+                + "direccion VARCHAR(100) NOT NULL,"
+                + "telefono CHAR(9) NOT NULL"
                 + ") ENGINE=INNODB;";
 
         String T19 = "CREATE TABLE rol ("
-                + "Cod_Rol CHAR(10) NOT NULL PRIMARY KEY,"
-                + "Nombre VARCHAR(30) NOT NULL"
+                + "cod_rol CHAR(10) NOT NULL PRIMARY KEY,"
+                + "nombre VARCHAR(30) NOT NULL"
                 + ") ENGINE=INNODB;";
 
         String T20 = "CREATE TABLE sabor ("
@@ -191,50 +195,50 @@ public class BaseDatos {
                 + ") ENGINE=INNODB;";
 
         String T21 = "CREATE TABLE tipobebida ("
-                + "idtipoBebida CHAR(10) NOT NULL PRIMARY KEY,"
-                + "nomTipo VARCHAR(45) NOT NULL"
+                + "idtipobebida CHAR(10) NOT NULL PRIMARY KEY,"
+                + "nomtipo VARCHAR(45) NOT NULL"
                 + ") ENGINE=INNODB;";
 
         String T22 = "CREATE TABLE tipocomprobante ("
-                + "Cod_Tipo CHAR(10) NOT NULL PRIMARY KEY,"
-                + "Nombre VARCHAR(50) NOT NULL"
+                + "cod_tipo CHAR(10) NOT NULL PRIMARY KEY,"
+                + "nombre VARCHAR(50) NOT NULL"
                 + ") ENGINE=INNODB;";
 
         String T23 = "CREATE TABLE tipoingre ("
-                + "idtipoIngre CHAR(10) NOT NULL PRIMARY KEY,"
+                + "idtipoingre CHAR(10) NOT NULL PRIMARY KEY,"
                 + "nom_tipo VARCHAR(45) NOT NULL"
                 + ") ENGINE=INNODB;";
 
         String T24 = "CREATE TABLE ubicacion ("
-                + "Cod_Ubicacion CHAR(10) NOT NULL PRIMARY KEY,"
-                + "Ubicacion VARCHAR(30) NOT NULL"
+                + "cod_ubicacion CHAR(10) NOT NULL PRIMARY KEY,"
+                + "ubicacion VARCHAR(30) NOT NULL"
                 + ") ENGINE=INNODB;";
 
         String T25 = "CREATE TABLE unidades_medida ("
-                + "idUnidades_medida CHAR(10) NOT NULL PRIMARY KEY,"
-                + "Unidades_medidacol VARCHAR(45) NOT NULL"
+                + "idunidades_medida CHAR(10) NOT NULL PRIMARY KEY,"
+                + "unidades_medidacol VARCHAR(45) NOT NULL"
                 + ") ENGINE=INNODB;";
 
         String T26 = "CREATE TABLE usoingredientes ("
-                + "idusoIngredientes CHAR(10) NOT NULL PRIMARY KEY,"
+                + "idusoingredientes CHAR(10) NOT NULL PRIMARY KEY,"
                 + "comida_idcomida CHAR(10) NOT NULL,"
-                + "almacen_Cod_Almacen CHAR(10) NOT NULL,"
-                + "Unidades_medida_idUnidades_medida CHAR(10) NOT NULL,"
+                + "almacen_cod_almacen CHAR(10) NOT NULL,"
+                + "unidades_medida_idunidades_medida CHAR(10) NOT NULL,"
                 + "cantidad INT(11) NOT NULL"
                 + ") ENGINE=INNODB;";
 
         String T27 = "CREATE TABLE usuario ("
-                + "Cod_Usuario CHAR(10) NOT NULL PRIMARY KEY,"
-                + "Usuario VARCHAR(30) NOT NULL,"
-                + "Clave VARCHAR(30) NOT NULL,"
+                + "cod_usuario CHAR(10) NOT NULL PRIMARY KEY,"
+                + "usuario VARCHAR(30) NOT NULL,"
+                + "clave VARCHAR(30) NOT NULL,"
                 + "empleado_idempleado CHAR(10) NOT NULL,"
-                + "rol_Cod_Rol CHAR(10) NOT NULL"
+                + "rol_cod_rol CHAR(10) NOT NULL"
                 + ")ENGINE=INNODB;";
 
         String T28 = "CREATE TABLE server ("
-                + "idServer INT(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,"
-                + "Usuario CHAR(25) DEFAULT NULL,"
-                + "Password CHAR(25) DEFAULT NULL"
+                + "idserver INT(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,"
+                + "usuario CHAR(25) DEFAULT NULL,"
+                + "password CHAR(25) DEFAULT NULL"
                 + ")ENGINE=INNODB;";
 
         C.InsertaRegistro(T1);
@@ -267,28 +271,29 @@ public class BaseDatos {
         C.InsertaRegistro(T28);
     }
 
+    //CREACION DE RELACIONES ENTRE TABLAS
     public void CrearRelaciones() {
         String R1 = "ALTER TABLE comprobante "
-                + "ADD FOREIGN KEY (Cod_Tipo) "
-                + "REFERENCES tipocomprobante(Cod_Tipo) "
+                + "ADD FOREIGN KEY (cod_tipo) "
+                + "REFERENCES tipocomprobante(cod_tipo) "
                 + "ON DELETE NO ACTION "
                 + "ON UPDATE NO ACTION;";
 
         String R2 = "ALTER TABLE comprobante "
-                + "ADD FOREIGN KEY (Cod_Cliente) "
-                + "REFERENCES cliente(Cod_Cliente) "
+                + "ADD FOREIGN KEY (cod_cliente) "
+                + "REFERENCES cliente(cod_cliente) "
                 + "ON DELETE NO ACTION "
                 + "ON UPDATE NO ACTION;";
 
         String R3 = "ALTER TABLE comprobante "
-                + "ADD FOREIGN KEY (usuario_Cod_Usuario) "
-                + "REFERENCES usuario(Cod_Usuario) "
+                + "ADD FOREIGN KEY (usuario_cod_usuario) "
+                + "REFERENCES usuario(cod_usuario) "
                 + "ON DELETE NO ACTION "
                 + "ON UPDATE NO ACTION;";
 
         String R4 = "ALTER TABLE comprobante "
-                + "ADD FOREIGN KEY (consumicion_Cod_Consumicion) "
-                + "REFERENCES consumicion(Cod_Consumicion) "
+                + "ADD FOREIGN KEY (consumicion_cod_consumicion) "
+                + "REFERENCES consumicion(cod_consumicion) "
                 + "ON DELETE NO ACTION "
                 + "ON UPDATE NO ACTION;";
 
@@ -305,8 +310,8 @@ public class BaseDatos {
                 + "ON UPDATE NO ACTION;";
 
         String R7 = "ALTER TABLE consumicion "
-                + "ADD FOREIGN KEY (pedido_Cod_Pedido) "
-                + "REFERENCES pedido(Cod_Pedido) "
+                + "ADD FOREIGN KEY (pedido_cod_pedido) "
+                + "REFERENCES pedido(cod_pedido) "
                 + "ON DELETE NO ACTION "
                 + "ON UPDATE NO ACTION;";
 
@@ -317,8 +322,8 @@ public class BaseDatos {
                 + "ON UPDATE NO ACTION;";
 
         String R9 = "ALTER TABLE usuario "
-                + "ADD FOREIGN KEY (rol_Cod_Rol) "
-                + "REFERENCES rol(Cod_Rol) "
+                + "ADD FOREIGN KEY (rol_cod_rol) "
+                + "REFERENCES rol(cod_rol) "
                 + "ON DELETE NO ACTION "
                 + "ON UPDATE NO ACTION;";
 
@@ -353,8 +358,8 @@ public class BaseDatos {
                 + "ON UPDATE NO ACTION;";
 
         String R15 = "ALTER TABLE usoingredientes "
-                + "ADD FOREIGN KEY (almacen_Cod_Almacen) "
-                + "REFERENCES almacen(Cod_Almacen) "
+                + "ADD FOREIGN KEY (almacen_cod_almacen) "
+                + "REFERENCES almacen(cod_almacen) "
                 + "ON DELETE NO ACTION "
                 + "ON UPDATE NO ACTION;";
 
@@ -365,8 +370,8 @@ public class BaseDatos {
                 + "ON UPDATE NO ACTION;";
 
         String R17 = "ALTER TABLE almacen "
-                + "ADD FOREIGN KEY (ingredientes_Cod_Ingredientes) "
-                + "REFERENCES ingredientes(Cod_Ingredientes) "
+                + "ADD FOREIGN KEY (ingredientes_cod_ingredientes) "
+                + "REFERENCES ingredientes(cod_ingredientes) "
                 + "ON DELETE NO ACTION "
                 + "ON UPDATE NO ACTION;";
 
@@ -383,14 +388,14 @@ public class BaseDatos {
                 + "ON UPDATE NO ACTION;";
 
         String R20 = "ALTER TABLE almacen "
-                + "ADD FOREIGN KEY (Cod_Restaurante) "
-                + "REFERENCES restaurante(Cod_Restaurante) "
+                + "ADD FOREIGN KEY (cod_restaurante) "
+                + "REFERENCES restaurante(cod_restaurante) "
                 + "ON DELETE NO ACTION "
                 + "ON UPDATE NO ACTION;";
 
         String R21 = "ALTER TABLE almacen "
-                + "ADD FOREIGN KEY (usuario_Cod_Usuario) "
-                + "REFERENCES usuario(Cod_Usuario) "
+                + "ADD FOREIGN KEY (usuario_cod_usuario) "
+                + "REFERENCES usuario(cod_usuario) "
                 + "ON DELETE NO ACTION "
                 + "ON UPDATE NO ACTION;";
 
@@ -419,44 +424,44 @@ public class BaseDatos {
                 + "ON UPDATE NO ACTION;";
 
         String R26 = "ALTER TABLE pedido "
-                + "ADD FOREIGN KEY (reserva_Cod_Reserva) "
-                + "REFERENCES reserva(Cod_Reserva) "
+                + "ADD FOREIGN KEY (reserva_cod_reserva) "
+                + "REFERENCES reserva(cod_reserva) "
                 + "ON DELETE NO ACTION "
                 + "ON UPDATE NO ACTION;";
 
         String R27 = "ALTER TABLE pedido "
-                + "ADD FOREIGN KEY (usuario_Cod_Usuario) "
-                + "REFERENCES usuario(Cod_Usuario) "
+                + "ADD FOREIGN KEY (usuario_cod_usuario) "
+                + "REFERENCES usuario(cod_usuario) "
                 + "ON DELETE NO ACTION "
                 + "ON UPDATE NO ACTION;";
 
         String R28 = "ALTER TABLE reserva "
-                + "ADD FOREIGN KEY (Cod_Cliente) "
-                + "REFERENCES cliente(Cod_Cliente) "
+                + "ADD FOREIGN KEY (cod_cliente) "
+                + "REFERENCES cliente(cod_cliente) "
                 + "ON DELETE NO ACTION "
                 + "ON UPDATE NO ACTION;";
 
         String R29 = "ALTER TABLE reserva "
-                + "ADD FOREIGN KEY (Cod_Mesa) "
-                + "REFERENCES mesa(Cod_Mesa) "
+                + "ADD FOREIGN KEY (cod_mesa) "
+                + "REFERENCES mesa(cod_mesa) "
                 + "ON DELETE NO ACTION "
                 + "ON UPDATE NO ACTION;";
 
         String R30 = "ALTER TABLE mesa "
-                + "ADD FOREIGN KEY (Cod_Estado) "
-                + "REFERENCES estado(Cod_Estado) "
+                + "ADD FOREIGN KEY (cod_estado) "
+                + "REFERENCES estado(cod_estado) "
                 + "ON DELETE NO ACTION "
                 + "ON UPDATE NO ACTION;";
 
         String R31 = "ALTER TABLE mesa "
-                + "ADD FOREIGN KEY (Cod_Ubicacion) "
-                + "REFERENCES ubicacion(Cod_Ubicacion) "
+                + "ADD FOREIGN KEY (cod_ubicacion) "
+                + "REFERENCES ubicacion(cod_ubicacion) "
                 + "ON DELETE NO ACTION "
                 + "ON UPDATE NO ACTION;";
 
         String R32 = "ALTER TABLE mesa "
-                + "ADD FOREIGN KEY (Cod_Restaurante) "
-                + "REFERENCES restaurante(Cod_Restaurante) "
+                + "ADD FOREIGN KEY (cod_restaurante) "
+                + "REFERENCES restaurante(cod_restaurante) "
                 + "ON DELETE NO ACTION "
                 + "ON UPDATE NO ACTION;";
 
@@ -494,62 +499,63 @@ public class BaseDatos {
         C.InsertaRegistro(R32);
     }
 
+    //CREACION DE VISTAS EN LA BASE DE DATOS
     public void CrearVistas() {
-        String V1 = "CREATE OR REPLACE VIEW VtaSesion AS "
-                + "SELECT Usuario.Cod_Usuario, Empleado.nombre AS Empleado, Rol.Nombre AS Rol, Usuario.Usuario, Usuario.Clave "
-                + "FROM Usuario "
-                + "INNER JOIN Rol "
-                + "INNER JOIN Empleado "
-                + "ON Usuario.rol_Cod_Rol=Rol.Cod_Rol "
-                + "AND Usuario.empleado_idempleado=Empleado.idempleado;";
+        String V1 = "CREATE OR REPLACE VIEW vtasesion AS "
+                + "SELECT usuario.cod_usuario, empleado.nombre AS empleado, rol.nombre AS rol, usuario.usuario, usuario.clave "
+                + "FROM usuario "
+                + "INNER JOIN rol "
+                + "INNER JOIN empleado "
+                + "ON usuario.rol_cod_rol=rol.cod_rol "
+                + "AND usuario.empleado_idempleado=empleado.idempleado;";
 
-        String V2 = "CREATE OR REPLACE VIEW VtaMesa AS "
-                + "SELECT Mesa.Cod_Mesa, Restaurante.Nombre, Mesa.Num_Mesa, Mesa.Cant_Personas, Mesa.Fumador, ubicacion.Ubicacion, Estado.Estado "
-                + "FROM Mesa "
+        String V2 = "CREATE OR REPLACE VIEW vtamesa AS "
+                + "SELECT mesa.cod_mesa, restaurante.nombre, mesa.num_mesa, mesa.cant_personas, mesa.fumador, ubicacion.ubicacion, estado.estado "
+                + "FROM mesa "
                 + "INNER JOIN estado "
                 + "INNER JOIN ubicacion "
                 + "INNER JOIN restaurante "
-                + "ON Mesa.Cod_Estado=Estado.Cod_Estado "
-                + "AND Mesa.Cod_Ubicacion=Ubicacion.Cod_Ubicacion "
-                + "AND Mesa.Cod_Restaurante=Restaurante.Cod_Restaurante;";
+                + "ON mesa.cod_estado=estado.cod_estado "
+                + "AND mesa.cod_ubicacion=ubicacion.cod_ubicacion "
+                + "AND mesa.cod_restaurante=restaurante.cod_restaurante;";
 
-        String V3 = "CREATE OR REPLACE VIEW VtaBebida AS "
-                + "SELECT bebidas.idbebidas, tipobebida.nomTipo AS Tipo, marca.marcacol AS Marca, sabor.saborcol AS Sabor, bebidas.costo "
+        String V3 = "CREATE OR REPLACE VIEW vtabebida AS "
+                + "SELECT bebidas.idbebidas, tipobebida.nomtipo AS tipo, marca.marcacol AS marca, sabor.saborcol AS sabor, bebidas.costo "
                 + "FROM bebidas "
                 + "LEFT JOIN tipobebida "
-                + "ON bebidas.tipoBebida_idtipoBebida = tipobebida.idtipoBebida "
+                + "ON bebidas.tipobebida_idtipobebida = tipobebida.idtipobebida "
                 + "LEFT JOIN marca "
                 + "ON bebidas.marca_idmarca = marca.idmarca "
                 + "LEFT JOIN sabor "
                 + "ON bebidas.sabor_idsabor = sabor.idsabor;";
 
-        String V4 = "CREATE OR REPLACE VIEW VtaIngredientes AS "
-                + "SELECT Ingredientes.Cod_Ingredientes, Ingredientes.Nom_Ingrediente, Color.color, presentacion.presentacion, tipoingre.nom_tipo "
-                + "FROM Ingredientes "
+        String V4 = "CREATE OR REPLACE VIEW vtaingredientes AS "
+                + "SELECT ingredientes.cod_ingredientes, ingredientes.nom_ingrediente, color.color, presentacion.presentacion, tipoingre.nom_tipo "
+                + "FROM ingredientes "
                 + "LEFT JOIN color "
-                + "ON Ingredientes.color_idcolor = Color.idcolor "
+                + "ON ingredientes.color_idcolor = color.idcolor "
                 + "LEFT JOIN presentacion "
-                + "ON Ingredientes.presentacion_idpresentacion = Presentacion.idpresentacion "
+                + "ON ingredientes.presentacion_idpresentacion = presentacion.idpresentacion "
                 + "LEFT JOIN tipoingre "
-                + "ON Ingredientes.tipoingre_idtipoIngre = tipoingre.idtipoIngre;";
+                + "ON ingredientes.tipoingre_idtipoingre = tipoingre.idtipoingre;";
 
-        String V5 = "CREATE OR REPLACE VIEW VtaAlmacenIngredientes AS "
-                + "SELECT almacen.Cod_Almacen, ingredientes.Nom_ingrediente AS Ingrediente, almacen.cantidad, almacen.Fechaexp, "
-                + "unidades_medida.unidades_medidacol AS unidadmedida, restaurante.Nombre AS Restaurante, usuario.usuario AS Usuario, almacen.tamaño_medida "
+        String V5 = "CREATE OR REPLACE VIEW vtaalmaceningredientes AS "
+                + "SELECT almacen.cod_almacen, ingredientes.nom_ingrediente AS ingrediente, almacen.cantidad, almacen.fechaexp, "
+                + "unidades_medida.unidades_medidacol AS unidadmedida, restaurante.nombre AS restaurante, usuario.usuario AS usuario, almacen.tamaño_medida "
                 + "FROM almacen "
                 + "INNER JOIN ingredientes "
                 + "INNER JOIN unidades_medida "
                 + "INNER JOIN restaurante "
                 + "INNER JOIN usuario "
-                + "ON almacen.ingredientes_Cod_Ingredientes = ingredientes.Cod_Ingredientes "
+                + "ON almacen.ingredientes_cod_ingredientes = ingredientes.cod_ingredientes "
                 + "AND almacen.unidades_medida_idunidades_medida = unidades_medida.idunidades_medida "
-                + "AND almacen.Cod_restaurante = restaurante.cod_Restaurante "
+                + "AND almacen.cod_restaurante = restaurante.cod_restaurante "
                 + "AND almacen.usuario_cod_usuario = usuario.cod_usuario;";
 
-        String V6 = "CREATE OR REPLACE VIEW VtaAlmacenBebida AS "
-                + "SELECT almacen.Cod_Almacen, vtabebida.Tipo AS tipobebida, vtabebida.Marca AS Marcabebida, vtabebida.Sabor AS Saborbebida, "
-                + "almacen.cantidad, almacen.Fechaexp, unidades_medida.unidades_medidacol AS unidadmedida, restaurante.Nombre AS Restaurante, "
-                + "usuario.usuario AS Usuario, almacen.tamaño_medida "
+        String V6 = "CREATE OR REPLACE VIEW vtaalmacenbebida AS "
+                + "SELECT almacen.cod_almacen, vtabebida.tipo AS tipobebida, vtabebida.marca AS marcabebida, vtabebida.sabor AS saborbebida, "
+                + "almacen.cantidad, almacen.fechaexp, unidades_medida.unidades_medidacol AS unidadmedida, restaurante.nombre AS restaurante, "
+                + "usuario.usuario AS usuario, almacen.tamaño_medida "
                 + "FROM almacen "
                 + "INNER JOIN vtabebida "
                 + "INNER JOIN unidades_medida "
@@ -557,43 +563,43 @@ public class BaseDatos {
                 + "INNER JOIN usuario "
                 + "ON almacen.bebidas_idbebidas = vtabebida.idbebidas "
                 + "AND almacen.unidades_medida_idunidades_medida = unidades_medida.idunidades_medida "
-                + "AND almacen.Cod_restaurante = restaurante.cod_Restaurante "
+                + "AND almacen.cod_restaurante = restaurante.cod_restaurante "
                 + "AND almacen.usuario_cod_usuario = usuario.cod_usuario;";
 
-        String V7 = "CREATE OR REPLACE VIEW VtaUsoIngrediente AS "
-                + "SELECT usoingredientes.idusoingredientes, comida.nombre_comida AS comida, VtaAlmacenIngredientes.Ingrediente, "
+        String V7 = "CREATE OR REPLACE VIEW vtausoingrediente AS "
+                + "SELECT usoingredientes.idusoingredientes, comida.nombre_comida AS comida, vtaalmaceningredientes.ingrediente, "
                 + "unidades_medida.unidades_medidacol AS inidadmedida, usoingredientes.cantidad "
                 + "FROM usoingredientes "
                 + "INNER JOIN comida "
                 + "INNER JOIN vtaalmaceningredientes "
                 + "INNER JOIN unidades_medida "
                 + "ON usoingredientes.comida_idcomida = comida.idcomida "
-                + "AND usoingredientes.almacen_Cod_almacen = vtaalmaceningredientes.Cod_Almacen "
+                + "AND usoingredientes.almacen_cod_almacen = vtaalmaceningredientes.cod_almacen "
                 + "AND usoingredientes.unidades_medida_idunidades_medida = unidades_medida.idunidades_medida;";
 
-        String V8 = "CREATE OR REPLACE VIEW VtaReserva AS "
-                + "SELECT Reserva.Cod_Reserva, Reserva.Fecha, Reserva.Hora, Reserva.Cant_Personas, Reserva.Detalle, "
-                + "Cliente.Nombre AS cliente, Cliente.Celular, Mesa.Num_Mesa, Mesa.Cant_Personas AS personasmesa, restaurante.Nombre AS Resta "
+        String V8 = "CREATE OR REPLACE VIEW vtareserva AS "
+                + "SELECT reserva.cod_reserva, reserva.fecha, reserva.hora, reserva.cant_personas, reserva.detalle, "
+                + "cliente.nombre AS cliente, cliente.celular, mesa.num_mesa, mesa.cant_personas AS personasmesa, restaurante.nombre AS resta "
                 + "FROM reserva "
                 + "LEFT JOIN cliente "
-                + "ON reserva.Cod_Cliente = cliente.Cod_cliente "
+                + "ON reserva.cod_cliente = cliente.cod_cliente "
                 + "LEFT JOIN mesa "
-                + "ON reserva.Cod_Mesa = mesa.Cod_Mesa "
+                + "ON reserva.cod_mesa = mesa.cod_mesa "
                 + "LEFT JOIN restaurante "
-                + "ON mesa.Cod_Restaurante = restaurante.Cod_Restaurante;";
+                + "ON mesa.cod_restaurante = restaurante.cod_restaurante;";
 
-        String V9 = "CREATE OR REPLACE VIEW VtaPedido AS "
-                + "SELECT pedido.Cod_Pedido, pedido.hora, estadopedido.estado, vtareserva.cliente, vtareserva.Num_Mesa, vtareserva.Cant_Personas, usuario.usuario "
+        String V9 = "CREATE OR REPLACE VIEW vtapedido AS "
+                + "SELECT pedido.cod_pedido, pedido.hora, estadopedido.estado, vtareserva.cliente, vtareserva.num_mesa, vtareserva.cant_personas, usuario.usuario "
                 + "FROM pedido "
                 + "INNER JOIN estadopedido "
                 + "INNER JOIN vtareserva "
                 + "INNER JOIN usuario "
-                + "ON pedido.EstadoPedido_idestadopedido = EstadoPedido.idestadopedido "
+                + "ON pedido.estadopedido_idestadopedido = estadopedido.idestadopedido "
                 + "AND pedido.reserva_cod_reserva = vtareserva.cod_reserva "
-                + "AND pedido.usuario_Cod_usuario = usuario.Cod_usuario;";
+                + "AND pedido.usuario_cod_usuario = usuario.cod_usuario;";
 
-        String V10 = "CREATE OR REPLACE VIEW VtaComida AS "
-                + "SELECT Comida.idcomida, origen.origencol, comida.nombre_comida, comida.costo "
+        String V10 = "CREATE OR REPLACE VIEW vtacomida AS "
+                + "SELECT comida.idcomida, origen.origencol, comida.nombre_comida, comida.costo "
                 + "FROM comida "
                 + "INNER JOIN origen "
                 + "ON comida.origen_idorigen = origen.idorigen;";
@@ -610,6 +616,7 @@ public class BaseDatos {
         C.InsertaRegistro(V10);
     }
     
+    //INSERCION DE DATOS EN LAS TABLAS
     public void InsertarDatos(){
         String I1="INSERT INTO empleado VALUES "
                 + "('1035874584','ADMINISTRADOR',35874584,'943187153','AV. 27 DE NOVIEMBRE 694');";
@@ -623,19 +630,12 @@ public class BaseDatos {
         String I3="INSERT INTO usuario VALUES "
                 + "('A','ADMIN','v4NrsFIKhetmo9AYkHul/g==','1035874584','R');";
         
+        String I4="INSERT INTO restaurante VALUES "
+                + "('L','LA DELICIA','AV LUZURIAGA 1125','946845134');";
+        
         C.InsertaRegistro(I1);
         C.InsertaRegistro(I2);
         C.InsertaRegistro(I3);
+        C.InsertaRegistro(I4);
     }
 }
-
-
-//BaseDatos BD = BaseDatos.getInstance();
-//        
-//        BD.EliminarBD();
-//        BD.CrearBD();
-//        BD.UsoDB();
-//        BD.CrearTablas();
-//        BD.CrearRelaciones();
-//        BD.CrearVistas();
-//        BD.InsertarDatos();

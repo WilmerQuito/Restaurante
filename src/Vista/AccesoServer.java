@@ -36,10 +36,17 @@ public class AccesoServer extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         txtPsw = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txtDB = new javax.swing.JTextField();
+        txtHost = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
+        btnAcceder.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         btnAcceder.setText("ACCEDER");
         btnAcceder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -47,21 +54,51 @@ public class AccesoServer extends javax.swing.JFrame {
             }
         });
 
+        txtUsu.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         txtUsu.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtUsuKeyTyped(evt);
             }
         });
 
+        btnCancelar.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         btnCancelar.setText("CANCELAR");
 
+        txtPsw.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         txtPsw.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtPswKeyTyped(evt);
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel1.setText("ACCESO AL SERVIDOR");
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        jLabel2.setText("Usuario:");
+
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        jLabel3.setText("Password:");
+
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        jLabel4.setText("Base de Datos:");
+
+        txtDB.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
+        txtDB.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDBKeyTyped(evt);
+            }
+        });
+
+        txtHost.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
+        txtHost.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtHostKeyTyped(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        jLabel5.setText("Host de Acceso:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -70,27 +107,45 @@ public class AccesoServer extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(txtPsw)
+                    .addComponent(txtUsu, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAcceder, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtPsw, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-                    .addComponent(txtUsu)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jLabel1)))
+                    .addComponent(txtHost)
+                    .addComponent(txtDB)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(45, 45, 45)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtDB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtHost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtUsu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPsw, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
                     .addComponent(btnAcceder))
@@ -127,6 +182,29 @@ public class AccesoServer extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_txtPswKeyTyped
+
+    private void txtDBKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDBKeyTyped
+        char car = evt.getKeyChar();
+        
+        if (txtDB.getText().length() >= 20) {
+            evt.consume();
+        }
+        //SOLO NUMEROS Y LETRAS
+        if ((car < '0') || (car > '9') && (car < 'A') || (car > 'Z') && (car < 'a') || (car > 'z')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDBKeyTyped
+
+    private void txtHostKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHostKeyTyped
+        char car = evt.getKeyChar();
+        
+        if (txtHost.getText().length() >= 20) {
+            evt.consume();
+        }
+        if ((evt.VK_PERIOD != car) && (car < '0') || (car > '9') && (car < 'A') || (car > 'Z') && (car < 'a') || (car > 'z')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtHostKeyTyped
 
     /**
      * @param args the command line arguments
@@ -167,6 +245,12 @@ public class AccesoServer extends javax.swing.JFrame {
     public javax.swing.JButton btnAcceder;
     public javax.swing.JButton btnCancelar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    public javax.swing.JTextField txtDB;
+    public javax.swing.JTextField txtHost;
     public javax.swing.JPasswordField txtPsw;
     public javax.swing.JTextField txtUsu;
     // End of variables declaration//GEN-END:variables

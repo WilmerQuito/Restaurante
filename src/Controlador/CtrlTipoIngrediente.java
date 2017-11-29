@@ -7,12 +7,7 @@ package Controlador;
 
 import Modelo.Controlador;
 import Vista.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -64,13 +59,13 @@ public class CtrlTipoIngrediente implements ActionListener {
 
     }
 
-    public static synchronized CtrlTipoIngrediente getInstance(FrmTipoIngrediente Frm){
-        if(Single == null){
+    public static synchronized CtrlTipoIngrediente getInstance(FrmTipoIngrediente Frm) {
+        if (Single == null) {
             Single = new CtrlTipoIngrediente(Frm);
         }
         return Single;
     }
-    
+
     public void Iniciar() {
         Frm.TTipo.setModel(DTM);
         DTM.setColumnIdentifiers(new String[]{"CODIGO", "TIPO DE INGREDIENTE"});
@@ -98,18 +93,18 @@ public class CtrlTipoIngrediente implements ActionListener {
     }
 
     public void Tabla() {
-        C.sql = "SELECT * FROM tipoIngre WHERE idtipoIngre LIKE '" + Frm.txtBuscar.getText()
+        C.sql = "SELECT * FROM tipoingre WHERE idtipoingre LIKE '" + Frm.txtBuscar.getText()
                 + "%' or nom_tipo like '" + Frm.txtBuscar.getText()
                 + "%'";
         C.MostrarenJTable(DTM, C.sql, 2);
     }
 
     public void Guardar() {
-        String sql = "SELECT * FROM tipoIngre WHERE nom_tipo='" + Frm.txtTipo.getText() + "';";
+        String sql = "SELECT * FROM tipoingre WHERE nom_tipo='" + Frm.txtTipo.getText() + "';";
         if (!C.VerificarConsulta(sql)) {
             if (Validar()) {
-                String Cod = C.GeneraCodigo(Frm.txtTipo.getText().toUpperCase(), "tipoIngre", "idtipoIngre");
-                C.InsertaRegistro("INSERT INTO tipoIngre VALUES('" + Cod + "','"
+                String Cod = C.GeneraCodigo(Frm.txtTipo.getText().toUpperCase(), "tipoingre", "idtipoingre");
+                C.InsertaRegistro("INSERT INTO tipoingre VALUES('" + Cod + "','"
                         + Frm.txtTipo.getText().toUpperCase() + "')");
                 C.Mensaje("TIPO REGISTRADO");
                 Tabla();
@@ -121,11 +116,11 @@ public class CtrlTipoIngrediente implements ActionListener {
     }
 
     public void Editar() {
-        String sql = "SELECT * FROM tipoIngre WHERE nom_tipo='" + Frm.txtTipo.getText() + "';";
+        String sql = "SELECT * FROM tipoingre WHERE nom_tipo='" + Frm.txtTipo.getText() + "';";
         if (!C.VerificarConsulta(sql)) {
             if (Validar()) {
-                C.InsertaRegistro("UPDATE tipoIngre SET nom_tipo='" + Frm.txtTipo.getText().toUpperCase()
-                        + "' WHERE idtipoIngre='" + Frm.txtCodigo.getText() + "'");
+                C.InsertaRegistro("UPDATE tipoingre SET nom_tipo='" + Frm.txtTipo.getText().toUpperCase()
+                        + "' WHERE idtipoingre='" + Frm.txtCodigo.getText() + "'");
                 C.Mensaje("TIPO ACTUALIZADO");
                 Tabla();
                 Limpiar();
@@ -139,7 +134,7 @@ public class CtrlTipoIngrediente implements ActionListener {
         C.fila = Frm.TTipo.getSelectedRow();
         if (Frm.TTipo.getSelectedRow() > -1) {
             if (JOptionPane.showConfirmDialog(null, "¿Estas Seguro?", "Eliminar", 0) == 0) {
-                C.InsertaRegistro("DELETE FROM tipoIngre WHERE idtipoIngre='" + Frm.TTipo.getValueAt(C.fila, 0).toString() + "'");
+                C.InsertaRegistro("DELETE FROM tipoingre WHERE idtipoingre='" + Frm.TTipo.getValueAt(C.fila, 0).toString() + "'");
                 C.Mensaje("TIPO ELIMINADO");
                 Tabla();
                 Limpiar();

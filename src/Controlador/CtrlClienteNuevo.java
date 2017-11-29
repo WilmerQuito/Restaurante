@@ -7,8 +7,7 @@ package Controlador;
 
 import Modelo.Controlador;
 import Vista.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,13 +28,13 @@ public class CtrlClienteNuevo implements ActionListener {
         Frm.btnlimpiar.addActionListener(this);
     }
 
-    public static synchronized CtrlClienteNuevo getInstance(FrmClienteNuevo Frm){
-        if(Single == null){
+    public static synchronized CtrlClienteNuevo getInstance(FrmClienteNuevo Frm) {
+        if (Single == null) {
             Single = new CtrlClienteNuevo(Frm);
         }
         return Single;
     }
-    
+
     public void Iniciar() {
         Frm.setTitle("REGISTRATE...!!!");
         Frm.setLocationRelativeTo(null);
@@ -82,9 +81,9 @@ public class CtrlClienteNuevo implements ActionListener {
         Frm.txtNombre.setText(null);
         Frm.txtNombre.grabFocus();
     }
-    
+
     public void Guardar() {
-        String sql = "SELECT * FROM Cliente WHERE DNI='" + Frm.txtDNI.getText() + "';";
+        String sql = "SELECT * FROM cliente WHERE dni='" + Frm.txtDNI.getText() + "';";
         if (!C.VerificarConsulta(sql)) {
             if (Validar()) {
                 if (JOptionPane.showConfirmDialog(null, "¿SON CORRECTOS TUS DATOS?"

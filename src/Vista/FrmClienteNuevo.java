@@ -36,6 +36,7 @@ public class FrmClienteNuevo extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
+        txtNombre.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         txtNombre.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -43,6 +44,7 @@ public class FrmClienteNuevo extends javax.swing.JFrame {
             }
         });
 
+        txtCelular.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         txtCelular.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtCelular.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -50,6 +52,7 @@ public class FrmClienteNuevo extends javax.swing.JFrame {
             }
         });
 
+        txtDNI.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         txtDNI.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtDNI.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -57,6 +60,7 @@ public class FrmClienteNuevo extends javax.swing.JFrame {
             }
         });
 
+        btnlimpiar.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         btnlimpiar.setText("LIMPIAR");
         btnlimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnlimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -65,8 +69,10 @@ public class FrmClienteNuevo extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel4.setText("CELULAR:");
 
+        btnguardar.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         btnguardar.setText("GUARDAR");
         btnguardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnguardar.addActionListener(new java.awt.event.ActionListener() {
@@ -75,11 +81,13 @@ public class FrmClienteNuevo extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel5.setText("DNI:");
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel1.setText("REGISTRO DE CLIENTES");
 
+        btnRegresar.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         btnRegresar.setText("REGRESAR");
         btnRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
@@ -88,6 +96,7 @@ public class FrmClienteNuevo extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel3.setText("NOMBRE:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -95,7 +104,7 @@ public class FrmClienteNuevo extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(8, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -114,11 +123,11 @@ public class FrmClienteNuevo extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(btnguardar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                                         .addComponent(btnlimpiar))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel5)
-                                        .addGap(59, 59, 59)
+                                        .addGap(55, 55, 55)
                                         .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE)))
                                 .addGap(56, 56, 56)

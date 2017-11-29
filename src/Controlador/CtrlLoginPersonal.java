@@ -5,12 +5,9 @@
  */
 package Controlador;
 
-import Modelo.Controlador;
-import Modelo.Encriptado;
+import Modelo.*;
 import Vista.*;
-import Vista.FrmPrincipal;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 /**
  *
@@ -32,13 +29,13 @@ public class CtrlLoginPersonal implements ActionListener {
         Frm.btnSalir.addActionListener(this);
     }
 
-    public static synchronized CtrlLoginPersonal getInstance(FrmLoginPersonal Frm){
-        if(Single == null){
+    public static synchronized CtrlLoginPersonal getInstance(FrmLoginPersonal Frm) {
+        if (Single == null) {
             Single = new CtrlLoginPersonal(Frm);
         }
         return Single;
     }
-    
+
     public void Iniciar() {
         Frm.setTitle("INICIAR SESION");
         Frm.setLocationRelativeTo(null);
@@ -46,7 +43,7 @@ public class CtrlLoginPersonal implements ActionListener {
     }
 
     public void Rol() {
-        C.sql = "SELECT * FROM Rol;";
+        C.sql = "SELECT * FROM rol;";
         C.LlenarCombo(Frm.cbRol, C.sql, "<SELECCIONE>", 2);
     }
 
@@ -80,7 +77,7 @@ public class CtrlLoginPersonal implements ActionListener {
     }
 
     public void Privilegios() {
-        String Rol = C.DevolverDatoString("SELECT * FROM VtaSesion WHERE Usuario='" + Frm.txtUsu.getText() + "'", 3).toUpperCase();
+        String Rol = C.DevolverDatoString("SELECT * FROM vtasesion WHERE usuario='" + Frm.txtUsu.getText() + "'", 3).toUpperCase();
 
         if (Rol.equalsIgnoreCase("ALMACENERO")) {
             FrmP.mArchivo.setVisible(true);
@@ -94,6 +91,7 @@ public class CtrlLoginPersonal implements ActionListener {
             FrmP.mRestaurante.setVisible(false);
             FrmP.mUsuario.setVisible(false);
             FrmP.jmReportes.setVisible(false);
+            FrmP.jmBaseDatos.setVisible(false);
         } else {
             if (Rol.equalsIgnoreCase("MOZO")) {
                 FrmP.mArchivo.setVisible(true);
@@ -107,6 +105,7 @@ public class CtrlLoginPersonal implements ActionListener {
                 FrmP.mRestaurante.setVisible(false);
                 FrmP.mUsuario.setVisible(false);
                 FrmP.jmReportes.setVisible(false);
+                FrmP.jmBaseDatos.setVisible(false);
             } else {
                 if (Rol.equalsIgnoreCase("CAJERO")) {
                     FrmP.mArchivo.setVisible(true);
@@ -120,6 +119,7 @@ public class CtrlLoginPersonal implements ActionListener {
                     FrmP.mRestaurante.setVisible(false);
                     FrmP.mUsuario.setVisible(false);
                     FrmP.jmReportes.setVisible(false);
+                    FrmP.jmBaseDatos.setVisible(false);
                 } else {
                     if (Rol.equalsIgnoreCase("ADMINISTRADOR")) {
                         FrmP.mArchivo.setVisible(true);
@@ -133,6 +133,7 @@ public class CtrlLoginPersonal implements ActionListener {
                         FrmP.mRestaurante.setVisible(true);
                         FrmP.mUsuario.setVisible(true);
                         FrmP.jmReportes.setVisible(true);
+                        FrmP.jmBaseDatos.setVisible(true);
                     }
                 }
             }
@@ -143,7 +144,7 @@ public class CtrlLoginPersonal implements ActionListener {
         if (Validar()) {
             C.Acceso(Frm, new FrmPrincipal(), Frm.txtUsu.getText(), E.Encriptar(Frm.txtPsw.getText()), Frm.cbRol.getSelectedItem().toString());
             FrmP.lblnombre.setText(null);
-            FrmP.lblnombre.setText(C.DevolverDatoString("SELECT * FROM VtaSesion WHERE Usuario='" + Frm.txtUsu.getText() + "'", 2).toUpperCase());
+            FrmP.lblnombre.setText(C.DevolverDatoString("SELECT * FROM vtasesion WHERE usuario='" + Frm.txtUsu.getText() + "'", 2).toUpperCase());
             Privilegios();
             Limpiar();
         }

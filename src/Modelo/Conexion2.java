@@ -23,7 +23,6 @@ public class Conexion2 {
     }
 
     public void Conectar() {
-        //String ruta = "C://restosist/Conexion.txt";
         String ruta = System.getProperties().getProperty("user.dir") + "/Complementos/Conexion.txt";
         File archivo = new File(ruta);
         String linea = null;

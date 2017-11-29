@@ -7,12 +7,7 @@ package Controlador;
 
 import Modelo.Controlador;
 import Vista.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -64,13 +59,13 @@ public class CtrlEstadoPedido implements ActionListener {
 
     }
 
-    public static synchronized CtrlEstadoPedido getInstance(FrmEstadoPedido Frm){
-        if(Single == null){
+    public static synchronized CtrlEstadoPedido getInstance(FrmEstadoPedido Frm) {
+        if (Single == null) {
             Single = new CtrlEstadoPedido(Frm);
         }
         return Single;
     }
-    
+
     public void Iniciar() {
         Frm.TEstadoPedido.setModel(DTM);
         DTM.setColumnIdentifiers(new String[]{"CODIGO", "ESTADO DE PEDIDO"});
@@ -98,17 +93,17 @@ public class CtrlEstadoPedido implements ActionListener {
     }
 
     public void Tabla() {
-        C.sql = "SELECT * FROM estadopedido WHERE idEstadoPedido LIKE '" + Frm.txtBuscar.getText()
-                + "%' or Estado like '" + Frm.txtBuscar.getText()
+        C.sql = "SELECT * FROM estadopedido WHERE idestadopedido LIKE '" + Frm.txtBuscar.getText()
+                + "%' or estado like '" + Frm.txtBuscar.getText()
                 + "%'";
         C.MostrarenJTable(DTM, C.sql, 2);
     }
 
     public void Guardar() {
-        String sql = "SELECT * FROM estadopedido WHERE Estado='" + Frm.txtEstadoPedido.getText() + "';";
+        String sql = "SELECT * FROM estadopedido WHERE estado='" + Frm.txtEstadoPedido.getText() + "';";
         if (!C.VerificarConsulta(sql)) {
             if (Validar()) {
-                String Cod = C.GeneraCodigo(Frm.txtEstadoPedido.getText().toUpperCase(), "Color", "idColor");
+                String Cod = C.GeneraCodigo(Frm.txtEstadoPedido.getText().toUpperCase(), "color", "idcolor");
                 C.InsertaRegistro("INSERT INTO estadopedido VALUES('" + Cod + "','"
                         + Frm.txtEstadoPedido.getText().toUpperCase() + "')");
                 C.Mensaje("ESTADO REGISTRADO");
@@ -121,11 +116,11 @@ public class CtrlEstadoPedido implements ActionListener {
     }
 
     public void Editar() {
-        String sql = "SELECT * FROM estadopedido WHERE Estado='" + Frm.txtEstadoPedido.getText() + "';";
+        String sql = "SELECT * FROM estadopedido WHERE estado='" + Frm.txtEstadoPedido.getText() + "';";
         if (!C.VerificarConsulta(sql)) {
             if (Validar()) {
-                C.InsertaRegistro("UPDATE estadopedido SET Estado='" + Frm.txtEstadoPedido.getText().toUpperCase()
-                        + "' WHERE idEstadoPedido='" + Frm.txtCodigo.getText() + "'");
+                C.InsertaRegistro("UPDATE estadopedido SET estado='" + Frm.txtEstadoPedido.getText().toUpperCase()
+                        + "' WHERE idestadopedido='" + Frm.txtCodigo.getText() + "'");
                 C.Mensaje("ESTADO ACTUALIZADO");
                 Tabla();
                 Limpiar();
@@ -139,7 +134,7 @@ public class CtrlEstadoPedido implements ActionListener {
         C.fila = Frm.TEstadoPedido.getSelectedRow();
         if (Frm.TEstadoPedido.getSelectedRow() > -1) {
             if (JOptionPane.showConfirmDialog(null, "¿Estas Seguro?", "Eliminar", 0) == 0) {
-                C.InsertaRegistro("DELETE FROM estadopedido WHERE idEstadoPedido='" + Frm.TEstadoPedido.getValueAt(C.fila, 0).toString() + "'");
+                C.InsertaRegistro("DELETE FROM estadopedido WHERE idestadopedido='" + Frm.TEstadoPedido.getValueAt(C.fila, 0).toString() + "'");
                 C.Mensaje("ESTADO ELIMINADO");
                 Tabla();
                 Limpiar();

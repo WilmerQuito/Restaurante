@@ -7,20 +7,10 @@ package Controlador;
 
 import Modelo.*;
 import Vista.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import javax.swing.JOptionPane;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
+import java.awt.event.*;
+import java.text.*;
+import java.util.*;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -31,14 +21,16 @@ public class CtrlReservaCliente implements ActionListener {
 
     private DefaultTableModel DTM = new DefaultTableModel();
     Controlador C = Controlador.getInstance();
-    ArchivoTXT A= ArchivoTXT.getInstance();
+    ArchivoTXT A = ArchivoTXT.getInstance();
     private static FrmReservaCliente Frm;
     private static CtrlReservaCliente Single;
+    private static String ruta = System.getProperties().getProperty("user.dir") + "/Complementos/Ticket.txt";
     Date dat = new Date();
     SpinnerNumberModel nm = new SpinnerNumberModel();
     String CodMesa, CodCli, NumMesa;
     Integer Cant;
 
+    //IMPLEMENTACION DE SINGLETON
     private CtrlReservaCliente(FrmReservaCliente Frm) {
         this.Frm = Frm;
         Frm.cboRestaurante.addActionListener(this);
@@ -47,6 +39,7 @@ public class CtrlReservaCliente implements ActionListener {
         Frm.btnLimpiar.addActionListener(this);
         Frm.btnManual.addActionListener(this);
 
+        //OBTENCION DE DATOS DE LA TABLA
         Frm.TMesasLibres.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
                 if (e.getClickCount() == 1) {
@@ -60,6 +53,7 @@ public class CtrlReservaCliente implements ActionListener {
             }
         });
 
+        //BUSCA DATOS EN LA TABLA
         Frm.txtBuscar.addKeyListener(new KeyListener() {
             @Override
             public void keyReleased(KeyEvent e) {
@@ -77,13 +71,14 @@ public class CtrlReservaCliente implements ActionListener {
 
     }
 
-    public static synchronized CtrlReservaCliente getInstance(FrmReservaCliente Frm){
-        if(Single == null){
+    public static synchronized CtrlReservaCliente getInstance(FrmReservaCliente Frm) {
+        if (Single == null) {
             Single = new CtrlReservaCliente(Frm);
         }
         return Single;
     }
-    
+
+    //INICIA LOS DATOS EN EL FORMULARIO
     public void Iniciar() {
 
         Frm.setTitle("RESERVA TU MESA...!!!");
@@ -98,6 +93,7 @@ public class CtrlReservaCliente implements ActionListener {
         Asistentes();
     }
 
+    //LIMITA LOS SPINNER
     public void Asistentes() {
         nm.setValue(1);
         nm.setMaximum(20);
@@ -107,11 +103,13 @@ public class CtrlReservaCliente implements ActionListener {
 
     }
 
+    //CARGA CON DATOS DE LA TABLA RESTAURANTE AL COMBO
     public void Restaurante() {
         C.sql = "SELECT * FROM restaurante";
         C.LlenarCombo(Frm.cboRestaurante, C.sql, "<SELECCIONE>", 2);
     }
 
+    //LIMPIA LOS DATOS DEL FORMULARIO
     public void Limpiar() {
         Frm.lblDireccion.setText(null);
         Frm.lblRestaurante.setText(null);
@@ -126,6 +124,7 @@ public class CtrlReservaCliente implements ActionListener {
         Frm.txtBuscar.setText(null);
     }
 
+    //VALIDA LOS DATOS INGRESADOS AL FORMULARIO
     public boolean Validar() {
         JSpinner.DateEditor de1 = new JSpinner.DateEditor(Frm.jspHora, "HH:mm.ss");
         DateFormat HoraFormat = new SimpleDateFormat("HH:mm:ss");
@@ -161,7 +160,7 @@ public class CtrlReservaCliente implements ActionListener {
                                 C.flag = false;
                                 C.Mensaje("PERSONAS ASISTENTES SUPERA LA CAPACIDAD DE MESA");
                                 Frm.jdcFecha.grabFocus();
-                            }else {
+                            } else {
                                 if (Fecha().equals(FechaFormat.format(dat))) {
                                     if (de1.getFormat().format(Frm.jspHora.getValue()).compareTo(HoraFormat.format(dat)) <= 0) {
                                         C.flag = false;
@@ -178,31 +177,33 @@ public class CtrlReservaCliente implements ActionListener {
 
         return C.flag;
     }
-    
+
+    //VISUALIZA DATOS EN LA TABLA SEGUN RESTAURANTE
     public void MesasRestaurante() {
-        C.InsertaRegistro("CREATE OR REPLACE VIEW VtaMesaResta AS SELECT * FROM VtaMesa WHERE Nombre='"+Frm.cboRestaurante.getSelectedItem().toString()+"'");
-        C.sql = "SELECT * FROM VtaMesaResta";
+        C.InsertaRegistro("CREATE OR REPLACE VIEW vtamesaresta AS SELECT * FROM vtamesa WHERE nombre='" + Frm.cboRestaurante.getSelectedItem().toString() + "'");
+        C.sql = "SELECT * FROM vtamesaresta";
         C.MostrarenJTable(DTM, C.sql, 6);
     }
 
+    //BUSQUEDA DE DATOS EN LA TABLA
     public void Tabla() {
-        
-        C.sql = "SELECT * FROM VtaMesaResta WHERE Cod_Mesa LIKE '" + Frm.txtBuscar.getText()
-                + "%' or Nombre like '" + Frm.txtBuscar.getText()
-                + "%' or Num_Mesa like '" + Frm.txtBuscar.getText()
-                + "%' or Cant_Personas like '" + Frm.txtBuscar.getText()
-                + "%' or Fumador like '" + Frm.txtBuscar.getText()
-                + "%' or Ubicacion like '" + Frm.txtBuscar.getText()
+        C.sql = "SELECT * FROM vtamesaresta WHERE cod_mesa LIKE '" + Frm.txtBuscar.getText()
+                + "%' or nombre like '" + Frm.txtBuscar.getText()
+                + "%' or num_mesa like '" + Frm.txtBuscar.getText()
+                + "%' or cant_personas like '" + Frm.txtBuscar.getText()
+                + "%' or fumador like '" + Frm.txtBuscar.getText()
+                + "%' or ubicacion like '" + Frm.txtBuscar.getText()
                 + "%'";
         C.MostrarenJTable(DTM, C.sql, 6);
     }
 
+    //VISUALIZA LAS MESAS SEGUN EL RESTAURANTE SELECCIONADO
     public void Visualizar() {
         if (Frm.cboRestaurante.getSelectedIndex() > 0) {
             String RS = Frm.cboRestaurante.getSelectedItem().toString();
-            String Rest = C.DatoCombo("SELECT * FROM restaurante WHERE Nombre='" + RS + "'", 2);
-            String Dire = C.DatoCombo("SELECT * FROM restaurante WHERE Nombre='" + RS + "'", 3);
-            String Telef = C.DatoCombo("SELECT * FROM restaurante WHERE Nombre='" + RS + "'", 4);
+            String Rest = C.DatoCombo("SELECT * FROM restaurante WHERE nombre='" + RS + "'", 2);
+            String Dire = C.DatoCombo("SELECT * FROM restaurante WHERE nombre='" + RS + "'", 3);
+            String Telef = C.DatoCombo("SELECT * FROM restaurante WHERE nombre='" + RS + "'", 4);
 
             Frm.lblRestaurante.setText(Rest);
             Frm.lblDireccion.setText(Dire);
@@ -220,6 +221,7 @@ public class CtrlReservaCliente implements ActionListener {
         }
     }
 
+    //OBTIENE FECHA ACTUAL
     public void FechaActual() {
         Calendar FC = new GregorianCalendar();
         Frm.jdcFecha.setCalendar(FC);
@@ -242,6 +244,7 @@ public class CtrlReservaCliente implements ActionListener {
         }
         return fechaDate;
     }*/
+    //CONVIERTE LA FECHA PARA INSERCION
     public String Fecha() {
         String dia = Integer.toString(Frm.jdcFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
         String mes = Integer.toString(Frm.jdcFecha.getCalendar().get(Calendar.MONTH) + 1);
@@ -250,18 +253,21 @@ public class CtrlReservaCliente implements ActionListener {
         return fecha;
     }
 
-    public void Reservar(){
-        CodCli = C.DevolverDatoString("SELECT * FROM cliente WHERE Nombre='" + Frm.lblCliente.getText() + "'", 1);
-        
+    //REALIZA LA INSERCION DE DATOS A LA TABLA RESERVA
+    public void Reservar() {
+        //OBTIENE EL CODIGO DEL CLIENTE
+        CodCli = C.DevolverDatoString("SELECT * FROM cliente WHERE nombre='" + Frm.lblCliente.getText() + "'", 1);
+
+        //FORMATEA LA HORA
         JSpinner.DateEditor de1 = new JSpinner.DateEditor(Frm.jspHora, "HH:mm");
         JSpinner.DateEditor de2 = new JSpinner.DateEditor(Frm.jspHora, "hh:mm a");
 
         if (Validar()) {
-            C.sql = "SELECT * FROM VtaReserva WHERE Fecha='"+Fecha()
-                    +"' AND Hora<='"+de1.getFormat().format(Frm.jspHora.getValue())
-                    +"' AND Num_mesa='"+NumMesa
-                    +"' AND Resta='"+Frm.lblRestaurante.getText().toUpperCase()+"';";
-            
+            C.sql = "SELECT * FROM vtareserva WHERE fecha='" + Fecha()
+                    + "' AND hora<='" + de1.getFormat().format(Frm.jspHora.getValue())
+                    + "' AND num_mesa='" + NumMesa
+                    + "' AND resta='" + Frm.lblRestaurante.getText().toUpperCase() + "';";
+
             if (!C.VerificarConsulta(C.sql)) {
                 if (JOptionPane.showConfirmDialog(null, "¿LA RESERVA ES CORRECTA?"
                         + "\n\nCLIENTE: " + Frm.lblCliente.getText()
@@ -270,20 +276,23 @@ public class CtrlReservaCliente implements ActionListener {
                         + "\nHORA: " + de2.getFormat().format(Frm.jspHora.getValue())
                         + "\nFECHA: " + Fecha()
                         + "\nASISTENTES: " + Frm.jspAsistentes.getValue(), "CONSULTA", 0) == 0) {
-                    
+
                     //IMPRIME TICKET
-                    A.CrearArchivo("TICKET DE RESERVA");
-                    A.AñadirDatos("Cliente: "+Frm.lblCliente.getText());
-                    A.AñadirDatos("Restaurante: "+Frm.lblRestaurante.getText().toUpperCase());
-                    A.AñadirDatos("Mesa: "+NumMesa);
-                    A.AñadirDatos("Hora: "+de2.getFormat().format(Frm.jspHora.getValue()));
-                    A.AñadirDatos("Fecha: "+Fecha());
-                    A.AñadirDatos("Asistentes: "+Frm.jspAsistentes.getValue());
-                    A.Imprimir();
-                    
+                    A.CrearArchivo(ruta, "TICKET DE RESERVA");
+                    A.AñadirDatos(ruta, " ");
+                    A.AñadirDatos(ruta, "Cliente: " + Frm.lblCliente.getText());
+                    A.AñadirDatos(ruta, "Restaurante: " + Frm.lblRestaurante.getText().toUpperCase());
+                    A.AñadirDatos(ruta, "Mesa: " + NumMesa);
+                    A.AñadirDatos(ruta, "Hora: " + de2.getFormat().format(Frm.jspHora.getValue()));
+                    A.AñadirDatos(ruta, "Fecha: " + Fecha());
+                    A.AñadirDatos(ruta, "Asistentes: " + Frm.jspAsistentes.getValue());
+                    A.AñadirDatos(ruta, " ");
+                    A.AñadirDatos(ruta, "GRACIAS POR SU RESERVA...!!");
+                    A.Imprimir(ruta);
+
                     //REGISTRA RESERVA
-                    String Cod = C.GeneraCodigo("R", "Reserva", "Cod_Reserva");
-                    C.InsertaRegistro("INSERT INTO Reserva VALUES('" + Cod + "','"
+                    String Cod = C.GeneraCodigo("R", "reserva", "cod_reserva");
+                    C.InsertaRegistro("INSERT INTO reserva VALUES('" + Cod + "','"
                             + de1.getFormat().format(Frm.jspHora.getValue()) + "','"
                             + Fecha() + "','"
                             + Frm.jspAsistentes.getValue() + "','"
@@ -295,9 +304,8 @@ public class CtrlReservaCliente implements ActionListener {
                     Limpiar();
                     C.BuscarCliente(Frm);
                     //C.InsertaRegistro("UPDATE mesa SET Cod_Estado='R' WHERE Cod_Mesa='" + CodMesa + "'");
-      
                 }
-            }else{
+            } else {
                 C.Mensaje("LA MESA ESTA RESERVADA PARA ESE DIA Y HORA");
             }
         }
@@ -323,7 +331,7 @@ public class CtrlReservaCliente implements ActionListener {
         if (e.getSource() == Frm.btnLimpiar) {
             Limpiar();
         }
-        
+
         if (e.getSource() == Frm.btnManual) {
             C.Video();
         }

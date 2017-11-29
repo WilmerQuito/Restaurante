@@ -37,6 +37,9 @@ public class FrmVideo extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
+        jpPantalla.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+
+        btnCerrar.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         btnCerrar.setText("CERRAR TUTORIAL");
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -53,7 +56,7 @@ public class FrmVideo extends javax.swing.JFrame {
         jpPantallaLayout.setVerticalGroup(
             jpPantallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPantallaLayout.createSequentialGroup()
-                .addGap(0, 724, Short.MAX_VALUE)
+                .addGap(0, 727, Short.MAX_VALUE)
                 .addComponent(btnCerrar))
         );
 

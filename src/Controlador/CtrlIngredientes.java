@@ -7,12 +7,7 @@ package Controlador;
 
 import Modelo.Controlador;
 import Vista.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -42,9 +37,9 @@ public class CtrlIngredientes implements ActionListener {
                     if (C.fila > -1) {
                         Frm.txtCodigo.setText(Frm.TIngredientes.getValueAt(C.fila, 0).toString());
                         Frm.txtIngredientes.setText(Frm.TIngredientes.getValueAt(C.fila, 1).toString());
-                        C.MostrarenCombo(Frm.cboPresentacion, Frm.TIngredientes.getValueAt(C.fila,3).toString());
-                        C.MostrarenCombo(Frm.cboTipo, Frm.TIngredientes.getValueAt(C.fila,4).toString());
-                        C.MostrarenCombo(Frm.cboColor, Frm.TIngredientes.getValueAt(C.fila,2).toString());
+                        C.MostrarenCombo(Frm.cboPresentacion, Frm.TIngredientes.getValueAt(C.fila, 3).toString());
+                        C.MostrarenCombo(Frm.cboTipo, Frm.TIngredientes.getValueAt(C.fila, 4).toString());
+                        C.MostrarenCombo(Frm.cboColor, Frm.TIngredientes.getValueAt(C.fila, 2).toString());
                     }
                 }
             }
@@ -66,13 +61,13 @@ public class CtrlIngredientes implements ActionListener {
         });
     }
 
-    public static synchronized CtrlIngredientes getInstance(FrmIngredientes Frm){
-        if(Single == null){
+    public static synchronized CtrlIngredientes getInstance(FrmIngredientes Frm) {
+        if (Single == null) {
             Single = new CtrlIngredientes(Frm);
         }
         return Single;
     }
-    
+
     public void Iniciar() {
         Frm.TIngredientes.setModel(DTM);
         DTM.setColumnIdentifiers(new String[]{"CODIGO", "INGREDIENTE", "COLOR", "PRESENTACION", "TIPO"});
@@ -84,17 +79,17 @@ public class CtrlIngredientes implements ActionListener {
     }
 
     public void Tipo() {
-        C.sql = "SELECT * FROM tipoIngre";
+        C.sql = "SELECT * FROM tipoingre";
         C.LlenarCombo(Frm.cboTipo, C.sql, "<SELECCIONE>", 2);
     }
 
     public void Presentacion() {
-        C.sql = "SELECT * FROM Presentacion";
+        C.sql = "SELECT * FROM presentacion";
         C.LlenarCombo(Frm.cboPresentacion, C.sql, "<SELECCIONE>", 2);
     }
 
     public void Color() {
-        C.sql = "SELECT * FROM Color";
+        C.sql = "SELECT * FROM color";
         C.LlenarCombo(Frm.cboColor, C.sql, "<SELECCIONE>", 2);
     }
 
@@ -132,44 +127,44 @@ public class CtrlIngredientes implements ActionListener {
     }
 
     public void Tabla() {
-        C.sql = "SELECT * FROM VtaIngredientes WHERE Cod_Ingredientes LIKE '" + Frm.txtBuscar.getText()
-                + "%' or Nom_Ingrediente like '" + Frm.txtBuscar.getText()
-                + "%' or Color like '" + Frm.txtBuscar.getText()
-                + "%' or Presentacion like '" + Frm.txtBuscar.getText()
-                + "%' or Nom_Tipo like '" + Frm.txtBuscar.getText()
+        C.sql = "SELECT * FROM vtaingredientes WHERE cod_ingredientes LIKE '" + Frm.txtBuscar.getText()
+                + "%' or nom_ingrediente like '" + Frm.txtBuscar.getText()
+                + "%' or color like '" + Frm.txtBuscar.getText()
+                + "%' or presentacion like '" + Frm.txtBuscar.getText()
+                + "%' or nom_tipo like '" + Frm.txtBuscar.getText()
                 + "%'";
         C.MostrarenJTable(DTM, C.sql, 5);
     }
 
     public void Guardar() {
-        String Tipo = C.DatoCombo("SELECT * FROM tipoIngre WHERE Nom_Tipo='" + Frm.cboTipo.getSelectedItem().toString() + "'", 1);
-        String Pres = C.DatoCombo("SELECT * FROM Presentacion WHERE presentacion='" + Frm.cboPresentacion.getSelectedItem().toString() + "'", 1);
-        String Colo = C.DatoCombo("SELECT * FROM Color WHERE color='" + Frm.cboColor.getSelectedItem().toString() + "'", 1);
+        String Tipo = C.DatoCombo("SELECT * FROM tipoingre WHERE nom_tipo='" + Frm.cboTipo.getSelectedItem().toString() + "'", 1);
+        String Pres = C.DatoCombo("SELECT * FROM presentacion WHERE presentacion='" + Frm.cboPresentacion.getSelectedItem().toString() + "'", 1);
+        String Colo = C.DatoCombo("SELECT * FROM color WHERE color='" + Frm.cboColor.getSelectedItem().toString() + "'", 1);
 
-        String sql = "SELECT * FROM VtaIngredientes WHERE Nom_Ingredientes='" + Frm.txtIngredientes.getText()
+        String sql = "SELECT * FROM vtaingredientes WHERE nom_ingredientes='" + Frm.txtIngredientes.getText()
                 + "' AND presentacion='" + Frm.cboPresentacion.getSelectedItem().toString()
                 + "' AND nom_tipo='" + Frm.cboTipo.getSelectedItem().toString() + "';";
         if (!C.VerificarConsulta(sql)) {
             if (Validar()) {
-                String Cod = C.GeneraCodigo(Frm.txtIngredientes.getText().toUpperCase(), "Ingredientes", "Cod_Ingredientes");
-                
+                String Cod = C.GeneraCodigo(Frm.txtIngredientes.getText().toUpperCase(), "ingredientes", "cod_ingredientes");
+
                 if (Frm.cboColor.getSelectedIndex() == 0) {
-                    C.InsertaRegistro("INSERT INTO Ingredientes"
-                            + " (Cod_Ingredientes, Nom_ingrediente, presentacion_idpresentacion, tipoIngre_idtipoIngre) VALUES('"
+                    C.InsertaRegistro("INSERT INTO ingredientes"
+                            + " (cod_ingredientes, nom_ingrediente, presentacion_idpresentacion, tipoingre_idtipoingre) VALUES('"
                             + Cod + "','"
                             + Frm.txtIngredientes.getText().toUpperCase() + "','"
                             + Pres + "','"
                             + Tipo + "')");
                     C.Mensaje("INGREDIENTE REGISTRADO");
                 } else {
-                    C.InsertaRegistro("INSERT INTO Ingredientes VALUES('" + Cod + "','"
+                    C.InsertaRegistro("INSERT INTO ingredientes VALUES('" + Cod + "','"
                             + Frm.txtIngredientes.getText().toUpperCase() + "','"
                             + Colo + "','"
                             + Pres + "','"
                             + Tipo + "')");
                     C.Mensaje("INGREDIENTE REGISTRADO");
                 }
-                
+
                 Tabla();
                 Limpiar();
             }
@@ -179,28 +174,28 @@ public class CtrlIngredientes implements ActionListener {
     }
 
     public void Editar() {
-        String Tipo = C.DatoCombo("SELECT * FROM tipoIngre WHERE Nom_Tipo='" + Frm.cboTipo.getSelectedItem().toString() + "'", 1);
-        String Pres = C.DatoCombo("SELECT * FROM Presentacion WHERE presentacion='" + Frm.cboPresentacion.getSelectedItem().toString() + "'", 1);
-        String Colo = C.DatoCombo("SELECT * FROM Color WHERE color='" + Frm.cboColor.getSelectedItem().toString() + "'", 1);
+        String Tipo = C.DatoCombo("SELECT * FROM tipoIngre WHERE nom_tipo='" + Frm.cboTipo.getSelectedItem().toString() + "'", 1);
+        String Pres = C.DatoCombo("SELECT * FROM presentacion WHERE presentacion='" + Frm.cboPresentacion.getSelectedItem().toString() + "'", 1);
+        String Colo = C.DatoCombo("SELECT * FROM color WHERE color='" + Frm.cboColor.getSelectedItem().toString() + "'", 1);
 
-        String sql = "SELECT * FROM VtaIngredientes WHERE Nom_Ingredientes='" + Frm.txtIngredientes.getText()
+        String sql = "SELECT * FROM vtaingredientes WHERE nom_ingredientes='" + Frm.txtIngredientes.getText()
                 + "' AND presentacion='" + Frm.cboPresentacion.getSelectedItem().toString()
                 + "' AND nom_tipo='" + Frm.cboTipo.getSelectedItem().toString() + "';";
         if (!C.VerificarConsulta(sql)) {
             if (Validar()) {
                 if (Frm.cboColor.getSelectedIndex() == 0) {
-                    C.InsertaRegistro("UPDATE Ingredientes SET Nom_Ingrediente='" + Frm.txtIngredientes.getText().toUpperCase()
+                    C.InsertaRegistro("UPDATE ingredientes SET nom_ingrediente='" + Frm.txtIngredientes.getText().toUpperCase()
                             + "', color_idcolor=NULL"
                             + ", presentacion_idpresentacion='" + Pres
-                            + "', tipoIngre_idtipoIngre='" + Tipo
-                            + "' WHERE Cod_Ingredientes='" + Frm.txtCodigo.getText() + "'");
+                            + "', tipoingre_idtipoingre='" + Tipo
+                            + "' WHERE cod_ingredientes='" + Frm.txtCodigo.getText() + "'");
                     C.Mensaje("INGREDIENTE ACTUALIZADO");
                 } else {
-                    C.InsertaRegistro("UPDATE Ingredientes SET Nom_Ingrediente='" + Frm.txtIngredientes.getText().toUpperCase()
+                    C.InsertaRegistro("UPDATE ingredientes SET nom_ingrediente='" + Frm.txtIngredientes.getText().toUpperCase()
                             + "', color_idcolor='" + Colo
                             + "', presentacion_idpresentacion='" + Pres
-                            + "', tipoIngre_idtipoIngre='" + Tipo
-                            + "' WHERE Cod_Ingredientes='" + Frm.txtCodigo.getText() + "'");
+                            + "', tipoingre_idtipoingre='" + Tipo
+                            + "' WHERE cod_ingredientes='" + Frm.txtCodigo.getText() + "'");
                     C.Mensaje("INGREDIENTE ACTUALIZADO");
                 }
                 Tabla();
@@ -215,7 +210,7 @@ public class CtrlIngredientes implements ActionListener {
         C.fila = Frm.TIngredientes.getSelectedRow();
         if (Frm.TIngredientes.getSelectedRow() > -1) {
             if (JOptionPane.showConfirmDialog(null, "¿Estas Seguro?", "Eliminar", 0) == 0) {
-                C.InsertaRegistro("DELETE FROM ingredientes WHERE Cod_Ingredientes='" + Frm.TIngredientes.getValueAt(C.fila, 0).toString() + "'");
+                C.InsertaRegistro("DELETE FROM ingredientes WHERE cod_ingredientes='" + Frm.TIngredientes.getValueAt(C.fila, 0).toString() + "'");
                 C.Mensaje("INGREDIENTE ELIMINADO");
                 Tabla();
                 Limpiar();
@@ -227,7 +222,6 @@ public class CtrlIngredientes implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
         if (e.getSource() == Frm.btnguardar) {
             Guardar();
         }

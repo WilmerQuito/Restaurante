@@ -7,12 +7,7 @@ package Controlador;
 
 import Modelo.Controlador;
 import Vista.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -64,13 +59,13 @@ public class CtrlBebida implements ActionListener {
         });
     }
 
-    public static synchronized CtrlBebida getInstance(FrmBebida Frm){
-        if(Single == null){
+    public static synchronized CtrlBebida getInstance(FrmBebida Frm) {
+        if (Single == null) {
             Single = new CtrlBebida(Frm);
         }
         return Single;
     }
-    
+
     public void Iniciar() {
         Frm.TBebidas.setModel(DTM);
         DTM.setColumnIdentifiers(new String[]{"CODIGO", "TIPO", "MARCA", "SABOR", "COSTO"});
@@ -82,17 +77,17 @@ public class CtrlBebida implements ActionListener {
     }
 
     public void Tipo() {
-        C.sql = "SELECT * FROM tipoBebida";
+        C.sql = "SELECT * FROM tipobebida";
         C.LlenarCombo(Frm.cboTipo, C.sql, "<SELECCIONE>", 2);
     }
 
     public void Marca() {
-        C.sql = "SELECT * FROM Marca";
+        C.sql = "SELECT * FROM marca";
         C.LlenarCombo(Frm.cboMarca, C.sql, "<SELECCIONE>", 2);
     }
 
     public void Sabor() {
-        C.sql = "SELECT * FROM Sabor";
+        C.sql = "SELECT * FROM sabor";
         C.LlenarCombo(Frm.cboSabor, C.sql, "<SELECCIONE>", 2);
     }
 
@@ -124,57 +119,57 @@ public class CtrlBebida implements ActionListener {
     }
 
     public void Tabla() {
-        C.sql = "SELECT * FROM VtaBebida WHERE idBebidas LIKE '" + Frm.txtBuscar.getText()
-                + "%' or Tipo like '" + Frm.txtBuscar.getText()
-                + "%' or Marca like '" + Frm.txtBuscar.getText()
-                + "%' or Sabor like '" + Frm.txtBuscar.getText()
-                + "%' or Costo like '" + Frm.txtBuscar.getText()
+        C.sql = "SELECT * FROM vtabebida WHERE idbebidas LIKE '" + Frm.txtBuscar.getText()
+                + "%' or tipo like '" + Frm.txtBuscar.getText()
+                + "%' or marca like '" + Frm.txtBuscar.getText()
+                + "%' or sabor like '" + Frm.txtBuscar.getText()
+                + "%' or costo like '" + Frm.txtBuscar.getText()
                 + "%'";
         C.MostrarenJTable(DTM, C.sql, 5);
     }
-    
+
     public void Guardar() {
-        String Tipo = C.DatoCombo("SELECT * FROM tipoBebida WHERE nomTipo='" + Frm.cboTipo.getSelectedItem().toString() + "'", 1);
+        String Tipo = C.DatoCombo("SELECT * FROM tipobebida WHERE nomtipo='" + Frm.cboTipo.getSelectedItem().toString() + "'", 1);
         String Marc = C.DatoCombo("SELECT * FROM marca WHERE marcacol='" + Frm.cboMarca.getSelectedItem().toString() + "'", 1);
         String Sabo = C.DatoCombo("SELECT * FROM sabor WHERE saborcol='" + Frm.cboSabor.getSelectedItem().toString() + "'", 1);
-        
-        String sql = "SELECT * FROM VtaBebida WHERE Tipo='" + Frm.cboTipo.getSelectedItem().toString()
-                + "' AND Marca='" + Frm.cboMarca.getSelectedItem().toString()
-                + "' AND Sabor='" + Frm.cboSabor.getSelectedItem().toString()
-                + "' AND Costo='" + Frm.txtCosto.getText() + "';";
+
+        String sql = "SELECT * FROM vtabebida WHERE tipo='" + Frm.cboTipo.getSelectedItem().toString()
+                + "' AND marca='" + Frm.cboMarca.getSelectedItem().toString()
+                + "' AND sabor='" + Frm.cboSabor.getSelectedItem().toString()
+                + "' AND costo='" + Frm.txtCosto.getText() + "';";
         if (!C.VerificarConsulta(sql)) {
             if (Validar()) {
                 String Cod = C.GeneraCodigo("B", "bebidas", "idbebidas");
-                
+
                 if (Frm.cboMarca.getSelectedIndex() == 0 && Frm.cboSabor.getSelectedIndex() > 0) {
                     C.InsertaRegistro("INSERT INTO bebidas"
-                            + " (idbebidas, tipoBebida_idtipoBebida, sabor_idsabor, costo) VALUES('"
+                            + " (idbebidas, tipobebida_idtipobebida, sabor_idsabor, costo) VALUES('"
                             + Cod + "','"
                             + Tipo + "','"
                             + Sabo + "','"
                             + Frm.txtCosto.getText() + "')");
                     C.Mensaje("BEBIDA REGISTRADA");
                 }
-                
+
                 if (Frm.cboSabor.getSelectedIndex() == 0 && Frm.cboMarca.getSelectedIndex() > 0) {
                     C.InsertaRegistro("INSERT INTO bebidas"
-                            + " (idbebidas, tipoBebida_idtipoBebida, marca_idmarca, costo) VALUES('"
+                            + " (idbebidas, tipobebida_idtipobebida, marca_idmarca, costo) VALUES('"
                             + Cod + "','"
                             + Tipo + "','"
                             + Marc + "','"
                             + Frm.txtCosto.getText() + "')");
                     C.Mensaje("BEBIDA REGISTRADA");
                 }
-                
+
                 if (Frm.cboSabor.getSelectedIndex() == 0 && Frm.cboMarca.getSelectedIndex() == 0) {
                     C.InsertaRegistro("INSERT INTO bebidas"
-                            + " (idbebidas, tipoBebida_idtipoBebida, costo) VALUES('"
+                            + " (idbebidas, tipobebida_idtipobebida, costo) VALUES('"
                             + Cod + "','"
                             + Tipo + "','"
                             + Frm.txtCosto.getText() + "')");
                     C.Mensaje("BEBIDA REGISTRADA");
                 }
-                
+
                 if (Frm.cboSabor.getSelectedIndex() > 0 && Frm.cboMarca.getSelectedIndex() > 0) {
                     C.InsertaRegistro("INSERT INTO bebidas VALUES('" + Cod + "','"
                             + Tipo + "','"
@@ -183,7 +178,7 @@ public class CtrlBebida implements ActionListener {
                             + Frm.txtCosto.getText() + "')");
                     C.Mensaje("BEBIDA REGISTRADA");
                 }
-                
+
                 Tabla();
                 Limpiar();
             }
@@ -193,52 +188,51 @@ public class CtrlBebida implements ActionListener {
     }
 
     public void Editar() {
-        String Tipo = C.DatoCombo("SELECT * FROM tipoBebida WHERE nomTipo='" + Frm.cboTipo.getSelectedItem().toString() + "'", 1);
+        String Tipo = C.DatoCombo("SELECT * FROM tipobebida WHERE nomtipo='" + Frm.cboTipo.getSelectedItem().toString() + "'", 1);
         String Marc = C.DatoCombo("SELECT * FROM marca WHERE marcacol='" + Frm.cboMarca.getSelectedItem().toString() + "'", 1);
         String Sabo = C.DatoCombo("SELECT * FROM sabor WHERE saborcol='" + Frm.cboSabor.getSelectedItem().toString() + "'", 1);
 
-        String sql = "SELECT * FROM VtaBebida WHERE Tipo='" + Frm.cboTipo.getSelectedItem().toString()
-                + "' AND Marca='" + Frm.cboMarca.getSelectedItem().toString()
-                + "' AND Sabor='" + Frm.cboSabor.getSelectedItem().toString()
-                + "' AND Costo='" + Frm.txtCosto.getText() + "';";
+        String sql = "SELECT * FROM vtabebida WHERE tipo='" + Frm.cboTipo.getSelectedItem().toString()
+                + "' AND marca='" + Frm.cboMarca.getSelectedItem().toString()
+                + "' AND sabor='" + Frm.cboSabor.getSelectedItem().toString()
+                + "' AND costo='" + Frm.txtCosto.getText() + "';";
         if (!C.VerificarConsulta(sql)) {
             if (Validar()) {
                 if (Frm.cboMarca.getSelectedIndex() == 0 && Frm.cboSabor.getSelectedIndex() > 0) {
-                    C.InsertaRegistro("UPDATE bebidas SET tipoBebida_idtipoBebida='" + Tipo
+                    C.InsertaRegistro("UPDATE bebidas SET tipobebida_idtipobebida='" + Tipo
                             + "', marca_idmarca=NULL"
                             + ", sabor_idsabor='" + Sabo
-                            + "', Costo='" + Frm.txtCosto.getText()
+                            + "', costo='" + Frm.txtCosto.getText()
                             + "' WHERE idbebidas='" + Frm.txtCodigo.getText() + "'");
                     C.Mensaje("BEBIDA ACTUALIZADA");
                 }
-                
+
                 if (Frm.cboSabor.getSelectedIndex() == 0 && Frm.cboMarca.getSelectedIndex() > 0) {
-                    C.InsertaRegistro("UPDATE bebidas SET tipoBebida_idtipoBebida='" + Tipo
+                    C.InsertaRegistro("UPDATE bebidas SET tipobebida_idtipobebida='" + Tipo
                             + "', marca_idmarca='" + Marc
                             + "', sabor_idsabor=NULL"
-                            + ", Costo='" + Frm.txtCosto.getText()
+                            + ", costo='" + Frm.txtCosto.getText()
                             + "' WHERE idbebidas='" + Frm.txtCodigo.getText() + "'");
                     C.Mensaje("BEBIDA ACTUALIZADA");
                 }
-                
+
                 if (Frm.cboSabor.getSelectedIndex() == 0 && Frm.cboMarca.getSelectedIndex() == 0) {
-                    C.InsertaRegistro("UPDATE bebidas SET tipoBebida_idtipoBebida='" + Tipo
+                    C.InsertaRegistro("UPDATE bebidas SET tipobebida_idtipobebida='" + Tipo
                             + "', marca_idmarca=NULL"
                             + ", sabor_idsabor=NULL"
-                            + ", Costo='" + Frm.txtCosto.getText()
+                            + ", costo='" + Frm.txtCosto.getText()
                             + "' WHERE idbebidas='" + Frm.txtCodigo.getText() + "'");
                     C.Mensaje("BEBIDA ACTUALIZADA");
                 }
-                
+
                 if (Frm.cboSabor.getSelectedIndex() > 0 && Frm.cboMarca.getSelectedIndex() > 0) {
-                    C.InsertaRegistro("UPDATE bebidas SET tipoBebida_idtipoBebida='" + Tipo
+                    C.InsertaRegistro("UPDATE bebidas SET tipobebida_idtipobebida='" + Tipo
                             + "', marca_idmarca='" + Marc
                             + "', sabor_idsabor='" + Sabo
-                            + "', Costo='" + Frm.txtCosto.getText()
+                            + "', costo='" + Frm.txtCosto.getText()
                             + "' WHERE idbebidas='" + Frm.txtCodigo.getText() + "'");
                     C.Mensaje("BEBIDA ACTUALIZADA");
                 }
-                
                 Tabla();
                 Limpiar();
             }

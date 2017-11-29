@@ -1,7 +1,10 @@
 TICKET DE RESERVA
-Cliente: LILIA CUEVA CHAVEZ
-Restaurante: LA DELICIA
+ 
+Cliente: FAVIO SOLIS VEGA
+Restaurante: LA FONDA
 Mesa: 1
-Hora: 10:44 AM
+Hora: 09:05 PM
 Fecha: 2017-11-24
 Asistentes: 1
+ 
+GRACIAS POR SU RESERVA...!!

@@ -69,7 +69,7 @@ public class CtrlBuscarCliente implements ActionListener {
     }
 
     public void Acceder() {
-        C.sql = "SELECT * FROM cliente WHERE DNI='" + Frm.txtDni.getText() + "'";
+        C.sql = "SELECT * FROM cliente WHERE dni='" + Frm.txtDni.getText() + "'";
 
         if (Validar()) {
             if (!C.VerificarConsulta(C.sql)) {
@@ -84,7 +84,7 @@ public class CtrlBuscarCliente implements ActionListener {
             } else {
                 C.Reservas(Frm);
                 FrmReservaCliente.lblCliente.setText(null);
-                FrmReservaCliente.lblCliente.setText(C.DevolverDatoString("SELECT * FROM cliente WHERE DNI='" + Frm.txtDni.getText() + "'", 2).toUpperCase());
+                FrmReservaCliente.lblCliente.setText(C.DevolverDatoString("SELECT * FROM cliente WHERE dni='" + Frm.txtDni.getText() + "'", 2).toUpperCase());
                 Limpiar();
             }
         }

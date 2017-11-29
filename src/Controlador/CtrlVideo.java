@@ -22,54 +22,51 @@ import javafx.scene.media.MediaView;
  * @author Wilmer Quito
  */
 public class CtrlVideo {
-    
+
     Controlador C = Controlador.getInstance();
     private static FrmVideo Frm;
     private static CtrlVideo Single;
     private final JFXPanel jfxPanel = new JFXPanel();
-    
-    private CtrlVideo (FrmVideo Frm){
+
+    private CtrlVideo(FrmVideo Frm) {
         this.Frm = Frm;
     }
-    
-    public static synchronized CtrlVideo getInstance(FrmVideo Frm){
-        if(Single == null){
+
+    public static synchronized CtrlVideo getInstance(FrmVideo Frm) {
+        if (Single == null) {
             Single = new CtrlVideo(Frm);
         }
         return Single;
     }
-    
-    public void Iniciar(){
+
+    public void Iniciar() {
         Frm.setTitle("HOLA...!!!");
         Frm.setResizable(false);
         Frm.setLocationRelativeTo(null);
         Frm.jpPantalla.setLayout(new BorderLayout());
-        Frm.jpPantalla.add(jfxPanel,BorderLayout.CENTER);
+        Frm.jpPantalla.add(jfxPanel, BorderLayout.CENTER);
         CrearEscena();
     }
-    
-    private void CrearEscena(){
+
+    private void CrearEscena() {
         Platform.runLater(new Runnable() {
-             @Override
-             public void run() {                 
-                try{
+            @Override
+            public void run() {
+                try {
                     String ruta = System.getProperties().getProperty("user.dir") + "/Complementos/Reserva.mp4";
                     File file = new File(ruta);
-                                                 
-                    MediaPlayer oracleVid = new MediaPlayer(                                       
-                        new Media(file.toURI().toString())
-                    );
+
+                    MediaPlayer oracleVid = new MediaPlayer(new Media(file.toURI().toString()));
                     //se añade video al jfxPanel
-                    jfxPanel.setScene(new Scene(new Group(new MediaView(oracleVid))));                    
+                    jfxPanel.setScene(new Scene(new Group(new MediaView(oracleVid))));
                     oracleVid.setVolume(0);//volumen
                     oracleVid.setCycleCount(MediaPlayer.INDEFINITE);//repite video
                     oracleVid.play();//play video
-                }catch(Exception e){
+                } catch (Exception e) {
                     C.Mensaje(String.valueOf(e));
                 }
-             }
+            }
         });
     }
-    
-    
-    }
+
+}

@@ -1,8 +1,8 @@
 #USUARIO
 root
 #PASSWORD
-root123456
+12345678
+#BASE DE DATOS
+restaurante
 #HOST DE ACCESO
 localhost
-#BASE DE DATOS
-db_restaurante

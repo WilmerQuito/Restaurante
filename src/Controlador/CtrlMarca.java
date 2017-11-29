@@ -7,12 +7,7 @@ package Controlador;
 
 import Modelo.Controlador;
 import Vista.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -63,13 +58,13 @@ public class CtrlMarca implements ActionListener {
         });
     }
 
-    public static synchronized CtrlMarca getInstance(FrmMarca Frm){
-        if(Single == null){
+    public static synchronized CtrlMarca getInstance(FrmMarca Frm) {
+        if (Single == null) {
             Single = new CtrlMarca(Frm);
         }
         return Single;
     }
-    
+
     public void Iniciar() {
         Frm.TTipo.setModel(DTM);
         DTM.setColumnIdentifiers(new String[]{"CODIGO", "MARCA DE BEBIDA"});

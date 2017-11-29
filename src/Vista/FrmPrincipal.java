@@ -7,7 +7,7 @@ package Vista;
 
 import PatronVistas.*;
 import Controlador.*;
-import Modelo.Controlador;
+import Modelo.*;
 import Vista.*;
 import java.awt.*;
 import javax.swing.JOptionPane;
@@ -20,6 +20,7 @@ import java.util.Calendar;
  */
 public class FrmPrincipal extends javax.swing.JFrame {
 
+    BaseDatos BD = BaseDatos.getInstance();
     Controlador C = Controlador.getInstance();
     int dia, mes, año, hora, minutos, segundos;
     Calendar calendario;
@@ -106,21 +107,24 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jmMedida = new javax.swing.JMenuItem();
         jmReportes = new javax.swing.JMenu();
         rptEmpleados = new javax.swing.JMenuItem();
-        jmReservas = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        rptReservas = new javax.swing.JMenuItem();
+        rptMesas = new javax.swing.JMenuItem();
+        jmBaseDatos = new javax.swing.JMenu();
         jmExportar = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("BIENVENIDO:");
 
-        lblnombre.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        lblnombre.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblnombre.setForeground(new java.awt.Color(255, 255, 255));
         lblnombre.setText("BBBBBBBBBBBBBBBBBBBBBBBBB");
 
+        btnManual.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         btnManual.setText("MANUAL");
         btnManual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,7 +132,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
 
-        lblHora.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
+        lblHora.setFont(new java.awt.Font("Times New Roman", 3, 40)); // NOI18N
         lblHora.setForeground(new java.awt.Color(255, 255, 255));
 
         jdpPrincipal.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -150,7 +154,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                         .addComponent(lblnombre))
                     .addGroup(jdpPrincipalLayout.createSequentialGroup()
                         .addComponent(lblHora, javax.swing.GroupLayout.PREFERRED_SIZE, 683, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 502, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 501, Short.MAX_VALUE)
                         .addComponent(btnManual)))
                 .addContainerGap())
         );
@@ -161,7 +165,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addGroup(jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnManual)
                     .addComponent(lblHora, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 647, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 649, Short.MAX_VALUE)
                 .addGroup(jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(lblnombre))
@@ -170,6 +174,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         mArchivo.setText("ARCHIVO");
         mArchivo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        mArchivo.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         mArchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mArchivoActionPerformed(evt);
@@ -177,6 +182,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
 
         jmSalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
+        jmSalir.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         jmSalir.setText("SALIR");
         jmSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -190,7 +196,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         mRestaurante.setText("RESTAURANTE");
         mRestaurante.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        mRestaurante.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
 
+        jmRestaurante.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         jmRestaurante.setText("RESTAURANTE");
         jmRestaurante.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmRestaurante.addActionListener(new java.awt.event.ActionListener() {
@@ -200,6 +208,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         mRestaurante.add(jmRestaurante);
 
+        jmAlmacen.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         jmAlmacen.setText("ALMACEN");
         jmAlmacen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmAlmacen.addActionListener(new java.awt.event.ActionListener() {
@@ -213,7 +222,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         mMesas.setText("MESAS");
         mMesas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        mMesas.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
 
+        jmMesas.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         jmMesas.setText("MESAS");
         jmMesas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmMesas.addActionListener(new java.awt.event.ActionListener() {
@@ -223,6 +234,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         mMesas.add(jmMesas);
 
+        jmEstadoMesa.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         jmEstadoMesa.setText("ESTADO");
         jmEstadoMesa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmEstadoMesa.addActionListener(new java.awt.event.ActionListener() {
@@ -232,6 +244,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         mMesas.add(jmEstadoMesa);
 
+        jmUbicacion.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         jmUbicacion.setText("UBICACION");
         jmUbicacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmUbicacion.addActionListener(new java.awt.event.ActionListener() {
@@ -245,7 +258,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         mCliente.setText("CLIENTE");
         mCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        mCliente.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
 
+        jmCliente.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         jmCliente.setText("CLIENTE");
         jmCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -259,7 +274,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         mUsuario.setText("USUARIO");
         mUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        mUsuario.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
 
+        jmRoles.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         jmRoles.setText("ROLES");
         jmRoles.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmRoles.addActionListener(new java.awt.event.ActionListener() {
@@ -269,6 +286,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         mUsuario.add(jmRoles);
 
+        jmEmpleado.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         jmEmpleado.setText("EMPLEADOS");
         jmEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -277,6 +295,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         mUsuario.add(jmEmpleado);
 
+        jmUsuario.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         jmUsuario.setText("USUARIO");
         jmUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -289,7 +308,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(mUsuario);
 
         mComidas.setText("COMIDAS");
+        mComidas.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
 
+        jmOrigen.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         jmOrigen.setText("ORIGEN DE COMIDAS");
         jmOrigen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -298,6 +319,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         mComidas.add(jmOrigen);
 
+        jmComida.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         jmComida.setText("COMIDA");
         jmComida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -309,7 +331,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(mComidas);
 
         mIngredientes.setText("INGREDIENTES");
+        mIngredientes.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
 
+        jmPresentacion.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         jmPresentacion.setText("PRESENTACION");
         jmPresentacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -318,6 +342,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         mIngredientes.add(jmPresentacion);
 
+        jmColor.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         jmColor.setText("COLOR");
         jmColor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -326,6 +351,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         mIngredientes.add(jmColor);
 
+        jmTipoIngrediente.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         jmTipoIngrediente.setText("TIPO");
         jmTipoIngrediente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -334,6 +360,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         mIngredientes.add(jmTipoIngrediente);
 
+        jmIngrediente.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         jmIngrediente.setText("INGREDIENTES");
         jmIngrediente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -345,7 +372,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(mIngredientes);
 
         mBebidas.setText("BEBIDAS");
+        mBebidas.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
 
+        jmSabor.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         jmSabor.setText("SABOR");
         jmSabor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -354,6 +383,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         mBebidas.add(jmSabor);
 
+        jmTipoBebida.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         jmTipoBebida.setText("TIPO");
         jmTipoBebida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -362,6 +392,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         mBebidas.add(jmTipoBebida);
 
+        jmMarca.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         jmMarca.setText("MARCA");
         jmMarca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -370,6 +401,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         mBebidas.add(jmMarca);
 
+        jmBebida.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         jmBebida.setText("BEBIDA");
         jmBebida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -381,7 +413,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(mBebidas);
 
         mPedidos.setText("PEDIDOS");
+        mPedidos.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
 
+        jmEstadoPedido.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         jmEstadoPedido.setText("ESTADO");
         jmEstadoPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -393,7 +427,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(mPedidos);
 
         mMedida.setText("MEDIDA");
+        mMedida.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
 
+        jmMedida.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         jmMedida.setText("UNIDADES MEDIDA");
         jmMedida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -405,7 +441,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(mMedida);
 
         jmReportes.setText("REPORTES");
+        jmReportes.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
 
+        rptEmpleados.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         rptEmpleados.setText("EMPLEADOS");
         rptEmpleados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -414,27 +452,47 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jmReportes.add(rptEmpleados);
 
-        jmReservas.setText("RESERVAS");
-        jmReservas.addActionListener(new java.awt.event.ActionListener() {
+        rptReservas.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
+        rptReservas.setText("RESERVAS");
+        rptReservas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmReservasActionPerformed(evt);
+                rptReservasActionPerformed(evt);
             }
         });
-        jmReportes.add(jmReservas);
+        jmReportes.add(rptReservas);
+
+        rptMesas.setText("MESAS");
+        rptMesas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rptMesasActionPerformed(evt);
+            }
+        });
+        jmReportes.add(rptMesas);
 
         jMenuBar1.add(jmReportes);
 
-        jMenu1.setText("BASE DE DATOS");
+        jmBaseDatos.setText("BASE DE DATOS");
+        jmBaseDatos.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
 
+        jmExportar.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         jmExportar.setText("EXPORTAR");
         jmExportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmExportarActionPerformed(evt);
             }
         });
-        jMenu1.add(jmExportar);
+        jmBaseDatos.add(jmExportar);
 
-        jMenuBar1.add(jMenu1);
+        jMenuItem1.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
+        jMenuItem1.setText("CREAR BASE DE DATOS");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jmBaseDatos.add(jMenuItem1);
+
+        jMenuBar1.add(jmBaseDatos);
 
         setJMenuBar(jMenuBar1);
 
@@ -795,9 +853,25 @@ public class FrmPrincipal extends javax.swing.JFrame {
         C.Backup();
     }//GEN-LAST:event_jmExportarActionPerformed
 
-    private void jmReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmReservasActionPerformed
+    private void rptReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rptReservasActionPerformed
         C.impri.Imprimir("RptReservas", "REPORTE DE RESERVAS");
-    }//GEN-LAST:event_jmReservasActionPerformed
+    }//GEN-LAST:event_rptReservasActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        if (JOptionPane.showConfirmDialog(null, "¿QUIERES RESTAURAR LA BASE DE DATOS?", "BASE DE DATOS", 0) == 0) {
+            BD.EliminarBD();
+            BD.CrearBD();
+            BD.UsoDB();
+            BD.CrearTablas();
+            BD.CrearRelaciones();
+            BD.CrearVistas();
+            BD.InsertarDatos();
+        }
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void rptMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rptMesasActionPerformed
+        C.impri.Imprimir("RptMesas", "REPORTE DE MESAS");
+    }//GEN-LAST:event_rptMesasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -837,10 +911,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton btnManual;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
     public javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JDesktopPane jdpPrincipal;
     private javax.swing.JMenuItem jmAlmacen;
+    public static javax.swing.JMenu jmBaseDatos;
     private javax.swing.JMenuItem jmBebida;
     private javax.swing.JMenuItem jmCliente;
     private javax.swing.JMenuItem jmColor;
@@ -856,7 +931,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmOrigen;
     private javax.swing.JMenuItem jmPresentacion;
     public static javax.swing.JMenu jmReportes;
-    private javax.swing.JMenuItem jmReservas;
     private javax.swing.JMenuItem jmRestaurante;
     private javax.swing.JMenuItem jmRoles;
     private javax.swing.JMenuItem jmSabor;
@@ -878,5 +952,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     public static javax.swing.JMenu mRestaurante;
     public static javax.swing.JMenu mUsuario;
     private javax.swing.JMenuItem rptEmpleados;
+    private javax.swing.JMenuItem rptMesas;
+    private javax.swing.JMenuItem rptReservas;
     // End of variables declaration//GEN-END:variables
 }

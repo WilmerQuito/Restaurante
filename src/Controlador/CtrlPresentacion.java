@@ -7,12 +7,7 @@ package Controlador;
 
 import Modelo.Controlador;
 import Vista.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -61,16 +56,15 @@ public class CtrlPresentacion implements ActionListener {
             public void keyPressed(KeyEvent e) {
             }
         });
-
     }
 
-    public static synchronized CtrlPresentacion getInstance(FrmPresentacion Frm){
-        if(Single == null){
+    public static synchronized CtrlPresentacion getInstance(FrmPresentacion Frm) {
+        if (Single == null) {
             Single = new CtrlPresentacion(Frm);
         }
         return Single;
     }
-    
+
     public void Iniciar() {
         Frm.TPresentacion.setModel(DTM);
         DTM.setColumnIdentifiers(new String[]{"CODIGO", "PRESENTACION DEL INGREDIENTE"});
@@ -98,7 +92,7 @@ public class CtrlPresentacion implements ActionListener {
     }
 
     public void Tabla() {
-        C.sql = "SELECT * FROM Presentacion WHERE idpresentacion LIKE '" + Frm.txtBuscar.getText()
+        C.sql = "SELECT * FROM presentacion WHERE idpresentacion LIKE '" + Frm.txtBuscar.getText()
                 + "%' or presentacion like '" + Frm.txtBuscar.getText()
                 + "%'";
         C.MostrarenJTable(DTM, C.sql, 2);
@@ -108,8 +102,8 @@ public class CtrlPresentacion implements ActionListener {
         String sql = "SELECT * FROM presentacion WHERE presentacion='" + Frm.txtPresentacion.getText() + "';";
         if (!C.VerificarConsulta(sql)) {
             if (Validar()) {
-                String Cod = C.GeneraCodigo(Frm.txtPresentacion.getText().toUpperCase(), "Presentacion", "idPresentacion");
-                C.InsertaRegistro("INSERT INTO Presentacion VALUES('" + Cod + "','"
+                String Cod = C.GeneraCodigo(Frm.txtPresentacion.getText().toUpperCase(), "presentacion", "idpresentacion");
+                C.InsertaRegistro("INSERT INTO presentacion VALUES('" + Cod + "','"
                         + Frm.txtPresentacion.getText().toUpperCase() + "')");
                 C.Mensaje("PRESENTACION REGISTRADA");
                 Tabla();
@@ -124,8 +118,8 @@ public class CtrlPresentacion implements ActionListener {
         String sql = "SELECT * FROM presentacion WHERE presentacion='" + Frm.txtPresentacion.getText() + "';";
         if (!C.VerificarConsulta(sql)) {
             if (Validar()) {
-                C.InsertaRegistro("UPDATE Presentacion SET Presentacion='" + Frm.txtPresentacion.getText().toUpperCase()
-                        + "' WHERE idPresentacion='" + Frm.txtCodigo.getText() + "'");
+                C.InsertaRegistro("UPDATE presentacion SET presentacion='" + Frm.txtPresentacion.getText().toUpperCase()
+                        + "' WHERE idpresentacion='" + Frm.txtCodigo.getText() + "'");
                 C.Mensaje("PRESENTACION ACTUALIZADA");
                 Tabla();
                 Limpiar();
@@ -139,7 +133,7 @@ public class CtrlPresentacion implements ActionListener {
         C.fila = Frm.TPresentacion.getSelectedRow();
         if (Frm.TPresentacion.getSelectedRow() > -1) {
             if (JOptionPane.showConfirmDialog(null, "¿Estas Seguro?", "Eliminar", 0) == 0) {
-                C.InsertaRegistro("DELETE FROM Presentacion WHERE idPresentacion='" + Frm.TPresentacion.getValueAt(C.fila, 0).toString() + "'");
+                C.InsertaRegistro("DELETE FROM presentacion WHERE idpresentacion='" + Frm.TPresentacion.getValueAt(C.fila, 0).toString() + "'");
                 C.Mensaje("PRESENTACION ELIMINADA");
                 Tabla();
                 Limpiar();

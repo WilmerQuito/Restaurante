@@ -7,12 +7,7 @@ package Controlador;
 
 import Modelo.Controlador;
 import Vista.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -64,13 +59,13 @@ public class CtrlSabor implements ActionListener {
 
     }
 
-    public static synchronized CtrlSabor getInstance(FrmSabor Frm){
-        if(Single == null){
+    public static synchronized CtrlSabor getInstance(FrmSabor Frm) {
+        if (Single == null) {
             Single = new CtrlSabor(Frm);
         }
         return Single;
     }
-    
+
     public void Iniciar() {
         Frm.TSabor.setModel(DTM);
         DTM.setColumnIdentifiers(new String[]{"CODIGO", "SABOR DE BEBIDA"});
@@ -98,7 +93,7 @@ public class CtrlSabor implements ActionListener {
     }
 
     public void Tabla() {
-        C.sql = "SELECT * FROM Sabor WHERE idsabor LIKE '" + Frm.txtBuscar.getText()
+        C.sql = "SELECT * FROM sabor WHERE idsabor LIKE '" + Frm.txtBuscar.getText()
                 + "%' or saborcol like '" + Frm.txtBuscar.getText()
                 + "%'";
         C.MostrarenJTable(DTM, C.sql, 2);
@@ -108,7 +103,7 @@ public class CtrlSabor implements ActionListener {
         String sql = "SELECT * FROM sabor WHERE saborcol='" + Frm.txtSabor.getText() + "';";
         if (!C.VerificarConsulta(sql)) {
             if (Validar()) {
-                String Cod = C.GeneraCodigo(Frm.txtSabor.getText().toUpperCase(), "Sabor", "idsabor");
+                String Cod = C.GeneraCodigo(Frm.txtSabor.getText().toUpperCase(), "sabor", "idsabor");
                 C.InsertaRegistro("INSERT INTO sabor VALUES('" + Cod + "','"
                         + Frm.txtSabor.getText().toUpperCase() + "')");
                 C.Mensaje("SABOR REGISTRADO");
@@ -125,7 +120,7 @@ public class CtrlSabor implements ActionListener {
         if (!C.VerificarConsulta(sql)) {
             if (Validar()) {
                 C.InsertaRegistro("UPDATE sabor SET saborcol='" + Frm.txtSabor.getText().toUpperCase()
-                        + "' WHERE idSabor='" + Frm.txtCodigo.getText() + "'");
+                        + "' WHERE idsabor='" + Frm.txtCodigo.getText() + "'");
                 C.Mensaje("SABOR ACTUALIZADO");
                 Tabla();
                 Limpiar();
